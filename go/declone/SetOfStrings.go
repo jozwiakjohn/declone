@@ -36,10 +36,30 @@ func (set SetOfString) ToSlice() []string {
 	return result
 }
 
-// func (set * SetOfString) union(set2 SetOfString) * SetOfString {
-//
-// }
+/*
+func (set * SetOfString) union(set2 SetOfString) * SetOfString {
 
-// func (set * SetOfString) intersect(set2 SetOfString) * SetOfString {
-//
-// }
+}
+
+func (set * SetOfString) intersect(set2 SetOfString) * SetOfString {
+
+}
+
+func filterStrings(ss []string, criterion func(s string) bool) []string {
+	var filtration = make([]string, 0) //  not sure how many will "survive" filtration.
+	for _, s := range ss {
+		if criterion(s) {
+			filtration = append(filtration, s)
+		}
+	}
+	return filtration
+}
+
+func mapStrings(ss []string, f func(s string) string) []string { // yes the map is string -> string for now.
+	rslt := make([]string, len(ss))
+	for i, s := range ss {
+		rslt[i] = f(s)
+	}
+	return rslt
+}
+*/

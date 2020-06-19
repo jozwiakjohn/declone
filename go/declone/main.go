@@ -10,28 +10,6 @@ import (
 	"strings"
 )
 
-/*
-var treeDescriptors map[string]string
-
-func filterStrings(ss []string, criterion func(s string) bool) []string {
-	var filtration = make([]string, 0) //  not sure how many will "survive" filtration.
-	for _, s := range ss {
-		if criterion(s) {
-			filtration = append(filtration, s)
-		}
-	}
-	return filtration
-}
-
-func mapStrings(ss []string, f func(s string) string) []string { // yes the map is string -> string for now.
-	rslt := make([]string, len(ss))
-	for i, s := range ss {
-		rslt[i] = f(s)
-	}
-	return rslt
-}
-*/
-
 type nodeDescriptor struct {
 	path   string
 	name   string
@@ -49,6 +27,11 @@ func verifyOk(e error) {
 }
 
 func examinePath(p string) {
+
+	if p == "." {
+		fmt.Printf("WAIT, how did a dot get sent to examinePath?\n\n")
+		return
+	}
 
 	lstat, err := os.Lstat(p)
 	verifyOk(err)
@@ -96,18 +79,25 @@ func main() {
 	//  run through the commandline args to grab paths to explore, and commands (to be defined later).
 
 	for _, s := range os.Args[1:] {
-		switch {
-		case strings.HasPrefix(s, "-"):
-			/*rawCmnds =*/ rawCmnds.InsertBang(s)
-		default:
-			/*rawRoots =*/ rawRoots.InsertBang(s)
+		if strings.HasPrefix(s, "-") {
+			rawCmnds.InsertBang(s)
+		} else {
+			s = filepath.Clean(s)
+			if s == "." {
+				var err error
+				s, err = os.Getwd()
+				verifyOk(err)
+			}
+			rawRoots.InsertBang(filepath.Clean(s))
 		}
 	}
 
 	cmnds := rawCmnds.ToSlice()
 	roots := rawRoots.ToSlice()
 
-	fmt.Printf("these commands %v are being ignored at the moment", cmnds)
+	for _, c := range cmnds {
+		fmt.Printf("the command %v ise being ignored at the moment\n", c)
+	}
 
 	for _, p := range roots {
 		examinePath(p)
