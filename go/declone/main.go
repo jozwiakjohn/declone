@@ -3,9 +3,7 @@ package main
 // john jozwiak on 2020 June 14 (sunday) to practice in hopes of a new good and stable job, and to clean my decades of files.
 
 import (
-	"crypto/sha256"
 	"fmt"
-	"io"
 	"io/ioutil"
 	"os"
 	"path/filepath"
@@ -34,61 +32,20 @@ func mapStrings(ss []string, f func(s string) string) []string { // yes the map 
 }
 */
 
-type SetOfString map[string]struct{}
-
-func (set *SetOfString) Insert(s string) *SetOfString {
-	(*set)[s] = struct{}{} //  takes no useless byte space.
-	return set
-}
-
-func (set *SetOfString) Remove(s string) *SetOfString {
-	delete(*set, s)
-	return set
-}
-
-func (set *SetOfString) Contains(s string) bool {
-	_, found := (*set)[s]
-	return found
-}
-
-/*
-func (set * SetOfString) union(set2 SetOfString) * SetOfString {
-
-}
-
-func (set * SetOfString) intersect(set2 SetOfString) * SetOfString {
-
-}
-*/
-
 type nodeDescriptor struct {
 	path   string
+	name   string
 	size   int64 // in bytes
 	isFile bool
 	digest string
 }
 
-var nodeDescriptors = make(map[int64]nodeDescriptor)
+var nodeDescriptors = make(map[string]nodeDescriptor)
 
 func verifyOk(e error) {
 	if e != nil {
 		panic(e)
 	}
-}
-
-func calculateFileDigest(path string) []byte {
-
-	// p names a file, so calculate a sha256 hash of it to store with its length.
-
-	f, err := os.Open(path)
-	defer func() { _ = f.Close() }()
-	verifyOk(err)
-
-	h := sha256.New()
-	_, err = io.Copy(h, f)
-	verifyOk(err)
-
-	return h.Sum(nil)
 }
 
 func examinePath(p string) {
@@ -121,7 +78,7 @@ func examinePath(p string) {
 		fmt.Printf("file : \"%s\"\n", p)
 	}
 
-	nodeDescriptors[disco.size] = disco
+	nodeDescriptors[disco.digest] = disco
 }
 
 func main() {

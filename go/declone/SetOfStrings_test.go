@@ -4,7 +4,7 @@ package main
 import "testing"
 
 
-func TestInsert( t * testing.T ){
+func TestInsert(t *testing.T) {
 
   s := make(SetOfString)
   insertWorks := s.Insert("a").Contains("a")
@@ -14,12 +14,12 @@ func TestInsert( t * testing.T ){
 }
 
 
-func TestDelete( t * testing.T ) {
+func TestDelete(t *testing.T) {
 
   s := make(SetOfString)
   s = s.Insert("a")
   insertWorked := s.Contains("a")
-  s = s.Delete("a")
+  s = s.Remove("a")
   deleteWorked := ! s.Contains("a")
 
   if !( insertWorked && deleteWorked) {
@@ -28,7 +28,8 @@ func TestDelete( t * testing.T ) {
 }
 
 
-func TestContains( t * testing.T ) }
+func TestContains( t *testing.T ) {
+
   TestInsert(t)
 }
 
