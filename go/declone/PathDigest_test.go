@@ -16,4 +16,3 @@ func TestPathDigestForFile(t *testing.T) {
 func TestPathDigestForFolder(t *testing.T) {
 
 }
-
