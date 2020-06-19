@@ -1,3 +1,5 @@
+// john jozwiak on 2020 June 18 (sunday) to practice in hopes of a new good and stable job, and to clean my decades of files.
+
 package main
 
 import (
@@ -20,4 +22,3 @@ func calculateFileDigest(path string) []byte {
 
 	return h.Sum(nil)
 }
-

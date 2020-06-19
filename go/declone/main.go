@@ -1,6 +1,6 @@
-package main
-
 // john jozwiak on 2020 June 14 (sunday) to practice in hopes of a new good and stable job, and to clean my decades of files.
+
+package main
 
 import (
 	"fmt"
@@ -88,24 +88,29 @@ func main() {
 		os.Exit(1)
 	}
 
+	//  commandline args are either this binary's name, or paths to explore, or command flags.
+
+	rawRoots := make(SetOfString)
+	rawCmnds := make(SetOfString)
+
 	//  run through the commandline args to grab paths to explore, and commands (to be defined later).
 
-	roots := make([]string, 0)
-	cmnds := make([]string, 0)
-
 	for _, s := range os.Args[1:] {
-		if strings.HasPrefix(s, "-") { //  thus "--" is a viable prefix for a command too.
-			cmnds = append(cmnds, s)
-		} else {
-			roots = append(roots, s)
+		switch {
+		case strings.HasPrefix(s, "-"):
+			/*rawCmnds =*/ rawCmnds.InsertBang(s)
+		default:
+			/*rawRoots =*/ rawRoots.InsertBang(s)
 		}
 	}
 
-	if len(roots) > 0 {
+	cmnds := rawCmnds.ToSlice()
+	roots := rawRoots.ToSlice()
 
-		for _, p := range roots {
-			examinePath(p)
-		}
+	fmt.Printf("these commands %v are being ignored at the moment", cmnds)
+
+	for _, p := range roots {
+		examinePath(p)
 	}
 
 	for k, v := range nodeDescriptors {
