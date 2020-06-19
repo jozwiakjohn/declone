@@ -4,11 +4,14 @@ package main
 
 import (
 	"crypto/sha256"
+	"fmt"
 	"io"
+	"io/ioutil"
 	"os"
+	"path/filepath"
 )
 
-func calculateFileDigest(path string) []byte {
+func calculateFileDigest(path string) string {
 
 	// p names a file, so calculate a sha256 hash of it to store with its length.
 
@@ -20,5 +23,31 @@ func calculateFileDigest(path string) []byte {
 	_, err = io.Copy(h, f)
 	verifyOk(err)
 
-	return h.Sum(nil)
+	dbytes := h.Sum(nil)
+	return fmt.Sprintf("%x", dbytes)
+}
+
+func calculateFolderDigest(path string) string {
+
+	dirContents, err := ioutil.ReadDir(path)
+	if err != nil {
+		panic(fmt.Errorf("error: %s is not a directory: %v", path, err))
+	}
+
+	// build up an alphabetically sorted list of names with their digests;
+	// sorted order is delivered by ioutil.ReadDir.
+
+	dgs := make([]string, 0)
+
+	for _, e := range dirContents {
+
+		name := e.Name()
+		d := examinePath(filepath.Join(path, name))
+		dgs = append(dgs, fmt.Sprintf("%s:%s\n", name, d))
+	}
+	dg := ""
+	for _, d := range dgs {
+		dg = dg + d
+	}
+	return dg
 }

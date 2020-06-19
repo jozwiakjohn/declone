@@ -4,16 +4,15 @@ package main
 
 import (
 	"fmt"
-	"io/ioutil"
 	"os"
 	"path/filepath"
 	"strings"
 )
 
 type nodeDescriptor struct {
-	path   string
-	name   string
-	size   int64 // in bytes
+	path   string // from the root of descent
+	name   string // occurs at the end of path
+	size   int64  // in bytes
 	isFile bool
 	digest string
 }
@@ -26,42 +25,39 @@ func verifyOk(e error) {
 	}
 }
 
-func examinePath(p string) {
+func examinePath(p string) string {
 
-	if p == "." {
+	if p == "." { //  some defensive programming here: docs for ioutil.ReadDir do not specify if "." is returned.
 		fmt.Printf("WAIT, how did a dot get sent to examinePath?\n\n")
-		return
+		return ""
 	}
+	//	fmt.Printf("examining \"%s\"\n", p)
 
 	lstat, err := os.Lstat(p)
 	verifyOk(err)
 
-	disco := nodeDescriptor{path: p, size: lstat.Size(), isFile: !lstat.IsDir()}
-
-	//  now if this is a file, compute a hash and store it, then index the thing for later.
-
-	if lstat.IsDir() {
-
-		//  p names a directory, so examine it recursively.
-
-		dirContents, err := ioutil.ReadDir(p)
-		if err != nil {
-			fmt.Printf("ERROR : %s is not a directory: %v\n", p, err)
-			return
-		}
-		for _, e := range dirContents {
-
-			examinePath(p + "/" + e.Name())
-		}
-	} else {
-
-		// p names a file, so memoize its descriptor by size, for now.
-
-		disco.digest = fmt.Sprintf("%x", calculateFileDigest(p))
-		fmt.Printf("file : \"%s\"\n", p)
+	descr := nodeDescriptor{
+		path:   p,
+		name:   lstat.Name(),
+		size:   lstat.Size(),
+		isFile: lstat.Mode().IsRegular(),
 	}
 
-	nodeDescriptors[disco.digest] = disco
+	//  now if this is a file, compute a hash and store it, then index the thing for later.
+	//  path objects are files or folders, and each needs a sense of probable-identity:
+	//  for a file, use the hexadecimal string representing the sha256 hash of the file contents;
+	//  for a folder, use the string composed of the sorted folder name's hashes, newline-separated.
+
+	if descr.isFile {
+
+		descr.digest = calculateFileDigest(p)
+	} else {
+
+		descr.digest = calculateFolderDigest(p)
+	}
+
+	nodeDescriptors[descr.digest] = descr
+	return descr.digest
 }
 
 func main() {
@@ -103,8 +99,7 @@ func main() {
 		examinePath(p)
 	}
 
-	for k, v := range nodeDescriptors {
-		fmt.Printf("%v -> %v\n", k, v)
+	for _, v := range nodeDescriptors {
+		fmt.Printf("%v\n", v)
 	}
-
 }
