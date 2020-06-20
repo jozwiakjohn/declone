@@ -1,13 +1,14 @@
 # declone
-declone commandline tool, in Go, soon Python3, Java (2020), Clojure, Swift
 
-I want to write a tool that can examine a bunch of paths and find maximal identical subtrees.   The reason that need arises is as follows.
+declone is a commandline tool which I built because I needed it...and wanted to compare languages I've used in 2019 and 2020.
 
-I have like 33 years of files accrued since high school floppies, across undergrad and grad homework, mad scientist stuff,
-and they migrated over time from PC-AT to NeXT to Sun to Apples, and then the backups of those machines ended up
-cloning earlier backups in subdirectories.   The result has structure something like Russian nesting dolls, with some levels holding multiple recursive dolls.
+It has its initial implementation in Go, with soon-to-follow functionally matched 
+implementations in Python3, Java9, and perhaps Clojure, Racket, and Swift.
 
-So, I spent a tedious bunch of time a few months ago reconciling over a dozen external USB hard drives, of these backups, with duplicates among them,
-into one very large filesystem.
+Usage:
 
-I'd like to identify cloned files and identical subtrees (i.e., folders) within such a large filesystem.
+&nbsp;&nbsp;&nbsp; declone pathA pathB...
+
+searches the paths, including filesystem subtrees rooted at and within them, for maximal identical subtrees.
+Identical individual files will be identified, as will, recursively, identical subtrees.
+
