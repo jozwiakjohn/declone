@@ -74,12 +74,12 @@ func main() {
 
 	//  run through the commandline args to grab paths to explore, and commands (to be defined later).
 
-	for _, s := range os.Args[1:] {
+	for _, s := range os.Args[1:] { //  because os.Args[0] is this binary's name.
 		if strings.HasPrefix(s, "-") {
 			rawCmnds.InsertBang(s)
 		} else {
 			s = filepath.Clean(s)
-			if s == "." {
+			if s == "." { // replace "." on the commandline with the current working directory.
 				var err error
 				s, err = os.Getwd()
 				verifyOk(err)
@@ -92,7 +92,7 @@ func main() {
 	roots := rawRoots.ToSlice()
 
 	for _, c := range cmnds {
-		fmt.Printf("the command %v ise being ignored at the moment\n", c)
+		fmt.Printf("the command %v is being ignored at the moment\n", c)
 	}
 
 	for _, p := range roots {
