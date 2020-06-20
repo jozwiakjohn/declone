@@ -1,4 +1,4 @@
-// john jozwiak on 2020 June 18 (sunday) to practice in hopes of a new good and stable job, and to clean my decades of files.
+// john jozwiak on 2020 June 18..20 to practice in hopes of a new good and stable job, and to clean my decades of files.
 
 package main
 
@@ -50,4 +50,13 @@ func calculateFolderDigest(path string) string {
 		dg = dg + d
 	}
 	return dg
+}
+
+func calculatePathDigest(path string, isRegularFile bool) string {
+
+	if isRegularFile {
+		return calculateFileDigest(path)
+	} else {
+		return calculateFolderDigest(path)
+	}
 }

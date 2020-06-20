@@ -9,15 +9,16 @@ import (
 	"strings"
 )
 
-type nodeDescriptor struct {
-	path   string // from the root of descent
-	name   string // occurs at the end of path
-	size   int64  // in bytes
-	isFile bool
-	digest string
-}
+//type nodeDescriptor struct {
+//	path   string // from the root of descent
+//	name   string // occurs at the end of path
+//	size   int64  // in bytes
+//	isFile bool
+//	digest string
+//}
 
 var nodeDescriptors = make(map[string]SetOfString) // identical hashes might occur at multiple paths...the entire point.
+var nodeSizes = make(map[string]uint64)
 
 func verifyOk(e error) {
 	if e != nil {
@@ -25,43 +26,34 @@ func verifyOk(e error) {
 	}
 }
 
-func examinePath(p string) string {
+func examinePath(path string) string {
 
-	if p == "." { //  some defensive programming here: docs for ioutil.ReadDir do not specify if "." is returned.
+	if path == "." { //  some defensive programming here: docs for ioutil.ReadDir do not specify if "." is returned.
 		fmt.Printf("WAIT, how did a dot get sent to examinePath?\n\n")
 		return ""
 	}
 	//	fmt.Printf("examining \"%s\"\n", p)
 
-	lstat, err := os.Lstat(p)
+	lstat, err := os.Lstat(path)
 	verifyOk(err)
 
-	descr := nodeDescriptor{
-		path:   p,
-		name:   lstat.Name(),
-		size:   lstat.Size(),
-		isFile: lstat.Mode().IsRegular(),
-	}
+	isRegularFile := lstat.Mode().IsRegular()
+	// lstat.Size() is byte length for regular files.
+	// lstat.Name() is file's name within its path.
 
-	//  now if this is a file, compute a hash and store it, then index the thing for later.
-	//  path objects are files or folders, and each needs a sense of probable-identity:
+	//  paths name files or folders, and each needs a sense of probable-identity:
 	//  for a file, use the hexadecimal string representing the sha256 hash of the file contents;
 	//  for a folder, use the string composed of the sorted folder name's hashes, newline-separated.
 
-	if descr.isFile {
-		descr.digest = calculateFileDigest(p)
-	} else {
-		descr.digest = calculateFolderDigest(p)
-	}
+	digest := calculatePathDigest(path, isRegularFile)
 
-	_, found := nodeDescriptors[descr.digest] //  Go's irregular syntax for checking if a map contains a key.
-
-	if !found { //  ensure a SetOfString exists at this key.
-		nodeDescriptors[descr.digest] = SetOfString{}
+	_, found := nodeDescriptors[digest] //  Go's irregular syntax for checking if a map contains a key.
+	if !found {                         //  ensure a SetOfString exists at this key.
+		nodeDescriptors[digest] = SetOfString{}
 	}
-	//
-	nodeDescriptors[descr.digest].InsertBang(p)
-	return descr.digest
+	nodeDescriptors[digest].InsertBang(path)
+
+	return digest
 }
 
 func main() {
