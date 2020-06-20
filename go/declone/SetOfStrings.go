@@ -2,6 +2,8 @@
 
 package main
 
+import "fmt"
+
 type SetOfString map[string]struct{}
 
 func MakeSetOfString(ss []string) SetOfString {
@@ -28,12 +30,40 @@ func (set SetOfString) Contains(s string) bool {
 	return found
 }
 
+func (set SetOfString) Cardinality() int {
+	return len(set)
+}
+
 func (set SetOfString) ToSlice() []string {
 	result := make([]string, 0)
 	for s := range set {
 		result = append(result, s)
 	}
 	return result
+}
+
+func (set SetOfString) ToString(style string) string {
+	items := set.ToSlice()
+	r := ""
+	switch style {
+	case "scheme", "lisp", "racket", "t":
+		r += "("
+		for _, i := range items {
+			r += fmt.Sprintf("\"%s\"  ", i)
+		}
+		r += ")"
+	case "go", "golang":
+		r = fmt.Sprintf("%#v", items)
+	case "verbose", "english", "human":
+		r += "the following paths seemingly clone one another...\n"
+		for _, i := range items {
+			r += fmt.Sprintf("   \"%s\"\n", i)
+		}
+		r += "\n"
+	default:
+		r = fmt.Sprintf("%#v", items)
+	}
+	return r
 }
 
 /*

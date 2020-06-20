@@ -43,7 +43,7 @@ func calculateFolderDigest(path string) string {
 
 		name := e.Name()
 		d := examinePath(filepath.Join(path, name))
-		dgs = append(dgs, fmt.Sprintf("%s:%s\n", name, d))
+		dgs = append(dgs, fmt.Sprintf("%s:%s;", name, d))
 	}
 	dg := ""
 	for _, d := range dgs {

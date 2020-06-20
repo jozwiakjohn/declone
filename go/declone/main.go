@@ -17,7 +17,7 @@ type nodeDescriptor struct {
 	digest string
 }
 
-var nodeDescriptors = make(map[string]nodeDescriptor)
+var nodeDescriptors = make(map[string]SetOfString) // identical hashes might occur at multiple paths...the entire point.
 
 func verifyOk(e error) {
 	if e != nil {
@@ -49,14 +49,18 @@ func examinePath(p string) string {
 	//  for a folder, use the string composed of the sorted folder name's hashes, newline-separated.
 
 	if descr.isFile {
-
 		descr.digest = calculateFileDigest(p)
 	} else {
-
 		descr.digest = calculateFolderDigest(p)
 	}
 
-	nodeDescriptors[descr.digest] = descr
+	_, found := nodeDescriptors[descr.digest] //  Go's irregular syntax for checking if a map contains a key.
+
+	if !found { //  ensure a SetOfString exists at this key.
+		nodeDescriptors[descr.digest] = SetOfString{}
+	}
+	//
+	nodeDescriptors[descr.digest].InsertBang(p)
 	return descr.digest
 }
 
@@ -99,7 +103,12 @@ func main() {
 		examinePath(p)
 	}
 
+	//  at this point, nodeDescriptors is a map from strings, each a sha256 digest of a file or a composition thereof for a directory,  to sets of strings, each a path.
+	//  We can iterate through the keys to see which keys (i.e., unique sha256 digest as a signature) occurs at more than one path!
+
 	for _, v := range nodeDescriptors {
-		fmt.Printf("%v\n", v)
+		if v.Cardinality() > 1 {
+			fmt.Println(v.ToString("verbose"))
+		}
 	}
 }
