@@ -89,14 +89,16 @@ func main() {
 	//  We can iterate through the keys to see which keys (i.e., unique sha256 digest as a signature) occurs at more than one path!
 
 	for _, v := range nodeDescriptors {
-		if v.set.Cardinality() > 1 {
+		if v.set.Cardinality() > 1 { //  then we have found a clone, so tidy up the english commentary on such.
 			var what string
 			if v.file {
 				what = "files"
 			} else {
 				what = "folders"
 			}
-			fmt.Println(v.set.ToString("verbose", fmt.Sprintf("the following %s seem to hold identical content...\n", what)))
+			label := fmt.Sprintf("the following %s seem to hold identical content, each instance of size %d bytes... // shown as 0 for folders for now\n", what, v.size)
+
+			fmt.Println(v.set.ToString("verbose", label))
 		}
 	}
 }
