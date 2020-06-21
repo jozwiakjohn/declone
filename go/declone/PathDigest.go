@@ -52,11 +52,28 @@ func calculateFolderDigest(path string) string {
 	return dg
 }
 
-func calculatePathDigest(path string, isRegularFile bool) string {
+func calculatePathDigestTypeAndSize(path string) (string, bool, int64) {
+
+	lstat, err := os.Lstat(path)
+	verifyOk(err)
+
+	isRegularFile := lstat.Mode().IsRegular()
+	var sizeAtPath int64
+	if isRegularFile {
+		sizeAtPath = lstat.Size()
+	} else {
+		sizeAtPath = int64(0) // ignoring directory size for now
+	}
 
 	if isRegularFile {
-		return calculateFileDigest(path)
+		return calculateFileDigest(path), isRegularFile, sizeAtPath
 	} else {
-		return calculateFolderDigest(path)
+		return calculateFolderDigest(path), isRegularFile, sizeAtPath
 	}
 }
+
+/*
+func calculatePathSize(path string, isRegularFile bool) int64 {
+	return int64(0)
+}
+*/

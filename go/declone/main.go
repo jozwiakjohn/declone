@@ -31,19 +31,11 @@ func examinePath(path string) string {
 	}
 	//	fmt.Printf("examining \"%s\"\n", p)
 
-	lstat, err := os.Lstat(path)
-	verifyOk(err)
-
-	isRegularFile := lstat.Mode().IsRegular()
-	sizeAtPath := int64(0)
-	// lstat.Size() is byte length for regular files.
-	// lstat.Name() is file's name within its path.
-
 	//  paths name files or folders, and each needs a sense of probable-identity:
 	//  for a file, use the hexadecimal string representing the sha256 hash of the file contents;
 	//  for a folder, use the string composed of the sorted folder name's hashes, newline-separated.
 
-	digest := calculatePathDigest(path, isRegularFile)
+	digest, isRegularFile, sizeAtPath := calculatePathDigestTypeAndSize(path)
 
 	_, found := nodeDescriptors[digest] //  Go's irregular syntax for checking if a map contains a key.
 	if !found {                         //  ensure a SetOfString exists at this key.
