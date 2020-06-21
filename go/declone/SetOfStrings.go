@@ -42,7 +42,7 @@ func (set SetOfString) ToSlice() []string {
 	return result
 }
 
-func (set SetOfString) ToString(style string) string {
+func (set SetOfString) ToString(style string, label string) string {
 	items := set.ToSlice()
 	r := ""
 	switch style {
@@ -55,7 +55,7 @@ func (set SetOfString) ToString(style string) string {
 	case "go", "golang":
 		r = fmt.Sprintf("%#v", items)
 	case "verbose", "english", "human":
-		r += "the following paths seem to hold identical content...\n"
+		r += label
 		for _, i := range items {
 			r += fmt.Sprintf("   \"%s\"\n", i)
 		}

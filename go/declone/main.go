@@ -9,16 +9,13 @@ import (
 	"strings"
 )
 
-//type nodeDescriptor struct {
-//	path   string // from the root of descent
-//	name   string // occurs at the end of path
-//	size   int64  // in bytes
-//	isFile bool
-//	digest string
-//}
+type CloneGroup struct {
+	file bool        //  true means File; false means Folder.
+	size int64       //  Go FileMode uses int64 not uint64 here.
+	set  SetOfString //  the paths which are clones.
+}
 
-var nodeDescriptors = make(map[string]SetOfString) // identical hashes might occur at multiple paths...the entire point.
-var nodeSizes = make(map[string]uint64)
+var nodeDescriptors = make(map[string]CloneGroup) // identical hashes might occur at multiple paths...the entire point.
 
 func verifyOk(e error) {
 	if e != nil {
@@ -38,6 +35,7 @@ func examinePath(path string) string {
 	verifyOk(err)
 
 	isRegularFile := lstat.Mode().IsRegular()
+	sizeAtPath := int64(0)
 	// lstat.Size() is byte length for regular files.
 	// lstat.Name() is file's name within its path.
 
@@ -49,9 +47,9 @@ func examinePath(path string) string {
 
 	_, found := nodeDescriptors[digest] //  Go's irregular syntax for checking if a map contains a key.
 	if !found {                         //  ensure a SetOfString exists at this key.
-		nodeDescriptors[digest] = SetOfString{}
+		nodeDescriptors[digest] = CloneGroup{file: isRegularFile, size: sizeAtPath, set: SetOfString{}}
 	}
-	nodeDescriptors[digest].InsertBang(path)
+	nodeDescriptors[digest].set.InsertBang(path)
 
 	return digest
 }
@@ -99,8 +97,14 @@ func main() {
 	//  We can iterate through the keys to see which keys (i.e., unique sha256 digest as a signature) occurs at more than one path!
 
 	for _, v := range nodeDescriptors {
-		if v.Cardinality() > 1 {
-			fmt.Println(v.ToString("verbose"))
+		if v.set.Cardinality() > 1 {
+			var what string
+			if v.file {
+				what = "files"
+			} else {
+				what = "folders"
+			}
+			fmt.Println(v.set.ToString("verbose", fmt.Sprintf("the following %s seem to hold identical content...\n", what)))
 		}
 	}
 }
