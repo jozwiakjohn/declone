@@ -27,7 +27,7 @@ func calculateFileDigest(path string) string {
 	return fmt.Sprintf("%x", dbytes)
 }
 
-func calculateFolderDigest(path string) string {
+func calculateFolderDigest(path string) (string, int64) {
 
 	dirContents, err := ioutil.ReadDir(path)
 	if err != nil {
@@ -38,18 +38,20 @@ func calculateFolderDigest(path string) string {
 	// sorted order is delivered by ioutil.ReadDir.
 
 	dgs := make([]string, 0)
+	containedsize := int64(0)
 
 	for _, e := range dirContents {
 
 		name := e.Name()
-		d := examinePath(filepath.Join(path, name))
+		d, sz := examinePath(filepath.Join(path, name))
 		dgs = append(dgs, fmt.Sprintf("%s:%s;", name, d))
+		containedsize += sz
 	}
 	dg := ""
 	for _, d := range dgs {
 		dg = dg + d
 	}
-	return dg
+	return dg, containedsize
 }
 
 func calculatePathDigestTypeAndSize(path string) (string, bool, int64) {
@@ -58,18 +60,18 @@ func calculatePathDigestTypeAndSize(path string) (string, bool, int64) {
 	verifyOk(err)
 
 	isRegularFile := lstat.Mode().IsRegular()
+
 	var sizeAtPath int64
-	if isRegularFile {
-		sizeAtPath = lstat.Size()
-	} else {
-		sizeAtPath = int64(0) // ignoring directory size for now
-	}
+	var digest string
 
 	if isRegularFile {
-		return calculateFileDigest(path), isRegularFile, sizeAtPath
+		digest = calculateFileDigest(path)
+		sizeAtPath = lstat.Size()
 	} else {
-		return calculateFolderDigest(path), isRegularFile, sizeAtPath
+		digest, sizeAtPath = calculateFolderDigest(path)
 	}
+
+	return digest, isRegularFile, sizeAtPath
 }
 
 /*

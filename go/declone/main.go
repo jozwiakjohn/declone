@@ -23,11 +23,11 @@ func verifyOk(e error) {
 	}
 }
 
-func examinePath(path string) string {
+func examinePath(path string) (string, int64) {
 
 	if path == "." { //  some defensive programming here: docs for ioutil.ReadDir do not specify if "." is returned.
 		fmt.Printf("WAIT, how did a dot get sent to examinePath?\n\n")
-		return ""
+		return "", 0
 	}
 
 	//  paths name files or folders, and each needs a sense of probable-identity:
@@ -41,10 +41,10 @@ func examinePath(path string) string {
 	if !found {                         //  ensure a SetOfString exists at this key.
 		nodeDescriptors[digest] = CloneGroup{file: isRegularFile, size: sizeAtPath, set: SetOfString{}}
 	}
-	//  and add this instance to the CloneGroup at this digest.
+	//  and add this path to the CloneGroup at this digest.
 	nodeDescriptors[digest].set.InsertBang(path)
 
-	return digest //  return the digest to recursively use it for folder digest construction.
+	return digest, sizeAtPath //  return the digest to recursively use it for folder digest construction.
 }
 
 func main() {
@@ -97,7 +97,7 @@ func main() {
 			} else {
 				what = "folders"
 			}
-			label := fmt.Sprintf("the following %s seem to hold identical content, each instance of size %d bytes... // shown as 0 for folders for now\n", what, v.size)
+			label := fmt.Sprintf("the following %s seem to hold identical content, each instance of size %d bytes...(sum of sizes of files held within for folders)\n", what, v.size)
 
 			fmt.Println(v.set.ToString("verbose", label))
 		}
