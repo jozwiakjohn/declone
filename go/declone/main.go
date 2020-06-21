@@ -29,7 +29,6 @@ func examinePath(path string) string {
 		fmt.Printf("WAIT, how did a dot get sent to examinePath?\n\n")
 		return ""
 	}
-	//	fmt.Printf("examining \"%s\"\n", p)
 
 	//  paths name files or folders, and each needs a sense of probable-identity:
 	//  for a file, use the hexadecimal string representing the sha256 hash of the file contents;
