@@ -73,9 +73,3 @@ func calculatePathDigestTypeAndSize(path string) (string, bool, int64) {
 
 	return digest, isRegularFile, sizeAtPath
 }
-
-/*
-func calculatePathSize(path string, isRegularFile bool) int64 {
-	return int64(0)
-}
-*/

@@ -89,17 +89,23 @@ func main() {
 	//  at this point, nodeDescriptors is a map from strings, each a sha256 digest of a file or a composition thereof for a directory,  to sets of strings, each a path.
 	//  We can iterate through the keys to see which keys (i.e., unique sha256 digest as a signature) occurs at more than one path!
 
+	totalSquandered := int64(0)
+
 	for _, v := range nodeDescriptors {
-		if v.set.Cardinality() > 1 { //  then we have found a clone, so tidy up the english commentary on such.
+		cardinality := v.set.Cardinality()
+		if cardinality > 1 { //  then we have found a clone, so tidy up the english commentary on such.
 			var what string
 			if v.file {
 				what = "files"
 			} else {
 				what = "folders"
 			}
-			label := fmt.Sprintf("the following %s seem to hold identical content, each instance of size %d bytes...(sum of sizes of files held within for folders)\n", what, v.size)
+			squandered := int64(cardinality-1) * v.size
+			label := fmt.Sprintf("the following %d %s seem to hold identical content, each instance uses %d bytes in file(s), so %d bytes are squandered in duplication:\n", cardinality, what, v.size, squandered)
 
 			fmt.Println(v.set.ToString("verbose", label))
+			totalSquandered += squandered
 		}
 	}
+	fmt.Printf("Total bytes squandered in duplication is %d.\n", totalSquandered)
 }
