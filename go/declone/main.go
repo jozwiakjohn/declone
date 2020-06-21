@@ -33,17 +33,19 @@ func examinePath(path string) string {
 
 	//  paths name files or folders, and each needs a sense of probable-identity:
 	//  for a file, use the hexadecimal string representing the sha256 hash of the file contents;
-	//  for a folder, use the string composed of the sorted folder name's hashes, newline-separated.
+	//  for a folder, use the string composed of the sorted folder's folder-local filenames and hashes, semicolon-separated.
 
 	digest, isRegularFile, sizeAtPath := calculatePathDigestTypeAndSize(path)
 
+	//  if we have NOT seen this digest before, initialize a CloneGroup to hold it within the map from digests to CloneGroups.
 	_, found := nodeDescriptors[digest] //  Go's irregular syntax for checking if a map contains a key.
 	if !found {                         //  ensure a SetOfString exists at this key.
 		nodeDescriptors[digest] = CloneGroup{file: isRegularFile, size: sizeAtPath, set: SetOfString{}}
 	}
+	//  and add this instance to the CloneGroup at this digest.
 	nodeDescriptors[digest].set.InsertBang(path)
 
-	return digest
+	return digest //  return the digest to recursively use it for folder digest construction.
 }
 
 func main() {
