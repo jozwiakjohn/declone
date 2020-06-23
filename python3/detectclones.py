@@ -17,6 +17,28 @@ def  verifyOk(e):
         print(e)
         sys.exit(1)
 
+#  def  ToString(s set, style string, label string) string :
+#  items = list(set)
+#  r := ""
+#  switch style {
+#      case "scheme", "lisp", "racket", "t":
+#  r += "("
+#  for _, i := range items {
+#  r += fmt.Sprintf("\"%s\"  ", i)
+#  }
+#  r += ")"
+#  case "go", "golang":
+#      r = fmt.Sprintf("%#v", items)
+#  case "verbose", "english", "human":
+#  r += label
+#  for _, i := range items {
+#  r += fmt.Sprintf("   \"%s\"\n", i)
+#  }
+#  r += "\n"
+#  default:
+#      r = fmt.Sprintf("%#v", items)
+#  }
+#  return r
 
 def  examinePath(path): ## (string, int64)
 
@@ -83,7 +105,7 @@ def main():
     totalSquandered = 0
 
     for v in nodeDescriptors :
-        cardinality = v.set.Cardinality()
+        cardinality = len(v.set)
         if cardinality > 1 : ##  then we have found a clone, so tidy up the english commentary on such.
             what = ""
             if v.file :
