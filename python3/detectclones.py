@@ -1,8 +1,7 @@
 # john jozwiak on 2020 June 21 (sunday) to practice in hopes of a new good and stable job, and to clean my decades of files.
 
 
-import	sys
-import  os.path
+import hashlib,glob,os,os.path,sys
 
 class CloneGroup:
     def __init__(self,isFile,size,pathsSet):
@@ -12,11 +11,53 @@ class CloneGroup:
 
 nodeDescriptors = {} ##      map of string -> CloneGroup ## identical hashes might occur at multiple paths...the entire point.
 
-def  verifyOk(e):
-    if e != "":
-        print(e)
-        sys.exit(1)
+def  calculateFileDigest(path):
 
+    with open(path,"rb") as f:
+        bytes = f.read(-1)
+    h = hashlib.sha256().update(bytes).hexdigest()
+    return h
+
+def calculateFolderDigest(path): ## (string, int64)
+
+    #  build up an alphabetically sorted list of names with their digests
+    #  sorted order is delivered by ioutil.ReadDir.
+
+    dgs = []
+    containedsize = 0
+
+    for e in glob.glob(os.path.join(path,"*")):
+
+        name = os.path.basename(e)
+        print(e,name)
+        d, sz = examinePath(os.path.join(path, name))
+        dgs.append(str(name) + ":" + str(d))
+        containedsize += sz
+
+    dg = ""
+    for d in dgs: # _, d := range dgs {
+        dg = dg + d
+
+    return dg, containedsize
+
+def calculatePathDigestTypeAndSize(path): ## (string, bool, int64)
+
+    lstat, err := os.Lstat(path)
+    verifyOk(err)
+
+    isRegularFile := lstat.Mode().IsRegular()
+
+    var sizeAtPath int64
+    var digest string
+
+    if isRegularFile {
+    digest = calculateFileDigest(path)
+    sizeAtPath = lstat.Size()
+    } else {
+    digest, sizeAtPath = calculateFolderDigest(path)
+    }
+
+    return digest, isRegularFile, sizeAtPath
 #  def  ToString(s set, style string, label string) string :
 #  items = list(set)
 #  r := ""
@@ -54,12 +95,11 @@ def  examinePath(path): ## (string, int64)
     (digest, isRegularFile, sizeAtPath) = calculatePathDigestTypeAndSize(path)
 
     ##  if we have NOT seen this digest before, initialize a CloneGroup to hold it within the map from digests to CloneGroups.
-    _, found := nodeDescriptors[digest] ##  Go's irregular syntax for checking if a map contains a key.
-    if !found :                         ##  ensure a SetOfString exists at this key.
-        nodeDescriptors[digest] = CloneGroup{file: isRegularFile, size: sizeAtPath, set: SetOfString{}}
-
+    if digest not in nodeDescriptors:  #  python's syntax for checking if a map has a "key".
+        #  ensure a CloneGroup now exists at this key.
+        nodeDescriptors[digest] = CloneGroup(file: isRegularFile, size: sizeAtPath, set: SetOfString{} )
     ##  and add this path to the CloneGroup at this digest.
-    nodeDescriptors[digest].set.InsertBang(path)
+    nodeDescriptors[digest].paths.add(path)
 
     return digest, sizeAtPath  ##  return the digest to recursively use it for folder digest construction.
 
@@ -72,26 +112,23 @@ def main():
 
     ##  commandline args are either this binary's name, or paths to explore, or command flags.
 
-    rawRoots = set()
     rawCmnds = set()
+    rawRoots = set()
 
     ##  run through the commandline args to grab paths to explore, and commands (to be defined later).
 
     for s in sys.argv[1:] : ##  because os.Args[0] is this binary's name.
 
-
-        if strings.HasPrefix(s, "-") :
-
-
-            rawCmnds.InsertBang(s)
+        if s.startswith("-"):
+            rawCmnds.add(s)
         else :
             s = os.path.normpath(s)
             if s == "." : ## replace "." on the commandline with the current working directory.
                 s = os.getcwd()
-            rawRoots.InsertBang(os.path.normpath(s))
+            rawRoots.add(os.path.normpath(s))
 
-    cmnds = rawCmnds.ToSlice()
-    roots = rawRoots.ToSlice()
+    cmnds = list(rawCmnds)
+    roots = list(rawRoots)
 
     for _, c in cmnds :
         print("the command "+str(c)+" is being ignored at the moment\n")
@@ -118,3 +155,5 @@ def main():
             print(v.set.ToString("verbose", label))
             totalSquandered += squandered
     print("Total bytes squandered in duplication is ",str(totalSquandered), ".\n")
+
+main()
