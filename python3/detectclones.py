@@ -1,63 +1,54 @@
 # john jozwiak on 2020 June 21 (sunday) to practice in hopes of a new good and stable job, and to clean my decades of files.
 
 
-import hashlib,glob,os,os.path,sys
+import hashlib,glob,os,os.path,stat,sys
 
 class CloneGroup:
-    def __init__(self,isFile,size,pathsSet):
-        self.file = isFile    ## bool        : true means File; false means Folder.
-        self.size = size      ## int64       : Go FileMode uses int64 not uint64 here.
-        self.paths = pathsSet ## SetOfString : the paths which are clones.
+    def __init__(self,isFile,size):
+        self.file = isFile    # bool        : true means File; false means Folder.
+        self.size = size      # int64       : Go FileMode uses int64 not uint64 here.
+        self.paths = set([])  # SetOfString : the paths which are clones.
 
-nodeDescriptors = {} ##      map of string -> CloneGroup ## identical hashes might occur at multiple paths...the entire point.
+nodeDescriptors = {} #      map of string -> CloneGroup ; identical hashes might occur at multiple paths...the entire point.
 
 def  calculateFileDigest(path):
 
     with open(path,"rb") as f:
         bytes = f.read(-1)
-    h = hashlib.sha256().update(bytes).hexdigest()
+    h = hashlib.sha256(bytes).hexdigest()
     return h
 
-def calculateFolderDigest(path): ## (string, int64)
+def calculateFolderDigest(path):
 
     #  build up an alphabetically sorted list of names with their digests
-    #  sorted order is delivered by ioutil.ReadDir.
 
     dgs = []
     containedsize = 0
 
-    for e in glob.glob(os.path.join(path,"*")):
+    for e in sorted(glob.glob(os.path.join(path,"*"))):
 
         name = os.path.basename(e)
         print(e,name)
-        d, sz = examinePath(os.path.join(path, name))
+        d, sz = examinePath(name)
         dgs.append(str(name) + ":" + str(d))
         containedsize += sz
 
-    dg = ""
-    for d in dgs: # _, d := range dgs {
-        dg = dg + d
+    return "".join(dgs), containedsize
 
-    return dg, containedsize
+def calculatePathDigestTypeAndSize(path):
 
-def calculatePathDigestTypeAndSize(path): ## (string, bool, int64)
+    lstat = os.lstat(path)
 
-    lstat, err := os.Lstat(path)
-    verifyOk(err)
+    isRegularFile = stat.S_ISREG( lstat.st_mode )
 
-    isRegularFile := lstat.Mode().IsRegular()
+    if isRegularFile :
+      digest = calculateFileDigest(path)
+      sizeAtPath = lstat.st_size
+    else :
+      digest, sizeAtPath = calculateFolderDigest(path)
 
-    var sizeAtPath int64
-    var digest string
+    return (digest, isRegularFile, sizeAtPath)
 
-    if isRegularFile {
-    digest = calculateFileDigest(path)
-    sizeAtPath = lstat.Size()
-    } else {
-    digest, sizeAtPath = calculateFolderDigest(path)
-    }
-
-    return digest, isRegularFile, sizeAtPath
 #  def  ToString(s set, style string, label string) string :
 #  items = list(set)
 #  r := ""
@@ -81,49 +72,48 @@ def calculatePathDigestTypeAndSize(path): ## (string, bool, int64)
 #  }
 #  return r
 
-def  examinePath(path): ## (string, int64)
+def  examinePath(path):
 
-    if path == ".":  ##  some defensive programming here: docs for ioutil.ReadDir do not specify if "." is returned.
+    if path == ".":  #  some defensive programming here: docs for ioutil.ReadDir do not specify if "." is returned.
         print("WAIT, how did a dot get sent to examinePath?\n\n")
         return "", 0
 
-
-    ##  paths name files or folders, and each needs a sense of probable-identity:
-    ##  for a file, use the hexadecimal string representing the sha256 hash of the file contents;
-    ##  for a folder, use the string composed of the sorted folder's folder-local filenames and hashes, semicolon-separated.
+    #  paths name files or folders, and each needs a sense of probable-identity:
+    #  for a file, use the hexadecimal string representing the sha256 hash of the file contents;
+    #  for a folder, use the string composed of the sorted folder's folder-local filenames and hashes, semicolon-separated.
 
     (digest, isRegularFile, sizeAtPath) = calculatePathDigestTypeAndSize(path)
 
-    ##  if we have NOT seen this digest before, initialize a CloneGroup to hold it within the map from digests to CloneGroups.
-    if digest not in nodeDescriptors:  #  python's syntax for checking if a map has a "key".
+    #  if we have NOT seen this digest before, initialize a CloneGroup to hold it.
+    if digest not in nodeDescriptors:
         #  ensure a CloneGroup now exists at this key.
-        nodeDescriptors[digest] = CloneGroup(file: isRegularFile, size: sizeAtPath, set: SetOfString{} )
-    ##  and add this path to the CloneGroup at this digest.
+        nodeDescriptors[digest] = CloneGroup( isRegularFile, sizeAtPath )
+    #  and add this path to the CloneGroup at this digest.
     nodeDescriptors[digest].paths.add(path)
 
-    return digest, sizeAtPath  ##  return the digest to recursively use it for folder digest construction.
+    return digest, sizeAtPath  #  return the digest to recursively use it for folder digest construction.
 
 
 def main():
 
     if len(sys.argv) == 1 :
-        print(sys.Argv[0], " needs a list of filesystem paths:  it will examine all files at the given paths, and recursively below, to identify clones.")
+        print(sys.argv[0], " needs a list of filesystem paths:  it will examine all files at the given paths, and recursively below, to identify clones.")
         sys.exit(1)
 
-    ##  commandline args are either this binary's name, or paths to explore, or command flags.
+    #  commandline args are either this binary's name, or paths to explore, or command flags.
 
     rawCmnds = set()
     rawRoots = set()
 
-    ##  run through the commandline args to grab paths to explore, and commands (to be defined later).
+    #  run through the commandline args to grab paths to explore, and commands (to be defined later).
 
-    for s in sys.argv[1:] : ##  because os.Args[0] is this binary's name.
+    for s in sys.argv[1:] : #  because os.Args[0] is this binary's name.
 
         if s.startswith("-"):
             rawCmnds.add(s)
         else :
             s = os.path.normpath(s)
-            if s == "." : ## replace "." on the commandline with the current working directory.
+            if s == "." : # replace "." on the commandline with the current working directory.
                 s = os.getcwd()
             rawRoots.add(os.path.normpath(s))
 
@@ -136,14 +126,14 @@ def main():
     for _, p in roots :
         examinePath(p)
 
-    ##  at this point, nodeDescriptors is a map from strings, each a sha256 digest of a file or a composition thereof for a directory,  to sets of strings, each a path.
-    ##  We can iterate through the keys to see which keys (i.e., unique sha256 digest as a signature) occurs at more than one path!
+    #  at this point, nodeDescriptors is a map from strings, each a sha256 digest of a file or a composition thereof for a directory,  to sets of strings, each a path.
+    #  We can iterate through the keys to see which keys (i.e., unique sha256 digest as a signature) occurs at more than one path!
 
     totalSquandered = 0
 
     for v in nodeDescriptors :
         cardinality = len(v.set)
-        if cardinality > 1 : ##  then we have found a clone, so tidy up the english commentary on such.
+        if cardinality > 1 : #  then we have found a clone, so tidy up the english commentary on such.
             what = ""
             if v.file :
                 what = "files"
