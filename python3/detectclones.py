@@ -3,20 +3,23 @@
 
 import hashlib,glob,os,os.path,stat,sys
 
+
 class CloneGroup:
     def __init__(self,isFile,size):
         self.file = isFile    # bool        : true means File; false means Folder.
         self.size = size      # int64       : Go FileMode uses int64 not uint64 here.
         self.paths = set([])  # SetOfString : the paths which are clones.
 
-nodeDescriptors = {} #      map of string -> CloneGroup ; identical hashes might occur at multiple paths...the entire point.
 
-def  calculateFileDigest(path):
+nodeDescriptors = {} # map of string -> CloneGroup ; identical hashes might occur at multiple paths...the entire point.
 
+
+def calculateFileDigest(path):
     with open(path,"rb") as f:
         bytes = f.read(-1)
     h = hashlib.sha256(bytes).hexdigest()
     return h
+
 
 def calculateFolderDigest(path):
 
@@ -28,12 +31,13 @@ def calculateFolderDigest(path):
     for e in sorted(glob.glob(os.path.join(path,"*"))):
 
         name = os.path.basename(e)
-        print(e,name)
-        d, sz = examinePath(name)
+        # print(e,name)
+        d, sz = examinePath(e)
         dgs.append(str(name) + ":" + str(d))
         containedsize += sz
 
     return "".join(dgs), containedsize
+
 
 def calculatePathDigestTypeAndSize(path):
 
@@ -49,38 +53,16 @@ def calculatePathDigestTypeAndSize(path):
 
     return (digest, isRegularFile, sizeAtPath)
 
-#  def  ToString(s set, style string, label string) string :
-#  items = list(set)
-#  r := ""
-#  switch style {
-#      case "scheme", "lisp", "racket", "t":
-#  r += "("
-#  for _, i := range items {
-#  r += fmt.Sprintf("\"%s\"  ", i)
-#  }
-#  r += ")"
-#  case "go", "golang":
-#      r = fmt.Sprintf("%#v", items)
-#  case "verbose", "english", "human":
-#  r += label
-#  for _, i := range items {
-#  r += fmt.Sprintf("   \"%s\"\n", i)
-#  }
-#  r += "\n"
-#  default:
-#      r = fmt.Sprintf("%#v", items)
-#  }
-#  return r
 
-def  examinePath(path):
+def examinePath(path):
 
-    if path == ".":  #  some defensive programming here: docs for ioutil.ReadDir do not specify if "." is returned.
+    if path == ".":  # some defensive programming here: docs for ioutil.ReadDir do not specify if "." is returned.
         print("WAIT, how did a dot get sent to examinePath?\n\n")
         return "", 0
 
-    #  paths name files or folders, and each needs a sense of probable-identity:
-    #  for a file, use the hexadecimal string representing the sha256 hash of the file contents;
-    #  for a folder, use the string composed of the sorted folder's folder-local filenames and hashes, semicolon-separated.
+    # paths name files or folders, and each needs a sense of probable-identity:
+    # for a file, use the hexadecimal string representing the sha256 hash of the file contents;
+    # for a folder, use the string composed of the sorted folder's local filenames and hashes, semicolon-separated.
 
     (digest, isRegularFile, sizeAtPath) = calculatePathDigestTypeAndSize(path)
 
@@ -123,27 +105,34 @@ def main():
     for _, c in cmnds :
         print("the command "+str(c)+" is being ignored at the moment\n")
 
-    for _, p in roots :
+    for p in roots :
         examinePath(p)
 
-    #  at this point, nodeDescriptors is a map from strings, each a sha256 digest of a file or a composition thereof for a directory,  to sets of strings, each a path.
-    #  We can iterate through the keys to see which keys (i.e., unique sha256 digest as a signature) occurs at more than one path!
+    # at this point, nodeDescriptors is a map from strings thereof for a directory,  to sets of strings, each a path.
+    # images of keys with cardinality greater than 1 are paths for identical maximal subtrees.
 
     totalSquandered = 0
 
-    for v in nodeDescriptors :
-        cardinality = len(v.set)
-        if cardinality > 1 : #  then we have found a clone, so tidy up the english commentary on such.
-            what = ""
-            if v.file :
+    for v in nodeDescriptors:
+        clonegroup = nodeDescriptors[v]
+        cardinality = len(clonegroup.paths)
+        if cardinality > 1 : # then we have found a clone, so tidy up the english commentary on such.
+            if clonegroup.file:
                 what = "files"
             else :
                 what = "folders"
-            squandered = (cardinality-1) * v.size
-            label = "the following " + str(cardinality) + " " + str(what) + " seem to hold identical content, each instance uses " + str(v.size) + " bytes in file(s), so " + str(squandered) + " bytes are squandered in duplication:\n"
+            squandered = (cardinality-1) * clonegroup.size
+            label = ( "the following " + str(cardinality) + " " + str(what) +
+                      " seem to hold identical content, each instance uses " +
+                      str(clonegroup.size) + " bytes in file(s), so " +
+                      str(squandered) + " bytes are squandered in duplication:\n" )
 
-            print(v.set.ToString("verbose", label))
+            print(label)
+            for p in clonegroup.paths:
+                print("   ",p)
+            print()
             totalSquandered += squandered
     print("Total bytes squandered in duplication is ",str(totalSquandered), ".\n")
+
 
 main()

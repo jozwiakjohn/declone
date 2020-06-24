@@ -1,17 +1,5 @@
-# john jozwiak on 2020 Jun 19
+# john jozwiak on 2020 Jun 23
 
 all:	
-	go test
-	go build
-	-@echo
-	-@/bin/ls
-	-@echo
-
-test:	
-	go test
-
-clean:	
-	go clean
-	-@echo
-	-@/bin/ls
+	-@python3 detectclones.py ../testFolder
 	-@echo
