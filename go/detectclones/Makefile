@@ -3,15 +3,16 @@
 all:	
 	go test
 	go build
-	-@echo
-	-@/bin/ls
-	-@echo
+	-@make showfiles
 
 test:	
 	go test
 
 clean:	
-	go clean
+	-@go clean
+	-@make showfiles
+
+showfiles:	
 	-@echo
-	-@/bin/ls
+	-@/bin/ls -F
 	-@echo
