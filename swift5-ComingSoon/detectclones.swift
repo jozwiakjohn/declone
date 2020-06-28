@@ -109,3 +109,16 @@ func main() {
 	}
 	fmt.Printf("Total bytes squandered in duplication is %d.\n", totalSquandered)
 }
+
+
+// detectclones Swift 5 version, 2020 June 25, john jozwiak for my own update on Swift since 2019, and earlier 2015.
+
+import Foundation
+import Swift
+
+for a in 1...(CommandLine.argc-1) {  //  0th arg is the name of this as a compiled binary, as invoked.
+
+  let arg = CommandLine.arguments[Int(a)]
+  print("arg \(a) = \"\(arg)\"\n")
+
+}

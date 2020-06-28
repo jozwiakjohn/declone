@@ -1,6 +1,8 @@
-# john jozwiak on 2020 Jun 19
+# john jozwiak on 2020 Jun 27
 
-all:	parseOED  uniqueWords  wordsToDefs # xcodebuild -alltargets -quiet
+PathDigest.swift PathDigest_test.swift PathNormalization_test.swift SetOfStrings.swift SetOfStrings_test.swift main.swift
+
+all:	detectclones # xcodebuild -alltargets -quiet
 	-@mkdir -p built
 	-@/bin/echo
 	-@/bin/ls -F
@@ -16,23 +18,9 @@ showfiles:
 	-@echo
 
 
-parseOED:	src/parseOED/main.swift
+detectclones:	detectclones.swift  #      src/uniqueWords/tokenize.swift
 	-@mkdir -p built
-	swiftc  src/parseOED/main.swift -o built/parseOED
+	swiftc  detectclones.swift -o built/detectclones
 
-uniqueWords:	src/uniqueWords/main.swift src/uniqueWords/tokenize.swift
-	-@mkdir -p built
-	swiftc  src/uniqueWords/*.swift -o built/uniqueWords
-
-wordsToDefs:	src/wordsToDefs/main.swift
-	-@mkdir -p built
-	swiftc  src/wordsToDefs/*.swift -o built/wordsToDefs
-
-test:	all
-	built/uniqueWords < data/fourLinesOf.txt
-
-testlong:	all
-	xzcat data/gutenberg/HoundBaskervilles.txt.xz | built/uniqueWords
-
-testverbose:	all
-	xzcat data/gutenberg/WarAndPeace.txt.xz       | built/uniqueWords
+test:	detectclones
+	built/detectclones ../testFolder
