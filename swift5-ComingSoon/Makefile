@@ -1,6 +1,6 @@
 # john jozwiak on 2020 Jun 27
 
-PathDigest.swift PathDigest_test.swift PathNormalization_test.swift SetOfStrings.swift SetOfStrings_test.swift main.swift
+#  PathDigest.swift PathDigest_test.swift PathNormalization_test.swift SetOfStrings.swift SetOfStrings_test.swift main.swift
 
 all:	detectclones # xcodebuild -alltargets -quiet
 	-@mkdir -p built
