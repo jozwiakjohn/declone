@@ -59,7 +59,6 @@ func main() {
     
     //  run through the commandline args to grab paths to explore, and commands (to be defined later).
     
-    
     for a in 1...(CommandLine.argc-1) {  //  0th arg is the name of this as a compiled binary, as invoked.
         
         let arg = CommandLine.arguments[Int(a)]
