@@ -16,7 +16,7 @@ showfiles:
 	-@echo
 
 
-detectclones:	detectclones.swift  PathDigest.swift
+detectclones:	main.swift  PathDigest.swift
 	-@mkdir -p built
 	swiftc  *.swift -o built/detectclones
 

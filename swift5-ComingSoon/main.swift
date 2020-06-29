@@ -79,8 +79,8 @@ func main() {
     //  at this point, nodeDescriptors is a map from strings, each a sha256 digest of a file or a composition thereof for a directory,  to CloneGroup, each holding a sets of paths as strings.
     //  We can iterate through the keys to see which keys (i.e., unique sha256 digest as a signature) occurs at more than one path!
 
-//    var totalSquandered : Int64 = 0
-/*
+    var totalSquandered : Int64 = 0
+
     for clonegroup in nodeDescriptors.values {
 
         let cardinality = clonegroup.paths.count
@@ -100,7 +100,6 @@ func main() {
     }
 
     print("Total bytes squandered in duplication is \(totalSquandered).\n")
-*/
 }
 
-// main()  //  if all code were in a single file, then i could say that, but with multiple files it is forbidden.
+// main()  //  if all code were in a single file, then i could say that, but with multiple files it is forbidden, and this file must be named main.swift, evidently, to expose func main.
