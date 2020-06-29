@@ -1,34 +1,36 @@
-// john jozwiak on 2020 June 18..20 to practice in hopes of a new good and stable job, and to clean my decades of files.
+// john jozwiak on 2020 June 25.
 
-package main
+import Foundation
+import Swift
 
-import (
-	"crypto/sha256"
-	"fmt"
-	"io"
-	"io/ioutil"
-	"os"
-	"path/filepath"
-)
-
-func calculateFileDigest(path string) string {
+func calculateFileDigest(path : String) -> String {
 
 	// p names a file, so calculate a sha256 hash of it to store with its length.
 
-	f, err := os.Open(path)
-	defer func() { _ = f.Close() }()
-	verifyOk(err)
+    let filedata = NSData.init?(contentsOfFile:path)
+	print("\(path) the file has \(filedata!.count) bytes")
 
-	h := sha256.New()
-	_, err = io.Copy(h, f)
-	verifyOk(err)
+//	f, err := os.Open(path)
+//	defer func() { _ = f.Close() }()
+//	verifyOk(err)
 
-	dbytes := h.Sum(nil)
-	return fmt.Sprintf("%x", dbytes)
+//	h := sha256.New()
+//	_, err = io.Copy(h, f)
+//	verifyOk(err)
+
+//	dbytes := h.Sum(nil)
+//	return fmt.Sprintf("%x", dbytes)
 }
 
-func calculateFolderDigest(path string) (string, int64) {
+func calculateFolderDigest(path : String) -> (digest : String, size : Int64) {
 
+    //        let listing = try! filemanager.contentsOfDirectory( atPath: arg )
+    //        for o in listing {
+    //            print(o)
+    //        }
+
+	return ("",0)
+/*
 	dirContents, err := ioutil.ReadDir(path)
 	if err != nil {
 		panic(fmt.Errorf("error: %s is not a directory: %v", path, err))
@@ -52,10 +54,13 @@ func calculateFolderDigest(path string) (string, int64) {
 		dg = dg + d
 	}
 	return dg, containedsize
+	*/
 }
 
-func calculatePathDigestTypeAndSize(path string) (string, bool, int64) {
+func calculatePathDigestTypeAndSize(path : String) -> (digest : String, isfile : Bool, size: Int64) {
 
+return ("",true,0)
+/*
 	lstat, err := os.Lstat(path)
 	verifyOk(err)
 
@@ -71,5 +76,24 @@ func calculatePathDigestTypeAndSize(path string) (string, bool, int64) {
 		digest, sizeAtPath = calculateFolderDigest(path)
 	}
 
-	return digest, isRegularFile, sizeAtPath
+	return (digest, isRegularFile, sizeAtPath)
+	*/
+}
+
+func normalizePath( path : String ) -> String {
+	return path // obviously not what is intended, more like Go's path/filepath.Clean().
+}
+
+func TestNormalizePath() {  //  this function exists to verify i use stdlib filepath.Clean properly
+    let problemsAndAnswers : [String:String] = [
+        "a//b" : "a/b",
+        "."    : ".",
+        "a/.." : ".",
+    ]
+    for x, fx in problemsAndAnswers {
+        n = normalizePath(x)
+        if n != fx {
+            print("mismatch in normalizing \(in) -> normalized = \(n) which is not expected \(out)")
+        }
+    }
 }

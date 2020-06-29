@@ -3,11 +3,10 @@
 import Foundation
 import Swift
 
-
 struct CloneGroup {
-    file : Bool        //  true means File; false means Folder.
-    size : Int64       //  Go FileMode uses int64 not uint64 here.
-    set  : Set<String> //  the paths which are clones.
+    var file  : Bool        //  true means File; false means Folder.
+    var size  : Int64       //  Go FileMode uses int64 not uint64 here.
+    var paths : Set<String> //  the paths which are clones.
 }
 
 var nodeDescriptors = [String:CloneGroup]() // identical hashes might occur at multiple paths...the entire point.
@@ -20,27 +19,21 @@ func examinePath(path : String) -> (digestForPath : String, sizeInBytes: Int64) 
         return ("", 0)
     }
             
-    //        let listing = try! filemanager.contentsOfDirectory( atPath: arg )
-    //        for o in listing {
-    //            print(o)
-    //        }
-
-
     //  paths name files or folders, and each needs a sense of probable-identity:
     //  for a file, use the hexadecimal string representing the sha256 hash of the file contents;
     //  for a folder, use the string composed of the sorted folder's folder-local filenames and hashes, semicolon-separated.
 
-    digest, isRegularFile, sizeAtPath := calculatePathDigestTypeAndSize(path)
+    let (digest, isRegularFile, sizeAtPath) = calculatePathDigestTypeAndSize(path)
 
     //  if we have NOT seen this digest before, initialize a CloneGroup to hold it within the map from digests to CloneGroups.
-    _, found := nodeDescriptors[digest] //  Go's irregular syntax for checking if a map contains a key.
-    if !found {                         //  ensure a SetOfString exists at this key.
-        nodeDescriptors[digest] = CloneGroup{file: isRegularFile, size: sizeAtPath, set: SetOfString{}}
+    let found = nodeDescriptors[digest] //  Swift returns an optional for dictionary index, so returns nil for an invalid key.
+    if found == nil {                   //  ensure a SetOfString exists at this key.
+        nodeDescriptors[digest] = CloneGroup(file: isRegularFile, size: sizeAtPath, set: Set<String>())
     }
     //  and add this path to the CloneGroup at this digest.
-    nodeDescriptors[digest].set.InsertBang(path)
+    nodeDescriptors[digest].paths.insert(path)
 
-    return digest, sizeAtPath //  return the digest to recursively use it for folder digest construction.
+    return (digest, sizeAtPath) //  return the digest to recursively use it for folder digest construction.
 }
 
 
@@ -51,30 +44,30 @@ func main() {
         print("\(osargs[0]) needs a list of filesystem paths:  it will examine all files at the given paths, and recursively below, to identify clones.")
         exit(1)
     }
-    
+
     //  commandline args are either this binary's name, or paths to explore, or command flags.
-    
-    let rawRoots = Set<String>() // make(SetOfString)
-    let rawCmnds = Set<String>() // make(SetOfString)
+
+    let rawRoots = Set<String>()
+    let rawCmnds = Set<String>()
     
     //  run through the commandline args to grab paths to explore, and commands (to be defined later).
     
-    for a in 1...(CommandLine.argc-1) {  //  0th arg is the name of this as a compiled binary, as invoked.
+//  for a in 1...(CommandLine.argc-1) {  //  0th arg is the name of this as a compiled binary, as invoked.
+    for arg in osargs[1...] {
         
-        let arg = CommandLine.arguments[Int(a)]
+        var arg = CommandLine.arguments[Int(a)]
         if arg.hasPrefix("-") {
             rawCmnds.insert(arg)
         } else {
-            var a = arg
-            if a == "." { // replace "." on the commandline with the current working directory
+            if arg == "." { // replace "." on the commandline with the current working directory
                 let cwd = FileManager.default.cwd
                 print("looks like the current working directory is \"\(cwd)\"")
-                a = cwd
+                arg = cwd
             }
-            rawRoots.insert(a)  //  sanitize that filepath first
+            rawRoots.insert(arg)  //  sanitize that filepath first
         }
     }
-    
+
     for c in rawCmnds.sorted() {
       print("the command \(c) is being ignored at the moment\n")
     }
@@ -87,27 +80,27 @@ func main() {
     //  We can iterate through the keys to see which keys (i.e., unique sha256 digest as a signature) occurs at more than one path!
 
     var totalSquandered : Int64 = 0
+/*
+    for clonegroup in nodeDescriptors.values {
 
-    /*
-
-    for _, v := range nodeDescriptors {
-        cardinality := v.set.Cardinality()
+        let cardinality = clonegroup.paths.count
         if cardinality > 1 { //  then we have found a clone, so tidy up the english commentary on such.
-            var what string
-            if v.file {
+            var what : String
+            if clonegroup.file {
                 what = "files"
             } else {
                 what = "folders"
             }
-            squandered := int64(cardinality-1) * v.size
-            label := fmt.Sprintf("the following %d %s seem to hold identical content, each instance uses %d bytes in file(s), so %d bytes are squandered in duplication:\n", cardinality, what, v.size, squandered)
+            squandered = Int64(cardinality-1) * clonegroup.size
+            label = "the following \(cardinality) \(what) seem to hold identical content, each instance uses \(v.size) bytes in file(s), so \(squandered) bytes are squandered in duplication:\n"
+            print(label,"\n",v.set)
 
-            fmt.Println(v.set.ToString("verbose", label))
             totalSquandered += squandered
         }
     }
-    fmt.Printf("Total bytes squandered in duplication is %d.\n", totalSquandered)
- */
+
+    print("Total bytes squandered in duplication is \(totalSquandered).\n")
+*/
 }
 
-main()
+// main()
