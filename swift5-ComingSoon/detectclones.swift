@@ -23,15 +23,15 @@ func examinePath(path : String) -> (digestForPath : String, sizeInBytes: Int64) 
     //  for a file, use the hexadecimal string representing the sha256 hash of the file contents;
     //  for a folder, use the string composed of the sorted folder's folder-local filenames and hashes, semicolon-separated.
 
-    let (digest, isRegularFile, sizeAtPath) = calculatePathDigestTypeAndSize(path)
+    let (digest, isRegularFile, sizeAtPath) = calculatePathDigestTypeAndSize(path: path)
 
     //  if we have NOT seen this digest before, initialize a CloneGroup to hold it within the map from digests to CloneGroups.
     let found = nodeDescriptors[digest] //  Swift returns an optional for dictionary index, so returns nil for an invalid key.
     if found == nil {                   //  ensure a SetOfString exists at this key.
-        nodeDescriptors[digest] = CloneGroup(file: isRegularFile, size: sizeAtPath, set: Set<String>())
+        nodeDescriptors[digest] = CloneGroup(file: isRegularFile, size: sizeAtPath, paths: Set<String>())
     }
     //  and add this path to the CloneGroup at this digest.
-    nodeDescriptors[digest].paths.insert(path)
+    nodeDescriptors[digest]?.paths.insert(path)
 
     return (digest, sizeAtPath) //  return the digest to recursively use it for folder digest construction.
 }
@@ -47,20 +47,20 @@ func main() {
 
     //  commandline args are either this binary's name, or paths to explore, or command flags.
 
-    let rawRoots = Set<String>()
-    let rawCmnds = Set<String>()
+    var rawRoots = Set<String>()
+    var rawCmnds = Set<String>()
     
     //  run through the commandline args to grab paths to explore, and commands (to be defined later).
     
-//  for a in 1...(CommandLine.argc-1) {  //  0th arg is the name of this as a compiled binary, as invoked.
-    for arg in osargs[1...] {
+    for a in 1...(CommandLine.argc-1) {  //  0th arg is the name of this as a compiled binary, as invoked.
+//  for arg in osargs[1...] {
         
         var arg = CommandLine.arguments[Int(a)]
         if arg.hasPrefix("-") {
             rawCmnds.insert(arg)
         } else {
             if arg == "." { // replace "." on the commandline with the current working directory
-                let cwd = FileManager.default.cwd
+                let cwd = FileManager.default.currentDirectoryPath
                 print("looks like the current working directory is \"\(cwd)\"")
                 arg = cwd
             }
@@ -73,13 +73,13 @@ func main() {
     }
 
     for p in rawRoots.sorted() {
-        examinePath(p)
+        _ = examinePath(path: p)
     }
      
     //  at this point, nodeDescriptors is a map from strings, each a sha256 digest of a file or a composition thereof for a directory,  to CloneGroup, each holding a sets of paths as strings.
     //  We can iterate through the keys to see which keys (i.e., unique sha256 digest as a signature) occurs at more than one path!
 
-    var totalSquandered : Int64 = 0
+//    var totalSquandered : Int64 = 0
 /*
     for clonegroup in nodeDescriptors.values {
 
@@ -103,4 +103,4 @@ func main() {
 */
 }
 
-// main()
+// main()  //  if all code were in a single file, then i could say that, but with multiple files it is forbidden.
