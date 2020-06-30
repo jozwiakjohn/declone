@@ -45,12 +45,11 @@ func main() {
         exit(1)
     }
 
-    //  commandline args are either this binary's name, or paths to explore, or command flags.
+    //  commandline args are either this binary's name, or paths to explore, or command flags:
+    //  run through the commandline args to grab paths to explore, and commands (to be defined later).
 
     var rawRoots = Set<String>()
     var rawCmnds = Set<String>()
-    
-    //  run through the commandline args to grab paths to explore, and commands (to be defined later).
     
     for a in 1...(CommandLine.argc-1) {  //  0th arg is the name of this as a compiled binary, as invoked.
         
