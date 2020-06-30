@@ -103,7 +103,7 @@ func main() {
             let what : String = clonegroup.file ? "files" : "folders"
             let squandered = UInt64(cardinality-1) * clonegroup.size
             print( "the following \(cardinality) \(what) seem to hold identical content, each instance uses \(clonegroup.size) bytes in file(s), so \(squandered) bytes are squandered in duplication:\n" )
-            for p in clonegroup.paths {
+            for p in clonegroup.paths.sorted() {
                 print("   \(p)")
             }
             print()
