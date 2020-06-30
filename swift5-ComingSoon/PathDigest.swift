@@ -2,85 +2,69 @@
 
 import Foundation
 import Swift
+import CryptoKit
 
-func calculateFileDigest(path : String) -> String {
+func calculateFileDigest(_ path : String) -> String {  //  see https://www.hackingwithswift.com/example-code/cryptokit/how-to-calculate-the-sha-hash-of-a-string-or-data-instance
     
     // p names a file, so calculate a sha256 hash of it to store with its length.
-    
-    let filedata = NSData.init(contentsOfFile:path)
-    let size = filedata!.count
-    print("\(path) the file has \(size) bytes")
-
-    return "\(path)\(size)"
-    
-    //	f, err := os.Open(path)
-    //	defer func() { _ = f.Close() }()
-    //	verifyOk(err)
-    
-    //	h := sha256.New()
-    //	_, err = io.Copy(h, f)
-    //	verifyOk(err)
-    
-    //	dbytes := h.Sum(nil)
-    //	return fmt.Sprintf("%x", dbytes)
+    if  let nsdataFromFile = NSData.init(contentsOfFile:path) {
+        let filedata = Data.init(referencing: nsdataFromFile)
+        //      let size = filedata.count
+        //    print("\(path) the file has \(size) bytes")
+        let digest = SHA256.hash(data: filedata)
+        let digesthex = digest.compactMap { String(format: "%02x", $0) }.joined()
+        return "\(digesthex)"
+    }
+    return ""
 }
 
-func calculateFolderDigest(path : String) -> (digest : String, size : Int64) {
+func calculateFolderDigest(_ path : String) -> (digest : String, size : UInt64) {
     
-    //        let listing = try! filemanager.contentsOfDirectory( atPath: arg )
-    //        for o in listing {
-    //            print(o)
-    //        }
+    if let listing = try? filemanager.contentsOfDirectory( atPath: path ) {
+        
+        // build up an alphabetically sorted list of names with their digests;
+        // sorted order is delivered by ioutil.ReadDir.
+        
+        var dgs = [String]()
+        var containedsize : UInt64 = 0
+        
+        for e in listing {
+            print(e)
+            let (d, sz) = examinePath(path : path + "/" + e)
+            dgs.append("\(e):\(d);")
+            containedsize += sz
+        }
+        var dg : String = ""
+        for d in dgs {
+            dg = dg + d
+        }
+        return (dg, containedsize)
+    }
     
     return ("",0)
-    /*
-     dirContents, err := ioutil.ReadDir(path)
-     if err != nil {
-     panic(fmt.Errorf("error: %s is not a directory: %v", path, err))
-     }
-     
-     // build up an alphabetically sorted list of names with their digests;
-     // sorted order is delivered by ioutil.ReadDir.
-     
-     dgs := make([]string, 0)
-     containedsize := int64(0)
-     
-     for _, e := range dirContents {
-     
-     name := e.Name()
-     d, sz := examinePath(filepath.Join(path, name))
-     dgs = append(dgs, fmt.Sprintf("%s:%s;", name, d))
-     containedsize += sz
-     }
-     dg := ""
-     for _, d := range dgs {
-     dg = dg + d
-     }
-     return dg, containedsize
-     */
 }
 
-func calculatePathDigestTypeAndSize(path : String) -> (digest : String, isfile : Bool, size: Int64) {
+func calculatePathDigestTypeAndSize(path : String) -> (digest : String, isfile : Bool, size: UInt64) {
     
-    return ("",true,0)
-    /*
-     lstat, err := os.Lstat(path)
-     verifyOk(err)
-     
-     isRegularFile := lstat.Mode().IsRegular()
-     
-     var sizeAtPath int64
-     var digest string
-     
-     if isRegularFile {
-     digest = calculateFileDigest(path)
-     sizeAtPath = lstat.Size()
-     } else {
-     digest, sizeAtPath = calculateFolderDigest(path)
-     }
-     
-     return (digest, isRegularFile, sizeAtPath)
-     */
+    var digest : String = ""
+    let isFile : Bool = false
+    var sizeAtPath : UInt64 = 0
+    
+    if filemanager.fileExists(atPath: path) {
+        if let attributes = try?filemanager.attributesOfItem(atPath: path) {
+            let type = attributes[.type] as! FileAttributeType
+            let size = attributes[.size] as! UInt64
+            let isFile = (type == FileAttributeType.typeRegular)
+            
+            if isFile {
+                digest = calculateFileDigest(path)
+                sizeAtPath = size
+            } else {
+                (digest, sizeAtPath) = calculateFolderDigest(path)
+            }
+        }
+    }
+    return (digest,isFile,sizeAtPath)
 }
 
 func normalizePath( _ path : String ) -> String {

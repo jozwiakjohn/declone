@@ -5,14 +5,14 @@ import Swift
 
 struct CloneGroup {
     var file  : Bool        //  true means File; false means Folder.
-    var size  : Int64       //  Go FileMode uses int64 not uint64 here.
+    var size  : UInt64      //  Go FileMode uses int64 not uint64 here.
     var paths : Set<String> //  the paths which are clones.
 }
 
 var nodeDescriptors = [String:CloneGroup]() // identical hashes might occur at multiple paths...the entire point.
 let filemanager = FileManager.default
 
-func examinePath(path : String) -> (digestForPath : String, sizeInBytes: Int64) {
+func examinePath(path : String) -> (digestForPath : String, sizeInBytes: UInt64) {
 
     if path == "." { //  some defensive programming here: docs for ioutil.ReadDir do not specify if "." is returned.
         print("WAIT, how did a dot get sent to examinePath?\n\n")
@@ -79,7 +79,7 @@ func main() {
     //  at this point, nodeDescriptors is a map from strings, each a sha256 digest of a file or a composition thereof for a directory,  to CloneGroup, each holding a sets of paths as strings.
     //  We can iterate through the keys to see which keys (i.e., unique sha256 digest as a signature) occurs at more than one path!
 
-    var totalSquandered : Int64 = 0
+    var totalSquandered : UInt64 = 0
 
     for clonegroup in nodeDescriptors.values {
 
@@ -91,9 +91,9 @@ func main() {
             } else {
                 what = "folders"
             }
-            squandered = Int64(cardinality-1) * clonegroup.size
-            label = "the following \(cardinality) \(what) seem to hold identical content, each instance uses \(v.size) bytes in file(s), so \(squandered) bytes are squandered in duplication:\n"
-            print(label,"\n",v.set)
+            let squandered = UInt64(cardinality-1) * clonegroup.size
+            let label = "the following \(cardinality) \(what) seem to hold identical content, each instance uses \(clonegroup.size) bytes in file(s), so \(squandered) bytes are squandered in duplication:\n"
+            print(label,"\n",clonegroup.paths)
 
             totalSquandered += squandered
         }
@@ -102,4 +102,4 @@ func main() {
     print("Total bytes squandered in duplication is \(totalSquandered).\n")
 }
 
-// main()  //  if all code were in a single file, then i could say that, but with multiple files it is forbidden, and this file must be named main.swift, evidently, to expose func main.
+main()
