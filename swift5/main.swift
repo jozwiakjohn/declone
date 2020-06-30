@@ -85,8 +85,11 @@ func main() {
         if cardinality > 1 { //  then we have found a clone, so tidy up the english commentary on such.
             let what : String = clonegroup.file ? "files" : "folders"
             let squandered = UInt64(cardinality-1) * clonegroup.size
-            let label = "the following \(cardinality) \(what) seem to hold identical content, each instance uses \(clonegroup.size) bytes in file(s), so \(squandered) bytes are squandered in duplication:\n"
-            print(label,clonegroup.paths,"\n")
+            print( "the following \(cardinality) \(what) seem to hold identical content, each instance uses \(clonegroup.size) bytes in file(s), so \(squandered) bytes are squandered in duplication:\n" )
+            for p in clonegroup.paths {
+                print("   \(p)")
+            }
+            print()
 
             totalSquandered += squandered
         }
