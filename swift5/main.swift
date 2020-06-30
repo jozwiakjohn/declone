@@ -51,6 +51,7 @@ func main() {
     var rawRoots = Set<String>()
     var rawCmnds = Set<String>()
     
+    /*
     for a in 1...(CommandLine.argc-1) {  //  0th arg is the name of this as a compiled binary, as invoked.
         
         var arg = CommandLine.arguments[Int(a)]
@@ -63,6 +64,22 @@ func main() {
                 arg = cwd
             }
             rawRoots.insert(arg)  //  sanitize that filepath first
+        }
+    }*/
+
+    //  alternately...
+
+    _ = osargs[1...].map { (arg:String) in
+
+        var a = arg
+        if a.hasPrefix("-") {
+            rawCmnds.insert(a)
+        } else {
+            if a == "." { // replace "." on the commandline with the current working directory
+                let cwd = FileManager.default.currentDirectoryPath
+                a = cwd
+            }
+            rawRoots.insert(a)  //  sanitize that filepath first
         }
     }
 
