@@ -12,7 +12,7 @@ struct CloneGroup {
 var nodeDescriptors = [String:CloneGroup]() // identical hashes might occur at multiple paths...the entire point.
 let filemanager = FileManager.default
 
-func examinePath(path : String) -> (digestForPath : String, sizeInBytes: UInt64) {
+func examinePath(_ path : String) -> (digestForPath : String, sizeInBytes: UInt64) {
 
     if path == "." { //  some defensive programming here: docs for ioutil.ReadDir do not specify if "." is returned.
         print("WAIT, how did a dot get sent to examinePath?\n\n")
@@ -53,7 +53,6 @@ func main() {
     //  run through the commandline args to grab paths to explore, and commands (to be defined later).
     
     for a in 1...(CommandLine.argc-1) {  //  0th arg is the name of this as a compiled binary, as invoked.
-//  for arg in osargs[1...] {
         
         var arg = CommandLine.arguments[Int(a)]
         if arg.hasPrefix("-") {
@@ -73,7 +72,7 @@ func main() {
     }
 
     for p in rawRoots.sorted() {
-        _ = examinePath(path: p)
+        _ = examinePath(p)
     }
      
     //  at this point, nodeDescriptors is a map from strings, each a sha256 digest of a file or a composition thereof for a directory,  to CloneGroup, each holding a sets of paths as strings.
@@ -85,15 +84,10 @@ func main() {
 
         let cardinality = clonegroup.paths.count
         if cardinality > 1 { //  then we have found a clone, so tidy up the english commentary on such.
-            var what : String
-            if clonegroup.file {
-                what = "files"
-            } else {
-                what = "folders"
-            }
+            let what : String = clonegroup.file ? "files" : "folders"
             let squandered = UInt64(cardinality-1) * clonegroup.size
             let label = "the following \(cardinality) \(what) seem to hold identical content, each instance uses \(clonegroup.size) bytes in file(s), so \(squandered) bytes are squandered in duplication:\n"
-            print(label,"\n",clonegroup.paths)
+            print(label,clonegroup.paths,"\n")
 
             totalSquandered += squandered
         }
@@ -102,4 +96,4 @@ func main() {
     print("Total bytes squandered in duplication is \(totalSquandered).\n")
 }
 
-main()
+main()  //  in a single file app, the file can be named detectclones.swift, and main will be found, but in multiple .swift files, main() is seemingly only sought in main.swift.

@@ -30,7 +30,7 @@ func calculateFolderDigest(_ path : String) -> (digest : String, size : UInt64) 
         
         for e in listing {
             print(e)
-            let (d, sz) = examinePath(path : path + "/" + e)
+            let (d, sz) = examinePath(path + "/" + e)
             dgs.append("\(e):\(d);")
             containedsize += sz
         }
@@ -46,20 +46,20 @@ func calculateFolderDigest(_ path : String) -> (digest : String, size : UInt64) 
 
 func calculatePathDigestTypeAndSize(path : String) -> (digest : String, isfile : Bool, size: UInt64) {
     
+    var isFile : Bool = false
     var digest : String = ""
-    let isFile : Bool = false
     var sizeAtPath : UInt64 = 0
     
     if filemanager.fileExists(atPath: path) {
         if let attributes = try?filemanager.attributesOfItem(atPath: path) {
             let type = attributes[.type] as! FileAttributeType
             let size = attributes[.size] as! UInt64
-            let isFile = (type == FileAttributeType.typeRegular)
+            isFile = (type == FileAttributeType.typeRegular)
             
-            if isFile {
+            if isFile { print("\(path) looks like a FILE")
                 digest = calculateFileDigest(path)
                 sizeAtPath = size
-            } else {
+            } else { print("\(path) looks like a FOLDER")
                 (digest, sizeAtPath) = calculateFolderDigest(path)
             }
         }
