@@ -1,29 +1,16 @@
 // john jozwiak on 2020 Aug 11 (tuesday), a Java14 version.
 
 
-//  import hashlib,glob,os,os.path,stat,sys
-//  
-//  
-//  class CloneGroup {
-//      def __init__(self,isFile,size):
-//          self.file = isFile    // bool        : true means File; false means Folder.
-//          self.size = size      // int64       : Go FileMode uses int64 not uint64 here.
-//          self.paths = set([])  // SetOfString : the paths which are clones.
-//  
-//  
-//  
-//  nodeDescriptors = {} // map of string -> CloneGroup ; identical hashes might occur at multiple paths...the entire point.
-//  
 /////////////////////////////////////////////////////////////////////////////////////
-//  
+
 //  def calculateFileDigest(path):
 //      with open(path,"rb") as f:
 //          bytes = f.read(-1)
 //      h = hashlib.sha256(bytes).hexdigest()
 //      return h
-//  
+
 /////////////////////////////////////////////////////////////////////////////////////
-//  
+
 //  def calculateFolderDigest(path):
 //  
 //      //  build up an alphabetically sorted list of names with their digests
@@ -39,9 +26,9 @@
 //          containedsize += sz
 //  
 //      return "".join(dgs), containedsize
-//  
+
 /////////////////////////////////////////////////////////////////////////////////////
-//  
+
 //  def calculatePathDigestTypeAndSize(path):
 //  
 //      lstat = os.lstat(path)
@@ -55,9 +42,9 @@
 //        digest, sizeAtPath = calculateFolderDigest(path)
 //  
 //      return (digest, isRegularFile, sizeAtPath)
-//  
+
 /////////////////////////////////////////////////////////////////////////////////////
-//  
+
 //  def examinePath(path):
 //  
 //      if path == ".":  // some defensive programming here: docs for ioutil.ReadDir do not specify if "." is returned.
@@ -78,27 +65,25 @@
 //      nodeDescriptors[digest].paths.add(path)
 //  
 //      return digest, sizeAtPath  //  return the digest to recursively use it for folder digest construction.
-//  
+
 /////////////////////////////////////////////////////////////////////////////////////
 
-import java.util.HashSet;
+import java.util.*;
 import java.nio.file.Path;
 
+
 public class DetectClones {
+
   public static void main( String[] a ) {
     if (a.length == 1) {
       System.out.println( a[0] + " needs a list of filesystem paths:  it will examine all files at the given paths, and recursively below, to identify clones.");
       System.exit(1);
     }
 
-//  for (int i = 0 ; i < a.length ; i++) {  //  args to main in java do NOT include the binary's name as the 0th arg.
-//      System.out.printf( "I see position %2d has \"%s\".\n", i, a[i] );
-//  }
-
-    //  commandline args are either this binary's name, or paths to explore, or command flags.
+    //  commandline args are either this binary's name (not in Java, but in Swift and Go and Python), or paths to explore, or command flags.
     
-    HashSet<String> rawCmnds = new HashSet<String>();
-    HashSet<String> rawRoots = new HashSet<String>();
+    var rawCmnds = new HashSet<String>();
+    var rawRoots = new HashSet<String>();
     
     //  run through the commandline args to grab paths to explore, and commands (to be defined later).
     
@@ -127,24 +112,31 @@ public class DetectClones {
       }
     }
     
-    String[] cmnds = rawCmnds.toArray( new String[ rawCmnds.size() ]);
-    String[] roots = rawRoots.toArray( new String[ rawRoots.size() ]);
+    var cmnds = rawCmnds.toArray( new String[ rawCmnds.size() ]);
+    var roots = rawRoots.toArray( new String[ rawRoots.size() ]);
 
-//  for _, c in cmnds :
-//      print("the command "+str(c)+" is being ignored at the moment\n")
-//  
-//  for p in roots :
+    var nodeDescriptors = new HashMap<String,CloneGroup>();
+
+    for (String c: cmnds) {
+        System.out.printf("the command "+c+" is being ignored at the moment\n");
+    }
+
+    for (String p: roots) {
+        System.out.printf("the PATH    "+p+" is being ignored at the moment\n");
 //      examinePath(p)
-//  
-//  // at this point, nodeDescriptors is a map from strings thereof for a directory,  to sets of strings, each a path.
-//  // images of keys with cardinality greater than 1 are paths for identical maximal subtrees.
-//  
-//  totalSquandered = 0
-//  
-//  for v in nodeDescriptors:
-//      clonegroup = nodeDescriptors[v]
-//      cardinality = len(clonegroup.paths)
-//      if cardinality > 1 : // then we have found a clone, so tidy up the english commentary on such.
+    }
+
+    // at this point, nodeDescriptors is a map from strings thereof for a directory,  to sets of strings, each a path.
+    // images of keys with cardinality greater than 1 are paths for identical maximal subtrees.
+    
+    long totalSquandered = 0;
+
+    nodeDescriptors.forEach (
+      (p,h) -> {
+        var clonegroup  = nodeDescriptors.get(p)  ;
+        var cardinality = clonegroup.paths.size() ;
+        if (cardinality > 1) // then we have found a clone, so tidy up the english commentary on such.
+        {
 //          if clonegroup.file:
 //              what = "files"
 //          else :
@@ -160,6 +152,25 @@ public class DetectClones {
 //              print("   ",p)
 //          print()
 //          totalSquandered += squandered
-//  print("Total bytes squandered in duplication is ",str(totalSquandered), ".\n")
+        }
+      }
+    );
+
+    System.out.printf("Total bytes squandered in duplication is %d\n",totalSquandered);
   }
 }
+
+
+class CloneGroup {
+
+  boolean          isafile ;
+  long             size    ;
+  HashSet<String>  paths   ;
+
+  CloneGroup( boolean isafile, long size ) {
+    this.isafile = isafile;
+    this.size    = size;
+    paths        = new HashSet<String>();
+  }
+}
+
