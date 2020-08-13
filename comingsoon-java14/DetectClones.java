@@ -74,87 +74,87 @@ import java.nio.file.Path;
 
 public class DetectClones {
 
-  public static void main( String[] a ) {
-    if (a.length == 1) {
-      System.out.println( a[0] + " needs a list of filesystem paths:  it will examine all files at the given paths, and recursively below, to identify clones.");
-      System.exit(1);
-    }
+  public static void main( String[] a )
+  {
+     if (a.length == 1) {
+        System.out.println( a[0] + " needs a list of filesystem paths:  it will examine all files at the given paths, and recursively below, to identify clones.");
+        System.exit(1);
+     }
 
-    //  commandline args are either this binary's name (not in Java, but in Swift and Go and Python), or paths to explore, or command flags.
+     //  commandline args are either this binary's name (not in Java, but in Swift and Go and Python), or paths to explore, or command flags.
     
-    var rawCmnds = new HashSet<String>();
-    var rawRoots = new HashSet<String>();
+     var rawCmnds = new HashSet<String>();
+     var rawRoots = new HashSet<String>();
     
-    //  run through the commandline args to grab paths to explore, and commands (to be defined later).
+     //  run through the commandline args to grab paths to explore, and commands (to be defined later).
     
-//  Path norman = Path.of(".").toAbsolutePath().normalize();
-//  System.out.printf( "Path.of(\".\") = \"%s\"\nPath.of(\".\").normalize() --> \"%s\"\n" , Path.of("."), norman.toString() );
+//   Path norman = Path.of(".").toAbsolutePath().normalize();
+//   System.out.printf( "Path.of(\".\") = \"%s\"\nPath.of(\".\").normalize() --> \"%s\"\n" , Path.of("."), norman.toString() );
 
-    String currentWorkingDir = System.getProperty("user.dir");
-    System.out.printf("cwd looks to be : \"%s\"\n",currentWorkingDir);
+     String currentWorkingDir = System.getProperty("user.dir");
+     System.out.printf("cwd looks to be : \"%s\"\n",currentWorkingDir);
 
-    for (int i = 0; i < a.length ; i++) {
+     for (int i = 0; i < a.length ; i++) {
+        String s = a[i];
+        Path   p; 
 
-      String s = a[i];
-      Path   p; 
-
-      if (s.startsWith("-")) {
-          rawCmnds.add(s);
-      } else {
-          if (s == ".") {   // replace "." on the commandline with the current working directory.
-            p = Path.of(s).toAbsolutePath();
-          } else {
-            p = Path.of(s).normalize();
-          }
-          String sn = p.toString();
-          rawRoots.add( sn );
-          System.out.printf( "\"%s\" -> \"%s\"\n", s , sn.toString() );
-      }
-    }
+        if (s.startsWith("-")) {
+           rawCmnds.add(s);
+        } else {
+           if (s == ".") {   // replace "." on the commandline with the current working directory.
+              p = Path.of(s).toAbsolutePath();
+           } else {
+              p = Path.of(s).normalize();
+           }
+           String sn = p.toString();
+           rawRoots.add( sn );
+           System.out.printf( "\"%s\" -> \"%s\"\n", s , sn.toString() );
+        }
+     }
     
-    var cmnds = rawCmnds.toArray( new String[ rawCmnds.size() ]);
-    var roots = rawRoots.toArray( new String[ rawRoots.size() ]);
+     var cmnds = rawCmnds.toArray( new String[ rawCmnds.size() ]);
+     var roots = rawRoots.toArray( new String[ rawRoots.size() ]);
 
-    var nodeDescriptors = new HashMap<String,CloneGroup>();
+     var nodeDescriptors = new HashMap<String,CloneGroup>();
 
-    for (String c: cmnds) {
+     for (String c: cmnds) {
         System.out.printf("the command "+c+" is being ignored at the moment\n");
-    }
+     }
 
-    for (String p: roots) {
+     for (String p: roots) {
         System.out.printf("the PATH    "+p+" is being ignored at the moment\n");
 //      examinePath(p)
-    }
+     }
 
-    // at this point, nodeDescriptors is a map from strings thereof for a directory,  to sets of strings, each a path.
-    // images of keys with cardinality greater than 1 are paths for identical maximal subtrees.
+     // at this point, nodeDescriptors is a map from strings thereof for a directory,  to sets of strings, each a path.
+     // images of keys with cardinality greater than 1 are paths for identical maximal subtrees.
     
-    long totalSquandered = 0;
+     long totalSquandered = 0;
 
-    nodeDescriptors.forEach (
-      (p,h) -> {
+     for ( String p : nodeDescriptors.keySet() ) {
+
         var clonegroup  = nodeDescriptors.get(p)  ;
         var cardinality = clonegroup.paths.size() ;
         if (cardinality > 1) // then we have found a clone, so tidy up the english commentary on such.
         {
-//          if clonegroup.file:
-//              what = "files"
-//          else :
-//              what = "folders"
-//          squandered = (cardinality-1) * clonegroup.size
-//          label = ( "the following " + str(cardinality) + " " + str(what) +
-//                    " seem to hold identical content, each instance uses " +
-//                    str(clonegroup.size) + " bytes in file(s), so " +
-//                    str(squandered) + " bytes are squandered in duplication:\n" )
-// 
-//          print(label)
-//          for p in clonegroup.paths:
-//              print("   ",p)
-//          print()
-//          totalSquandered += squandered
+            var what       = clonegroup.isafile ? "files" : "folders" ;
+            var squandered = (cardinality-1) * clonegroup.size ;
+
+            var label =
+               String.format(
+                  "the following %d %s seem to hold identical content; each instance uses %d bytes in file(s), so %d bytes are squandered in duplication:\n",
+                  cardinality, what, clonegroup.size, squandered
+               );
+
+            System.out.println(label);
+
+            for( String path: clonegroup.paths ) {
+               System.out.printf("    %s\n",p);
+            }
+            System.out.println();
+            totalSquandered += squandered;
         }
-      }
-    );
+     };
 
     System.out.printf("Total bytes squandered in duplication is %d\n",totalSquandered);
   }
@@ -174,3 +174,17 @@ class CloneGroup {
   }
 }
 
+
+//   func TestNormalizePath(t *testing.T) {  //  this function exists to verify i use stdlib filepath.Clean properly
+//   	problemsAndAnswers := map[string]string{
+//   		"a//b": "a/b",
+//   		".":    ".",
+//   		"a/..": ".",
+//   	}
+//   	for in, out := range problemsAndAnswers {
+//   		n := filepath.Clean(in)
+//   		if n != out {
+//   			t.Errorf("mismatch in normalizing %s -> normalized = %s which is not expected %s", in, n, out)
+//   		}
+//   	}
+//   }
