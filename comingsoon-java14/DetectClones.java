@@ -1,15 +1,17 @@
-// john jozwiak on 2020 Aug 11 (tuesday), a Java14 version.
+// john jozwiak on 2020 Aug 11-13 (tisdag,onsdag,torsdag), a Java14 version.
 
 
-/////////////////////////////////////////////////////////////////////////////////////
+import java.util.*;
+import java.nio.file.Path;
+
+
+public class DetectClones {
 
 //  def calculateFileDigest(path):
 //      with open(path,"rb") as f:
 //          bytes = f.read(-1)
 //      h = hashlib.sha256(bytes).hexdigest()
 //      return h
-
-/////////////////////////////////////////////////////////////////////////////////////
 
 //  def calculateFolderDigest(path):
 //  
@@ -27,8 +29,6 @@
 //  
 //      return "".join(dgs), containedsize
 
-/////////////////////////////////////////////////////////////////////////////////////
-
 //  def calculatePathDigestTypeAndSize(path):
 //  
 //      lstat = os.lstat(path)
@@ -42,8 +42,6 @@
 //        digest, sizeAtPath = calculateFolderDigest(path)
 //  
 //      return (digest, isRegularFile, sizeAtPath)
-
-/////////////////////////////////////////////////////////////////////////////////////
 
 //  def examinePath(path):
 //  
@@ -65,14 +63,6 @@
 //      nodeDescriptors[digest].paths.add(path)
 //  
 //      return digest, sizeAtPath  //  return the digest to recursively use it for folder digest construction.
-
-/////////////////////////////////////////////////////////////////////////////////////
-
-import java.util.*;
-import java.nio.file.Path;
-
-
-public class DetectClones {
 
   public static void main( String[] a )
   {
@@ -175,16 +165,18 @@ class CloneGroup {
 }
 
 
-//   func TestNormalizePath(t *testing.T) {  //  this function exists to verify i use stdlib filepath.Clean properly
-//   	problemsAndAnswers := map[string]string{
-//   		"a//b": "a/b",
-//   		".":    ".",
-//   		"a/..": ".",
-//   	}
-//   	for in, out := range problemsAndAnswers {
-//   		n := filepath.Clean(in)
-//   		if n != out {
-//   			t.Errorf("mismatch in normalizing %s -> normalized = %s which is not expected %s", in, n, out)
-//   		}
-//   	}
+  static void pathNormalizationSanityCheck() {
+
+  }
+//     problemsAndAnswers := map[string]string{
+//       "a//b": "a/b",
+//       ".":    ".",
+//       "a/..": ".",
+//     }
+//     for in, out := range problemsAndAnswers {
+//       n := filepath.Clean(in)
+//       if n != out {
+//         t.Errorf("mismatch in normalizing %s -> normalized = %s which is not expected %s", in, n, out)
+//       }
+//     }
 //   }
