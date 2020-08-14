@@ -71,6 +71,8 @@ public class DetectClones {
         System.exit(1);
      }
 
+     PathNormalizer.selfTest();
+
      //  commandline args are either this binary's name (not in Java, but in Swift and Go and Python), or paths to explore, or command flags.
     
      var rawCmnds = new HashSet<String>();
@@ -91,12 +93,7 @@ public class DetectClones {
         if (s.startsWith("-")) {
            rawCmnds.add(s);
         } else {
-           if (s == ".") {   // replace "." on the commandline with the current working directory.
-              p = Path.of(s).toAbsolutePath();
-           } else {
-              p = Path.of(s).normalize();
-           }
-           String sn = p.toString();
+           String sn = PathNormalizer.normalize(s);
            rawRoots.add( sn );
            System.out.printf( "\"%s\" -> \"%s\"\n", s , sn.toString() );
         }
@@ -165,18 +162,27 @@ class CloneGroup {
 }
 
 
-  static void pathNormalizationSanityCheck() {
+class PathNormalizer {
 
+  static String normalize( String s ) {
+
+    // replace "." on the commandline with the current working directory.
+    Path p = Path.of(s);
+    return ((s == ".") ? p.toAbsolutePath() : p.normalize()).toString();
   }
-//     problemsAndAnswers := map[string]string{
-//       "a//b": "a/b",
-//       ".":    ".",
-//       "a/..": ".",
-//     }
-//     for in, out := range problemsAndAnswers {
-//       n := filepath.Clean(in)
-//       if n != out {
-//         t.Errorf("mismatch in normalizing %s -> normalized = %s which is not expected %s", in, n, out)
-//       }
-//     }
-//   }
+
+  static void selfTest() {
+     var examples = new HashMap<String,String>();
+     examples.put( "a//b" , "a/b" );
+     examples.put( "."    , "."   );
+     examples.put( "a/.." , "."   );
+
+     for (String question: examples.keySet() ) {
+       String got = normalize( question );
+       if (! examples.get(question).equals( got )) {
+         System.out.printf("test failure :  \"%s\" normalized to \"%s\" while expecting \"%s\"\n", question, got, examples.get(question) );
+         System.exit(1);
+       }
+     }
+  }
+}
