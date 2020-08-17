@@ -43,7 +43,7 @@ public class DetectClones {
 //  
 //      return (digest, isRegularFile, sizeAtPath)
 
-//  def examinePath(path):
+//  def examinePath(path):  #  returns a string digest, and a long size.
 //  
 //      if path == ".":  // some defensive programming here: docs for ioutil.ReadDir do not specify if "." is returned.
 //          print("WAIT, how did a dot get sent to examinePath?\n\n")
@@ -110,7 +110,7 @@ public class DetectClones {
 
      for (String p: roots) {
         System.out.printf("the PATH    "+p+" is being ignored at the moment\n");
-//      examinePath(p)
+        examinePath(p)
      }
 
      // at this point, nodeDescriptors is a map from strings thereof for a directory,  to sets of strings, each a path.
@@ -167,8 +167,10 @@ class PathNormalizer {
   static String normalize( String s ) {
 
     // replace "." on the commandline with the current working directory.
-    Path p = Path.of(s);
-    return ((s == ".") ? p.toAbsolutePath() : p.normalize()).toString();
+    s = Path.of(s).normalize().toString();
+//  s = ((s == ".") ? p.toAbsolutePath() : p.normalize()).toString();
+    s = s.equals("") ? "." : s;
+    return s;
   }
 
   static void selfTest() {
