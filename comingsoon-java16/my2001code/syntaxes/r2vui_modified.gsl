@@ -1,0 +1,1622 @@
+Uh ?[um uh]
+
+YES_WORDS [(yes ?_IT_IS)
+           _IT_IS
+           yup
+           yeah
+           okay
+           sure
+           (you got it)
+           (?(?yes that's) [right correct])
+          ]
+
+NO_WORDS  [nope
+           (absolutely not)
+           (no ?[_IT_IS_NOT way])
+           _IT_IS_NOT
+           (?(?no that's)
+            [wrong
+             (not [correct right])
+             incorrect
+            ]
+           )
+          ]
+
+_IT_IS
+    (it [sure certainly] is)
+
+_IT_IS_NOT
+    [(it isn't) (it's not) (it is not)]
+
+
+DigitString
+[ 
+	zero	{return("0")}
+	oh 	{return("0")}
+	one 	{return("1")}
+        two 	{return("2")}
+        three 	{return("3")}
+        four 	{return("4")}
+        five 	{return("5")}
+        six 	{return("6")}
+        seven 	{return("7")}
+        eight 	{return("8")}
+        nine 	{return("9")}
+]
+
+DigitString_0_1 
+[ 
+	zero	{return("0")}
+	oh 	{return("0")}
+	one 	{return("1")}
+]
+
+4DigitString (?Uh DigitString:d1 DigitString:d2 DigitString:d3 DigitString:d4) {return(strcat($d1 strcat( $d2 strcat( $d3 $d4))))}
+
+5DigitString (?Uh DigitString:d1 DigitString:d2 DigitString:d3 DigitString:d4 DigitString:d5) {return(strcat($d1 strcat( $d2 strcat( $d3 strcat($d4 $d5)))))}
+
+7DigitString (?Uh DigitString:d1 DigitString:d2 DigitString:d3 DigitString:d4 DigitString:d5 DigitString:d6 DigitString:d7) {return(strcat($d1 strcat( $d2 strcat( $d3 strcat( $d4 strcat( $d5 strcat( $d6 $d7)))))))}
+
+10DigitString (?Uh DigitString:d1 DigitString:d2 DigitString:d3 DigitString:d4 DigitString:d5 DigitString:d6 DigitString:d7 DigitString:d8 DigitString:d9 DigitString:d10) {return(strcat($d1 strcat( $d2 strcat( $d3 strcat( $d4 strcat( $d5 strcat( $d6 strcat( $d7 strcat( $d8 strcat( $d9 $d10))))))))))}
+
+11DigitString (?Uh DigitString_0_1:d1 DigitString:d2 DigitString:d3 DigitString:d4 DigitString:d5 DigitString:d6 DigitString:d7 DigitString:d8 DigitString:d9 DigitString:d10 DigitString:d11) {return(strcat($d1 strcat( $d2 strcat( $d3 strcat( $d4 strcat( $d5 strcat( $d6 strcat( $d7 strcat( $d8 strcat( $d9 strcat($d10 $d11)))))))))))}
+
+7-10-11-Digits 
+[
+    [ 
+	7DigitString:num 
+	10DigitString:num 
+	11DigitString:num
+    ] {return($num)}
+]
+
+
+Atonin
+[ at on in
+]
+
+I_Want
+[
+	(?maya ?please)
+    (?maya ?please i want)
+    (?maya ?please i would like)
+    (?maya ?please i'd like)
+]
+
+I_Wish
+[
+	(?maya ?please)
+    (?maya ?please i [wish want])
+    (?maya ?please i would like)
+    (?maya ?please i'd like)
+]
+
+I_Do_Wish
+[
+	(?maya ?please)
+    (?maya ?please i ?do [wish want])
+    (?maya ?please i would like)
+    (?maya ?please i'd like)
+]
+
+Give_Me
+[
+	(?maya ?please)
+    (?maya ?please [(give me) (get ?me) (show ?me) ] )
+]
+
+I_Want_Ext
+[
+    I_Want
+    Give_Me
+]
+
+I_Want_Ext_To
+[
+    (I_Want to)
+    Give_Me
+]
+
+
+I_Want_Ext_My
+[
+    (I_Want_Ext ?my)
+    my
+]
+
+I_Want_The
+[
+    (I_Want ?the)
+    the
+]
+
+I_Want_Ext_The
+[
+    (I_Want_Ext ?the)
+    the
+]
+
+
+I_Want_Ext_MyThe
+[
+    (I_Want_Ext ?[the my])
+    [the my]
+]
+
+Suffix_Please
+[
+    please
+]
+
+Suffix_MenuPlease
+(
+    [ (menu ?please) please ]
+)
+
+Universal_Help
+[
+    (
+    	?[
+	    I_Want_Ext 
+	    (can i get)
+	    (I_Want to get)
+	]
+	?some help ?Suffix_Please
+    ) {return(help)}
+]
+
+Universal_Cancel
+[
+	 (?that's enough) {return(cancel)}
+     (?[(I_Wish to) please] cancel ?it ?Suffix_Please)  {return(cancel)}
+
+]
+
+Universal_Exit
+[
+     (?[(I_Wish to) please] exit ?(to ?the main menu) ?Suffix_Please) {return(exit)}
+
+]
+
+Universal_StartOver
+[
+     (?[(I_Wish to) please] (start over) ?Suffix_Please) {return(exit)}
+]
+
+Universal_Goodbye
+[
+     [(?(thank you) ?maya goodbye ?maya ?(thank you)) (hang up)]{return("goodbye")}
+
+]
+
+Universal_Commands_NoExit
+(
+    ?Uh
+    [
+	Universal_Help:uc
+	Universal_Cancel:uc
+	Universal_Goodbye:uc
+	Universal_StartOver:uc
+	Universal_Exit:uc
+    ] {return($uc)}
+)		
+
+Universal_Commands_NoCancel
+(
+    ?Uh
+    [
+	Universal_Help:uc
+	Universal_Exit:uc
+	Universal_StartOver:uc
+	Universal_Goodbye:uc	
+    ] {return($uc)}
+)		
+
+Universal_Commands_HelpCancel
+(   
+    ?Uh
+    [
+	Universal_Help:uc
+	Universal_Cancel:uc
+    ] {return($uc)}	
+)		
+
+Universal_Commands_HelpGoodbye
+(   
+    ?Uh
+    [
+	Universal_Help:uc
+	Universal_Goodbye:uc
+    ] {return($uc)}	
+)		
+
+
+Universal_Commands 
+(
+    ?Uh
+    [
+	Universal_Help:uc
+	Universal_Cancel:uc	
+	Universal_Exit:uc
+	Universal_StartOver:uc
+	Universal_Goodbye:uc
+    ] {return($uc)}	
+)
+
+.Univ_Cancel_Conf
+[
+  (
+    ?Uh
+    [
+	[ 
+	    (YES_WORDS)
+	    (	
+		?Yes_Only 
+		[
+		    (?(I_Do_Wish to) cancel ?[it (the ?current operation)])
+		    (i do)
+		    (?please cancel)
+		]
+	    )
+	] {<confirm yes>}
+
+	[
+	    NO_WORDS
+	    (?NO_WORDS (stop ?it))
+	    (?(NO_WORDS ?stop) ?please ([don't (do not)] ?(cancel ?[it (the ?current operation)])))
+	    (
+		?No_Only 
+		[
+		    (i [don't (do not)] ?([wish want] [it (to cancel ?[it (the ?current operation)])]))
+		]
+		
+	    )
+	]{<confirm no>}
+
+    ]
+    ?Suffix_Please
+  )
+  Universal_Help:uc~0.01 {<ucommand $uc>}
+]
+
+.Cancel_Conf_During_Outgoing_Call
+[
+   [
+	NO_WORDS
+    (?NO_WORDS (stop ?it))
+    (?(NO_WORDS ?stop) ?please ([don't (do not)] ?(cancel ?[it (the ?current operation)])))
+    (
+		?No_Only 
+		[
+		    (i [don't (do not)] ?([wish want] [it (to cancel ?[it (the ?current operation)])]))
+		]
+	)
+    (?(I_Do_Wish to) cancel ?[it (the ?current operation)])
+    (?please cancel)
+    ( wake up maya )
+   ] {<confirm no>}
+
+   (?please start over) {<confirm "start over">}
+   (?please exit) {<confirm "start over">}
+]
+
+.Univ_Exit_Conf
+[
+  ?Uh
+  (
+    [
+	[ 
+	    (YES_WORDS)
+	    (	
+		?Yes_Only 
+		[
+		    (I_Do_Wish to)
+		    (?(I_Do_Wish to)  [exit (return to ?the main menu)])
+		    (i do)
+		]
+	    )
+	] {<confirm yes>}
+
+	[
+	    NO_WORDS
+	    (?NO_WORDS (stop ?it))
+	    (?(NO_WORDS ?stop) ?please ([don't (do not)] ?[exit (return to ?the main menu)]))
+	    (
+		?No_Only 
+		[
+		    (i [don't (do not)] ?([wish want] [ (to [exit (return to ?the main menu)]) that ]))
+		]
+		
+	    )
+	]{<confirm no>}
+
+    ]
+    ?Suffix_Please
+  )
+  Universal_Help:uc~0.01 {<ucommand $uc>}
+  Universal_Cancel:uc {<ucommand $uc>}
+  Universal_StartOver:uc {<ucommand $uc>}
+]
+
+.Univ_Goodbye_Conf
+[
+  (
+    ?[Uh please]
+    [
+	[
+	    ((YES_WORDS) ?[(go ahead) ?please (leave ingenious)])
+	    (
+		?Yes_Only 
+	 	[
+			(?(I_Do_Wish to) leave ?ingenious)
+			(goodbye maya)
+			(i do)
+		]
+	    )
+	]  {<confirm yes>}
+
+        [
+	    NO_WORDS
+	    (?NO_WORDS (stop ?it))
+	    (?(NO_WORDS ?stop) ?please ([don't (do not)] ?[(leave ingenious) (do that)]))
+	    (?(?No_Only ?stop) (i [don't (do not)] ?([wish want] [ (to leave ingenious) that] )))
+ 	]{<confirm no>}
+    ] 
+    ?Suffix_Please
+  )
+  Universal_Help:uc~0.01 {<ucommand $uc>}
+  Universal_Cancel:uc {<ucommand $uc>}
+]
+
+.Login_Main
+[
+  [
+  [
+    (5DigitString:pwd)
+  ] {<subscrib_pwd $pwd>}
+  [Universal_Cancel stop Stop_Call] {<ucommand cancel>}
+  ]
+]
+
+
+.Login_AccNo
+[
+  [
+	(10DigitString:pwd)
+  ] {<subscrib_accno $pwd>}
+]
+
+Loginname [ Sanjay ]
+
+.Login_Name
+[
+	Loginname:nm {<login_name $nm>}
+]
+
+No_Ext
+[
+    NO_WORDS
+    (?No_Only certainly not)
+    (of course not)
+]
+
+
+Yes_Ext
+[
+    YES_WORDS
+    (?Yes_Only of course)
+    certainly
+]
+
+I_Did_Generic
+[
+     (?Yes_Only [
+	    (i ?certainly did)
+	    (of course i did)
+	  ]
+    )
+]
+
+I_DidNot_Generic
+[
+    (?No_Only 
+	[ 
+	    (?(of course) i [didn't (did not)]) 
+	    (i certainly  [didn't (did not)])
+	] 
+    )
+]
+
+Enough_TTS
+[
+	?Uh (stop ?it) okay (?that's enough) ?Suffix_Please
+]
+
+.Login_Pwd_Conf
+[
+     Yes_Ext {<confirm yes>}
+     No_Ext {<confirm no>}
+     (
+    	[
+	    I_Did_Generic {<confirm yes>}
+    	    I_DidNot_Generic {<confirm no>}
+    	] 
+    	?(say that ?number)
+     )
+]
+
+Stock_Market
+[
+	([stock financial] ?market ?watch ?[report quotes chart update news information info])
+	(stocks)
+]
+
+Stock_Market_Indicators
+[
+	(?maya ?please [stock financial market] ?market ?watch [indicators indices chart])
+]
+
+Stock_Market_Portfolio
+[
+	(?maya ?please [stock financial] ?market ?watch [portfolio portfolios quotes])
+]
+
+MM1
+[
+	(?maya ?please [address phone] book) 			{<command "address book">}
+	(Stock_Market) {<command stock>}
+	(Stock_Market_Indicators  ?Suffix_Please) {<command stock_ind>}
+	(Stock_Market_Portfolio  ?Suffix_Please) {<command stock_portf>}
+	(Page) {<command page>}
+	(Page {<command page>} Name:nm {<name $nm>})
+	(?maya last direction) {<command "last direction">}
+]
+
+MM_Group1
+[
+    (?I_Want_Ext_The MM1 ?Suffix_MenuPlease)
+    (?I_Want_Ext_My MM1 ?Suffix_Please)
+]
+
+MM4
+[
+	[(news edge) (?today's headlines) (headline news) (news ?headlines) (headlines menu)] {<command headlines>}
+	(traffic ?[report update condition conditions information menu] ?Suffix_Please) {<command traffic>}
+	(weather ?[channel report update menu]) {<command weather>}
+	([today's local] [(weather ?channel ?forecast) forecast] ?Suffix_Please) {<command weather_today>}
+	([extended (three day)] [(weather ?channel ?forecast) forecast] ?Suffix_Please) {<command weather_extended>}
+]
+
+MM4a
+[
+	[(flight tracking) (flight status) (biztravel)] {<command flight>}
+]
+
+MM_Group4
+[
+	(?I_Want_Ext_The MM4 ?Suffix_Please)
+	(?I_Want_Ext MM4a ?Suffix_Please)
+]
+
+MM5a
+[
+	[(my info) (information) (my information) (content)] {<command my_info>}
+]
+
+MM_Group5
+[
+	(?I_Want_Ext MM5a ?Suffix_Please)
+]
+
+MM6
+[
+	(voice [calling dialing])  {<command call>}
+	(?voice paging) {<command page>}
+]
+
+Want_Call
+[
+    (I_Want to [make place] a ?phone call) {<command call>}
+]
+
+Want_Page
+[
+    (I_Want to [send place] a page) {<command page>}
+]
+
+MM_Group6
+[
+    (?I_Want_Ext [ MM6 (the MM6 menu) ] ?Suffix_Please)
+    Want_Call
+]
+
+NamePhrase
+[
+	?[and ?cc]  Name:nm {return($nm)}
+]
+
+Location
+[
+    (home ?phone)  {return(home)}
+    (?the office ?phone) {return(office)}
+	(work ?phone) {return(work)}
+	([mobile cell cellular] ?phone) {return(mobile)}
+	(car ?phone) {return(car)}
+	(other ?phone) {return(other)}
+]
+
+Device
+[
+    (home ?phone)  {return(home)}
+    (office ?phone) {return(office)}
+    (work ?phone) {return(work)}
+    ([mobile cell cellular] ?phone) {return(mobile)}
+    (car ?phone) {return(car)}
+    (pager) {return(pager)}
+	(other ?phone) {return(other)}
+]
+
+Call
+[
+	(?I_Want_Ext [call dial] )
+    (?I_Want_Ext [make place] a ?phone call to)
+    (?I_Want_Ext get ?me)
+]
+
+
+Page
+[
+    (?I_Want_Ext page)
+    (?I_Want_Ext [make place send] ?a page ?to)
+]    
+
+
+MM7
+[
+    call {<command call>}
+    dial {<command call>}
+]
+
+MM_Group7
+[
+	(?I_Want_Ext MM7 ?Suffix_Please) 
+
+]
+
+MM_Group8
+(
+    ?[I_Want to please]
+    [
+		(?I_Want_Ext Call {<command call>}  Name:nm {<name $nm>} ?([(Atonin ?[his her])] Location:loc {<location $loc>}))
+		(?I_Want_Ext Page {<command page>} Name:nm {<name $nm>})
+    ]
+    ?Suffix_Please
+)
+
+MM_Group9
+(
+    ?(I_Want to)
+    [
+    	(?Call ?new [direction directions] {<command call> <name "direction">})
+    	(?Call (customer [care service assistance]) {<command call> <name "customer care">})
+		(?Call (help desk) {<command call> <name "customer care">})
+    	(?Call ?(area code)~0.01 7-10-11-Digits:num {<command call> <phone_number $num>})
+    ]
+    ?Suffix_Please
+)
+
+
+PauseMain
+[
+  ([(pause) (pause maya) (maya pause)]  {<command pause>})
+]
+
+ChangePin
+[
+  ((?maya ?please change account) {<command "change account">})
+]
+
+Wakeup_Genie
+[
+  Wakeup {<command wakeup_genie>}
+]
+
+Drop_Call_Genie
+[
+  (	
+    ?Uh
+    ?[(I_Wish to) please]
+    [
+	(
+	    [ drop ?drop {<command drop_call_genie>} ]  ?[ it (?(the ?telephone) call) ]
+	)
+    ]
+    ?Suffix_Please
+  )	
+]
+
+.MM_Main
+[
+  (
+    ?Uh
+    [
+	MM_Group1
+	MM_Group4
+	MM_Group5
+	MM_Group6
+	MM_Group7
+	MM_Group8
+	MM_Group9
+	ChangePin
+	PauseMain
+	Want_Return_Call
+	Drop_Call_Genie
+    ] ?Suffix_Please
+  )
+  menu {<ucommand help>}
+  Universal_Commands_NoExit:uc {<ucommand $uc>}
+]
+
+.MM_Main_NoNbr
+[
+  (
+    ?Uh
+    [
+	MM_Group1
+	MM_Group4
+	MM_Group5
+	MM_Group6
+	MM_Group7
+	MM_Group8
+	PauseMain
+	Drop_Call_Genie
+    ] ?Suffix_Please
+  )
+  menu {<ucommand help>}
+  Universal_Commands_NoExit:uc {<ucommand $uc>}
+]
+
+.MMenu_GoodbyeWhenCallIsOnHold
+[cancel {<command cancel>}
+ (return to call) {<command "return to call">}
+]
+
+Want_Return_Call
+[
+    (?(I_Want to) return to ?the call) {<command "return to call">}
+]
+
+.MM_Main_Call_Hold
+[
+  (
+    ?Uh
+    [
+	MM_Group1
+	MM_Group4
+	MM_Group5
+	Want_Return_Call
+	ChangePin
+	PauseMain
+    ] ?Suffix_Please
+  )
+  menu {<ucommand help>}
+  Universal_Commands_NoExit:uc {<ucommand $uc>}
+]
+
+It_s
+[
+    it's
+    that's
+]
+
+Yes_Only
+[
+    yes
+    yeah 
+    yup
+    yep
+]
+
+No_Only
+[
+    no
+    nope
+]
+
+Okay_Query
+[
+    YES_WORDS
+    (?Yes_Only (?[it's its that's] okay ?(as ?it is)))
+    (?Yes_Only ?[that's its it's] fine)
+]
+
+Not_Okay
+[
+    NO_WORDS
+    (?No_Only (?[it's its that's] not okay))
+]
+
+Groups_AtEnd
+[
+    (?my family) {return(family)}
+    (?my friends) {return(friends)}
+    (?[my the] business contacts) {return("business contacts")}
+    urgent {return(urgent)}
+    [other (all others)] {return(other)}
+]
+
+Groups_AtBegin
+[
+    ((everyone ?(of?[the my]))  {return(all)})
+    (?[my the] family {return(family)})
+    (?[my the] friends {return(friends)})
+    (?the business ?[contact contacts]) {return("business contacts")}
+    (?the [urgent priority] {return(urgent)})
+    ((?[the all] other) {return(other)})
+]
+
+AddrName
+[
+	sanjay {return (sanjay)}
+]
+
+Addr_Bk_MM_Group8
+(
+    ?[I_Want to please]
+    [
+	(Call {<command call>}  ?[(Name:nm {<name $nm>}) [him her]] ?([ (Atonin ?[his her])] Location:loc {<location $loc>}))
+        (Page {<command page>} ?[(Name:nm {<name $nm>}) [him her]])
+    ]
+    ?Suffix_Please
+)
+
+.Addr_Bk_Main
+[
+  (
+    ?Uh
+    [
+    	(?(?I_Want_Ext_The ?([listings entries category group] [for of]) ) Groups_AtEnd:grp)
+    	
+	( ?[(I_Want_Ext ?(to hear)) hear ] 
+		(Groups_AtBegin:grp ?[entries listings category categories group groups]))
+    ] 
+    ?Suffix_Please 
+  ) {<group $grp>} 
+  (?Uh [(everyone ?(of them)) everybody]) {<group all>}
+  (?Uh list ?everyone ?(of them) ?everybody) {<group all>}
+
+  [
+    ( ?Uh [?(I_Want to) please] stop 
+	?Suffix_Please
+    )
+    Enough_TTS
+  ] { <group stop>}
+
+  (
+    ?Uh
+    [
+    	(?(?I_Want_Ext_The ?([listing entry ] [for of]) ) Name:nm)
+    	
+	( ?[(I_Want_Ext ?(to hear)) hear ] 
+		(Name:nm ?( [entry listing])) )
+    ] {<name $nm>}
+    ?Suffix_Please 
+  )
+  Addr_Bk_MM_Group8
+  Universal_Commands:uc {<ucommand $uc>}
+  [quit (start over)] {<ucommand exit>}
+]
+
+.Addr_Bk_Details [
+	(?Uh ?I_Want_Ext_The details ?Suffix_Please) {<command detail>}
+	Enough_TTS {<ucommand exit>}
+	Universal_Commands:uc {<ucommand $uc>}
+	Addr_Bk_MM_Group8
+]
+
+Stop_Listings
+[
+  (
+     [
+     (?[(I_Want to) please] stop ?[ it ?(?the [listing listings]) ] )
+     (?okay ?that's enough)
+     ]
+     ?Suffix_Please
+  )   {return(stop)}
+]
+
+.All_Listings
+[	
+     (?Uh Stop_Listings:cmd) {<command $cmd>}
+     Universal_Commands:uc {<ucommand $uc>}
+]
+
+.Category_Listings
+[
+    (?Uh Stop_Listings:cmd) {<command $cmd>}
+    Universal_Commands:uc {<ucommand $uc>}
+]
+
+.Name_Listing
+[
+    (?Uh Stop_Listings:cmd) {<command $cmd>}
+    Universal_Commands:uc {<ucommand $uc>}
+]
+
+.Voice_Dial_Main 
+[
+  (
+    ?Uh
+    ?[(I_Wish to) please]
+    [
+	(?Call Name:nm {<name $nm>} ?([(Atonin ?[his her])] Location:loc {<location $loc>}))
+    	(?Call ?(area code)~0.01 7-10-11-Digits:num {<phone_number $num>})
+    ]
+    ?Suffix_Please
+  )
+  Universal_Commands:uc {<ucommand $uc>}
+
+]
+
+Stop_Words
+[
+    [
+	NO_WORDS
+    	(?NO_WORDS ?please [cancel  stop] ?it )
+    	(wait a minute)
+    	(hold it)
+	(?no don't )
+    ] 
+] 
+
+Stop_Words_NoCancel
+[
+    [
+	NO_WORDS
+	(?no don't )
+    ] 
+] 
+
+Cancel_Call
+[
+    (NO_WORDS)
+    (?no [ ( (?please [cancel stop])  ?[it ([the that this] ?phone call)]) don't ])
+]
+
+Stop_Call
+[ 
+    (Cancel_Call)
+	(no ?no ?no ?no)
+    (?no wait ?(a minute))
+    (hold it)
+]
+
+Cancel_Page
+[
+    (NO_WORDS)
+    (?no ?please [ ([cancel stop] ?[it ([the that this] ?page)]) don't])
+    (?no ?please don't send [it (the page)])
+]
+
+Stop_Page
+[
+    (Cancel_Page)
+	(no ?no ?no ?no)
+    (?no wait ?(a minute))
+    (hold it)
+]
+
+Wait
+[
+	(?no wait ?(a minute))
+	(hold it)
+]
+
+Implicit_Call_Conf
+[
+	([YES_WORDS Yes_Phrase]{return(yes)})
+	[
+		Stop_Call 
+		(?No_Only (i [don't (do not)] ?([wish want] [it (?(to [make place]) this call)]))) 
+		(?No_Only [don't (do not)] [make  place] [it ([the this] call)])
+		(Wait ?please)
+	] {return(no)}
+]
+
+Implicit_Page_Conf
+[
+	([YES_WORDS Yes_Phrase] {return(yes)})
+	[ 
+		Stop_Page
+		(?No_Only (i [don't (do not)] ?([wish want] [it (?(to [send place]) this page)])))
+		(?No_Only [don't (do not)] [send place] [it ([the this] page)]) 
+		(?No_Only stop ?paging)
+ 	]{return(no)}
+]
+
+Yes_Phrase
+[
+	(yes ?yes ?yes ?yes)
+	(?Yes_Only ?[it's that's] [okay  fine])
+	(?[Yes_Only okay sure fine] go ahead )
+]
+
+No_Phrase
+[
+    (
+	?No_Only 
+	[
+		([it's that's] not ?okay)
+		(certainly not)
+		(of course not)
+	]
+    )
+]
+
+Wish_Call
+[
+	(
+	    [
+		(YES_WORDS)
+		Yes_Phrase
+	        (?Yes_Only (i do ?([wish want] [(to [make place] [the this] call)])))
+		(?Yes_Only ?please [send place] [the this]  page)
+		(?Yes_Only [send place] [the this]  page ?Suffix_Please)
+		(yes Suffix_Please)
+	    ] 
+	)  {return(yes)}
+	[
+		Stop_Call
+		(?no (i [don't (do not)] ?([wish want] [it (?(to [make place]) [the this] call)]))) 
+		(?no ?please [don't (do not)] [make  place] [it ([the this] call)])
+	] {return(no)}
+]
+
+Wish_Page
+[
+	(
+	    [
+		(YES_WORDS)
+		Yes_Phrase
+		(Yes_Only (i do ?([wish want] [(to [send place] this page)])))
+		(Yes_Only ?please [send place] [the this]  page)
+		(Yes_Only [send place] [the this]  page ?Suffix_Please)
+		(yes Suffix_Please)
+	    ]
+       ){return(yes)}
+	[
+		Stop_Page
+		(?no (i [don't (do not)] ?([wish want] [it (?(to [make place]) [the this] page)]))) 
+		(?no ?please [don't (do not)] [make  place] [it ([the this] page)])
+	] {return(no)}
+]
+
+.Phone_Num_Conf
+[
+    (?Uh Implicit_Call_Conf:conf) {<confirm $conf>}
+	Universal_Help:uc~0.01 {<ucommand $uc>}
+	Universal_Exit:uc {<ucommand $uc>}
+	Universal_StartOver:uc {<ucommand $uc>}
+	Universal_Goodbye:uc {<ucommand $uc>}	
+]
+
+.Call_Conf
+[
+	(place [(?the call) it]) {<confirm yes>}
+    (?Uh Wish_Call:conf ) {<confirm $conf>}
+	Universal_Help:uc~0.01 {<ucommand $uc>}
+	Universal_Exit:uc {<ucommand $uc>}
+	Universal_StartOver:uc {<ucommand $uc>}
+	Universal_Goodbye:uc {<ucommand $uc>}	
+]
+
+
+No_Didnt
+[
+    (No_Only ?(of course) i [(did not) didn't])
+    ([certainly  (of course)] not)
+]
+
+Yes_Did
+[
+    (Yes_Only ?(of course) i did)
+     (of course)
+]
+
+
+.Sec_Ch_Num_Conf
+[
+  (
+    ?Uh
+    [
+      (Wish_Call:conf ?Suffix_Please) {<confirm $conf>}
+      (Yes_Did {<confirm yes>})
+      (No_Didnt {<confirm no>})
+    ]
+  )
+	Universal_Help:uc~0.01 {<ucommand $uc>}
+	Universal_Exit:uc {<ucommand $uc>}
+	Universal_StartOver:uc {<ucommand $uc>}
+	Universal_Goodbye:uc {<ucommand $uc>}	
+]
+
+
+.Name_Loc_Conf
+[
+    (?Uh Implicit_Call_Conf:conf ?Suffix_Please) {<confirm $conf>}
+	Universal_Help:uc~0.01 {<ucommand $uc>}
+	Universal_Exit:uc {<ucommand $uc>}
+	Universal_StartOver:uc {<ucommand $uc>}
+	Universal_Goodbye:uc {<ucommand $uc>}	
+]
+
+
+.Change_Name_Loc
+[
+    (
+	?Uh
+    	?[ (?[(I_Wish to) please] change ?the) change ?the]
+	[
+	    name {<change name>}
+	    [location place] {<change location>}
+	    [
+	    	(?please start [over again]) 
+	    	([all both] ?(of them))
+		(?both [ (?the name and ?the [location place]) (?the [location place] and ?the name) ]) 
+	    ] {<change all>}
+	]
+	?Suffix_Please
+    ) 
+    Universal_Commands:uc {<ucommand $uc>}
+]
+
+.Get_Loc
+[
+    (?Uh ?(?[at in] [his her the]) Location:loc ?Suffix_Please ) {<location $loc>} 
+    Universal_Commands:uc {<ucommand $uc>}
+]
+
+.Get_Name
+[
+    (?Uh ?[call dial] Name:nm {<name $nm>} ?Suffix_Please)
+    Universal_Commands:uc {<ucommand $uc>}
+]
+
+.Get_Name_Loc
+[
+    (
+	?Uh
+	?[ (I_Wish ?(to Call)) (?please Call) ]
+	(Name:nm {<name $nm>} ?([(at ?[his her])] Location:loc  {<location $loc>}))
+     ?Suffix_Please
+    )
+    Universal_Commands:uc {<ucommand $uc>}
+]
+
+.Get_Phn_Num
+[
+    (
+	?Uh
+	?[ (I_Wish ?(to Call)) (?please Call) ]
+    	?(area code)~0.01 7-10-11-Digits:num {<phone_number $num>} 
+	?Suffix_Please
+    )
+    Universal_Commands:uc {<ucommand $uc>}
+]
+
+I_Did
+[
+    YES_WORDS
+    (?yes [
+	    (i ?certainly did)
+	    (of course i did)
+	  ]
+      ?(say a ?phone number))
+    (?yes of course)
+]
+
+Yes_I_Do
+[
+    YES_WORDS
+    Yes_Phrase
+    (
+	?Yes_Only 
+	[
+	    (i ?certainly do)
+	    ([(of course) certainly] ?(i do))
+	]
+    )
+]
+
+I_DidNot
+[
+    NO_WORDS
+    (?no 
+	[ 
+	    (?(of course) i [didn't (did not)]) 
+	    (i certainly  [didn't (did not)])
+	] 
+	 	?([say speak] a ?phone number))
+    (?no certainly not)
+    (of course not)
+]
+
+No_I_Dont_Only
+[
+    (
+	?No_Only 
+	[ 
+	    (?(of course) i [don't (do not)]) 
+	    (i certainly  [don't (do not)])
+	] 
+    )
+]
+
+
+No_I_Dont
+[
+    NO_WORDS
+    No_Phrase
+    No_I_Dont_Only
+]
+
+.Num_Dial_Conf
+[
+    (?Uh I_Did) {<confirm yes>}
+    (?Uh I_DidNot) {<confirm no>}
+
+	Universal_Help:uc~0.01 {<ucommand $uc>}
+	Universal_Cancel:uc	{<ucommand $uc>}
+	Universal_Exit:uc {<ucommand $uc>}
+	Universal_StartOver:uc {<ucommand $uc>}
+	Universal_Goodbye:uc {<ucommand $uc>}
+]
+
+.Paging_Main
+[
+  (
+    ?Uh
+    ?[(I_Wish to) please]
+    [
+        (?Page  Name:nm {<name $nm>})
+    ]
+    ?Suffix_Please
+  )
+  Universal_Commands:uc {<ucommand $uc>}
+]
+
+.Page_Conf
+[
+    (?Uh Wish_Page:conf ?Suffix_Please) {<confirm $conf>}
+	Universal_Help:uc~0.01 {<ucommand $uc>}
+	Universal_Exit:uc {<ucommand $uc>}
+	Universal_StartOver:uc {<ucommand $uc>}
+	Universal_Goodbye:uc {<ucommand $uc>}	
+]
+
+.Paging_Name_Ret_Conf
+[
+    (?Uh Implicit_Page_Conf:conf ?Suffix_Please) {<confirm $conf>}
+	Universal_Help:uc~0.01 {<ucommand $uc>}
+	Universal_Exit:uc {<ucommand $uc>}
+	Universal_StartOver:uc {<ucommand $uc>}
+	Universal_Goodbye:uc {<ucommand $uc>}	
+]
+
+
+.Chg_Paging_Name_Ret
+[
+    (
+	?Uh
+    	?[ (?[(I_Wish to) please] change the) change the]
+	[
+	   (name {<change name>})
+	   (?[my  the] ?return location {<change location>})
+	   ([
+	    	(?please start [over again]) 
+	    	([all both] ?(of them))
+		(?both [ (?the name and ?[my the] (?return location)) (?[my the] (?return location) and ?the name) ])
+	    ] {<change all>})
+       ]
+       ?Suffix_Please
+    )  
+    Universal_Commands:uc {<ucommand $uc>}
+]
+
+
+.Chg_Paging_Name
+[
+  (
+	?Uh
+    	?[ (?[(I_Wish to) please] change the) change the]
+	[
+	    (name ?(of the person ?(to page))) {<change name>}
+	    (?please start [over again])  {<change all>}
+	]
+    	?Suffix_Please
+  )
+  Universal_Commands:uc {<ucommand $uc>}
+]
+
+.Get_Paging_Loc
+[
+    (
+	?Uh
+	?[
+		(?the ?return location ?is)  
+		( ?(?the ?return location is)  ([at (?at [the my]) ]) )
+		(return [call page] to ?[the my])
+	]	
+	Location:loc {<location $loc>} 
+	?Suffix_Please
+    )
+	(
+	?Uh
+	?[
+		(?the ?return location ?is)  
+		( ?(?the ?return location is)  ([at (?at [the my]) ]) )
+		(return [call page] to ?[the my])
+	]	
+	?(area code)~0.01 7-10-11-Digits:num {<phone_number $num>} 
+	?Suffix_Please
+    )
+    Universal_Commands:uc {<ucommand $uc>}
+]
+
+.Get_Pagee_Name
+[
+    (?Uh ?please ?page Name:nm {<name $nm>} ?Suffix_Please)
+    Universal_Commands:uc {<ucommand $uc>}
+]
+
+.Weather_Main
+[
+   (
+	?Uh
+	?[     
+	  I_Want_Ext
+	  (?please [read (get ?me)])
+	]
+        [
+	     ([(today's {<period today>}) (?the ([(five day) extended] {<period extended>})) ] ?weather ?[forecast report])
+   	     (?(the ?weather forecast for) [today {<period today>} ( ?(the [next following]) five days ) {<period extended>} ])
+        ] 
+	?Suffix_Please
+   )
+   Universal_Commands:uc {<ucommand $uc>}
+   
+]
+
+Weather
+[
+	?maya
+	[
+		weather
+		(?weather [forecast report info information])
+	]
+]
+
+.Today_Weather
+[
+    (
+	?Uh
+	?maya
+	?please 
+        [
+	  [
+	    (repeat ?(?[the today's] Weather) ?([ again (from the beginning)]))
+	    (repeat it ?again)
+	  ]	{<command repeat>}
+
+	  [
+	    ([stop leave exit (start over)] ? [(?[today's the ] Weather ) (the weather) ])
+	    Enough_TTS
+	  ] {<command exit>}
+      Rejects:d
+	]
+	?Suffix_Please
+    ) 
+    Universal_Commands:uc {<ucommand $uc>}
+]
+
+.Extended_Weather
+[
+    (
+	?Uh
+	?maya
+    	?please 
+     	[
+	  [
+	    (repeat ?(?the ?(five day) ?(extended) Weather) ?([ again (from the beginning)]))
+	    (repeat it ?again)
+	  ]{<command repeat>}
+	  [
+	    ([stop leave exit (start over)] ?(?the (?(five day) ?(extended) Weather) ))
+	    Enough_TTS
+	  ] {<command exit>}
+      Rejects:d
+	]
+	?Suffix_Please
+    ) 
+    Universal_Commands:uc {<ucommand $uc>}
+]
+
+
+Headlines
+[
+	?maya
+	[
+		headlines
+		(?headline news)
+		(news report)
+	]
+]
+
+.Head_News_Main
+[
+    (?Uh ?maya ?please 
+        [
+	    (repeat ?(?[the today's] Headlines) ?([ again (from the beginning)])) {<command repeat>}
+	    (repeat it ?again) {<command repeat>}
+	    ([stop leave exit (start over)] ?(?[the today's] Headlines)) {<command exit>}
+	    Enough_TTS {<command exit>}
+	    Rejects:d
+	]
+	?Suffix_Please
+    ) 
+    Universal_Commands:uc {<ucommand $uc>}
+]
+
+Traffic
+[
+	(?maya ?traffic [conditions report update news information info ])
+]
+
+.Traff_Cond_Main
+[
+    (?Uh ?maya ?please 
+        [
+	    (repeat ?(?the Traffic) ?([ again (from the beginning)])) {<command repeat>}
+	    (repeat it ?again){<command repeat>}
+	    ([leave exit (start over)] ?(?the Traffic)) {<command exit>}
+	    ([stop cancel] ?(?the Traffic)) {<command cancel>}
+	    Enough_TTS	{<command cancel>}
+	    Rejects:d
+	]
+	?Suffix_Please
+    ) 
+    Universal_Commands:uc {<ucommand $uc>}
+]
+
+Stock_Portf
+[
+	(?maya [stock (?stock portfolio)])
+]
+
+Market_Ind
+[
+	(?maya ?[financial stock] ?market [indicators indices index])
+]
+
+.Stock_Mkt_Main
+[
+    (?Uh 
+
+	?[     
+	  I_Want_Ext
+	  (?please [read (get ?me)])
+	]
+
+        [
+	    (?[my the] Stock_Portf) {<category portfolio>}
+	    (?the Market_Ind) {<category indicators>}
+	]
+	?Suffix_Please
+    ) 
+    Universal_Commands:uc {<ucommand $uc>}
+]
+
+Portf
+[
+    (Stock_Portf ?[report quotes chart update news information info])
+]
+
+.Stock_Portf
+[
+    (?Uh ?maya ?please 
+        [
+	    (repeat ?(?[the my] Portf) ?([ again (from the beginning)])) {<command repeat>}
+	    (repeat it ?again){<command repeat>}
+	    ([stop leave exit (start over)] ?(?[the my] Portf)) {<command exit>}
+	    Enough_TTS	{<command exit>}
+	    Rejects:d
+	]
+	?Suffix_Please
+    ) 
+    Universal_Commands:uc {<ucommand $uc>}
+]
+
+
+.Stock_Mkt_Ind
+[
+    (?Uh ?maya ?please 
+        [
+	    (repeat ?(?the Market_Ind) ?([ again (from the beginning)])) {<command repeat>}
+	    (repeat it ?again){<command repeat>}
+	    ([stop leave exit (start over)] ?(?the  Market_Ind)) {<command exit>}
+	    Enough_TTS	{<command exit>}
+	    Rejects:d
+	]
+	?Suffix_Please
+    ) 
+    Universal_Commands:uc {<ucommand $uc>}
+]
+
+Cancel_It
+[
+    (?No_Only [stop cancel] [it this that])
+]
+
+.Genie_Main
+( ?Uh
+  [
+    Rejects:d
+    Wakeup:d  {<magic_word found>}
+  ]
+)
+
+Rejects ( +reject_word )
+
+Wakeup [
+    ( wake up maya )
+    ( goodbye for now)
+]
+
+.Genie_Call_Opt
+[
+  (	
+    ?Uh
+    ?[(I_Wish to) please]
+    [
+	(
+	    [ 
+		drop ?drop {<command drop>}
+		((main menu) ?Suffix_Please) {<command hold>}
+	    ]  
+	    ?[ it (?(the ?telephone) call) ]
+	)
+	(return ?(to [ it (?(the ?telephone) call) ])) {<command return>}	
+    ]
+    ?Suffix_Please
+  )	
+]
+
+
+.Genie_Hold_Conf
+[
+  (
+    ?Uh
+    [
+	[
+	    YES_WORDS
+	    (?Yes_Only ?please [(hold ?[it (?the call)]) do])
+	] {<confirm yes>}
+	[
+	    NO_WORDS
+	    (?No_Only (?please [don't (do not)]) ?(hold ?[it (?the call)] ))
+	] {<confirm no>}
+    ]
+    ?Suffix_Please
+  )
+	Universal_Help:uc~0.01 {<ucommand $uc>}
+	Universal_Cancel:uc	{<ucommand $uc>}
+	Universal_Exit:uc {<ucommand $uc>}
+	Universal_StartOver:uc {<ucommand $uc>}
+	Universal_Goodbye:uc {<ucommand $uc>}
+]
+
+.Genie_Drop_Conf
+[
+  (
+    ?Uh
+    [
+	[
+	    YES_WORDS
+	    (?Yes_Only ?please [(drop ?[it (?the call)]) do])
+	] {<confirm yes>}
+	[
+	    NO_WORDS
+	    (?No_Only (?please [don't (do not)]) ?(drop ?[it (?the call)] ))
+	] {<confirm no>}
+    ]
+    ?Suffix_Please
+  )
+	Universal_Help:uc~0.01 {<ucommand $uc>}
+	Universal_Cancel:uc	{<ucommand $uc>}
+	Universal_Exit:uc {<ucommand $uc>}
+	Universal_StartOver:uc {<ucommand $uc>}
+	Universal_Goodbye:uc {<ucommand $uc>}
+]
+
+Suffix_Telematic
+[
+    direction
+	directions
+    maneuver
+    turn
+]
+
+.Telematic_Cmd
+[
+    (
+	?Uh
+	?please 
+        [
+	  [ (repeat)                ]	{<command repeat>}
+	  [ (next [direction turn]) ]	{<command next>}
+	  [ (previous)              ]	{<command previous>}
+	  [ (first)                 ]	{<command first>}
+	  [ (last)                  ]	{<command last>}
+	  [ (help)                  ]	{<command help>}
+	]
+	?Suffix_Telematic
+	?Suffix_Please
+    ) 
+    Universal_Commands:uc {<ucommand $uc>}
+]
+
+.Traff_Cond_Main_Menu
+[
+	(all ?[traffic update condition conditions] ?Suffix_Please) {<command all>}
+	((kennedy) ?[traffic update condition conditions] ?Suffix_Please) {<command kennedy>}
+	(?[outbound] (kennedy outbound) ?[traffic update condition conditions] ?Suffix_Please) {<command kennedy_outbound>}
+	(?[inbound] (kennedy inbound) ?[traffic update condition conditions] ?Suffix_Please) {<command kennedy_inbound>}
+	((edens) ?[traffic update condition conditions] ?Suffix_Please) {<command edens>}
+	(?[outbound] (edens outbound) ?[traffic update condition conditions] ?Suffix_Please) {<command edens_outbound>}
+	(?[inbound] (edens inbound) ?[traffic update condition conditions] ?Suffix_Please) {<command edens_inbound>}
+	((dan ryan) ?[traffic update condition conditions] ?Suffix_Please) {<command danryan>}
+	(?[outbound] (dan ryan outbound) ?[traffic update condition conditions] ?Suffix_Please) {<command danryan_outbound>}
+	(?[inbound] (dan ryan inbound) ?[traffic update condition conditions] ?Suffix_Please) {<command danryan_inbound>}
+	((stevenson) ?[traffic update condition conditions] ?Suffix_Please) {<command stevenson>}
+	(?[outbound] (stevenson outbound) ?[traffic update condition conditions] ?Suffix_Please) {<command stevenson_outbound>}
+	(?[inbound] (stevenson inbound) ?[traffic update condition conditions] ?Suffix_Please) {<command stevenson_inbound>}
+	((eisenhower) ?[traffic update condition conditions] ?Suffix_Please) {<command eisenhower>}
+	(?[outbound] (eisenhower outbound) ?[traffic update condition conditions] ?Suffix_Please) {<command eisenhower_outbound>}
+	(?[inbound] (eisenhower inbound) ?[traffic update condition conditions] ?Suffix_Please) {<command eisenhower_inbound>}
+	((lakeshore) ?[drive] ?[traffic update condition conditions] ?Suffix_Please) {<command lakeshore>}
+	(?[outbound] (lakeshore ?[drive] outbound) ?[traffic update condition conditions] ?Suffix_Please) {<command lakeshore_outbound>}
+	(?[inbound] (lakeshore ?[drive] inbound) ?[traffic update condition conditions] ?Suffix_Please) {<command lakeshore_inbound>}
+    Universal_Commands:uc {<ucommand $uc>}
+]
+
+.Traff_Cond_Each
+[
+    (?Uh ?please 
+        [
+	    (repeat ?(?the Traffic) ?([ again (from the beginning)])) {<command repeat>}
+	    (repeat it ?again) {<command repeat>}
+	    ([leave exit (start over)] ?(?the Traffic)) {<command exit>}
+	    ([stop cancel] ?(?the Traffic)) {<command cancel>}
+	    Enough_TTS	{<command cancel>}
+	    Rejects:d
+	]
+	?Suffix_Please
+    ) 
+    Universal_Commands:uc {<ucommand $uc>}
+]
+
+.My_Info_Main
+[
+	(
+		?Uh
+		[
+			(Stock_Market) {<command stock>}
+			(Stock_Market_Indicators ?Suffix_Please) {<command stock_ind>}
+			(Stock_Market_Portfolio ?Suffix_Please) {<command stock_portf>}
+			MM_Group4
+		]
+		?Suffix_Please
+	)
+	Universal_Commands:uc {<ucommand $uc>}
+]
+

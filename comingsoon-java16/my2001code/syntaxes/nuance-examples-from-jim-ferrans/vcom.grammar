@@ -1,0 +1,191 @@
+
+.Login ( ?VUh
+         ?(?my ?(six digit) account ?number ?is)
+         [
+           (myDigit:d1 myDigit:d2 myDigit:d3 myDigit:d4 myDigit:d5 myDigit:d6 ?dtmf-pound)
+             {<vmlslot0 strcat($d1 strcat($d2 strcat($d3 strcat($d4 strcat($d5 $d6)))))>}
+          ]
+         ?Thanks
+)
+ 
+.Pin ( ?VUh
+       ?(?my ?(four digit) pin ?number ?is)
+       [
+          (myDigit:d1 myDigit:d2 myDigit:d3 myDigit:d4 ?dtmf-pound)
+            {<vmlslot0 strcat($d1 strcat($d2 strcat($d3 $d4)))>}
+       ]
+       ?Thanks
+)
+
+.QtalkMain (?VUh [
+	Quotes:company		{<vmlslot0 q> <vmlslot1 $company>}
+	GetPortfolio		{<vmlslot0 port>}
+] ?please)
+
+.SpeakOrSend (?VUh ?[IWantTo CanYou] [
+	Speak		{<vmlslot0 say>}
+	Send		{<vmlslot0 ack>}
+] ?it ?please)
+
+Thanks     [please (thank you) thanks]
+
+myDigit [ [ zero oh dtmf-0]      {return(0)}
+        [ one dtmf-1 ]         {return(1)}
+        [ two dtmf-2 ]         {return(2)}
+        [ three dtmf-3 ]       {return(3)}
+        [ four dtmf-4 ]        {return(4)}
+        [ five dtmf-5 ]        {return(5)}
+        [ six dtmf-6 ]         {return(6)}
+        [ seven dtmf-7 ]       {return(7)}
+        [ eight dtmf-8 ]       {return(8)}
+        [ nine dtmf-9 ]        {return(9)}
+        dtmf-pound             {return("#")}
+]
+
+VUh [uh hm um]
+
+GetPortfolio (?List ?my Portfolio)
+
+Portfolio [
+	portfolio
+	(stock list)
+	(watch list)
+]
+
+Speak [
+   speak
+   say
+   (tell me)
+]
+
+Send [
+  send
+  (page me)
+  fax
+  email
+]
+
+IWantTo [(VIWant to) i_wanna ]
+
+GiveMe [(give me) give_me]
+GetMe  [(get me) get_me]
+
+DoI 	[(do i)  do_i]
+
+CanI ( ? please
+       [ ([ can could may ] i)
+	 can_i]
+       ? please
+)
+
+AllMy [(all my) (all of my) all_my all_of_my]
+
+CanYou
+[   (  [  ( [ can could will would] you)
+	  can_you
+          could_you
+	  will_you
+	  would_you
+       ]
+       ?please)
+    please
+]
+
+VIWant
+[  ( i [ (would like) want ] )
+   ( i need )
+   ( i'd like )
+]
+
+Quotes
+[
+    (   ?(  [ PreQuote quote quotes price prices ]
+           ?[ of for on ] )
+       [   (   _STOCK:s                        {return($s)}
+               [ (? congratulations)~.5 ] )
+       ]   ?[ currently (?right now) ]
+    )
+
+    (  [   WhatIsOrAre (WhatWas) ]
+       [   ( _STOCK:s                        {return($s)}
+                   [ (? congratulations)~.5 ] )
+       ]
+       [   (   ?[ currently last (most recently) ]
+               [ traded trading ]
+               at )
+           (   [ traded trading ]
+               at
+               ?[ currently (most recently) (?right now) ]
+           )
+        ]
+     )
+]
+
+TellMe  [(tell me) tell_me]
+
+WhatIs
+[
+    (what is)
+    what_is
+]
+
+WhatWas [(what was) what_was]
+
+WhatAre
+[
+    (what are)
+    what_are
+]
+
+WhatIsOrAre [
+    WhatIs
+    WhatAre
+]
+
+List
+[
+    (  ?CanYou
+       [  GiveMe 
+	  GetMe
+	  TellMe 
+	  (provide ?me ?with)
+	  (inform me [about concerning regarding])
+	  list
+	  review
+       ]
+    )
+    WhatIsOrAre
+    VIWant
+    (IWantTo [ ( find out ?about) 
+	         know 
+		 get]
+    )
+    (CanI get)
+]
+
+PreQuote (
+	List
+        ? [ a the ]
+        ? [ current last latest (most recent) ]
+        [ quote quotes price prices ]
+)
+
+_STOCK (?the [
+ STK_MOT:s
+ STK_INTC:s
+ STK_MSFT:s
+ STK_DELL:s
+ STK_IBM:s
+]) {return($s)}
+
+STK_MOT     ([motorola (moto rola)] ?_SEMICONDUCTOR ?_INC)    {return("*stkMOT")}
+STK_INTC     ([([(in tell) intel] ?[_SEMICONDUCTOR computer] ?_CORP) i_n_t_c (i n t c)])    {return("*stkINTC")}
+STK_MSFT     ([([microsoft (micro soft)] ?_CORP) m_s_f_t (m s f t)])    {return("*stkMSFT")}
+STK_DELL     (dell ?[computer computers] ?_CORP)    {return("*stkDELL")}
+STK_IBM     ([(international business [machine machines]) (i b m) i_b_m (big blue)] ?_CORP)    {return("*stkIBM")}
+
+_SEMICONDUCTOR	[semiconductor semiconductors (semi ?[conductor conductors])] 
+_CORP 	[(and co) co (and company) company companies corp corporation corporated 
+	  corporations inc incorporated incorporation (common stock)]
+_INC 	_CORP
+_ELEC		[electric electrics electrical electricity electronic electronics electro]

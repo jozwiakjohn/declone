@@ -1,0 +1,2609 @@
+;; ********** Remember uncomment keyword dynamic and PhnNum when finished testing
+;; ============== vui.grammar ==============
+;;
+;; Motorola MiX top-level grammar
+;; R4 Grammars 
+;; Released for Train 4 2.20.01
+;;
+;; File: vui.grammar
+;; Version: R4 vui.grammar for US
+;;
+;; Change History
+;; 
+;; 5.3.01   Mark Ahlenius    PR 6460 - removed the phrases for saying "details" from grammar (HF change)
+;; 3.27.01  Mark Ahlenius    Made change for PR 6318 to change return value for Location and Location2
+;;			     subgrammars for office phrase from value of "office" to "work".
+;; 3.21.01  Mark Ahlenius    Fixed misspelling in grammar name of .MMenu_GoodbyeWhenCallIsOnHold
+;; 2.27.01  Mark Ahlenius    Removed .Login_Main and .Phone_Num_Conf grammars - not used in R3/R4
+;; 2.20.01  Mark Ahlenius    Additional cleanup - removed Universal_StartOver and start over phrase from elsewhere
+;;			     Removed all uses of I_Want_To subgrammar - seldom used.
+;;			     Removed all uses of subgrammar Stop_Page - unecessary - too much verbage!
+;;			     Calendar, task list and email commented out for first release.
+;;
+;; 2.07.01  Mark Ahlenius    Simplication - major cleanup process
+;;                           Replaced all Uhs with Uh subgrammar, removed all rejects phrases
+;;                           Added new Cancel_Words and Wakeup subgrammars for ease of future mods
+;;                           Removed Groups_At... subgrammars - not used anymore
+;;                           Removed ILocation subgrammar - not used
+;;
+;; 4.08.00 Krishna Avasarala Added ability to enter DTMF in .Addr_Bk_Main and .Addr_Bk_Details
+;; 4.4.00   Mark Ahlenius    Changed file name from r3vui.grammar to just vui.grammar
+;;                           Removed voice dialing/calling menu option from MM6 subgrammar.
+;;                           Removed optional ?a in phrase in Call_**_Target subgrammars
+;;                           so user has to say "make a call" Vs. "make call"
+;;                           Removed optional ?a in Page_Name_Target and Page_No_Target subgrammars
+;;                           Removed phrase in MM_Group9 subgrammar which supported "directions" (Telmatics)
+;;                           Removed repeated no words in Cancel_Call & Cancel_Page - replaced with kleene closure
+;;                           Removed repeated yes words in Yes_Phrase - replaced with a kleene closure +yes
+;;                           Removed second ?drop from phrase in Genie_Call_Opt grammar
+;;  3.27.00  Mark Ahlenius - Removed some ridiculously complex parts out of Login_Pwd_Conf
+;;  3.27.00  Mark Ahlenius - Removed I_Do_Want_To subgrammar and all users of it - too much fluff
+;;  3.23.00  Mark Ahlenius - removed "i wish" from I_Want subgrammar - unecessary fluff which complicated grammars
+;;  3.26.00  Mark Ahlenius - Removed redundant ?drop phrase from Drop_Call_Genie subgrammar
+;;  3.24.00  Mark Ahlenius - Added Main Menu (MM) sub grammars for; calendar, task list and email access.
+;;                           These are all to be VoxML applications which get launched from the main menu.
+;;  3.17.00  Mark Ahlenius - Removed yes words from .Genie_Call_Opt grammar - PR #1678, getting confused with hang up
+;;  2.25.00  Mark Ahlenius - Added wake up maya command to main menu to catch user error cases where
+;;                           they often say this command incorrectly in main menu
+;;  2.22.00  Krishna Avasarala Added ability to say "Next Letter" in .Addr_Bk_Details 
+;;  10.25.99 Mark Ahlenius   Added services to the my info subgrammar (Ed's request)
+;;  10.22.99 Mark Ahlenius - added this subgrammar to allow more flexibility in .Change_Name_Loc
+;;  10.21.99 Mark Ahlenius   Commented out references to r3vn.grammar and associate grammars in this file
+;;			     Voice Notes not used until at least R4
+;;  10.20.99 Mark Ahlenius   Removed references to info content in main menu (besides those from my info)
+;;			     This should give us a slight performance boost and better recognition accuracy.
+;;			     Also removed all content grammars as they are now covered by VoxML apps.
+;;  10.20.99 Mark Ahlenius   Added new subgrammar Univ_HelpCancelExitGoodbye which now used in .Change_Name_log
+;;			     as Universal_Commands has "start over" too and this caused ambiguous grammar
+;;  10.20.99 Mark Ahlenius   .Genie_Call_Opt - Removed extra Suffix_Please - was causing grammar overgeneration
+;;  10/14/99 Mark Ahlenius - words next and exit have been getting mixed up by ASR.
+;;			     Changed NL grammars using exit into [ go return ] to main menu
+;;			     and simple command exit grammar into main menu.
+;;					
+;;  10/13/99	Jonathan Engelsma Added .Tutorial_Cancel grammar for vui tutorial.
+;;
+;;  10/07/99	Jonathan Engelsma Added the following new grammars to support 2-phase
+;;                                authentication: .Login_AccNo, .Login_AccNo_DTMF,
+;;				  .Login_Pin, .Login_Pin_DTMF
+;;  10/05/99    Krishna Avasarala Added ability to say "Next Name" in .Addr_Bk_Details for 
+;;				  AB navigation 		
+;;  08/09/99    Edgar Kalns	 Removed ability to say "group" in Addr_Bk_Main
+;;  03/24/99    Edgar Kalns	 Added yes phrases to .Genie_Call_Opt 
+;;  02/05/99    Claudia Ma      Change the entry grammar for Voice Notes MM5b
+;;  01/19/99    Edgar Kalns		Integrated Keith Rolle's changes + some changes to the grammar
+;;						that are needed for R2 (.Name_Loc_Conf and .Phone_Loc_Conf).  
+;;  12/31/98    Keith Rolle     Removed unused grammars, simplified/clarified
+;;                              remaining grammars, removed multiple instances
+;;                              of filler phrases in same sentence, lowered
+;;                              probabilities of some phrases.
+;;  12/16/98	Edgar & Sanjay	Brought R2 grammar (this file) into sync with R1 grammar changes over the
+;;								last several months.
+;;  12/09/98    Edgar Kalns		Add PauseMain to .Voice_Dial_Main for consistency with R1.
+;;  11/19/98    Claudia Ma      Add Voice Notes grammar "r2vn.grammar"
+;;  10/13/98    P McClaughry	Add MyInfo grammar stuff
+;;  08/26/98    Dave Ladd		Added MM grammar for flight tracking, also brand names for providers
+;;								Changed "5 day" to "3 day"
+;;  07/22/98    Hoan Dinh		Changed Telematic .Telematic_Cmd to accept "next direction" or "next turn" 
+;;					instead of just "next".
+;;  06/19/98    Sanjay Tibrewal Changed the .Login_Main grammar to allow the user to cancel out
+;;  06/17/98    Hoan Dinh		Support ?(area code) as optional grammar in the call 6303054657 phrase.
+;;  							Support ?maya as optional grammar in front of commands.
+;;  06/08/98    Sanjay Tibrewal Changed the Wakeup grammar again.
+;;  06/03/98    Hoan Dinh		Added grammar to recognize traffic as a whole or individual expressway.
+;;					Added "call help desk" as "call customer care."
+;;					Removed unused grammar leftover from 12/97.
+;;  06/03/98    Sanjay Tibrewal Added the Atonin grammar so that call can be followed with
+;;                                  "on" and "in" in addition to "at".
+;;                              "the" can be said before office when placing a call
+;;                              Allow for "directions" in addition to "direction"
+;;                              Fixed the "maneuver" misspelling problem
+;;  06/02/98    Sanjay Tibrewal Added the .Cancel_Conf_During_Outgoing_Call grammar
+;;  05/18/98    Sanjay Tibrewal Changed the allowed utterances for Wakeup grammar
+;;  05/18/98    Sanjay Tibrewal Add the .MMenu_GoodbyeWhenCallIsOnHold grammar
+;;  05/14/98	Hoan Dinh		Remove "feedback" and "voice note" commands from the main menu.
+;;  05/06/98	Hoan Dinh		Added suffixes "direction," "maneuver," turn during the telematic play 
+;;                                      grammar. (e.g. user can say "next direction please" or "next turn" or 
+;;                                      "previous maneuver," etc.
+;;					Added "help" into direction playing state.
+;;  05/08/98    Dave Ladd               added include of vmlcore.grammar
+;;  04/28/98	Hoan Dinh		Added command "customer assistance" which is an equivalent of "customer care."
+;;  04/28/98    Sanjay Tibrewal
+;;                      In .Addr_Bk_Main the user can say "everybody" in addition to everyone
+;;  04/24/98    Sanjay Tibrewal
+;;                      In .Addr_Bk_Main the user will say "everyone" instead of "all"
+;;  04/20/98    Sanjay Tibrewal 
+;;                      "stocks" should be interpreted as "stock" and not as "stock indicators"
+;;  04/16/98	Hoan Dinh		Added universal command "start over" which is an equivalent of "exit."
+;;  					Added command "wakeup genie" at the main menu to improve utterance failure. Requested by R1's recognition study.
+;;  					Added command "drop the call" at the main menu to tell user that the call has been dropped.
+;;  					Added command "weather ?report" at the main menu.
+;;  04/07/98    Sanjay Tibrewal 
+;;                              - Added Reject grammar to all places where we have "recog based bargein"
+;;                                in TTS - e.g. Weather, Headline News etc.
+;;                              - When the user says "menu" at the main menu level, it will be interpreted
+;;                                as help
+;;                              - The user can now say cancel at the main menu. It will take him back
+;;                                to the top level in main menu. The user can also say enough or that's
+;;                                enough to mean cancel
+;;  04/07/98	Hoan Dinh		Change [mobile cell cellular] phone on device list to make "phone" optional.
+;;  03/30/98	Hoan Dinh		Added grammar for telematics feature.
+;;  03/26/98	Hoan Dinh		Added "customer care" and "customer service".
+;;
+;;  03/25-26/98  Sanjay Tibrewal - Following changes were made
+;;				   1. In .Call_Conf 
+;;   				      - the user can say upto four no's or yes's 
+;;					to confirm either way
+;;				      - "place the call" can be used to confirm
+;;         2. In .Addr_Bk_Main
+;;					   quit is used as synonymous to exit
+;;         3. In .Genie_Call_Opt
+;;					   User can say "drop, drop the call"  to drop, or
+;;					   "hold, hold the call" to hold the call.
+;;	
+;;         4. At the main menu level we can now say the following (we can say extended wherever five-day appears)
+;;					  - five day ?weather forecast ?please
+;;					  - today's forecast ?please
+;;					  - local weather ?please
+;;					  - market indicators ?please
+;;					  - stock portfolios ?please
+;;                    
+;;                 5. Everywhere the system is reading out data the user can say
+;;                    the following as equivalent to exit. Created "Enough_TTS" grammar
+;;					  to handle this
+;;                     - ok
+;;					   - stop ?it
+;;                     - ?that's enough
+;;                 6. User can say hang up in addition to goodbye
+;;
+;;  03/12/98    Sanjay Tibrewal Made the following changes
+;;                 1. Renamed the Categores_xx grammar to Groups_xx grammar
+;;                 2. In Addr_Bk_Main grammar renamed cat to grp - indicating we refer to them as group
+;;                 3. Added the word "group" in all places where the user could earlier say category
+;;                    in the addresss book grammar
+;;                 4. The user can say extended forecast in addition to 5-day forecast. What we send back
+;;                    is the slot filled with "weather_extended" in place of "weather_five_day"
+;;                 5. Renamed .Five_Day_Weather with .Extended_Weather
+;;                 6. Everywhere the user could say five-day he can now also say extended
+;;
+;;  03/12/98    Hoan Dinh		Added "car" and "other" as part of device list.
+;;					update "office" device to also accept "work".
+;;
+;;  03/11/98    Sanjay Tibrewal Modified the .Addr_Details grammar so that we can say just 
+;;				detail.
+;;  02/19/98    Sanjay Tibrewal Added universal_cancel command to .Addr_Details grammar 
+;;  02/17/98    Sanjay Tibrewal Added .Addr_Details grammar and updated the login grammar
+;;						to allow dynamic names for login (spoken login name)
+;;  01/29/98    Sanjay Tibrewal Added stop command to the .Addr_Bk_Main grammar
+;;  01/27/98    Sanjay Tibrewal Updated the VoiceNote_GetNames grammar
+;;  01/21/98    Sanjay Tibrewal Added .VoiceNote_GetNames and NamePhrase
+;;	01/21/98	Hoan Dinh		Added grammars to support voicenote feature.
+;;	01/20/98	Hoan Dinh		Added grammars to support feedback feature.
+;; 
+;;	01/15/98	Edgar Kalns	Added grammars to support invoking the following
+;;					from the main menu:
+;;					1. stock indicators
+;;					2. stock portfolio
+;;					3. today's weather
+;;					4. five day weather
+;;					Previously these options were only accessible from
+;;					within the Stocks and Weather VCCs, respectively. 
+;;  01/08/98    Sanjay Tibrewal .Login_AccNo grammar added
+;;	12/10/97	Vijay Raman	.Login_Pwd_Conf grammar added
+;;	12/10/97	Vijay Raman	Optional #-key termination in .Login_DTMF missing, added.
+;;	12/8/97		Vijay Raman	slot value correction: goodbye genie --> goodbye
+;;      12/8/97		Vijay Raman	Main Menu grammars: removed Cancel (Help,Goodbye only)
+;;      12/8/97		Vijay Raman	Paging Location: add "pager" (device).
+;;      12/4/97		Vijay Raman	Grammars for Stock feature change.
+;;	12/4/97		Vijay Raman	genie made optional in "goodbye genie".
+;;      11/21/97	Vijay Raman	Optional # key terminator for .Login_DTMF, .Login_Main
+;;	11/21/97	Vijay Raman	Name grammar missing in .Addr_Bk_Main, added.
+;;	11/18/97	Vijay Raman	Changes/Fixes:
+;;					  1) .Em_Conf_Rec : "start over" no longer synonym for re-record.
+;;					  2) 11-digit number-dialing grammar (11DigitString)
+;;					  	to allow only 0 and 1 in first position 
+;;					  3) Number grammar changed from dynamic to standard Nuance.
+;;	 	  			  4) Added DTMF grammar .Call_Ans_Pg_Ret_Num
+;;					  5) Added precursor "Uh" to all top-level grammars
+;;      11/14/97	Vijay Raman	Grammmars for Genie Activation, Login by voice,
+;;					  Voicemail Setup (personal greeting) added.
+;;      11/7/97		Vijay Raman	Grammars for Feature Set III
+;;	10/27/97	Vijay Raman	Grammars for Feature Set II
+;;      10/23/97        Vijay Raman	Real grammars, Feature Set I
+;;	10/10/97	Vijay Raman	Rev0.2 MMenu added, VDial,Paging changes.
+;;	10/3/97		Vijay Raman	Rev0.1 	Originated. Stubs only.
+;;
+
+
+#include <key.grammar>
+#include <yesno.grammar>
+#include <time.grammar>
+#include <date.grammar>
+#include <number.grammar>
+#include "vmlcore.grammar"
+#include "so.grammar"
+
+
+;;
+;; Name
+;;
+;; Description
+;; This subgrammar is used to include the dynamic address book names for voice dialing.
+;;
+;; for runtime use:
+Name:dynamic [ ]
+
+;; When doing offline testing, we use a simple static version of this grammar usually with
+;; just one name in the file (like for use with batchrec program).
+
+;;#include "dummy_names.grammar"
+;;Name [ Dummy_NameList ]
+
+
+;;
+;; Uh
+;;
+;; Description
+;; Phrase used for unintentional pause when caller thinking of first keyword
+;;
+;; Returns - no slot value returned.
+;;
+
+Uh
+[
+    um~0.01
+    uh~0.01
+]
+
+;;
+;; Cancel_Words
+;;
+;; Description
+;; This subgrammar is used to define all the cancellation words in one place to make global updating
+;; much easier.
+;;
+;; Returns - no slot value returned
+;;
+;; 02.08.01 - Mark Ahlenius   Added this subgrammar to support multiple cancel keywords
+;;                            Future cancellation words can be easily added here for inclusion
+;;                            in other grammars.
+;;
+
+Cancel_Words
+[
+	(cancel ?it)
+]
+
+;;
+;; IT_IS_NOT_MOT
+;; 
+;; Description
+;; This subgrammar is a simplified version of Nuance's IT_IS subgrammar, changes made to improve recognition
+;;
+;; Returns - nothing
+;;
+
+IT_IS_MOT
+    (it ?sure is)
+
+;;
+;; YES_WORDS_MOT
+;;
+;; Description
+;; This subgrammar is a simplified version of Nuance's YES_WORDS subgrammar
+;;
+;; Returns:  Nothing
+;;
+
+YES_WORDS_MOT 
+[
+	(yes ?IT_IS_MOT )
+	IT_IS_MOT
+        yup
+        yeah
+        okay
+        sure
+        (?(?yes that's) [right correct])
+]
+
+
+;;
+;; IT_IS_NOT_MOT
+;;
+;; Description
+;; This subgrammar is a simplified version of Nuance's IT_IS_NOT subgrammar
+;;
+;; Returns:  Nothing
+;;
+
+IT_IS_NOT_MOT
+[
+  (it isn't) 
+  (it's not)
+]
+
+;;
+;; NO_WORDS_MOT
+;;
+;; Description
+;; This subgrammar is a simplified  version of Nuance's NO_WORDS grammar.
+;;
+;; Returns:  nothing
+;;
+
+NO_WORDS_MOT
+[
+	nope
+        (no ?[IT_IS_NOT_MOT way])
+        IT_IS_NOT_MOT
+        (
+	   ?(?no that's)
+           [ 
+	      wrong (not [correct right] )
+              incorrect	
+           ]
+        )
+]
+
+
+;;
+;; Wakeup
+;; 
+;; Description:
+;; This subgrammar is used during hot-word recognition to wake up the agent when its either monitoring an
+;; outbound call, or is in the pause mode. It is used in the .Genie_Main top level grammar.
+;;
+;; Returns:  nothing
+;;
+;; NOTE - any changes to this subgrammar must be checked for acoustical length of each phrase.
+;; The endpointer uses client.MagicWordMinSeconds and client.MagicWordMaxSeconds to filter
+;; out phrase lengths which are outside specific time duration limits.
+;;
+
+Wakeup
+[
+    ( wake up Agent_Name )
+    ( goodbye for now )
+    ( good bye for now )
+]
+
+;; 
+;; LocalDigit
+;;
+;; Description
+;; This subgrammar is used to collect any of the digits 0-9 plus "oh".
+;;
+;; Returns - string value of digit 0-9
+;;
+
+LocalDigit
+[
+    zero        {return("0")}
+    oh~0.001    {return("0")}
+    one         {return("1")}
+    two         {return("2")}
+    three       {return("3")}
+    four        {return("4")}
+    five        {return("5")}
+    six         {return("6")}
+    seven       {return("7")}
+    eight       {return("8")}
+    nine        {return("9")}
+]
+
+
+;; 
+;; Digit_0_1
+;;
+;; Description
+;; This subgrammar is used to collect digits 0 and 1 (and also "oh" for zero)
+;;
+;; Returns - string value of digit 0, 1
+;;
+
+Digit_0_1
+[
+    zero        {return("0")}
+    oh~0.001    {return("0")}
+    one         {return("1")}
+]
+
+;; 
+;; Digit_2_thru_9
+;;
+;; Description
+;; This subgrammar is used to allow the caller to say any of the digits 2 through 9.
+;;
+;; Returns - string value of digit 2,3,4,5,6,7,8,9
+;;
+
+Digit_2_thru_9 
+[ 
+    two         {return("2")}
+    three       {return("3")}
+    four        {return("4")}
+    five        {return("5")}
+    six         {return("6")}
+    seven       {return("7")}
+    eight       {return("8")}
+    nine        {return("9")}
+]
+
+
+;;
+;; Fixed length digit string definitions
+;;
+;; Recognizer runs faster when these are defined as sequences of single
+;; digits, as below, ;; rather than nested (i.e., defined as
+;; N dig = (N - 1) dig + 1 dig )
+;;
+
+4DigitString (LocalDigit:d1 LocalDigit:d2 LocalDigit:d3 LocalDigit:d4) {return(strcat($d1 strcat( $d2 strcat( $d3 $d4))))}
+
+5DigitString (LocalDigit:d1 LocalDigit:d2 LocalDigit:d3 LocalDigit:d4 LocalDigit:d5) {return(strcat($d1 strcat( $d2 strcat( $d3 strcat( $d4 $d5)))))}
+
+7DigitString (LocalDigit:d1 LocalDigit:d2 LocalDigit:d3 LocalDigit:d4 LocalDigit:d5 LocalDigit:d6 LocalDigit:d7) {return(strcat($d1 strcat( $d2 strcat( $d3 strcat( $d4 strcat( $d5 strcat( $d6 $d7)))))))}
+
+10DigitString (LocalDigit:d1 LocalDigit:d2 LocalDigit:d3 LocalDigit:d4 LocalDigit:d5 LocalDigit:d6 LocalDigit:d7 LocalDigit:d8 LocalDigit:d9 LocalDigit:d10) {return(strcat($d1 strcat( $d2 strcat( $d3 strcat( $d4 strcat( $d5 strcat( $d6 strcat( $d7 strcat( $d8 strcat( $d9 $d10))))))))))}
+
+;;
+;; Legal area codes
+;;
+
+AreaCodeDigitString
+(
+    Digit_2_thru_9:d1
+    LocalDigit:d2
+    LocalDigit:d3
+) {return(strcat( $d1 strcat( $d2 $d3)))}
+
+
+AreaCode
+(
+   ?AreaCodeWords
+    [
+	AreaCodeDigitString:ac {return($ac)}
+	(eight hundred) {return("800")}
+	(nine hundred) {return("900")}	
+    ]
+)
+
+
+AreaCodeWithEleventhDigit
+(
+    Digit_0_1:d11
+    AreaCode:ac
+) {return(strcat( $d11 $ac))}
+
+
+;;
+;; Legal phone numbers
+;;
+
+7DigitPhoneNumber
+[
+    7DigitString:num
+] {return($num)}
+
+
+10DigitPhoneNumber
+(
+    AreaCode:ac
+    7DigitPhoneNumber:num
+) {return(strcat( $ac $num))}
+
+
+11DigitPhoneNumber
+(
+    AreaCodeWithEleventhDigit:ac
+    7DigitPhoneNumber:num
+) {return(strcat( $ac $num))}
+
+
+LegalPhoneNumber
+[
+    7DigitPhoneNumber:num
+    10DigitPhoneNumber:num
+    11DigitPhoneNumber:num
+] {return($num)}
+
+
+;;
+;; PhoneNumber
+;;
+;; Description
+;; This subgrammar is used to collect legal phone number strings from the caller.
+;;
+;; This could include non-legal phone numbers such as truncated
+;; numbers (e.g., speech is cut off after area code) or utterances
+;; that are canceled at end of speech, or phone number specific
+;; filler material.
+;;
+;; Returns:
+;;		return($num) - a string value, not a slot
+;;
+
+PhoneNumber
+(
+   ?Uh
+    [
+	LegalPhoneNumber:num
+    ]
+) {return($num)}
+
+;;
+;; Atonin
+;;
+;; Description
+;; This subgrammar defines disjunctive phrases used for address book dialing locations.
+;; Like "call mary in the office" or "call mary at the office"
+;;
+;; Returns - nothing
+;;
+
+Atonin
+[ at on in ]
+
+;;
+;; My_The
+;;
+;; Description
+;; This subgrammar defines disjunctive phrases used for a number of main menu functions.
+;; It is used for things like "get my address book" or "get the address book", etc.
+;;
+;; Returns - nothing
+;;
+
+My_The
+[ my the]
+
+;;
+;; I_Want
+;;
+;; Description
+;; This subgrammar defines phrases that callers are permitted to say as a prefix for obtaining something.
+;; Examples "I want to pause"  or "I'd like to pause" ,etc. Note that the probability is pretty slim for this usage.
+;;
+;; 2.12.01  Mark Ahlenius  removed "i would" phrase - seldom used.
+;; 3.23.00  Mark Ahlenius- removed "i wish"
+;;
+
+I_Want
+[
+  [
+   (i want)
+   (i'd like)
+  ]~0.0001
+]
+
+
+;;
+;; Get_Me
+;;
+;; Description
+;; This subgrammar is used as a prefix for obtaining some object.
+;;
+;; 2.20.01  Mark Ahlenius   - Removed the (give me) phrase - seldom used
+;; 5.27.00  Mark Ahlenius   - Removed gimme phrase
+;;
+
+Get_Me
+[
+ [
+  (get ?me)
+;;  (give me)
+ ]~0.0001
+]
+
+
+;;
+;; Use Agent_Name with short commands where the name is an integral part
+;; of the phrase.
+;; 
+
+Agent_Name
+[
+    maya
+]
+
+;;
+;; Use Prefix_Agent when the name is prepended to a command with lower probability
+;;
+
+Prefix_Agent
+[
+    Agent_Name~0.001
+]
+
+;;
+;; Use Suffix_Agent when the name follows a command with lower probability
+;;
+
+Suffix_Agent
+[
+    Agent_Name~0.001
+]
+
+
+;;
+;; This phrase should only be used before imperative sentences
+;;
+;; Correct:
+;;
+;;     "please get me my address book"
+;;
+;; Incorrect:
+;;
+;;     "please I want my address book"
+;;
+
+Prefix_Please
+[
+    please~0.001
+]
+
+Suffix_Please
+[
+    please~0.001
+]
+
+
+;;
+;; Enough_TTS
+;;
+;; Description
+;; This subgrammar is used by the .Addr_Bk_Main and .Addr_Bk_Details top level grammars to
+;; halt the playing of the TTS.
+;;
+;; This is fully self-contained subgrammar -- do not embed in filler
+;;
+
+Enough_TTS
+(
+   ?Uh
+    [
+        ( ?Agent_Name ?Prefix_Please stop )
+        ( ?Prefix_Please stop Agent_Name )
+        ( okay ?Agent_Name )
+        ( enough ?Agent_Name )
+        ( Agent_Name enough )
+    ]
+)
+
+
+;;
+;; Use this in grammars that do not contain the word "no",
+;; because "help" often is a confusion for "no"
+;;
+;; This is fully self-contained subgrammar -- do not embed in filler
+;;
+;; 6.7.00  Mark Ahlenius   Removed most of the get me type guts of this subgrammar
+;;                         These phrases were rarely used and needed to simplfy for accuracy.
+;;                         Added user lost type phrases - what can I do/say?
+;; 6.8.00  Mark Ahlenius   Removed I_Want subgrammar - seldom used - trying to simplify
+;;
+
+Universal_Help
+[
+    (
+       ?Uh
+	[ 
+         (Prefix_Agent ?some help ?Suffix_Please )
+	 (?some help ?Suffix_Please ?Agent_Name )
+        ]
+     )
+     {return(help)}
+]
+
+
+;;
+;; Universal_Help_For_Confirm_Grammars
+;;
+;; Use this when the word "no" is in the grammar, because "help" often is a confusion for "no"
+;;
+;; This is fully self-contained subgrammar -- do not embed in filler
+;;
+;; 2.13.01  Mark Ahlenius - Major simplifications made to remove uncessary paths
+;; 6.7.00  Mark Ahlenius  - Removed I_Want_To phrase from subgrammar - rarely used
+;; 6.8.00   Mark Ahlenius - Removed place from grammar - simplification
+;;
+
+Universal_Help_For_Confirm_Grammars
+[
+   (
+       ?Uh
+        [
+	   ( ?Prefix_Agent ?[ ( Prefix_Please Get_Me ) (can i get)] ?some help )
+	   ( ?(can i get) ?some help Suffix_Please )
+        ]
+    )
+] {return(help)}
+
+.UHFCG(Universal_Help_For_Confirm_Grammars)
+
+;;
+;; This is fully self-contained subgrammar -- do not embed in filler
+;;
+
+Universal_Cancel
+(
+   ?Uh
+    [
+        (?Agent_Name ?Prefix_Please cancel ?it)
+        (?Prefix_Please cancel ?it Agent_Name)
+        (cancel ?it Suffix_Please ?Agent_Name)
+        (Agent_Name cancel ?it ?Suffix_Please)
+    ]  {return(cancel)}
+)
+
+
+;;
+;; Universal_Exit
+;;
+;; Description
+;; This subgrammar is used to exit from the current state and return to the main menu.
+;;
+;; Returns:  string value "exit"
+;;
+;; This is fully self-contained subgrammar -- do not embed in filler
+;;
+;; 2.19.01  Mark Ahlenius   Removed "go to" phrases as seldomly used.
+;; 10.14.99 Mark Ahlenius   Next and exit were getting confused so 
+;;		            replaced exit with [go return] and changed grammar to always require
+;;		            use of "main menu" in utterances for matching
+;; 5.27.00  Mark Ahlenius - modified subgrammar ?(to ?the) phrase to make it non optional
+;;                          for go and return commands
+;; 6.7.00   Mark Ahlenius - removed phrases containing I_Want_To phrase - seldomly used, 
+;;                          trying to simplfy grammars for recognition purposes
+;;
+
+
+Universal_Exit
+(
+   ?Uh
+    [
+	( main menu )
+	( ( main menu ) ?Suffix_Agent ) 
+    ]  {return(exit)}
+)
+
+
+;;
+;; Universal_Goodbye
+;;
+;; This subgrammar is used when ending the call with the system.
+
+;;
+;; This is fully self-contained subgrammar -- do not embed in filler
+;;
+
+Universal_Goodbye
+(
+   ?Uh
+    [
+        ( ?Agent_Name goodbye )
+        ( goodbye Agent_Name ?(thank you)~0.001 )
+        ( goodbye thank you ?Agent_Name )
+        ( hang up ?Agent_Name )
+        ( Agent_Name hang up ?Suffix_Please )
+        ( hang up Suffix_Please ?Agent_Name )
+    ]  {return("goodbye")}
+)
+
+
+;;
+;; Universal_Commands 
+;;
+;; Use this in grammars that do not contain the word "no",
+;; because "help" often is a confusion for "no"
+;;
+;; This is fully self-contained subgrammar -- do not embed in filler
+;;
+;; 2.16.01  Mark Ahlenius   Removed Universal_StartOver from this grammar just going with main menu
+;;
+
+Universal_Commands 
+[
+    Universal_Help:uc
+    Universal_Cancel:uc	
+    Universal_Exit:uc
+    Universal_Goodbye:uc
+] {return($uc)}	
+
+.UC ( Universal_Commands )
+
+;;
+;; Univ_HelpCancelExitGoodbye
+;;
+;; This is fully self-contained subgrammar -- do not embed in filler
+;;
+;; 10.20.99 - Mark Ahlenius	Added this subgrammar for use in .Change_Name_Loc to fix as needed version of
+;;				Universal_Command without the "start over" grammars. 
+;;
+
+Univ_HelpCancelExitGoodbye
+[
+    Universal_Help:uc
+    Universal_Cancel:uc	
+    Universal_Exit:uc
+    Universal_Goodbye:uc
+] {return($uc)}	
+
+.UHCEG(Univ_HelpCancelExitGoodbye)
+
+;;
+;; Universal_Commands_For_Confirm_Grammars
+;;
+;; Use this when the word "no" is in the grammar,
+;; because "help" often is a confusion for "no"
+;;
+;; This is fully self-contained subgrammar -- do not embed in filler
+;;
+;; Returns:
+;;		string of universal code $uc
+;;
+;; 2.19.01  Mark Ahlenius	Removed Universal_StartOverContents - moving away from "start over" command
+;;
+
+Universal_Commands_For_Confirm_Grammars
+[
+    Universal_Help_For_Confirm_Grammars:uc
+    Universal_Cancel:uc	
+    Universal_Exit:uc
+    Universal_Goodbye:uc
+] {return($uc)}	
+
+
+;;
+;; Universal_Commands_NoExit
+;;
+;; Use this in grammars that do not contain the word "no", because "help" often is a confusion for "no"
+;;
+;; This DOES include exit despite its name, and is currently the same
+;; as Universal_Commands   (KR 98-12-21)
+;;
+;; This is fully self-contained subgrammar -- do not embed in filler
+;;
+;; Returns:
+;;		string of universal code $uc
+;;
+;; 2.19.01  Mark Ahlenius	Removed Universal_StartOverContents - moving away from "start over" command
+;;
+
+Universal_Commands_NoExit
+[
+    Universal_Help:uc
+    Universal_Cancel:uc
+    Universal_Goodbye:uc
+    Universal_Exit:uc
+] {return($uc)}
+
+
+;;
+;; Universal_Commands_Without_Cancel_For_Confirm_Grammars
+;; 
+;; Description
+;; Use this when the word "no" is in the grammar, because "help" often is a confusion for "no"
+;;
+;; This is fully self-contained subgrammar -- do not embed in filler
+;;
+;; Returns:
+;;		string of universal code $uc
+;;
+;; 2.19.01  Mark Ahlenius	Removed Universal_StartOverContents - moving away from "start over" command
+;;
+
+Universal_Commands_Without_Cancel_For_Confirm_Grammars
+[
+    Universal_Help_For_Confirm_Grammars:uc
+    Universal_Goodbye:uc
+    Universal_Exit:uc
+] {return($uc)}
+
+
+;; 
+;; .Univ_Cancel_Conf
+;;
+;; Description
+;; This grammar is used 
+;; Universal commands availability
+;;	help: available
+;;	cancel: not available is explicitly handled (as yes)
+;;	exit: not available ( in the middle of cancellation)
+;;	start over: not available ( in the middle of cancellation)
+;;	goodbye-genie: not available (in the middle of cancellation)
+;;
+
+.Univ_Cancel_Conf
+[
+    (
+       ?Uh
+        [
+	    [ 
+	        (YES_WORDS_MOT)
+	        (	
+		    ?Yes_Only 
+		    [
+		        ( ?Prefix_Please cancel ?it )
+		    ]
+	        )
+	    ] {<confirm yes>}
+	    [
+	        NO_WORDS_MOT
+	        (stop ?it)
+            ]{<confirm no>}
+        ]
+       ?Suffix_Agent
+    )
+    Universal_Help_For_Confirm_Grammars:uc {<ucommand $uc>}
+]
+
+
+;;
+;; .Cancel_Conf_During_Outgoing_Call
+;;
+;; This grammar is active when the user has requested that the system call someone from their 
+;; address book. It permits them to cancel the call during dialing.
+;;
+;; Returns:  <command no>
+;;
+;; 2.19.01  Mark Ahlenius    Removed "start over" phrase from this grammar. Not in HF nav. commands
+;;
+
+.Cancel_Conf_During_Outgoing_Call
+[
+    (
+       ?Uh
+        [
+            no
+            Cancel_Words
+            (wake up Agent_Name)
+        ]
+    ) {<command no>}
+]
+
+
+
+;;
+;; .Login_Pwd_Conf
+;;
+;; 02.08.01  Mark Ahlenius   Removed "of course" phrase - seldom used
+;; 3.27.00 - Mark Ahlenius - pruned some ridiculously complex parts out of this grammar (certainly)
+;;
+
+.Login_Pwd_Conf
+(
+   ?Uh
+    [
+        [
+            YES_WORDS_MOT
+            ( ?Yes_Only ( i did ))	
+        ] {<confirm yes>}
+        [
+            NO_WORDS_MOT
+            ( ?No_Only i [didn't (did not)] )
+        ] {<confirm no>}
+    ]
+   ?Suffix_Agent
+)
+
+
+;;
+;; MM_Group1
+;;
+;; This subgrammar is used to access the address book feature
+;;
+;; Returns:   <command "address book">
+;;
+;; 6.1.00 - Mark Ahlenius   Performed major sculpture on this grammar, pruned out
+;;                          a lot of fluff. Also removed please and get me phrases
+;;                          Removed optional "phone book" phrase - seldomly used.
+;; 5.16.00 - mta - removed "i do" phrases 
+;; 3.24.00 - mta - removed "i do" phrases 
+;;
+
+MM_Group1
+(
+    ?(I_Want My_The) 
+    (address book) {<command "address book">}
+)
+
+
+
+;;
+;; MM5a
+;; 
+;; Description
+;; This subgrammar is used to define the phrases for accessing the my info feature
+;;
+;; Returns:     <command my_info>}
+;;
+;; 10.25.99  Mark Ahlenius	Added services to the my info subgrammar (Ed's request)
+;;
+
+MM5a
+[
+    (info services)
+    (my info ?services)
+    (?my information ?services)
+] {<command my_info>}
+
+
+;; 
+;; MM_Group5
+;;
+;; Description
+;; This subgrammar is included in MM_Main. It includes subgrammars for accessing internet-type contents.
+;; It also provides the polite wrappers around the other subgrammars.
+;;
+;; Returns: respective command slot values from included subgrammars
+;;
+;; 10.21.99	Mark Ahlenius	Commented out grammars for Voice Notes
+;;
+
+MM_Group5
+(
+   ?(?Prefix_Please Get_Me)
+    MM5a
+)
+
+
+;;
+;; Location
+;;
+;; Description
+;; This subgrammar is used to define all the permissible locations that someone from the address book
+;; can be called.
+;;
+;; Returns: (one of the following if a match is made)
+;;         home, office, work, mobile, car, other
+;;
+;; 3.27.01  Mark Ahlenius    Made change for PR 6318 to change return value of office phrase 
+;;			     from value of "office" to "work".
+;;
+
+Location
+[
+    (home ?phone)  {return(home)}
+    (?the office ?phone) {return(work)}
+    (work ?phone) {return(work)}
+    ([mobile cell cellular] ?phone) {return(mobile)}
+    (car ?phone) {return(car)}
+    (other ?phone) {return(other)}
+]
+
+
+;;
+;; Location2
+;;
+;; This subgrammar is used to define all the permissible locations that someone from the address book
+;; can be called. This subgrammar is similar to the Location subgrammar, but omits the word "the"
+;; in phrases when the the preceding phrase contains his, her or a posessive form of a name.
+;;
+;; Returns: (one of the following if a match is made)
+;;         home, office, work, mobile, car, other
+;;
+;; 3.27.01  Mark Ahlenius    Made change for PR 6318 to change return value of office phrase 
+;;			     from value of "office" to "work".
+
+Location2
+[
+    (home ?phone)  {return(home)}
+    (office ?phone) {return(work)}
+    (work ?phone) {return(work)}
+    ( mobile ?phone) {return(mobile)}
+    ([cell cellular] phone) {return(mobile)}
+    (car ?phone) {return(car)}
+    (other ?phone) {return(other)}
+]
+
+
+;;
+;; Call_Name_Target
+;;
+;; Description
+;; 
+;;
+;; Use this only when a name target is required by the grammar
+;;
+;; If the name target is optional, create a separate term that uses
+;; subgrammar Call_No_Target
+;;
+;; 2.20.01 Mark Ahlenius  - Removed Prefix_Please from this subgrammar - is inserted where this is embedded
+;; 6.8.00  Mark Ahlenius  - Removed "make" phrase - simplification
+;;                          Removed place from grammar - simplification
+;; 6.7.00  Mark Ahlenius  - Removed I_Want_To phrase from grammar - seldom used.
+;; 5.16.00  Mark Ahlenius - removed optional ?a in phrase below, so user says "make a call" instead of "make call"
+;;
+
+Call_Name_Target
+[
+   call
+   dial
+]
+
+
+;;
+;; Call_Number_Target
+;; 
+;; Description
+;; This subgrammar is used to permit the caller to voice dial a number.
+;;
+;; Use this only when a number target is required by the grammar
+;;
+;; If the number target is optional, create a separate term that uses
+;; subgrammar Call_No_Target
+;;
+;;
+;; 5.16.00  Mark Ahlenius - removed optional ?a in phrase below, so user says "make a call"
+;;                         instead of "make call"
+;;
+;; 6.7.00  Mark Ahlenius  - Removed I_Want_To phrase from grammar - seldom used.
+;; 6.8.00  Mark Ahlenius  - Removed "make" phrase - simplification
+;;                          Removed place from grammar - simplification
+;;
+
+Call_Number_Target
+(
+   ?Prefix_Please 
+   [call dial] 
+   ?(?the number)
+)
+
+
+;;
+;; Call_No_Target
+;;
+;; Use this only when a target is not allowed by the grammar
+;;
+;; If a target is optional, create separate terms that use
+;; subgrammars Call_Name_Target and/or Call_Number_Target
+;;
+;; 2.15.01 Mark Ahlenius  - Removed optional "please" and "(a number)" - seldom used
+;; 6.8.00  Mark Ahlenius  - Removed "make" phrase - simplification
+;;                          Removed place from grammar - simplification
+;; 6.7.00  Mark Ahlenius  - Removed I_Want_To phrase from grammar - seldom used.
+;; 5.16.00  Mark Ahlenius - removed optional ?a in phrase below, so user says "make a call"
+;;                         instead of "make call"
+;;
+
+Call_No_Target
+(
+    [call dial] 
+)
+
+
+
+;;
+;; Use this only when a name target is required by the grammar
+;;
+;; If the name target is optional, create a separate term that uses
+;; subgrammar Page_No_Target
+;;
+;;
+;; 5.16.00  Mark Ahlenius - removed optional ?a in phrase below, so user says "make a page"
+;;                         instead of "make page"
+;; 6.7.00  Mark Ahlenius  - Removed I_Want_To phrase from grammar - seldom used.
+;; 6.8.00  Mark Ahlenius  - Removed "make" phrase - simplification
+;;                          Removed place from grammar - simplification
+;;
+
+Page_Name_Target
+(
+   ?Prefix_Please
+    [
+        page
+        ( send a page to )
+    ]
+)
+
+
+;;
+
+Page_No_Target
+(
+   ?Prefix_Please
+    [
+        page
+        (send a page )
+    ]
+)
+
+
+;;
+;; 4.4.00  - Mark Ahlenius  Removed voice dialing/calling menu option, not used
+;;
+
+;;
+;; MM6
+;; 
+;; This subgrammar used for voice paging.
+;;
+;; 6.7.00   - Mark Ahlenius  Removed the please and get_me phrase from voice paging menu
+;; 6.1.00   - Mark Ahlenius  Removed the I_Want phrases for simplification
+;;                           (I_Want the ?voice paging menu)
+;; 5.31.00  - Mark Ahlenius  Simplified the MM6 grammar                     
+;; 5.16.00  - Mark Ahlenius  Removed voice dialing/calling menu option, not used
+
+MM6
+[
+     ( ?voice paging ?menu ) {<command page>}
+]
+
+;;
+;; MM_Group6
+;;
+;; Description
+;; This grammar permits the caller to just say "call a number", "dial" or "page" without giving
+;; the target number or name.  The system would then prompt for that name or number to call/page.
+;; This subgrammar is included with the MM_Main top level grammar.
+;;
+;; Returns: (one of the following lines if a match is made)
+;;            <command call>
+;;            <command page>
+;;
+
+MM_Group6
+[
+    MM6
+    Call_No_Target  {<command call>}
+    Page_No_Target  {<command page>}
+]
+
+
+;;
+;; MM_Group8
+;;
+;; Description
+;; This subgrammar is used for calling someone from the address book at a particular location 
+;; such as; mobile, car, home, etc. The location can also be left off, as in "get bob".
+;; It is also used to page someone from the address book.
+;; It is included in the .MM_Main top level grammar
+;;
+;; Returns: (one of the following lines if a match is made)
+;;          <name $nm>
+;;	    <location $loc>
+;;          <command call>
+;;          <command page>
+;;
+;; 9.12.00  Mark Ahlenius  Modified this subgrammar to remove phrases where the word the was
+;;                         put after his/her, or a possesive name
+;;
+
+MM_Group8
+[
+    ( ?Prefix_Please Call_Name_Target Name:nm {<name $nm>} 
+       ?[
+         ( Atonin  Location:loc {<location $loc>} )
+         ( [ (Atonin [his her]) 's ] Location2:loc {<location $loc>} )
+        ]
+    )  {<command call>}
+    (
+        Page_Name_Target
+        Name:nm {<name $nm>}
+    ) {<command page>}
+]
+
+
+;;
+;; MM_Group9
+;;
+;; Description
+;; This subgrammar is used ro provide support for either calling the customer support (via phone numbers
+;; setup in the registry) or number dialing support. It is used in the .MM_Main top level grammar.
+;;
+;; Returns:
+;;		<command call> <name "customer care">
+;;		<command call> <phone_number $num>
+;;
+;; *** note - uncomment out the number dialing section when done testing!!! ***
+;;
+;; 2.20.01 Mark Ahlenius - removed "help desk" from the list of supported help facilities - seldom used
+;; 4.4.00  Mark Ahlenius - Removed part of grammar which supported "directions" as a command
+;;                         This was an old Telematics command which is not supported anymore
+;;
+
+MM_Group9
+[
+    (
+        Call_Name_Target
+        (customer [care service assistance])
+    ) {<command call> <name "customer care">}
+    (
+       ?[Call_Number_Target number]
+        PhoneNumber:num
+    ) {<command call> <phone_number $num>}
+]
+
+
+;;
+;; 3.24.00 Mark Ahlenius - Added Main Menu (MM) sub grammars for; calendar, task list and email access
+;; 
+
+;;
+;; MM_Calendar
+;; 
+;; Description
+;; This subgrammars is used to permit callers to access the  calendar application.
+;;
+;; Returns: 
+;;		<command calendar>
+;;
+
+MM_Calendar
+[
+	(?my calendar ?Suffix_Agent )
+] {<command calendar>}
+
+;;
+;; MM_Task_List
+;; 
+;; Description
+;; This subgrammars is used to permit callers to access the task lists application (to do lists).
+;;
+;; Returns: 
+;;		<command tasks>
+;;
+
+MM_Task_List
+[
+	( ?my  [(task list) tasks ] ?Suffix_Agent )
+] {<command tasks>}
+
+
+;;
+;; MM_Email
+;; 
+;; Description
+;; This subgrammars is used to permit callers to access the email application
+;;
+;; Returns: 
+;;		<command email>
+;;
+
+MM_Email
+[
+	( ?my email ?Suffix_Agent )
+] {<command email>}
+
+
+;;
+;; PauseMain
+;;
+;; Description
+;; This subgrammar is used in the main menu grammar to permit the caller to put the agent into the sleep
+;; (pause) state.  The system must then be woken up with one of the "wake up" type phrases.
+;;
+;; Returns  <command pause>
+;;
+;; 2.19.01   Mark Ahlenius	Removed I_Want_To phrase from this grammar - seldom used.
+;;
+
+PauseMain
+(
+   ?Prefix_Please
+    pause
+)  {<command pause>}
+
+.Pause(PauseMain)
+
+;;
+;; 6.7.00  Mark Ahlenius  - Removed I_Want_To phrase from grammar - seldom used.
+;;
+
+ChangePin
+(
+   ?Prefix_Please
+    change
+    account
+) {<command "change account">}
+
+
+;;
+;; Drop_Call_Genie
+;;
+;; Description
+;; This subgrammar is used define how a current call on hold may be dropped (terminated).
+;; This grammar is typically used in the main menu grammar (.MM_Main).
+;;
+;; Returns:  <command drop_call_genie>
+;;
+;; 5.16.00  Mark Ahlenius - Removed redundant ?drop phrase - went from ~95 unique sentences to 25!
+;; 6.7.00   Mark Ahlenius - Removed I_Want_To phrase from grammar - seldom used.
+;; 3.26.00  Mark Ahlenius - Removed redundant ?drop phrase - went from ~95 unique sentences to 25!
+;;
+
+Drop_Call_Genie
+[
+    (
+       ?Prefix_Please
+        drop
+        [
+            it
+            (?the call)
+        ]
+	?Suffix_Agent
+    )
+    drop~0.001
+] {<command drop_call_genie>}
+
+
+
+;;
+;; 6.7.00  Mark Ahlenius  - Removed I_Want_To phrase from grammar - seldom used.
+;;
+
+Want_Return_Call
+(
+   ?Prefix_Please
+    return
+    to
+   ?the
+    call
+) {<command "return to call">}
+
+
+;;
+;; .MM_Main
+;;
+;; Description
+;; This is the main menu top level grammar. Its the big burrito.  Its huge but supports most of what we
+;; want from the main menu.  This permits the callers to dial numbers, names from adddress books, send
+;; pages, access internet applications, ask for help, etc.
+;;
+;; Returns: return values defined by included subgrammars
+;;
+;; 2.25.00  Mark Ahlenius - Added wake up maya command to main menu to catch user error cases where
+;;                          they often say this command incorrectly in main menu
+;;
+;; 3.24.00  Mark Ahlenius - Added new MM_Main grammars to support access to; calendar, task list,
+;;			    and email
+
+.MM_Main
+[
+    (
+        ?Uh
+        ?Prefix_Agent
+        [
+	    MM_Group1   ;; address book 
+	    MM_Group5   ;; my info commands
+	    MM_Group6   ;; allows caller to just say call, page without a target, also access voice menu
+	    MM_Group8   ;; permits caller to call/page someone from address book
+	    MM_Group9   ;; permits caller to call customer support, or page/dial a number
+        ]
+       ?Suffix_Please
+       ?Suffix_Agent
+    )
+    ;; These subgrammars do not use the global prefix/suffixes
+    (
+       ?Uh
+	[
+	  ChangePin       ;; permits caller to request to change login accounts 
+;;	  MM_Calendar     ;; access the calendar appliction
+;;        MM_Task_List    ;; access the task list apps
+;;        MM_Email        ;; access the email apps
+	  Drop_Call_Genie ;; verbage to drop a call on hold
+	  Want_Return_Call  ;; permits caller to return to a call on hold
+          (wake up Agent_Name) {<ucommand cancel>}   ;; catches wake up phrases when said in wrong state
+	  PauseMain       ;; puts Maya to (yawn...) sleep
+        ]
+    )
+    Universal_Commands_NoExit:uc {<ucommand $uc>}
+]
+
+
+;;
+;; .MM_Main_NoNbr
+;;
+;; Description
+;; This is a secondary main menu grammar, it is similar to the .MM_Main grammar but does not permit 
+;; number dialing.
+;;
+;; Returns: return values defined by included subgrammars
+;;
+
+.MM_Main_NoNbr
+[
+    (
+       ?Uh
+       ?Prefix_Agent
+        [
+	    MM_Group1  		;; address book 
+	    MM_Group5		;; my info commands
+	    MM_Group6		;; allows caller to just say call, page without a target, also access voice menu
+	    MM_Group8		;; permits caller to call/page someone from address book
+        ]
+       ?Suffix_Please
+       ?Suffix_Agent
+    )
+    (
+	?Uh
+	[
+;;	  MM_Calendar     ;; access the calendar appliction
+;;        MM_Task_List    ;; access the task list apps
+;;        MM_Email        ;; access the email apps
+	    Drop_Call_Genie	;; verbage to drop a call on hold
+	    PauseMain		;; puts Maya to (yawn...) sleep
+	]
+    )
+    Universal_Commands_NoExit:uc {<ucommand $uc>}
+]
+
+;;
+;; .MMenu_GoodbyeWhenCallIsOnHold
+;;
+;; Description
+;;
+;;
+;; Returns:
+;;		<command cancel>
+;;		<command "return to call">
+;;	
+;; 3.21.01  Mark Ahlenius	Fixed misspelling in grammar name
+;;	
+
+.MMenu_GoodbyeWhenCallIsOnHold
+(
+   ?Uh
+    [
+        cancel  {<command cancel>}
+        (?Prefix_Agent return to call)  {<command "return to call">}
+    ]
+   ?Suffix_Please
+   ?Agent_Name
+)
+
+
+Yes_Only
+[
+    yes
+    yeah 
+    yup
+    yep
+]
+
+
+No_Only
+[
+    no
+    nope
+]
+
+;;
+;; Addr_Bk_MM_Group8
+;; 
+;; Description 
+;; This subgrammar is used to provide calling functions for the .Addr_Bk_Main and .Addr_Bk_Details top
+;; level grammars.
+;;
+;; Returns:
+;;		<name $nm> <command call>
+;;		<location $loc> <command call>
+;;		<name $nm> <command page>
+;;		
+
+
+Addr_Bk_MM_Group8
+[
+    [
+        Call_No_Target
+        (
+            Call_Name_Target
+            [
+                Name:nm {<name $nm>}
+                him
+                her
+            ]
+           ?(
+                Atonin
+               ?[his her]
+                Location:loc {<location $loc>}
+            )
+        )
+        (
+            Call_Name_Target
+            Name:nm {<name $nm>}
+            's
+            Location:loc {<location $loc>}
+        )
+    ] {<command call>}
+    [
+        Page_No_Target
+        (
+            Page_Name_Target
+            [
+                Name:nm {<name $nm>}
+                him
+                her
+            ]
+        )
+    ] {<command page>}
+]
+
+
+
+;;
+;; .Addr_Bk_Main
+;; 
+;; Description 
+;; This grammar is used to navigate in the address book application vlet
+;;
+;; Returns:
+;;		<group all>
+;;		<name $nm>
+;;		<dtmf yes> <ab_dtmf $ab>
+;;		<ucommand exit>
+;;		<group stop>
+;;		<ucommand $uc>
+;;
+;; *** Uncomment digit lines when done testing!!!
+;;
+;; 2.19.01  Mark Ahlenius       Removed "start over" phrase from this grammar. Not in HF navigation command list.
+;; 2.12.01  Mark Ahlenius       Major simplifications made. Removed listing, entry, etc. all which are seldom
+;;                              used. Removed "hear" phrase, seldom used.
+;; 04.08.00 Krishna Avasarala   I added the ability to enter DTMF
+;; 04.10.00 Mark Ahlenius       Removed some older commented out regions for spring cleanup
+;;
+
+.Addr_Bk_Main
+[
+    (
+       ?Uh
+       ?Prefix_Agent
+        [
+            [
+ 	  	 everyone
+                 everybody
+            ] {<group all>}
+            [
+                ( ?I_Want Name:nm )
+                ( ?I_Want Name:nm 's )
+            ] {<name $nm>}
+	    ;; To Handle DTMF in AB Main
+	    [
+		(Key1DigitString:ab ?dtmf-pound) {<dtmf yes> <ab_dtmf $ab>}
+    		(Key2DigitString:ab ?dtmf-pound) {<dtmf yes> <ab_dtmf $ab>}
+    		(Key3DigitString:ab ?dtmf-pound) {<dtmf yes> <ab_dtmf $ab>}
+	    ]
+            Addr_Bk_MM_Group8
+            quit {<ucommand exit>}
+        ]
+       ?Suffix_Please 
+       ?Suffix_Agent
+    )
+    Enough_TTS  {<group stop>}
+    Universal_Commands:uc {<ucommand $uc>}
+]
+
+
+;;
+;; .Addr_Bk_Details
+;;
+;; Description
+;; This grammar is active when the caller is browsing the address book. It permits them to 
+;; peruse through the address book, move to the next entry, next letter, and listen to info
+;; about the current entry, or exit this application.
+;;
+;; Returns:
+;;		<command next>
+;;		<command letter>
+;;		<dtmf yes> <ab_dtmf $ab>
+;;		<ucommand exit>
+;;		<ucommand $uc>
+;;
+;; *** remember to uncomment out dtmf stuff when finished testing!
+;;
+;; 5.3.01   Mark Ahlenius	Per PR 6460 - removed the phrases for saying "details" from grammar.
+;; 10.15.99 Mark Ahlenius	I moved the "(next ?contact ?name) {<command next>}" beneath
+;;				the "?Uh line so it covers this phrase tool
+;;
+;; 02.22.00 Krishna Avasarala Added ability to say "Next Letter" in .Addr_Bk_Details 
+;; 04.08.00 Krishna Avasarala   I added the ability to enter DTMF
+;;
+
+.Addr_Bk_Details
+[
+    (
+       ?Uh
+        [
+	    (next ?contact ?name) {<command next>}
+	    (next letter) {<command letter>}
+	    Addr_Bk_MM_Group8
+        ]
+       ?Suffix_Please 
+       ?Suffix_Agent
+   )
+   (
+	;; To Handle DTMF in AB Details
+	[
+		(Key1DigitString:ab ?dtmf-pound) {<dtmf yes> <ab_dtmf $ab>}
+	    	(Key2DigitString:ab ?dtmf-pound) {<dtmf yes> <ab_dtmf $ab>}
+	    	(Key3DigitString:ab ?dtmf-pound) {<dtmf yes> <ab_dtmf $ab>}
+      	]
+    ) 
+    Enough_TTS {<ucommand exit>}
+    Universal_Commands:uc {<ucommand $uc>}
+]
+
+
+
+;;
+;; .Voice_Dial_Main
+;;
+;; Description
+;; This top level grammar is used when
+;;
+;; Returns:
+;;		<name $nm>
+;;		<location $loc>
+;;		<phone_number $num>
+;;		<ucommand $uc>
+;;
+;; uncomment out the phonenumber section after testing!!!
+;;
+
+.Voice_Dial_Main 
+[
+    (
+       ?Uh
+       ?Prefix_Agent
+        [
+            (
+               ?Call_Name_Target
+                Name:nm {<name $nm>}
+	       ?(
+                    [
+                        (Atonin ?[his her])
+                        's
+                    ]
+                    Location:loc {<location $loc>}
+                )
+            )
+    	    (
+               ?[Call_Number_Target number]
+                PhoneNumber:num {<phone_number $num>}
+            )
+            PauseMain
+        ]
+       ?Suffix_Please 
+       ?Suffix_Agent
+    )
+    Universal_Commands:uc {<ucommand $uc>}
+]
+
+The_Call
+[
+    it
+    ([the that this] ?phone call)
+]
+
+
+;;
+;; 4.4.00  Mark Ahlenius  Removed repeated optional no words and replaced with a kleene closure
+;;
+
+Cancel_Call
+[
+    NO_WORDS_MOT
+    +no
+    (
+       ?no
+       ?Prefix_Please
+        [cancel stop]
+       ?The_Call
+    )
+]
+
+
+;;
+;; Stop_Call
+;;
+;; Description
+;; 
+;;
+
+Stop_Call
+[
+    Cancel_Call
+    (?no wait ?(a minute))
+    (hold it)
+]
+
+
+The_Page
+[
+    it
+    ([the this] page)
+]
+
+
+;;
+;; Cancel_Page
+;; 
+;; Description
+;; This subgrammar is used to permit a caller to cancel an outgoing page.  How is this used???
+;;
+;; Returns - nothing, but if a match is made, return value is "no"
+;;
+;; 2.19.01 Mark Ahlenius  Simplified grammar to remove unused phrases
+;; 4.4.00  Mark Ahlenius  Removed repeated optional no words and replaced with a kleene closure
+;;
+
+Cancel_Page
+[
+    NO_WORDS_MOT
+    +no
+    [cancel stop]
+]
+
+
+
+Implicit_Page_Conf
+[
+    ([YES_WORDS_MOT Yes_Phrase])  {return(yes)}
+    Cancel_Page                 {return(no)}
+]
+
+
+;;
+;; 4.4.00  Mark Ahlenius  Removed repeated yes words and replaced with a kleene closure
+;;
+
+Yes_Phrase
+[
+    +yes
+    (?Yes_Only ?[it's that's] [okay  fine])
+    (?[Yes_Only okay sure fine] go ahead )
+]
+
+
+;; 3.24.00 - mta - removed "do" phrase and "wish"
+
+;;
+;; Wish_Call
+;;
+;; Description
+;; This subgrammar is used in call confirmation grammars to acknowledge whether or
+;; not the system should place a call.
+;;
+;; Returns: (string value)
+;;		yes
+;;		no
+;;
+;; 2.19.01  Mark Ahlenius	Major simplification in this grammar.
+;;
+
+Wish_Call
+[
+    [
+     YES_WORDS_MOT
+     Yes_Phrase
+    ] {return(yes)}
+    Stop_Call  {return(no)}
+]
+
+
+;;
+;; Wish_Page
+;;
+;; Description
+;; This subgrammar is used to determine if the caller desires to place a page or not
+;;
+;; Returns:
+;;		return(yes) string value
+;;		return(no)  string value
+;;
+;; 3.24.00 - mta - removed "do" phrase and "wish"
+
+Wish_Page
+[
+    [
+      YES_WORDS_MOT
+      Yes_Phrase
+    ] {return(yes)}
+    Cancel_Page  {return(no)}
+]
+
+
+;;
+;; .Call_Conf
+;; 
+;; Description
+;; This grammar is used when the caller asks the agent to call someone via a number like 
+;; "call 555-1212" and the system replies "dialing 555-1212 or say cancel".
+;;
+;; Returns:
+;;		<confirm $conf>
+;;		<ucommand $uc>
+;;
+;; 2.08.01  Mark Ahlenius  Moved R3 version of this grammar into this file.
+;; 9.19.00  Mark Ahlenius  Found a problem with this grammar. It was permitting just 
+;;                         "um" or "uh" to be interpreted as yes.  A strange compiler 
+;;                         issue, I believe. Reformatted grammar and also removed
+;;                         Suffix_Please (was not used) from it.  All seems to be better now, fewer paths!
+;;
+
+.Call_Conf
+[
+   (
+    ?Uh
+    (Wish_Call:conf ?Suffix_Agent) {<confirm $conf>}
+   )
+   Universal_Commands_Without_Cancel_For_Confirm_Grammars:uc {<ucommand $uc>}
+]
+
+
+No_Didnt
+[
+    (
+        No_Only
+       ?(of course)
+        i
+        [ (did not) didn't ]
+    )
+    (
+        [
+            certainly
+            (of course)
+        ]
+        not
+    )
+]
+
+ 
+Yes_Did
+[
+    (
+        Yes_Only
+       ?(of course)
+        i
+        did
+    )
+    (of course)
+]
+
+ 
+;;
+;; .Sec_Ch_Num_Conf
+;;
+;; Description
+;; This grammar is used to confirm a call to be made - it is somehow used with N-Best processing ???
+;;
+;; 2.20.01  Mark Ahlenius	Removed Wish_Call phrases in this grammar - way to verbose!
+;;
+;; Returns:
+;;		<confirm $conf>
+;;		<confirm yes>
+;;		<confirm no>
+;;		<ucommand $uc>
+;;
+
+.Sec_Ch_Num_Conf
+[
+    (
+       ?Uh
+        [
+	    Yes_Did  {<confirm yes>}
+            No_Didnt {<confirm no>}
+        ]
+       ?Suffix_Agent
+    )
+    Universal_Commands_Without_Cancel_For_Confirm_Grammars:uc {<ucommand $uc>}
+]
+
+;;
+;; .Name_Loc_Conf
+;;
+;; Description
+;; This confirmation grammar is used when
+;;
+;; 2.19.01  Mark Ahlenius       Removed "start over" phrase from this grammar. Not in HF navigation command list.
+;;
+
+.Name_Loc_Conf
+[
+    (
+       ?Uh
+        [
+            no
+            cancel
+            (wake up Agent_Name)
+        ]
+    ) {<confirm no>}
+]
+
+;;
+;; .Change_Name_Loc
+;;
+;; Description
+;; This grammar is used to change the name or location (or both) for an outgoing call.
+;;
+;; Returns:
+;;		<change name>
+;;		<change location>
+;;		<change all>
+;;		<ucommand $uc>
+;;
+;; 2.19.01  Mark Ahlenius       Removed "start over" phrase from this grammar. Not in HF navigation command list.
+;;                              Removed I_Want_To phrase -seldom used.
+;; 10.20.99 Mark Ahlenius	Found ambiguous grammar clause in .Change_Name_Loc with Universal_Command 
+;;				Replaced with Univ_HelpCancelExitGoodbye
+;;
+
+.Change_Name_Loc
+[
+    (
+       ?Uh
+ [
+            (
+    	       ?(
+	        change
+                )
+	        [
+	            (?the name) {<change name>}
+	            (?the [location place]) {<change location>}
+	            [
+	    	        ([all both] ?(of them))
+		        (
+                           ?both
+                            [
+                                (?the name and ?the [location place])
+                                (?the [location place] and ?the name)
+                            ]
+                        )
+	            ] {<change all>}
+	        ]
+            )
+        ]
+    )
+    Univ_HelpCancelExitGoodbye:uc {<ucommand $uc>}
+]
+
+;;
+;; .Get_Loc
+;;
+;; Description
+;; This grammar is used to retrieve the location of the address book person being called.
+;; This is one of the regular address book locations such as; home, cell phone, work, car, etc. 
+;;
+;; Returns:
+;;		<location $loc>
+;;		<ucommand $uc>
+;;
+
+.Get_Loc
+[
+    (
+       ?Uh
+       ?(?Atonin [his her the])
+        Location:loc {<location $loc>} 
+       ?Suffix_Please
+       ?Suffix_Agent
+    )
+    Universal_Commands:uc {<ucommand $uc>}
+]
+
+
+;;
+;; .Get_Name
+;;
+;; Description
+;; This grammar is used to collect name of the person being called from the address book.
+;;
+;; Returns:
+;;		<name $nm>
+;;		<ucommand $uc>
+;;
+
+.Get_Name
+[
+    (
+       ?Uh
+       ?[call dial]
+        Name:nm {<name $nm>}
+       ?Suffix_Please
+       ?Suffix_Agent
+    )
+    Universal_Commands:uc {<ucommand $uc>}
+]
+
+;;
+;; .Get_Name_Loc
+;;
+;; Description
+;; This grammar is used to collect name and location of the person being called from the address book.
+;; 
+;; Returns:
+;;		<name $nm>
+;;		<location $loc>
+;;		<ucommand $uc>
+;;
+;; 2.20.01  Mark Ahlenius	Simplified - removed ability to create multiple "please" words in grammar
+;;				
+;;
+
+.Get_Name_Loc
+[
+    (
+       ?Uh
+       ?Call_Name_Target
+        Name:nm {<name $nm>}
+       ?(
+            [
+                (Atonin ?[his her])
+                's
+            ]
+            Location:loc {<location $loc>}
+        )
+       ?Suffix_Please
+       ?Suffix_Agent
+    )
+    Universal_Commands:uc {<ucommand $uc>}
+]
+  
+;;
+;; .Get_Phn_Num
+;;
+;; Description
+;; This grammar is used to collect a phone number from the caller. If the caller said "call number"
+;; or "dial number" this grammar would be used to collect that number.
+;;
+;; Returns:
+;;		<phone_number $num>
+;;		<ucommand $uc>
+;;
+;; note - uncomment out the number phrase below when done testing!!!
+;;  
+
+.Get_Phn_Num
+[
+    (
+       ?Uh
+       ?[Call_Number_Target number]
+       PhoneNumber:num {<phone_number $num>} 
+       ?Suffix_Please
+       ?Suffix_Agent
+    )
+    Universal_Commands:uc {<ucommand $uc>}
+]
+
+
+.Paging_Main
+[
+    (
+       ?Uh
+       ?Page_Name_Target
+        Name:nm {<name $nm>}
+       ?Suffix_Please
+       ?Suffix_Agent
+    )
+    Universal_Commands:uc {<ucommand $uc>}
+]
+
+
+;;
+;; .Page_Conf
+;;
+;; Description
+;; This confirmation grammar is used to determine if the caller wishes to place a designated page.
+;;
+;; Returns:
+;;		<confirm $conf>
+;;		<ucommand $uc>
+;;
+;;  2.19.01  Mark Ahlenius	Removed please suffix from grammar -seldom used
+;;
+
+.Page_Conf
+[
+    (
+       ?Uh
+        Wish_Page:conf  {<confirm $conf>}
+	?Suffix_Agent
+    )
+    Universal_Commands_Without_Cancel_For_Confirm_Grammars:uc {<ucommand $uc>}
+]
+
+;;
+;; .Paging_Name_Ret_Conf
+;;
+;; Description
+;; This is a simple confirmation grammar to ensure that the page should be returned
+;; to what person.
+;;
+;; Returns:
+;;		<confirm $conf>
+;;		<ucommand $uc>
+;;
+
+.Paging_Name_Ret_Conf
+[
+    (
+       ?Uh
+        Implicit_Page_Conf:conf {<confirm $conf>}
+       ?Suffix_Please
+       ?Suffix_Agent
+    )
+    Universal_Commands_Without_Cancel_For_Confirm_Grammars:uc {<ucommand $uc>}
+]
+
+;;
+;; .Chg_Paging_Name_Ret
+;;
+;; Description
+;;
+;;
+;; Returns:
+;;		<change name>
+;;		<change location>
+;;		<change all>
+;;
+;; 2.19.01  Mark Ahlenius       Removed "start over" phrase from this grammar. Not in HF navigation command list.
+;;				Removed I_Want_To subphrase - seldom used.
+;;				Made some major pruning reductions - other fluff never used!
+;;
+
+.Chg_Paging_Name_Ret
+[
+    (
+       ?Uh
+        [
+		  ( ?( ?Prefix_Please change) (?the name) ?Suffix_Agent ) {<change name>}
+	          ( ?( ?Prefix_Please change) ?My_The ?return location ?Suffix_Agent ) {<change location>}
+	          ( ?( ?Prefix_Please change) [all both] ?Suffix_Agent ) {<change all>}
+	 ]
+    )
+    Universal_Commands:uc {<ucommand $uc>}
+]
+
+;;
+;; .Chg_Paging_Name
+;;
+;; Description
+;; This grammar is used to change the name of the person to be paged.
+;; 
+;; Returns:
+;;		<change name>
+;;		<ucommand $uc>
+;;
+;; 2.19.01  Mark Ahlenius       Removed "start over" phrase from this grammar. Not in HF navigation command list.
+;; 				Removed I_Want_To phrase - seldom used.
+;;				Simplified phrases to most frequenty used ones.
+;;
+
+.Chg_Paging_Name
+[
+    (
+       ?Uh
+        [
+            ( ?( ?Prefix_Please change ) ?the name ?Suffix_Agent )
+            ( ?change ?the name ?Suffix_Please ?Suffix_Agent )
+        ] {<change name>}
+    )
+    Universal_Commands:uc {<ucommand $uc>}
+]
+
+;;
+;; .Get_Paging_Loc
+;;
+;; Description
+;; This grammar is used to collect the location or phone number to which a page is to be 
+;; returned to.  So if the caller tells the system to "page bob", the system will use this
+;; grammar to ask for the number or location that "bob" should call back.
+;;
+;; Returns:
+;;		<location $loc>
+;;		<phone_number $num>
+;;		<ucommand $uc>
+;;
+;;  **** remember to uncomment out the number section - taken out for testing
+;;
+
+.Get_Paging_Loc
+[
+    (
+       ?Uh
+        [
+            (
+               ?[
+                    (?the ?return location ?is)  
+                    ( ?(?the ?return location is) [ at (?at My_The) ] )
+                    (return [call page] to ?My_The)
+                ]
+                Location:loc {<location $loc>} 
+            )
+            (
+               ?[
+                    (?the ?return location ?is)  
+                    (
+                       ?(?the ?return location is)
+                        at
+                    )
+                    (return [call page] to)
+                ]
+               ?(?the number)
+	        PhoneNumber:num {<phone_number $num>} 
+            )
+        ]
+       ?Suffix_Please
+       ?Suffix_Agent
+    )
+    Universal_Commands:uc {<ucommand $uc>}
+]
+
+;;
+;; .Get_Pagee_Name
+;; 
+;; Description
+;; This grammar is used to collect the name of the person to be paged.
+;;
+;; Returns:
+;;		<name $nm>
+;;		<ucommand $uc>
+;;
+
+.Get_Pagee_Name
+[
+    (
+       ?Uh
+       ?Prefix_Please
+       ?page
+        Name:nm  {<name $nm>}
+       ?Suffix_Please
+       ?Suffix_Agent
+    )
+    Universal_Commands:uc {<ucommand $uc>}
+]
+
+;;
+;; .Genie_Main
+;;
+;; Description
+;; This grammar contains the typical "wake up" phrases used to get the attention of the system agent.
+;; This grammar is used in two places; 1) when the caller is in-call with a 3rd party, 2) when the system
+;; is in the sleep or pause mode.  This grammar is used in a hot-word recognition fashion. While this grammar is 
+;; active, the end pointer algorithm searched for phrases whose length are greater than or equal to the
+;; client.MagicWordMinSeconds minimum duration and less than or equal to the client.MagicWordMaxSeconds.
+;; 
+;; Returns: <magic_word found>
+;;
+
+
+.Genie_Main
+[
+    (
+        ?Uh
+         Wakeup
+    ) {<magic_word found>}
+]
+
+;;
+;; .Genie_Call_Opt
+;;
+;; Description
+;; This grammar is used after the system was in a 3rd party call and the "wake up" phrase was recognized. The
+;; prompt asks the caller if they want to return to the call, go to the main menu or drop the call.
+;;
+;; Returns:
+;;          <command drop> - to drop the call
+;;          <command hold> - to go to the main menu (basically confirm to leave the call on hold)
+;;          <command return> - to return to the call
+;;
+;; 2.19.01  Mark Ahlenius       Removed I_Want_To phrase - seldom used.
+;;                              Simplification - Removed usage of "telephone" - never used
+;; 10.20.99 Mark Ahlenius	Removed extra suffix_please as was causing grammar overgeneration
+;; 3.17.00  Mark Ahlenius       Removed yes words from .Genie_Call_Opt grammar - PR #1678, getting 
+;;				confused with hang up. This also removed the slot command from 
+;;				returning yes, which was not used 
+;; 4.4.00   Mark Ahlenius       Removed second ?drop from phrase (allowed duplicates)
+;;
+
+.Genie_Call_Opt
+(	
+   ?Uh
+    [   
+	[
+        ( ?Prefix_Please drop ?[ it (?the call) ] ?Suffix_Agent )
+	( drop ?[ it (?the call) ] ?Suffix_Please ?Suffix_Agent )
+	] {<command drop>}
+	[
+ 	 ( ?Prefix_Please return ?( to (?the call )) ?Suffix_Agent )
+	 ( return ?( to (?the call )) ?Suffix_Please ?Suffix_Agent )
+	] {<command return>}		
+	((main menu) ?Suffix_Agent)  {<command hold> }
+    ]
+)
+
+;;
+;; .Genie_Hold_Conf
+;;
+;; Description
+;; This grammar may be deleted in near future!
+;;
+;; Returns:
+;;		<confirm yes>
+;;		<confirm no>
+;;		<ucommand $uc>
+;;
+
+.Genie_Hold_Conf
+[
+    (
+       ?Uh
+        [
+	    [
+	        YES_WORDS_MOT
+	        (?Yes_Only ?Prefix_Please [(hold ?[it (?the call)]) do])
+	    ] {<confirm yes>}
+	    [
+	        NO_WORDS_MOT
+	        (?No_Only (?Prefix_Please [don't (do not)]) ?(hold ?[it (?the call)] ))
+	    ] {<confirm no>}
+        ]
+        ?Suffix_Please
+        ?Suffix_Agent
+    )
+    Universal_Commands_For_Confirm_Grammars:uc {<ucommand $uc>}
+]
+
+;;
+;; .Genie_Drop_Conf
+;;
+;; Description
+;; This grammar is used when the system is dropping the call. Normally the system just times out, but 
+;; this does permit the caller to say yes, no, or one of the universal commands.
+;;
+;; Returns:
+;;		<confirm yes>
+;;		<confirm no>
+;;		<ucommand $uc>
+;;
+;; 2.13.01  Mark Ahlenius  - Major pruning, removed many extraneous phrases from this grammar.
+;;
+
+.Genie_Drop_Conf
+[
+    (
+       ?Uh
+        [
+	    [
+	        Yes_Only
+	        ( [( drop [it (?the call)] )] ?Suffix_Agent )
+	    ] {<confirm yes>}
+	    [
+	        No_Only
+	        ( ?No_Only ( [don't (do not)]) ?Suffix_Agent )
+	    ] {<confirm no>}
+        ]
+    )
+    Universal_Commands_For_Confirm_Grammars:uc {<ucommand $uc>}
+]
+ 
+;;
+;; .Login_AccNo
+;;
+;; Description
+;; This grammar is used to collect the callers login account number either by voice or DTMF.
+;;
+;; Returns:
+;;
+;;
+
+.Login_AccNo
+[
+  [
+	(10DigitString:pwd)
+	(Key12DigitString:pwd ?dtmf-pound) {<dtmf yes>}
+	(Key11DigitString:pwd ?dtmf-pound) {<dtmf yes>}
+	(Key10DigitString:pwd ?dtmf-pound) {<dtmf yes>}
+	(Key9DigitString:pwd ?dtmf-pound) {<dtmf yes>}
+	(Key8DigitString:pwd ?dtmf-pound) {<dtmf yes>}
+	(Key7DigitString:pwd ?dtmf-pound) {<dtmf yes>}
+	(Key6DigitString:pwd ?dtmf-pound) {<dtmf yes>}
+	(Key5DigitString:pwd ?dtmf-pound) {<dtmf yes>}
+	(Key4DigitString:pwd ?dtmf-pound) {<dtmf yes>}
+	(Key3DigitString:pwd ?dtmf-pound) {<dtmf yes>}
+	(Key2DigitString:pwd ?dtmf-pound) {<dtmf yes>}
+	(Key1DigitString:pwd ?dtmf-pound) {<dtmf yes>}
+	Universal_Cancel  {<ucommand cancel>}
+  ] {<subscrib_accno $pwd>}
+]
+
+
+;;
+;; .Login_AccNo_DTMF
+;;
+;; Description
+;; This grammar is used to collect the callers login accout number via DTMF keystrokes.
+;;
+;; Returns:
+;;
+;;
+
+.Login_AccNo_DTMF
+[
+  [
+	(Key12DigitString:pwd ?dtmf-pound) {<dtmf yes>}
+	(Key11DigitString:pwd ?dtmf-pound) {<dtmf yes>}
+	(Key10DigitString:pwd ?dtmf-pound) {<dtmf yes>}
+	(Key9DigitString:pwd ?dtmf-pound) {<dtmf yes>}
+	(Key8DigitString:pwd ?dtmf-pound) {<dtmf yes>}
+	(Key7DigitString:pwd ?dtmf-pound) {<dtmf yes>}
+	(Key6DigitString:pwd ?dtmf-pound) {<dtmf yes>}
+	(Key5DigitString:pwd ?dtmf-pound) {<dtmf yes>}
+	(Key4DigitString:pwd ?dtmf-pound) {<dtmf yes>}
+	(Key3DigitString:pwd ?dtmf-pound) {<dtmf yes>}
+	(Key2DigitString:pwd ?dtmf-pound) {<dtmf yes>}
+	(Key1DigitString:pwd ?dtmf-pound) {<dtmf yes>}
+	Universal_Cancel  {<ucommand cancel>}
+  ] {<subscrib_accno $pwd>}
+]
+
+
+;;
+;; .Login_Pin
+;;
+;; Description
+;; This garmmar is used to let the caller enter their login pin either via DTMF
+;; or voice-based.
+;;
+;; Returns:
+;;
+;;
+
+.Login_Pin
+[
+    (Key1DigitString:pwd ?dtmf-pound) {<dtmf yes> <subscrib_pwd $pwd>}
+    (Key2DigitString:pwd ?dtmf-pound) {<dtmf yes> <subscrib_pwd $pwd>}
+    (Key3DigitString:pwd ?dtmf-pound) {<dtmf yes> <subscrib_pwd $pwd>}
+    (Key4DigitString:pwd ?dtmf-pound) {<dtmf yes> <subscrib_pwd $pwd>}
+    (Key5DigitString:pwd ?dtmf-pound) {<dtmf yes> <subscrib_pwd $pwd>}
+    (Key6DigitString:pwd ?dtmf-pound) {<dtmf yes> <subscrib_pwd $pwd>}
+
+    (
+       ?Uh
+        [
+            4DigitString:pwd  {<subscrib_pwd $pwd>}
+            (Cancel_Call ?Suffix_Please ?Suffix_Agent) {<ucommand cancel>}
+        ]
+    )
+    Universal_Cancel  {<ucommand cancel>}
+]
+
+
+;;
+;; .Login_Pin_DTMF
+;;
+;; Description
+;; This grammar is used to permit the caller to enter their password
+;;
+;; Returns:
+;;
+;;
+
+.Login_Pin_DTMF
+[
+    (Key1DigitString:pwd ?dtmf-pound) {<dtmf yes> <subscrib_pwd $pwd>}
+    (Key2DigitString:pwd ?dtmf-pound) {<dtmf yes> <subscrib_pwd $pwd>}
+    (Key3DigitString:pwd ?dtmf-pound) {<dtmf yes> <subscrib_pwd $pwd>}
+    (Key4DigitString:pwd ?dtmf-pound) {<dtmf yes> <subscrib_pwd $pwd>}
+    (Key5DigitString:pwd ?dtmf-pound) {<dtmf yes> <subscrib_pwd $pwd>}
+    (Key6DigitString:pwd ?dtmf-pound) {<dtmf yes> <subscrib_pwd $pwd>}
+    Universal_Cancel  {<ucommand cancel>}
+]
+
+
+;;
+;; .Tutorial_Cancel
+;;
+;; Description
+;; This simple top level grammar is used to cancel the playing of the tutorial prompt.
+;;
+;; Returns:
+;;		<ucommand cancel>
+;;
+
+.Tutorial_Cancel
+[
+    Universal_Cancel  {<ucommand cancel>}
+]
+

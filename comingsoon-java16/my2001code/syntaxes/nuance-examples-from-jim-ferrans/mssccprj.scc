@@ -1,0 +1,5 @@
+SCC = This is a Source Code Control file
+
+[N62Package.mak]
+SCC_Aux_Path = "D:\PROGRAM FILES\MICROSOFT VISUAL STUDIO\COMMON\VSS"
+SCC_Project_Name = "$/VoxML-NG/N62Package", EDXBAAAA

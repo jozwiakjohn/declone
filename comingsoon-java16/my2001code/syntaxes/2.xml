@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+
+<grammar xml:lang="en" version="1.0">
+
+   <rule id="city" scope="public">
+     <one-of>
+       <item>Boston</item>
+       <item>Philadelphia</item>
+       <item>Fargo</item>
+     </one-of>
+   </rule>
+
+   <rule id="state" scope="public">
+     <one-of>
+       <item>Florida</item>
+       <item>North Dakota</item>
+       <item>New York</item>
+     </one-of>
+   </rule>
+
+   <!-- Reference by URI to a local rule -->
+   <!-- Artificial example allows "Boston, Florida"! -->
+   <rule id="city_state" scope="public">
+     <ruleref uri="#city"/> <ruleref uri="#state"/>
+   </rule>
+</grammar>

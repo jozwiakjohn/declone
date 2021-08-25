@@ -1,0 +1,5780 @@
+Aircraft-basic-type
+  [
+    ( brasilia ) 
+    ( brasilias ) 
+    ( metro ) 
+    ( metros ) 
+    ( a t r seven two ) 
+    ( a t r seventy two ) 
+    ( a t r seven twos ) 
+    ( a t r seventy twos ) 
+    ( a three hundred ) 
+    ( a three hundreds ) 
+    ( a three ten ) 
+    ( a three tens ) 
+    ( a three twenties ) 
+    ( a three twenty ) 
+    ( a three one oh ) 
+    ( a three one ohs ) 
+    ( a three one zero ) 
+    ( a three one zeros ) 
+    ( a three two oh ) 
+    ( a three two ohs ) 
+    ( a three two zero ) 
+    ( a three two zeros ) 
+    ( a three zero zero ) 
+    ( a three zero zeros ) 
+    ( c nine nine ) 
+    ( c ninety nine ) 
+    ( c nine nines ) 
+    ( c ninety nines ) 
+    ( d c eight ) 
+    ( d c eights ) 
+    ( d c nine ) 
+    ( d c nines ) 
+    ( d c ten ) 
+    ( d c tens ) 
+    ( d c one oh ) 
+    ( d c one ohs ) 
+    ( d c one zero ) 
+    ( d c one zeros ) 
+    ( d h c eight ) 
+    ( d h c eights ) 
+    ( d h c seven ) 
+    ( d h c sevens ) 
+    ( f twenty eight ) 
+    ( f twenty eights ) 
+    ( f twenty seven ) 
+    ( f twenty sevens ) 
+    ( jetstream ) 
+    ( jetstreams ) 
+    ( l one zero one one ) 
+    ( l one zero one ones ) 
+    ( l ten eleven ) 
+    ( l ten elevens ) 
+    ( m d eighties ) 
+    ( m d eighty ) 
+    ( m d eleven ) 
+    ( m d elevens ) 
+    ( m d eight oh ) 
+    ( m d eight ohs ) 
+    ( m d eight zero ) 
+    ( m d eight zeros ) 
+    ( m d one one ) 
+    ( m d one ones ) 
+    ( nineteen hundred ) 
+    ( nineteen hundreds ) 
+    ( one forty six ) 
+    ( one four six ) 
+    ( one forty sixes ) 
+    ( one four sixes ) 
+    ( one hundred ) 
+    ( one hundreds ) 
+    ( one hundred forty six ) 
+    ( one hundred forty sixes ) 
+    ( one nine hundred ) 
+    ( one nine hundreds ) 
+    ( one nine zero zero ) 
+    ( one nine zero zeros ) 
+    ( one zero zero ) 
+    ( one zero zeros ) 
+    ( s f three forties ) 
+    ( s f three forty ) 
+    ( s f three four zero ) 
+    ( s f three four zeros ) 
+    ( seven fifty seven ) 
+    ( seven five seven ) 
+    ( seven fifty sevens ) 
+    ( seven five sevens ) 
+    ( seven forty seven ) 
+    ( seven four seven ) 
+    ( seven forty sevens ) 
+    ( seven four sevens ) 
+    ( seven six seven ) 
+    ( seven sixty seven ) 
+    ( seven six sevens ) 
+    ( seven sixty sevens ) 
+    ( seven thirty seven ) 
+    ( seven three seven ) 
+    ( seven thirty sevens ) 
+    ( seven three sevens ) 
+    ( seven twenty seven ) 
+    ( seven two seven ) 
+    ( seven twenty sevens ) 
+    ( seven two sevens ) 
+    ( three sixties ) 
+    ( three sixty ) 
+    ( three six oh ) 
+    ( three six ohs ) 
+    ( three six zero ) 
+    ( three six zeros ) 
+    ( two twenty eight ) 
+    ( two two eight ) 
+    ( two twenty eights ) 
+    ( two two eights )
+  ]
+
+Aircraft-capacity-param
+  [
+    ( Det Aircraft seating capacities ) 
+    ( Aircraft seating capacities ) 
+    ( Det seating capacities ) 
+    ( seating capacities ) 
+    ( Det Aircraft capacities ) 
+    ( Aircraft capacities ) 
+    ( Det capacities ) 
+    ( capacities ) 
+    ( Det Aircraft seating capacity ) 
+    ( Aircraft seating capacity ) 
+    ( Det seating capacity ) 
+    ( seating capacity ) 
+    ( Det Aircraft capacity ) 
+    ( Aircraft capacity ) 
+    ( Det capacity ) 
+    ( capacity )
+  ]
+
+Aircraft-code-descr
+  ( ( the Code Aircraft-code ) )
+
+Aircraft-code
+  [
+    ( a b three ) 
+    ( a b threes ) 
+    ( a t p ) 
+    ( a t ps ) 
+    ( a t r ) 
+    ( a t rs ) 
+    ( a t seven ) 
+    ( a t sevens ) 
+    ( b e nine ) 
+    ( b e nines ) 
+    ( b e one ) 
+    ( b e ones ) 
+    ( d ten ) 
+    ( d tens ) 
+    ( d c nine ) 
+    ( d c nines ) 
+    ( d eight s ) 
+    ( d eight ss ) 
+    ( d h eight ) 
+    ( d h eights ) 
+    ( d h seven ) 
+    ( d h sevens ) 
+    ( d nine s ) 
+    ( d nine ss ) 
+    ( d oh eight ) 
+    ( d oh eights ) 
+    ( d one m ) 
+    ( d one ms ) 
+    ( e m two ) 
+    ( e m twos ) 
+    ( f twenty eight ) 
+    ( f two eight ) 
+    ( f twenty eights ) 
+    ( f two eights ) 
+    ( f twenty seven ) 
+    ( f two seven ) 
+    ( f twenty sevens ) 
+    ( f two sevens ) 
+    ( j thirty one ) 
+    ( j three one ) 
+    ( j thirty ones ) 
+    ( j three ones ) 
+    ( l fifteen ) 
+    ( l fifteens ) 
+    ( l ten ) 
+    ( l tens ) 
+    ( l one five ) 
+    ( l one fives ) 
+    ( l one oh ) 
+    ( l one ohs ) 
+    ( l one zero ) 
+    ( l one zeros ) 
+    ( m eighties ) 
+    ( m eighty ) 
+    ( m eleven ) 
+    ( m elevens ) 
+    ( m eight oh ) 
+    ( m eight ohs ) 
+    ( m eight zero ) 
+    ( m eight zeros ) 
+    ( m one one ) 
+    ( m one ones ) 
+    ( one forty six ) 
+    ( one four six ) 
+    ( one forty sixes ) 
+    ( one four sixes ) 
+    ( one hundred ) 
+    ( one hundreds ) 
+    ( one zero zero ) 
+    ( one zero zeros ) 
+    ( s f three ) 
+    ( s f threes ) 
+    ( s h six ) 
+    ( s h sixes ) 
+    ( s w m ) 
+    ( s w ms ) 
+    ( seven fifty seven ) 
+    ( seven five seven ) 
+    ( seven fifty sevens ) 
+    ( seven five sevens ) 
+    ( seven forty four ) 
+    ( seven four four ) 
+    ( seven forty fours ) 
+    ( seven four fours ) 
+    ( seven forty seven ) 
+    ( seven four seven ) 
+    ( seven forty sevens ) 
+    ( seven four sevens ) 
+    ( seven six seven ) 
+    ( seven sixty seven ) 
+    ( seven six sevens ) 
+    ( seven sixty sevens ) 
+    ( seven six three ) 
+    ( seven sixty three ) 
+    ( seven six threes ) 
+    ( seven sixty threes ) 
+    ( seven thirty five ) 
+    ( seven three five ) 
+    ( seven thirty fives ) 
+    ( seven three fives ) 
+    ( seven thirty four ) 
+    ( seven three four ) 
+    ( seven thirty fours ) 
+    ( seven three fours ) 
+    ( seven thirty seven ) 
+    ( seven three seven ) 
+    ( seven thirty sevens ) 
+    ( seven three sevens ) 
+    ( seven thirty three ) 
+    ( seven three three ) 
+    ( seven thirty threes ) 
+    ( seven three threes ) 
+    ( seven twenty seven ) 
+    ( seven two seven ) 
+    ( seven twenty sevens ) 
+    ( seven two sevens ) 
+    ( seven four l ) 
+    ( seven four ls ) 
+    ( seven four m ) 
+    ( seven four ms ) 
+    ( seven three s ) 
+    ( seven three ss ) 
+    ( seven two s ) 
+    ( seven two ss ) 
+    ( seventy four l ) 
+    ( seventy four ls ) 
+    ( seventy four m ) 
+    ( seventy four ms ) 
+    ( seventy three s ) 
+    ( seventy three ss ) 
+    ( seventy two s ) 
+    ( seventy two ss ) 
+    ( three ten ) 
+    ( three tens ) 
+    ( three twenties ) 
+    ( three twenty ) 
+    ( three one oh ) 
+    ( three one ohs ) 
+    ( three one zero ) 
+    ( three one zeros ) 
+    ( three two oh ) 
+    ( three two ohs ) 
+    ( three two zero ) 
+    ( three two zeros )
+  ]
+
+.Aircraft-descr
+  [
+    (
+      Aircraft
+      type
+      Aircraft-manufacturer
+      Aircraft-basic-type
+    ) 
+    ( Det Aircraft-basic-type) 
+    ( Aircraft-basic-type  ) 
+    ( Det Aircraft-basic-type Aircraft-mod) 
+    ( Aircraft-basic-type Aircraft-mod ) 
+    (
+      Det
+      Aircraft-manufacturer
+      Aircraft-basic-type
+    ) 
+    (
+      Aircraft-manufacturer
+      Aircraft-basic-type
+    ) 
+    (
+      Det
+      Aircraft-manufacturer
+      Aircraft-basic-type
+      Aircraft-mod
+    ) 
+    (
+      Aircraft-manufacturer
+      Aircraft-basic-type
+      Aircraft-mod
+    ) 
+    (
+      Det
+      Aircraft-manufacturer
+      Aircraft-basic-type
+      Aircraft
+    ) 
+    (
+      Aircraft-manufacturer
+      Aircraft-basic-type
+      Aircraft
+    ) 
+    ( Det Aircraft Aircraft-mod ) 
+    ( Aircraft Aircraft-mod ) 
+    ( Det Type of Aircraft Aircraft-mod ) 
+    ( Type of Aircraft Aircraft-mod ) 
+    (
+      Det
+      aircraft
+      type
+      Aircraft-manufacturer
+      Aircraft-basic-type
+    ) 
+    (
+      aircraft
+      type
+      Aircraft-manufacturer
+      Aircraft-basic-type
+    ) 
+    ( Det aircraft type Aircraft-mod ) 
+    ( aircraft type Aircraft-mod ) 
+    ( Det other Aircraft ) 
+    ( other Aircraft ) 
+    ( Det other Aircraft Aircraft-mod ) 
+    ( other Aircraft Aircraft-mod ) 
+    ( the largest Aircraft ) 
+    ( the smallest Aircraft ) 
+    ( the smallest Aircraft Flight-mod-phrase )
+  ]
+
+Aircraft-manufacturer
+  [
+    ( aerospatiale aeritalia ) 
+    ( airbus industrie ) 
+    ( beechcraft ) 
+    ( boeing ) 
+    ( boeing canada ) 
+    ( british aerospace ) 
+    ( dornier ) 
+    ( embraer ) 
+    ( fairchild ) 
+    ( fokker ) 
+    ( lockheed ) 
+    ( mcdonnell douglas ) 
+    ( saab ) 
+    ( shorts )
+  ]
+
+Aircraft-mod
+  [
+    ( Flight-mod-phrase ) 
+    ( Pron-rel Airline-descr uses ) 
+    ( With-flight ) 
+    ( used With-flight ) 
+    ( used by Airline-descr ) 
+    ( used by Flight-descr )
+  ]
+
+Aircraft-param
+  [
+    ( Det Aircraft ) 
+    ( Aircraft ) 
+    ( Det Type of Aircraft ) 
+    ( Type of Aircraft ) 
+    ( Det aircraft type ) 
+    ( aircraft type ) 
+    ( Det aircraft types ) 
+    ( aircraft types )
+  ]
+
+Aircraft-wh
+  [
+    ( what Aircraft ) 
+    ( which Aircraft ) 
+    ( what Type of Aircraft ) 
+    ( which Type of Aircraft ) 
+    ( what type Aircraft ) 
+    ( which type Aircraft )
+  ]
+
+Aircraft
+  [
+    ( aircraft ) 
+    ( aircrafts ) 
+    ( airplane ) 
+    ( airplanes ) 
+    ( flight equipment ) 
+    ( plane ) 
+    ( planes )
+  ]
+
+Airline-code-descr
+  [
+    ( Det airline Code Airline-code ) 
+    ( airline Code Airline-code ) 
+    ( Det Code Airline-code ) 
+    ( Code Airline-code ) 
+    ( Det airline Airline-code ) 
+    ( airline Airline-code ) 
+    ( Det Airline-code ) 
+    ( Airline-code )
+  ]
+
+Airline-code-param
+  [ ( Det airline Code )  ( airline Code ) ]
+
+Airline-code
+  [
+    ( a a ) 
+    ( a c ) 
+    ( a r ) 
+    ( a s ) 
+    ( a t ) 
+    ( b a ) 
+    ( b e ) 
+    ( b h ) 
+    ( b x ) 
+    ( c o ) 
+    ( c oh ) 
+    ( c p ) 
+    ( d h ) 
+    ( d l ) 
+    ( e v ) 
+    ( f f ) 
+    ( g x ) 
+    ( h p ) 
+    ( h q ) 
+    ( i d ) 
+    ( k w ) 
+    ( l h ) 
+    ( m g ) 
+    ( n w ) 
+    ( n x ) 
+    ( nine e ) 
+    ( nine l ) 
+    ( nine n ) 
+    ( nine x ) 
+    ( o e ) 
+    ( o h ) 
+    ( o k ) 
+    ( o o ) 
+    ( q d ) 
+    ( r p ) 
+    ( r z ) 
+    ( s n ) 
+    ( s x ) 
+    ( seven v ) 
+    ( t g ) 
+    ( t w ) 
+    ( t z ) 
+    ( three j ) 
+    ( two v ) 
+    ( u a ) 
+    ( u s ) 
+    ( w n ) 
+    ( x j ) 
+    ( y x ) 
+    ( z w )
+  ]
+
+.Airline-descr
+  [
+    ( Airline-name and Airline-name ) 
+    ( Airline-name or Airline-name ) 
+    ( Det Airline Airline-mod-list ) 
+    ( Det airline other than Airline-name ) 
+    ( Det other airlines ) 
+    ( Det Airline-name ) 
+    ( Airline-name ) 
+    ( airline Airline-code ) 
+    ( Airline-code ) 
+    ( airline Airline-name ) 
+    ( all airlines ) 
+    ( any airline ) 
+    (
+      either
+      Airline-name
+      Airline-name
+      or
+      Airline-name
+    ) 
+    ( the airline Airline-name ) 
+    ( those airlines )
+  ]
+
+Airline-mod-list
+  [
+    ( Airline-mod ) 
+    ( Airline-mod Airline-mod )
+  ]
+
+Airline-mod
+  [
+    ( Pron-rel Airline-pred ) 
+    ( Pron-rel Fly Flight-mod-arrival-phrase ) 
+    ( Pron-rel Fly Flight-mod-departure-phrase ) 
+    ( Pron-rel use Airport-name ) 
+    ( With-flight ) 
+    ( serving Flight-mod-phrase )
+  ]
+
+Airline-name-poss
+  [
+    ( air alliances ) 
+    ( air canadas ) 
+    ( air ontarios ) 
+    ( air wisconsins ) 
+    ( alaska Airline-poss ) 
+    ( alaskas ) 
+    ( alpha airs ) 
+    ( america west Airline-poss ) 
+    ( america wests ) 
+    ( americas ) 
+    ( american Airline-poss ) 
+    ( american trans airs ) 
+    ( american west Airline-poss ) 
+    ( american wests ) 
+    ( americans ) 
+    ( atlantic coast Airline-poss ) 
+    ( atlantic coasts ) 
+    ( atlantic southeast Airline-poss ) 
+    ( atlantic southeasts ) 
+    ( braniff Airline-poss ) 
+    ( braniff international Airline-poss ) 
+    ( braniff internationals ) 
+    ( braniffs ) 
+    ( british airways ) 
+    ( business express Airline-poss ) 
+    ( business expresss ) 
+    ( canadian Airline-poss ) 
+    ( canadian Airline internationals ) 
+    ( canadians ) 
+    ( carnival Airline-poss ) 
+    ( christman air systems ) 
+    ( colgan Airline-poss ) 
+    ( colgan airs ) 
+    ( colgans ) 
+    ( comairs ) 
+    ( continental Airline-poss ) 
+    ( continentals ) 
+    ( czechoslovak Airline-poss ) 
+    ( czechoslovaks ) 
+    ( delta Airline-poss ) 
+    ( deltas ) 
+    ( express Airline-poss ) 
+    ( expresss ) 
+    ( grand airways ) 
+    ( lufthansa german Airline-poss ) 
+    ( lufthansas ) 
+    ( m g m grand airs ) 
+    ( mesaba aviations ) 
+    ( midwest express Airline-poss ) 
+    ( midwest expresss ) 
+    ( nationairs ) 
+    ( northeast express Airline-poss ) 
+    ( northeast express regional Airline-poss ) 
+    ( northeast expresss ) 
+    ( northeasts ) 
+    ( northwest Airline-poss ) 
+    ( northwests ) 
+    ( ontario Airline-poss ) 
+    ( ontario express Airline-poss ) 
+    ( ontario expresss ) 
+    ( ontarios ) 
+    ( precision Airline-poss ) 
+    ( precisions ) 
+    ( royal air marocs ) 
+    ( royal airs ) 
+    ( sabena belgian world Airline-poss ) 
+    ( sky west Airline-poss ) 
+    ( sky wests ) 
+    ( southwest Airline-poss ) 
+    ( southwest airs ) 
+    ( southwests ) 
+    ( t w as ) 
+    ( thai airways internationals ) 
+    ( thai airways ) 
+    ( tower airs ) 
+    ( trans states Airline-poss ) 
+    ( trans states ) 
+    ( trans world Airline-poss ) 
+    ( trans world express Airline-poss ) 
+    ( trans world expresss ) 
+    ( trans worlds ) 
+    ( u s Airline-poss ) 
+    ( u s air Airline-poss ) 
+    ( u s airs ) 
+    ( united Airline-poss ) 
+    ( uniteds ) 
+    ( westair Airline-poss ) 
+    ( westairs )
+  ]
+
+Airline-name
+  [
+    ( aerolineas argentinas ) 
+    ( air alliance ) 
+    ( air canada ) 
+    ( air ontario ) 
+    ( air wisconsin ) 
+    ( alaska Airline ) 
+    ( alaska ) 
+    ( alpha air ) 
+    ( america ) 
+    ( america west Airline ) 
+    ( america west ) 
+    ( american Airline ) 
+    ( american ) 
+    ( american trans air ) 
+    ( american west Airline ) 
+    ( american west ) 
+    ( atlantic coast Airline ) 
+    ( atlantic coast ) 
+    ( atlantic southeast Airline ) 
+    ( atlantic southeast ) 
+    ( braniff Airline ) 
+    ( braniff ) 
+    ( braniff international Airline ) 
+    ( braniff international ) 
+    ( british airways ) 
+    ( business express Airline ) 
+    ( business express ) 
+    ( canadian Airline international ) 
+    ( canadian Airline ) 
+    ( canadian ) 
+    ( carnival Airline ) 
+    ( christman air system ) 
+    ( colgan Airline ) 
+    ( colgan ) 
+    ( colgan air ) 
+    ( comair ) 
+    ( continental Airline ) 
+    ( continental ) 
+    ( czechoslovak Airline ) 
+    ( czechoslovak ) 
+    ( delta Airline ) 
+    ( delta ) 
+    ( express Airline ) 
+    ( express ) 
+    ( grand airways ) 
+    ( lufthansa ) 
+    ( lufthansa german Airline ) 
+    ( m g m grand air ) 
+    ( mesaba aviation ) 
+    ( midwest express Airline ) 
+    ( midwest express ) 
+    ( nationair ) 
+    ( northeast ) 
+    ( northeast express Airline ) 
+    ( northeast express ) 
+    ( northeast express regional Airline ) 
+    ( northwest Airline ) 
+    ( northwest ) 
+    ( ontario Airline ) 
+    ( ontario express Airline ) 
+    ( ontario express ) 
+    ( precision Airline ) 
+    ( precision ) 
+    ( royal air ) 
+    ( royal air maroc ) 
+    ( sabena belgian world Airline ) 
+    ( sky west Airline ) 
+    ( sky west ) 
+    ( southwest Airline ) 
+    ( southwest ) 
+    ( southwest air ) 
+    ( t w a ) 
+    ( thai airways international ) 
+    ( thai airways ) 
+    ( tower air ) 
+    ( trans states Airline ) 
+    ( trans states ) 
+    ( trans world Airline ) 
+    ( trans world ) 
+    ( trans world express Airline ) 
+    ( trans world express ) 
+    ( u s Airline ) 
+    ( u s air Airline ) 
+    ( u s air ) 
+    ( united Airline ) 
+    ( united ) 
+    ( westair Airline ) 
+    ( westair )
+  ]
+
+Airline-numq
+  ( ( how many airlines ) )
+
+Airline-param
+  [ ( the Airline )  ( Airline ) ]
+
+Airline-poss
+  [ ( airlines )  ( airlines ) ]
+
+Airline-pred-flight
+  [
+    ( does Flight-descr fly on ) 
+    ( flies Flight-descr ) 
+    ( fly Flight-descr ) 
+    ( has Flight-descr ) 
+    ( have Flight-descr ) 
+    ( is Flight-descr ) 
+    ( is Flight-descr with ) 
+    (
+      provide
+      Flight-adj-list
+      travel
+      service
+      Flight-mod-phrase
+    ) 
+    ( serve Flight-descr )
+  ]
+
+Airline-pred
+  [ ( Airline-pred-flight )  ( Flight-pred ) ]
+
+Airline-wh
+  [ ( what Airline )  ( which Airline )  ( which of Det airlines ) ]
+
+Airline
+  [ ( airline )  ( airlines ) ]
+
+.Airport-adj
+  [
+    ( City-name ) 
+    ( City-name State-name ) 
+    ( City-poss )
+  ]
+
+Airport-code-descr
+  [
+    ( Airport-code ) 
+    ( Det Code Airport-code ) 
+    ( airport Code Airport-code )
+  ]
+
+Airport-code-param
+  [ ( Det airport Code )  ( airport Code ) ]
+
+Airport-code
+  [
+    ( a t l ) 
+    ( b n a ) 
+    ( b o s ) 
+    ( b u r ) 
+    ( b w i ) 
+    ( c l e ) 
+    ( c l t ) 
+    ( c m h ) 
+    ( c v g ) 
+    ( d a l ) 
+    ( d c a ) 
+    ( d e n ) 
+    ( d e t ) 
+    ( d f w ) 
+    ( d t w ) 
+    ( e w r ) 
+    ( h o u ) 
+    ( h p n ) 
+    ( i a d ) 
+    ( i a h ) 
+    ( i n d ) 
+    ( j f k ) 
+    ( l a s ) 
+    ( l a x ) 
+    ( l g a ) 
+    ( l g b ) 
+    ( m c i ) 
+    ( m c o ) 
+    ( m d w ) 
+    ( m e m ) 
+    ( m i a ) 
+    ( m k e ) 
+    ( m s p ) 
+    ( o a k ) 
+    ( o n t ) 
+    ( o r d ) 
+    ( p h l ) 
+    ( p h x ) 
+    ( p i e ) 
+    ( p i t ) 
+    ( s a n ) 
+    ( s e a ) 
+    ( s f o ) 
+    ( s j c ) 
+    ( s t l ) 
+    ( t p a ) 
+    ( y k z ) 
+    ( y m x ) 
+    ( y t z ) 
+    ( y u l ) 
+    ( y y z )
+  ]
+
+Airport-descr
+  [
+    ( Airport-adj Airport-name ) 
+    ( Airport-code ) 
+    ( Airport-code or Airport-code ) 
+    ( Airport-code or Airport-name ) 
+    ( Airport-name ) 
+    ( Airport-name Airport-mod ) 
+    ( Airport-name or Airport-code ) 
+    ( Airport-name or Airport-name ) 
+    ( Det Airport ) 
+    ( Airport ) 
+    ( the Airport-adj Airport ) 
+    ( Airport-adj Airport ) 
+    ( the Airport-name airport ) 
+    ( Airport-name airport ) 
+    ( the Airport Airport-mod ) 
+    ( Airport Airport-mod ) 
+    ( the airport Airport-code ) 
+    ( airport Airport-code ) 
+    ( all airports ) 
+    ( all other airports ) 
+    ( any other airport ) 
+    ( other airports )
+  ]
+
+Airport-mod
+  [
+    ( With-city ) 
+    ( in the City-name area ) 
+    ( located in City-descr )
+  ]
+
+Airport-name
+  [
+    ( atlanta international ) 
+    ( baltimore international ) 
+    ( baltimore washington international ) 
+    ( baltimore washington ) 
+    ( boston international ) 
+    ( buttonville ) 
+    ( charlotte douglas international ) 
+    ( charlotte douglas ) 
+    ( charlotte international ) 
+    ( cincinnati international ) 
+    ( cincinnati northern kentucky international ) 
+    ( cincinnati northern kentucky ) 
+    ( clearwater international ) 
+    ( clearwater ) 
+    ( columbus international ) 
+    ( dallas fort worth international ) 
+    ( dallas fort worth ) 
+    ( dallas international ) 
+    ( detroit city ) 
+    ( dorval international ) 
+    ( dorval ) 
+    ( douglas international ) 
+    ( douglas ) 
+    ( dulles international ) 
+    ( dulles ) 
+    ( fort worth international ) 
+    ( general mitchell international ) 
+    ( general mitchell ) 
+    ( greater pittsburgh international ) 
+    ( greater pittsburgh ) 
+    ( hartsfield atlanta international ) 
+    ( hartsfield international ) 
+    ( hartsfield atlanta ) 
+    ( hartsfield ) 
+    ( hobby ) 
+    ( hopkins international ) 
+    ( hopkins ) 
+    ( houston intercontinental ) 
+    ( houston international ) 
+    ( indianapolis international ) 
+    ( j f k airport ) 
+    ( john f kennedy international ) 
+    ( john f kennedy ) 
+    ( john kennedy international ) 
+    ( john kennedy ) 
+    ( kansas city international ) 
+    ( kennedy international ) 
+    ( kennedy ) 
+    ( l a international ) 
+    ( la guardia ) 
+    ( lambert international ) 
+    ( lambert saint louis international ) 
+    ( lester b pearson international ) 
+    ( lester pearson international ) 
+    ( lester b pearson ) 
+    ( lester pearson ) 
+    ( lindbergh field san diego international ) 
+    ( lindbergh field international ) 
+    ( lindbergh field san diego ) 
+    ( lindbergh field ) 
+    ( logan international ) 
+    ( logan ) 
+    ( long beach municipal ) 
+    ( los angeles international ) 
+    ( love field ) 
+    ( mccarran international ) 
+    ( mccarran ) 
+    ( memphis international ) 
+    ( metro ) 
+    ( metropolitan ) 
+    ( metropolitan oakland international ) 
+    ( metropolitan oakland ) 
+    ( metropolitan wayne county ) 
+    ( miami international ) 
+    ( midway ) 
+    ( minneapolis international ) 
+    ( minneapolis saint paul international ) 
+    ( minneapolis saint paul ) 
+    ( mirabel ) 
+    ( nashville international ) 
+    ( newark international ) 
+    ( northern kentucky international ) 
+    ( northern kentucky ) 
+    ( ohare international ) 
+    ( ohare ) 
+    ( ontario international ) 
+    ( orlando international ) 
+    ( philadelphia international ) 
+    ( port columbus international ) 
+    ( port columbus ) 
+    ( saint louis international ) 
+    ( saint paul international ) 
+    ( saint petersburg clearwater international ) 
+    ( saint petersburg clearwater ) 
+    ( saint petersburg international ) 
+    ( salt lake city international ) 
+    ( san diego international ) 
+    ( san francisco international ) 
+    ( san jose international ) 
+    ( seatac international ) 
+    ( seatac ) 
+    ( seattle international ) 
+    ( seattle tacoma international ) 
+    ( sky harbor international ) 
+    ( sky harbor ) 
+    ( stapleton international ) 
+    ( stapleton ) 
+    ( tacoma international ) 
+    ( tampa international ) 
+    ( toronto international ) 
+    ( toronto island ) 
+    ( washington international ) 
+    ( washington national ) 
+    ( washingtons national ) 
+    ( wayne county ) 
+    ( william b hartsfield atlanta international ) 
+    ( william hartsfield atlanta international ) 
+    ( william b hartsfield international ) 
+    ( william hartsfield international ) 
+    ( william b hartsfield atlanta ) 
+    ( william hartsfield atlanta ) 
+    ( william b hartsfield ) 
+    ( william hartsfield )
+  ]
+
+Airport-wh
+  [ ( what Airport )  ( which Airport ) ]
+
+Airport
+  [ ( airport )  ( airports ) ]
+
+Amount
+  [
+    ( Non-zero-digit Digit ) 
+    ( Non-zero-digit Digit Digit ) 
+    ( Non-zero-digit Digit Digit Digit ) 
+    ( Non-zero-digit Double-digit ) 
+    ( Non-zero-digit hundred ) 
+    ( Non-zero-digit hundred and Double-digit ) 
+    ( Non-zero-digit hundred Double-digit ) 
+    ( Non-zero-digit hundred and Non-zero-digit ) 
+    ( Non-zero-digit hundred Non-zero-digit ) 
+    ( Non-zero-digit thousand ) 
+    (
+      Non-zero-digit
+      thousand
+      Non-zero-digit
+      hundred
+    ) 
+    (
+      Non-zero-digit
+      thousand
+      Non-zero-digit
+      hundred
+      and
+      Double-digit
+    ) 
+    (
+      Non-zero-digit
+      thousand
+      Non-zero-digit
+      hundred
+      Double-digit
+    ) 
+    (
+      Non-zero-digit
+      thousand
+      Non-zero-digit
+      hundred
+      and
+      Non-zero-digit
+    ) 
+    (
+      Non-zero-digit
+      thousand
+      Non-zero-digit
+      hundred
+      Non-zero-digit
+    ) 
+    ( a hundred ) 
+    ( a hundred and Double-digit ) 
+    ( a hundred Double-digit ) 
+    ( a hundred and Non-zero-digit ) 
+    ( a hundred Non-zero-digit ) 
+    ( a thousand ) 
+    ( a thousand Non-zero-digit hundred ) 
+    (
+      a
+      thousand
+      Non-zero-digit
+      hundred
+      and
+      Double-digit
+    ) 
+    (
+      a
+      thousand
+      Non-zero-digit
+      hundred
+      Double-digit
+    ) 
+    (
+      a
+      thousand
+      Non-zero-digit
+      hundred
+      and
+      Non-zero-digit
+    ) 
+    (
+      a
+      thousand
+      Non-zero-digit
+      hundred
+      Non-zero-digit
+    )
+  ]
+
+Arrival
+  [
+    ( I-want to Arrive ) 
+    ( arrival ) 
+    ( arrival time ) 
+    ( arrival times ) 
+    ( arriving ) 
+    ( getting in ) 
+    ( going ) 
+    ( it arrives ) 
+    ( reaching ) 
+    ( terminating )
+  ]
+
+Arrive
+  [
+    ( arrive ) 
+    ( arrives ) 
+    ( be there ) 
+    ( get ) 
+    ( land ) 
+    ( must arrive ) 
+    ( reaches ) 
+    ( should arrive ) 
+    ( will get me ) 
+    ( would arrive )
+  ]
+
+Can
+  [ ( can )  ( could )  ( would ) ]
+
+Cardinal
+  [
+    ( eight ) 
+    ( eighteen ) 
+    ( eleven ) 
+    ( fifteen ) 
+    ( five ) 
+    ( four ) 
+    ( fourteen ) 
+    ( nine ) 
+    ( nineteen ) 
+    ( one ) 
+    ( seven ) 
+    ( seventeen ) 
+    ( six ) 
+    ( sixteen ) 
+    ( ten ) 
+    ( thirteen ) 
+    ( thirty ) 
+    ( thirty one ) 
+    ( three ) 
+    ( twelve ) 
+    ( twenty ) 
+    ( twenty eight ) 
+    ( twenty five ) 
+    ( twenty four ) 
+    ( twenty nine ) 
+    ( twenty one ) 
+    ( twenty seven ) 
+    ( twenty six ) 
+    ( twenty three ) 
+    ( twenty two ) 
+    ( two )
+  ]
+
+Cheapest
+  [ ( cheapest )  ( least expensive )  ( lowest )  ( minimum ) ]
+
+City-area
+  [
+    ( City-poss downtown ) 
+    ( downtown ) 
+    ( downtown City-name ) 
+    ( the downtown area )
+  ]
+
+City-descr
+  [
+    ( City-name ) 
+    ( City-name City-name and City-name ) 
+    ( City-name City-name or City-name ) 
+    ( City-name Country-name ) 
+    ( City-name State-name ) 
+    ( City-name and City-name ) 
+    ( City-name or City-name ) 
+    ( all cities ) 
+    ( any city ) 
+    ( anywhere ) 
+    ( city City-name ) 
+    ( dallas fort worth ) 
+    ( either City-name City-name or City-name ) 
+    ( either City-name or City-name ) 
+    ( fort worth dallas ) 
+    ( other cities ) 
+    ( some other city ) 
+    ( somewhere ) 
+    ( the bay area ) 
+    ( the city ) 
+    ( the city of City-name ) 
+    ( various cities )
+  ]
+
+City-name
+  [
+    ( atlanta ) 
+    ( baltimore ) 
+    ( boston ) 
+    ( burbank ) 
+    ( charlotte ) 
+    ( chicago ) 
+    ( cincinnati ) 
+    ( cleveland ) 
+    ( columbus ) 
+    ( d c ) 
+    ( dallas ) 
+    ( denver ) 
+    ( detroit ) 
+    ( fort worth ) 
+    ( houston ) 
+    ( indianapolis ) 
+    ( kansas city ) 
+    ( l a ) 
+    ( las vegas ) 
+    ( long beach ) 
+    ( los angeles ) 
+    ( memphis ) 
+    ( miami ) 
+    ( milwaukee ) 
+    ( minneapolis ) 
+    ( montreal ) 
+    ( nashville ) 
+    ( new york ) 
+    ( new york city ) 
+    ( newark ) 
+    ( oakland ) 
+    ( ontario ) 
+    ( orlando ) 
+    ( philadelphia ) 
+    ( philly ) 
+    ( phoenix ) 
+    ( pittsburgh ) 
+    ( saint louis ) 
+    ( saint paul ) 
+    ( saint petersburg ) 
+    ( salt lake ) 
+    ( salt lake city ) 
+    ( san diego ) 
+    ( san francisco ) 
+    ( san jose ) 
+    ( seattle ) 
+    ( tacoma ) 
+    ( tampa ) 
+    ( toronto ) 
+    ( vegas ) 
+    ( washington ) 
+    ( washington d c ) 
+    ( westchester ) 
+    ( westchester county )
+  ]
+
+City-poss
+  [
+    ( atlantas ) 
+    ( baltimores ) 
+    ( bostons ) 
+    ( burbanks ) 
+    ( charlottes ) 
+    ( chicagos ) 
+    ( cincinnatis ) 
+    ( clevelands ) 
+    ( columbuss ) 
+    ( d cs ) 
+    ( dallass ) 
+    ( denvers ) 
+    ( detroits ) 
+    ( fort worths ) 
+    ( houstons ) 
+    ( indianapoliss ) 
+    ( kansas citys ) 
+    ( l as ) 
+    ( las vegass ) 
+    ( long beachs ) 
+    ( los angeless ) 
+    ( memphis ) 
+    ( memphiss ) 
+    ( miamis ) 
+    ( milwaukees ) 
+    ( minneapoliss ) 
+    ( montreals ) 
+    ( nashvilles ) 
+    ( new york citys ) 
+    ( new yorks ) 
+    ( newarks ) 
+    ( oaklands ) 
+    ( ontarios ) 
+    ( orlandos ) 
+    ( philadelphias ) 
+    ( phillys ) 
+    ( phoenixs ) 
+    ( pittsburghs ) 
+    ( saint louiss ) 
+    ( saint pauls ) 
+    ( saint petersburgs ) 
+    ( salt lake citys ) 
+    ( salt lakes ) 
+    ( san diegos ) 
+    ( san franciscos ) 
+    ( san joses ) 
+    ( seattles ) 
+    ( tacomas ) 
+    ( tampas ) 
+    ( torontos ) 
+    ( vegass ) 
+    ( washington d cs ) 
+    ( washingtons ) 
+    ( westchester countys ) 
+    ( westchesters )
+  ]
+
+City-pred-airline
+  ( ( are served by Airline-descr ) )
+
+City-wh
+  [ ( what City )  ( which City ) ]
+
+City
+  [ ( cities )  ( city ) ]
+
+Class-type
+  [
+    ( business class ) 
+    ( coach ) 
+    ( coach class ) 
+    ( coach economy ) 
+    ( first class ) 
+    ( the coach discount class )
+  ]
+
+Clear-memory
+  [ ( new itinerary )  ( next listing )  ( stop ) ]
+
+.Code
+  [
+    ( abbreviation ) 
+    ( abbreviations ) 
+    ( code ) 
+    ( codes ) 
+    ( initials ) 
+    ( prefix ) 
+    ( symbol )
+  ]
+
+Cost-upper-bound
+  [
+    ( Cost or less ) 
+    ( at most Cost ) 
+    ( below Cost ) 
+    ( equal to or less than Cost ) 
+    ( less than Cost ) 
+    ( less than or equal to Cost ) 
+    ( no more than Cost ) 
+    ( under Cost )
+  ]
+
+Cost
+  [ ( Amount )  ( Amount bucks )  ( Amount dollars ) ]
+
+Count-airlines-query
+  ( ( Airline-numq Flight-pred ) )
+
+Count-fares-query
+  (
+    (
+      how
+      many
+      Fare
+      are
+      there
+      Return-type
+      Flight-mod-phrase
+    )
+  )
+
+Count-flights-query
+  [
+    ( Flight-numq are there ) 
+    ( Flight-numq continue on to other cities ) 
+    ( Find Flight-numq ) 
+    ( Flight-numq ) 
+    ( Find Flight-numq Flight-mod-phrase ) 
+    ( Flight-numq Flight-mod-phrase ) 
+    ( Find Flight-numq Flight-pred ) 
+    ( Flight-numq Flight-pred ) 
+    ( Find the total number With-flight ) 
+    ( the total number With-flight ) 
+    ( how many Flight-pred ) 
+    ( how many are there )
+  ]
+
+Count-objects-query
+  [
+    ( Count-airlines-query ) 
+    ( Count-fares-query ) 
+    ( Count-flights-query )
+  ]
+
+Country-name
+  ( ( canada ) )
+
+.Date-day-descr
+  [
+    ( Cardinal Month ) 
+    ( Cardinal days from today ) 
+    ( Cardinal of Month ) 
+    ( Day-name ) 
+    ( Day-name Month Cardinal ) 
+    ( Day-name Month Ordinal ) 
+    ( Day-name Month Ordinal Year ) 
+    ( Day-name Month the Ordinal ) 
+    ( Day-name and Day-name ) 
+    ( Day-name or Day-name ) 
+    ( Day-name the Ordinal ) 
+    ( Day-name the Ordinal of Month ) 
+    ( Month Cardinal ) 
+    ( Month Ordinal ) 
+    ( Month Ordinal Year ) 
+    ( Month Ordinal and Ordinal ) 
+    ( Month Ordinal or Ordinal ) 
+    ( Month the Ordinal ) 
+    ( Month the Ordinal Year ) 
+    ( Ordinal ) 
+    ( a Day-name ) 
+    ( a weekday ) 
+    ( any day ) 
+    ( next Day-name ) 
+    ( next day ) 
+    ( one week from today ) 
+    ( that next Day-name ) 
+    ( the Ordinal ) 
+    ( the Ordinal and the Ordinal of Month ) 
+    ( the Ordinal of Month ) 
+    ( the Ordinal of Month Year ) 
+    ( the Ordinal or the Ordinal of Month ) 
+    ( the day following next Day-name ) 
+    ( the following Day-name ) 
+    ( the following day ) 
+    ( the next Day-name ) 
+    ( the next day ) 
+    ( the same day ) 
+    ( this Day-name ) 
+    ( today ) 
+    ( tomorrow ) 
+    ( tomorrow Month Ordinal )
+  ]
+
+Day-code
+  [ ( f r )  ( m o )  ( s a )  ( s u )  ( t h )  ( t u )  ( w e ) ]
+
+Day-name
+  [
+    ( friday ) 
+    ( fridays ) 
+    ( monday ) 
+    ( mondays ) 
+    ( saturday ) 
+    ( saturdays ) 
+    ( sunday ) 
+    ( sundays ) 
+    ( thursday ) 
+    ( thursdays ) 
+    ( tuesday ) 
+    ( tuesdays ) 
+    ( wednesday ) 
+    ( wednesdays )
+  ]
+
+Day-poss
+  [
+    ( fridays ) 
+    ( mondays ) 
+    ( saturdays ) 
+    ( sundays ) 
+    ( thursdays ) 
+    ( tuesdays ) 
+    ( wednesdays )
+  ]
+
+Depart
+  [
+    ( are ) 
+    ( depart ) 
+    ( departs ) 
+    ( leave ) 
+    ( leaves ) 
+    ( must leave ) 
+    ( should be ) 
+    ( should leave ) 
+    ( start ) 
+    ( takeoff ) 
+    ( would leave )
+  ]
+
+Departure-arrival-time
+  [
+    ( Det flight schedule ) 
+    ( flight schedule ) 
+    ( Det schedule ) 
+    ( schedule ) 
+    ( Det flight schedules ) 
+    ( flight schedules ) 
+    ( Det schedules ) 
+    ( schedules ) 
+    ( Det flight times ) 
+    ( flight times )
+  ]
+
+Departure
+  [
+    ( I-want to leave ) 
+    ( departing ) 
+    ( departure ) 
+    ( flying ) 
+    ( i leave ) 
+    ( i plan to leave ) 
+    ( ill be leaving ) 
+    ( im leaving ) 
+    ( leaving ) 
+    ( starting ) 
+    ( traveling )
+  ]
+
+Det
+  [
+    ( a ) 
+    ( all ) 
+    ( all of the ) 
+    ( all the ) 
+    ( all of your ) 
+    ( all your ) 
+    ( all those ) 
+    ( an ) 
+    ( another ) 
+    ( any ) 
+    ( each ) 
+    ( each and every ) 
+    ( every ) 
+    ( my ) 
+    ( one ) 
+    ( that ) 
+    ( the ) 
+    ( these ) 
+    ( this ) 
+    ( those ) 
+    ( your )
+  ]
+
+Digit
+  [ ( Non-zero-digit )  ( oh )  ( zero ) ]
+
+.Double-digit
+  [
+    ( Non-zero-digit Digit ) 
+    ( Tens ) 
+    ( Tens Non-zero-digit ) 
+    ( eighteen ) 
+    ( eleven ) 
+    ( fifteen ) 
+    ( fourteen ) 
+    ( nineteen ) 
+    ( seventeen ) 
+    ( sixteen ) 
+    ( ten ) 
+    ( thirteen ) 
+    ( twelve )
+  ]
+
+Earliest
+  [ ( earliest )  ( first ) ]
+
+Economy
+  [ ( economy )  ( economy class ) ]
+
+Expand-aircraft-query
+  ( ( Aircraft-wh is Det Aircraft-code ) )
+
+.Expand-fare-basis-query
+  [
+    ( Fare-basis-code-descr what does that Symbolize ) 
+    ( Find Det meanings of Fare-basis-code-param ) 
+    (
+      Find
+      the
+      difference
+      between
+      Fare-basis-code-descr
+      and
+      Fare-basis-code-descr
+    ) 
+    ( Find what Fare-basis-code-descr Symbolize ) 
+    ( Find what Fare-basis-code-param Symbolize ) 
+    ( Find Fare-basis-code-descr ) 
+    ( Fare-basis-code-descr ) 
+    ( explain Fare-basis-code-descr ) 
+    (
+      explain
+      Fare-basis-code-descr
+      and
+      Fare-basis-code-descr
+    ) 
+    ( explain Fare-basis-code-param ) 
+    (
+      i
+      would
+      like
+      for
+      you
+      to
+      Show-trans
+      the
+      meaning
+      of
+      Fare-basis-code-descr
+    ) 
+    ( what do Fare-basis-code-descr Symbolize ) 
+    ( what do Fare-basis-code-param Symbolize ) 
+    ( what does Fare-basis-code-descr Symbolize ) 
+    ( what is Fare-basis-code-descr Symbolize ) 
+    (
+      what
+      is
+      Fare-basis-code-descr
+      and
+      what
+      is
+      Fare-basis-code-descr
+    )
+  ]
+
+Expand-flight-query
+  [
+    (
+      Can
+      you
+      Show-ditrans
+      me
+      more
+      about
+      Flight-descr
+      and
+      Flight-descr
+    ) 
+    ( Find all details With-flight ) 
+    ( Find information With-flight ) 
+    ( Find information about Flight-descr ) 
+    ( Find the flight information )
+  ]
+
+Expand-ground-service-query
+  [
+    ( Find Ground-service-descr details ) 
+    ( Ground-service-descr details )
+  ]
+
+Expand-restriction-query
+  [
+    ( Restriction-code-descr ) 
+    ( Find Restriction-code-descr ) 
+    ( Restriction-code-descr ) 
+    ( explain Restriction-code-descr ) 
+    ( what do Restriction-code-descr Symbolize ) 
+    ( what does Restriction-code-descr Symbolize )
+  ]
+
+Fare-adj-airline
+  [
+    ( Airline-code ) 
+    ( Airline-name-poss ) 
+    ( Airline-name )
+  ]
+
+Fare-adj-list
+  [
+    ( Fare-adj ) 
+    ( Fare-adj Fare-adj ) 
+    ( Fare-adj Fare-adj Fare-adj )
+  ]
+
+Fare-adj
+  [
+    ( Cheapest ) 
+    ( Class-type ) 
+    ( Economy ) 
+    ( Fare-adj-airline ) 
+    ( Highest ) 
+    ( available ) 
+    ( one way ) 
+    ( round trip )
+  ]
+
+Fare-basis-code-descr
+  [
+    ( Code Fare-basis-code ) 
+    ( Fare-basis-code ) 
+    ( Det fare Code Fare-basis-code ) 
+    ( fare Code Fare-basis-code ) 
+    ( class Fare-basis-code ) 
+    ( class Fare-basis-code fare ) 
+    ( fare class Fare-basis-code )
+  ]
+
+Fare-basis-code-param
+  [ ( Det fare Code )  ( fare Code )  ( fare codes symbols ) ]
+
+Fare-basis-code
+  [
+    ( b ) 
+    ( b h ) 
+    ( b h w ) 
+    ( b h x ) 
+    ( b l ) 
+    ( b l w ) 
+    ( b l x ) 
+    ( b n ) 
+    ( b o w ) 
+    ( b o x ) 
+    ( b w ) 
+    ( b x ) 
+    ( c ) 
+    ( c n ) 
+    ( f ) 
+    ( h ) 
+    ( h h ) 
+    ( h h w ) 
+    ( h h x ) 
+    ( h l ) 
+    ( h l w ) 
+    ( h l x ) 
+    ( h o w ) 
+    ( h o x ) 
+    ( j ) 
+    ( k ) 
+    ( k h ) 
+    ( k l ) 
+    ( k n ) 
+    ( l x ) 
+    ( m ) 
+    ( m h ) 
+    ( m l ) 
+    ( m o w ) 
+    ( p ) 
+    ( q ) 
+    ( q h ) 
+    ( q h w ) 
+    ( q h x ) 
+    ( q l w ) 
+    ( q l x ) 
+    ( q o ) 
+    ( q o w ) 
+    ( q o x ) 
+    ( q oh ) 
+    ( q w ) 
+    ( q x ) 
+    ( s ) 
+    ( u ) 
+    ( v ) 
+    ( v h w ) 
+    ( v h x ) 
+    ( v w ) 
+    ( v x ) 
+    ( y ) 
+    ( y h ) 
+    ( y l ) 
+    ( y n ) 
+    ( y w ) 
+    ( y x )
+  ]
+
+Fare-descr
+  [
+    ( Cheapest ) 
+    ( Det Cheapest of Det Fare ) 
+    (
+      Det
+      Fare-adj
+      and
+      Fare-adj
+      Fare
+      Fare-mod-list
+    ) 
+    ( Det Highest of Det Fare ) 
+    ( Fare-param ) 
+    ( Highest ) 
+    ( Det Fare-adj-list Fare ) 
+    ( Fare-adj-list Fare ) 
+    ( Det Fare-adj-list Fare Fare-mod-list ) 
+    ( Fare-adj-list Fare Fare-mod-list ) 
+    ( Det Fare Fare-mod-list ) 
+    ( Fare Fare-mod-list )
+  ]
+
+Fare-mod-class
+  [
+    ( for a Class-type ticket ) 
+    ( of Class-type tickets ) 
+    ( of a Class-type ticket )
+  ]
+
+Fare-mod-cost-upper-bound
+  [
+    ( Cost-upper-bound ) 
+    ( Pron-rel are Cost-upper-bound ) 
+    ( Pron-rel are priced Cost-upper-bound ) 
+    ( Pron-rel are priced at Cost-upper-bound ) 
+    ( Pron-rel cost Cost-upper-bound ) 
+    ( costing Cost-upper-bound ) 
+    ( costing Cost ) 
+    ( for Cost ) 
+    ( of Cost-upper-bound ) 
+    ( whose Fare is Cost-upper-bound ) 
+    ( with Fare-param of Cost ) 
+    ( with Fare Cost-upper-bound ) 
+    ( with a Fare of Cost-upper-bound )
+  ]
+
+Fare-mod-flight
+  [ ( Flight-fare-mod-list )  ( With-flight ) ]
+
+Fare-mod-intro
+  ( ( Flight-mod-airline ) )
+
+Fare-mod-list
+  [
+    ( Fare-mod-flight ) 
+    ( Fare-mod-flight Fare-mod ) 
+    ( Fare-mod ) 
+    ( Fare-mod Fare-mod-flight ) 
+    ( Fare-mod Fare-mod-flight Fare-mod ) 
+    ( Fare-mod Fare-mod )
+  ]
+
+Fare-mod-restriction
+  [
+    ( with no restrictions ) 
+    ( without Restriction-code-descr ) 
+    ( without Restriction-param )
+  ]
+
+Fare-mod-return-type
+  [
+    ( Pron-rel are Return-type Flight ) 
+    ( Return-type ) 
+    ( flying Return-type ) 
+    ( for Return-type ) 
+    ( for a Return-type ) 
+    ( where a round trip is not required ) 
+    ( where round trip is not required )
+  ]
+
+Fare-mod
+  [
+    ( Fare-mod-class ) 
+    ( Fare-mod-cost-upper-bound ) 
+    ( Fare-mod-restriction ) 
+    ( Fare-mod-return-type ) 
+    ( for Cardinal ) 
+    ( offered )
+  ]
+
+.Fare-param
+  [ ( Det Fare )  ( Fare )  ( their Fare ) ]
+
+Fare
+  [
+    ( air fares ) 
+    ( airfare ) 
+    ( airfares ) 
+    ( cost ) 
+    ( costs ) 
+    ( fare ) 
+    ( fare information ) 
+    ( fares ) 
+    ( flight charges ) 
+    ( flight price ) 
+    ( price ) 
+    ( prices ) 
+    ( rate ) 
+    ( rate information ) 
+    ( rates ) 
+    ( ticket fare ) 
+    ( ticket price )
+  ]
+
+Find-aircraft-aircraft-description-query
+  [
+    ( what does Aircraft-code-descr Symbolize ) 
+    ( what is Aircraft-code-descr )
+  ]
+
+.Find-aircraft-capacity-query
+  [
+    ( Aircraft-descr Aircraft-capacity-param ) 
+    ( Find Aircraft-capacity-param ) 
+    ( Find Aircraft-capacity-param With-aircraft ) 
+    ( Find Aircraft-capacity-param With-flight ) 
+    ( what size Aircraft do Flight-descr use )
+  ]
+
+Find-aircraft-query
+  [
+    ( Aircraft-wh are these ) 
+    ( Aircraft-wh are used With-flight ) 
+    ( Aircraft-wh do they use ) 
+    (
+      Aircraft-wh
+      does
+      Airline-descr
+      use
+      With-flight
+    ) 
+    ( Aircraft-wh does Flight-descr have ) 
+    ( Aircraft-wh does Flight-descr use ) 
+    ( Aircraft-wh is Flight-descr ) 
+    ( Aircraft-wh is being used With-flight ) 
+    ( Aircraft-wh is flown With-flight ) 
+    ( Aircraft-wh is flying Flight-descr ) 
+    ( Aircraft-wh is it ) 
+    ( Aircraft-wh is that ) 
+    ( Aircraft-wh is this ) 
+    ( Aircraft-wh is used ) 
+    ( Aircraft-wh is used Flight-mod-phrase ) 
+    ( Aircraft-wh is used With-flight ) 
+    ( Aircraft-wh would i be flying ) 
+    ( Flight-descr is Aircraft-wh ) 
+    ( With-flight Aircraft-wh is used ) 
+    ( With-flight Find Aircraft-descr ) 
+    ( With-flight Find Aircraft-param ) 
+    ( Find Aircraft-descr ) 
+    ( Aircraft-descr ) 
+    ( Find Aircraft-param ) 
+    ( Aircraft-param ) 
+    ( Find Aircraft-wh is used With-flight ) 
+    ( Aircraft-wh is used With-flight ) 
+    ( which is Aircraft-descr )
+  ]
+
+Find-airline-and-flight-number-query
+  [
+    ( Find Airline-param and Flight-number-param ) 
+    ( Airline-param and Flight-number-param ) 
+    (
+      Find
+      Airline-param
+      and
+      Flight-number-param
+      Flight-mod-phrase
+    ) 
+    ( Airline-param and Flight-number-param Flight-mod-phrase ) 
+    (
+      Find
+      Airline-param
+      and
+      Flight-number-param
+      Flight-mod-phrase
+      on
+      the
+      same
+      date
+      Date-day-descr
+      also
+      Flight-mod-phrase
+    ) 
+    (
+      Airline-param
+      and
+      Flight-number-param
+      Flight-mod-phrase
+      on
+      the
+      same
+      date
+      Date-day-descr
+      also
+      Flight-mod-phrase
+    ) 
+    ( Find Airline-param and Flight-number-param With-flight ) 
+    ( Airline-param and Flight-number-param With-flight ) 
+    (
+      Find
+      Flight-number-param
+      and
+      Airline-param
+      Flight-mod-phrase
+    ) 
+    ( Flight-number-param and Airline-param Flight-mod-phrase ) 
+    ( Find Flight-number-param and Airline-param With-flight ) 
+    ( Flight-number-param and Airline-param With-flight )
+  ]
+
+Find-airline-code-query
+  [
+    ( Airline-code-param ) 
+    ( Find Airline-code-param ) 
+    ( Airline-code-param ) 
+    ( what is Airline-name Code ) 
+    ( what is Det Code for Airline-name )
+  ]
+
+.Find-airline-name-query
+  [
+    ( Airline-code-descr ) 
+    ( Airline-code-descr is the Code for Airline-wh ) 
+    ( Airline-param Pron-rel stands for Airline-code-descr ) 
+    ( Airline-param for flight Airline-code ) 
+    ( Airline-param with Airline-code-descr ) 
+    (
+      Airline-wh
+      are
+      Airline-code-descr
+      and
+      Airline-code-descr
+    ) 
+    ( Airline-wh does Airline-code-descr Symbolize ) 
+    ( Airline-wh has Airline-code-descr ) 
+    ( Airline-wh is Airline-code-descr ) 
+    ( Airline-wh is abbreviated Airline-code ) 
+    ( Airline-wh stands for Airline-code-descr ) 
+    ( Airline-wh uses Airline-code-descr ) 
+    ( Find what Airline-code-descr Symbolize ) 
+    ( With-flight what does Airline-code-descr Symbolize ) 
+    ( airlines name ) 
+    ( define Airline-code-descr ) 
+    ( what carrier is Airline-code-descr ) 
+    ( what does Airline-code-descr Symbolize ) 
+    ( what is Airline-code-descr )
+  ]
+
+Find-airline-query
+  [
+    ( Airline-wh ) 
+    ( Airline-wh Airline-pred ) 
+    ( Airline-wh Airline-pred and Airline-pred ) 
+    ( Airline-wh Flight-mod-phrase ) 
+    ( Airline-wh fly Flight-mod-phrase ) 
+    ( Airline-wh has Fare-descr ) 
+    ( Airline-wh is this ) 
+    (
+      Find-flight
+      Flight-mod-phrase
+      and
+      returning
+      Flight-mod-phrase
+      Airline-wh
+      fly
+      that
+      route
+    ) 
+    ( Find Airline-descr ) 
+    ( Find Airline-param Flight-mod-phrase ) 
+    ( Find Flight-descr and Find Airline-descr ) 
+    ( Find airlines Airline-mod-list ) 
+    ( Find any other airlines Airline-mod-list ) 
+    ( Find Airline-param ) 
+    ( Airline-param ) 
+    ( airlines Airline-mod-list ) 
+    (
+      can
+      i
+      take
+      a
+      single
+      airline
+      From-airport-layover-to-airport
+      back
+      To-airport
+    ) 
+    ( do Airline-descr Airline-pred ) 
+    ( of Airline-descr Airline-wh Airline-pred )
+  ]
+
+.Find-airport-airport-location-query
+  [
+    ( where is Airport-descr ) 
+    ( where is Airport-descr located ) 
+    ( where is Airport-descr )
+  ]
+
+Find-airport-code-query
+  [ ( Find Airport-code-param )  ( Airport-code-param ) ]
+
+Find-airport-min-connect-time-query
+  [
+    ( Find Min-connect-time ) 
+    ( Min-connect-time ) 
+    ( Find Min-connect-time With-airport ) 
+    ( Min-connect-time With-airport )
+  ]
+
+.Find-airport-name-query
+  [
+    ( Airport-code-descr ) 
+    ( Airport-wh is Airport-code-descr ) 
+    ( Find the name of Airport-descr ) 
+    ( Find the name of the airport Flight-descr will Arrive in ) 
+    ( Find the name of the airport that this flies into ) 
+    ( Find the names of Airport-descr ) 
+    ( airport name ) 
+    ( explain Airport-code-descr ) 
+    ( in City-descr ) 
+    ( name of Airport-descr ) 
+    ( names of airports ) 
+    ( what do Airport-code-descr Symbolize ) 
+    ( what does Airport-code-descr Symbolize ) 
+    ( what does ord Airport-code Symbolize ) 
+    ( what is Airport-code-descr ) 
+    ( what is the meaning of Airport-code-descr )
+  ]
+
+Find-airport-query
+  [
+    ( Airport-descr ) 
+    ( Airport-wh With-city Have-miles-distant-min ) 
+    ( Airport-wh is With-city ) 
+    ( Airport-wh serves City-descr ) 
+    ( Find Airport-descr ) 
+    ( what Airport-adj airports do Flight-descr use ) 
+    ( where does Airline-descr fly ) 
+    ( where does Airline-descr fly to ) 
+    ( where does Airline-descr fly to From-airport ) 
+    ( where does Airline-descr go ) 
+    ( where does Flight-descr arrive at )
+  ]
+
+Find-airport-service-miles-distant-query
+  [
+    (
+      Find
+      the
+      distance
+      between
+      Airport-descr
+      and
+      City-descr
+    ) 
+    (
+      Find
+      distance
+      between
+      Airport-descr
+      and
+      City-descr
+    ) 
+    (
+      Find
+      the
+      distance
+      between
+      Airport-descr
+      and
+      City-area
+    ) 
+    ( Find distance between Airport-descr and City-area ) 
+    ( Find the distance from Airport-descr to City-area ) 
+    ( Find distance from Airport-descr to City-area ) 
+    (
+      Find
+      the
+      distance
+      from
+      Airport-descr
+      to
+      City-descr
+    ) 
+    ( Find distance from Airport-descr to City-descr ) 
+    ( Find the distance from Airport-descr to City-name ) 
+    ( Find distance from Airport-descr to City-name ) 
+    ( how far is Airport-descr from City-area ) 
+    ( how far is it from Airport-descr to City-name )
+  ]
+
+Find-airport-service-minutes-distant-query
+  [
+    ( how long does Ground-service-param take from Airport-descr ) 
+    ( how much time does it take to get City-area ) 
+    ( what time does it take to get City-area )
+  ]
+
+Find-all-attributes-query
+  [
+    ( Expand-aircraft-query ) 
+    ( Expand-fare-basis-query ) 
+    ( Expand-flight-query ) 
+    ( Expand-ground-service-query ) 
+    ( Expand-restriction-query )
+  ]
+
+Find-attribute-query
+  [
+    (
+      Find-aircraft-aircraft-description-query
+    ) 
+    ( Find-aircraft-capacity-query ) 
+    ( Find-airline-code-query ) 
+    ( Find-airline-name-query ) 
+    ( Find-airport-airport-location-query ) 
+    ( Find-airport-code-query ) 
+    ( Find-airport-min-connect-time-query ) 
+    ( Find-airport-name-query ) 
+    (
+      Find-airport-service-miles-distant-query
+    ) 
+    (
+      Find-airport-service-minutes-distant-query
+    ) 
+    ( Find-city-code-query ) 
+    ( Find-city-name-query ) 
+    ( Find-days-day-name-query ) 
+    (
+      Find-fare-basis-fare-basis-code-query
+    ) 
+    ( Find-flight-arrival-time-query ) 
+    ( Find-flight-departure-time-query ) 
+    ( Find-flight-number-query ) 
+    ( Find-flight-stop-arrival-time-query ) 
+    ( Find-flight-stops-query ) 
+    ( Find-flight-time-elapsed-query ) 
+    ( Find-flight-to-airport-query ) 
+    (
+      Find-food-service-meal-description-query
+    ) 
+    (
+      Find-ground-service-ground-fare-query
+    ) 
+    (
+      Find-ground-service-transport-type-query
+    )
+  ]
+
+Find-city-code-query
+  ( ( what is the Code for City-name ) )
+
+Find-city-name-query
+  ( ( Find city names ) )
+
+Find-city-query
+  [
+    ( City-wh ) 
+    ( City-wh City-pred-airline ) 
+    ( City-wh are Det Flight-stop ) 
+    ( City-wh do Flight-descr stopover in ) 
+    ( City-wh does Airline-descr stopover during the flight ) 
+    ( City-wh does Flight-descr stop in ) 
+    ( City-wh does Flight-descr stop on ) 
+    ( City-wh does Flight-descr stop over in ) 
+    ( City-wh does this arrive in ) 
+    ( City-wh is Airport-code-descr ) 
+    ( City-wh is Airport-descr in ) 
+    ( City-wh is Det Flight-stop With-flight ) 
+    ( City-wh is it in ) 
+    ( Find City-wh Flight-descr stop in ) 
+    ( Find City-wh Flight-descr stops in ) 
+    (
+      Find
+      City
+      served
+      both
+      by
+      Airline-descr
+      and
+      Airline-descr
+    ) 
+    ( Find Det City Pron-rel Airline-descr serves ) 
+    ( Find Det City in which Flight-descr make Flight-stop ) 
+    ( Find Det City in which these Flight-stop are made ) 
+    ( Find Det City of Det Flight-stop ) 
+    ( Find Det City served by Airline-descr ) 
+    ( Find Det connecting City ) 
+    ( Find Det stopover City With-flight ) 
+    ( Find connecting City ) 
+    ( Find in City-wh Flight-descr stop ) 
+    ( Find stopover City With-flight ) 
+    ( Flight-descr City-wh does it stopover in ) 
+    ( are these cities served by Airline-descr )
+  ]
+
+.Find-class-query
+  [
+    ( the fare classes With-flight ) 
+    ( what are the classes ) 
+    ( what class are Flight-descr ) 
+    ( what classes of service are available With-flight ) 
+    ( what classes of service does Airline-descr have ) 
+    ( what classes of service does Airline-descr provide ) 
+    ( what classes of services are available With-flight ) 
+    ( which booking class is Class-type )
+  ]
+
+.Find-day-query
+  ( ( Find the day With-flight ) )
+
+Find-days-day-name-query
+  ( ( what is Day-code ) )
+
+.Find-fare-basis-fare-basis-code-query
+  [
+    ( Find Fare-basis-code-param ) 
+    ( what is Det fare Code for Class-type )
+  ]
+
+Find-fare-query
+  [
+    (
+      Find
+      Fare-descr
+      and
+      Fare-descr
+      Fare-mod-list
+    ) 
+    (
+      Find
+      Fare-descr
+      and
+      Fare-descr
+      With-flight
+    ) 
+    ( Find Fare-descr for that ) 
+    ( Find Fare-param of Fare-basis-code-descr ) 
+    ( Find Fare-param of Fare-descr ) 
+    ( Find Fare of Flight-descr and Flight-descr ) 
+    ( Find any other Fare Flight-mod-phrase ) 
+    ( Flight-mod-airline Find Fare-descr ) 
+    ( Find Fare-descr ) 
+    ( Fare-descr ) 
+    ( amount Fare-mod-list ) 
+    ( how much do Flight-descr cost ) 
+    ( how much does Flight-descr cost ) 
+    ( how much do these cost ) 
+    ( how much do they cost ) 
+    ( how much do those cost ) 
+    ( how much does Class-type cost ) 
+    ( how much does Fare-basis-code-descr cost ) 
+    ( how much does Fare-descr cost on each of these Flight ) 
+    ( how much does that cost ) 
+    ( how much is Fare-basis-code-descr ) 
+    ( how much is Fare-descr ) 
+    ( how much is Flight-descr ) 
+    ( how much is Flight-descr With-flight ) 
+    ( how much is Flight-descr how much does it cost ) 
+    (
+      how
+      much
+      will
+      it
+      cost
+      Flight-mod-phrase
+      flying
+      Flight-descr
+    ) 
+    ( how much will that cost ) 
+    ( how much would Fare-descr cost ) 
+    ( what Fare ) 
+    ( what would be Fare-descr ) 
+    ( which is Fare-descr ) 
+    ( which of Det Fare is the Cheapest ) 
+    ( which of Det Fare is the Highest )
+  ]
+
+Find-flight-and-fare-query
+  [
+    (
+      Find-flight
+      Flight-mod-phrase
+      how
+      much
+      is
+      Fare-descr
+    ) 
+    ( Find Det Cheapest Flight with Fare-descr ) 
+    ( Find Fare-descr as well ) 
+    (
+      Find
+      Flight-descr
+      Find
+      Fare-descr
+      Flight-mod-phrase
+    ) 
+    ( Find Flight-descr along with Fare-descr ) 
+    ( Find Flight-descr and Fare ) 
+    (
+      Find
+      Flight-descr
+      and
+      Fare
+      Flight-mod-phrase
+    ) 
+    ( Find Flight-descr and Find Fare-descr ) 
+    (
+      Find
+      Flight-descr
+      and
+      their
+      Fare
+      Flight-mod-phrase
+    ) 
+    (
+      Find
+      Flight-descr
+      with
+      Det
+      Fare
+      Flight-mod-phrase
+    ) 
+    (
+      Find
+      Flight-descr
+      with
+      Fare-descr
+      With-flight
+    ) 
+    (
+      Flight-descr
+      and
+      Fare-descr
+      Flight-mod-phrase
+    ) 
+    ( Flight-descr and Fare-param ) 
+    (
+      Flight-mod-phrase
+      Det
+      nonstop
+      Flight-mod-phrase
+      and
+      Fare-param
+    ) 
+    (
+      Find
+      Fare-descr
+      and
+      Flight-descr
+      Flight-mod-phrase
+    ) 
+    (
+      Fare-descr
+      and
+      Flight-descr
+      Flight-mod-phrase
+    ) 
+    ( with Fare-param )
+  ]
+
+Find-flight-and-return-query
+  [
+    (
+      Find-flight
+      Flight-mod-phrase
+      and
+      returning
+      Flight-mod-phrase
+    ) 
+    (
+      Find
+      Flight-descr
+      Pron-rel
+      return
+      Flight-mod-phrase
+    ) 
+    ( Find Flight-descr and back ) 
+    (
+      Find
+      Flight-descr
+      and
+      returning
+      Flight-mod-phrase
+    ) 
+    (
+      Find
+      Flight-descr
+      returning
+      Flight-mod-phrase
+    ) 
+    (
+      Find
+      Flight-descr
+      then
+      returning
+      Flight-mod-phrase
+    ) 
+    (
+      Flight-wh
+      Flight-pred
+      returning
+      Flight-mod-phrase
+    )
+  ]
+
+Find-flight-and-stops-query
+  ( ( City-name Flight-stop ) )
+
+Find-flight-arrival-time-query
+  [
+    (
+      Time-wh
+      do
+      Flight-descr
+      Flight-pred-to-airport
+    ) 
+    (
+      Time-wh
+      does
+      Flight-descr
+      Flight-pred-to-airport
+    ) 
+    (
+      Time-wh
+      would
+      Flight-descr
+      Flight-pred-to-airport
+    ) 
+    ( Find Flight-arrival-time-param ) 
+    ( Flight-arrival-time-param ) 
+    ( Find Flight-arrival-time-param With-flight ) 
+    ( Flight-arrival-time-param With-flight )
+  ]
+
+Find-flight-departure-time-query
+  [
+    ( Time-wh are Flight-descr ) 
+    ( Time-wh is Flight-descr ) 
+    (
+      Time-wh
+      do
+      Flight-descr
+      Flight-pred-from-airport
+    ) 
+    (
+      Time-wh
+      does
+      Flight-descr
+      Flight-pred-from-airport
+    ) 
+    (
+      Time-wh
+      would
+      Flight-descr
+      Flight-pred-from-airport
+    ) 
+    ( Time-wh do Flight-descr leave ) 
+    ( Time-wh is there Flight-descr )
+  ]
+
+Find-flight-number-query
+  [
+    ( Find Flight-number-param ) 
+    ( Flight-number-param ) 
+    (
+      Find
+      Flight-number-param
+      Flight-mod-phrase
+    ) 
+    (
+      Flight-number-param
+      Flight-mod-phrase
+    ) 
+    ( Find Flight-number-param With-flight ) 
+    ( Flight-number-param With-flight )
+  ]
+
+Find-flight-query
+  [
+    ( do Flight-descr Depart everyday ) 
+    ( does Flight-descr Depart everyday ) 
+    ( do Flight-descr Flight-pred ) 
+    ( does Flight-descr Flight-pred ) 
+    ( Airline-param is Airline-descr ) 
+    ( Cheapest ) 
+    ( Cheapest Return-type ) 
+    ( Cheapest Return-type Flight-mod-phrase ) 
+    ( Earliest nonstop ) 
+    ( Find-flight Flight-mod-phrase ) 
+    (
+      Find-flight
+      Flight-mod-phrase
+      Pre-filler
+      Find
+      Flight-descr
+    ) 
+    (
+      Find-flight
+      Flight-mod-phrase
+      and
+      Flight-pred
+    ) 
+    ( Find-flight With-flight ) 
+    ( Find-meal on the Ordinal leg or the Ordinal leg ) 
+    ( Find Date-day-descr ) 
+    ( Find Det Earliest arrival To-airport With-flight ) 
+    ( Find Flight-descr Departure ) 
+    ( Find Flight-descr Find-flight ) 
+    ( Find Flight-descr Find Flight-descr ) 
+    ( Find Flight-descr I-want Fare-descr ) 
+    ( Find Flight-descr Pron-rel are Flight-descr ) 
+    (
+      Find
+      Flight-descr
+      Pron-rel
+      return
+      Flight-mod-phrase
+    ) 
+    (
+      Find
+      Flight-descr
+      and
+      Find-flight
+      Flight-mod-phrase
+    ) 
+    ( Find Flight-descr and Find Flight-descr ) 
+    (
+      Find
+      Flight-descr
+      and
+      Flight-descr
+      Arrival
+      at
+      the
+      same
+      time
+    ) 
+    ( Find Flight-descr and Flight-pred ) 
+    (
+      Find
+      Flight-descr
+      returning
+      Flight-mod-phrase
+    ) 
+    ( Find Flight-descr whats available for that ) 
+    ( Find Flight-wh Flight-pred ) 
+    (
+      Find
+      Flight-wh
+      are
+      available
+      Flight-mod-phrase
+    ) 
+    ( Find departures Time-descr ) 
+    ( Find my choices With-flight ) 
+    ( Find schedules Flight-mod-phrase ) 
+    ( Find that Flight-mod-phrase ) 
+    ( Find the Cheapest ) 
+    ( Find the Cheapest way to travel Flight-mod-phrase ) 
+    ( Find the Cheapest you have on that ) 
+    ( Find the Cheapest you have ) 
+    ( Find the Highest ) 
+    ( Find the Highest way to travel Flight-mod-phrase ) 
+    ( Find the Highest you have on that ) 
+    ( Find the Highest you have ) 
+    ( Find those Flight-mod-phrase ) 
+    ( Find those Pron-rel are Flight-mod-phrase ) 
+    (
+      Flight-adj-list
+      schedule
+      Flight-mod-phrase
+    ) 
+    ( Flight-descr Flight-pred ) 
+    ( Flight-descr does that Flight-pred ) 
+    (
+      Flight-mod-intro
+      Find-flight
+      Flight-mod-phrase
+    ) 
+    ( Flight-mod-intro Find Flight-descr ) 
+    (
+      Flight-mod-intro
+      Find
+      any
+      Flight
+      Flight-mod-phrase
+    ) 
+    (
+      Flight-mod-intro
+      Flight-wh
+      Flight-pred
+    ) 
+    (
+      Flight-mod-intro
+      I-want
+      to
+      return
+      home
+      Flight-mod-phrase
+    ) 
+    ( Flight-mod-phrase Fare-descr ) 
+    ( Flight-mod-phrase Flight-pred ) 
+    ( Flight-mod-phrase and Flight-pred ) 
+    ( Flight-pred ) 
+    ( Flight-pred and Flight-mod-phrase ) 
+    ( Flight-wh ) 
+    ( Flight-wh Depart and Arrive at Airport-name ) 
+    ( Flight-wh Flight-pred ) 
+    ( Flight-wh are Cost-upper-bound round trip ) 
+    ( Flight-wh are Flight-descr ) 
+    ( Flight-wh is Flight-descr ) 
+    ( Flight-wh are there Flight-mod-phrase ) 
+    ( Flight-wh do you have Flight-mod-phrase ) 
+    ( Flight-wh have the smallest seating capacity ) 
+    ( Flight-wh is shortest ) 
+    ( Flight-wh is that ) 
+    ( Flight-wh return Flight-mod-phrase ) 
+    (
+      From-airport
+      and
+      Find-flight
+      Flight-mod-phrase
+    ) 
+    ( Highest ) 
+    ( Highest Return-type ) 
+    ( Highest Return-type Flight-mod-phrase ) 
+    (
+      I-want
+      to
+      Know
+      if
+      there
+      are
+      any
+      Flight-adj-list
+      Flight
+      Flight-mod-phrase
+    ) 
+    (
+      I-want
+      to
+      arrange
+      for
+      Cardinal
+      friends
+      to
+      fly
+      To-airport
+      On-day
+      Time-descr
+      one
+      of
+      the
+      people
+      is
+      coming
+      From-airport
+      and
+      the
+      other
+      is
+      coming
+      From-airport
+    ) 
+    ( I-want to book Flight-descr ) 
+    (
+      I-want
+      to
+      eat
+      Meal-descr
+      while
+      i
+      travel
+      Find-meal
+      With-flight
+    ) 
+    ( I-want to make Flight-descr ) 
+    ( I-want to return Flight-mod-phrase ) 
+    ( I-want to return home Flight-mod-phrase ) 
+    ( I-want to schedule Flight-descr ) 
+    ( Latest nonstop returning ) 
+    ( Show-ditrans me from this list Flight-descr ) 
+    ( With-flight Find-flight Flight-mod-phrase ) 
+    ( With-flight Find Flight-descr ) 
+    ( With-flight Flight-wh Flight-pred ) 
+    ( With-flight which have no Flight-stop ) 
+    ( With-flight which is the Cheapest ) 
+    ( Find Flight-descr ) 
+    ( Flight-descr ) 
+    ( Find Flight-descr With-flight ) 
+    ( Flight-descr With-flight ) 
+    ( Find Flight-descr and Flight-descr ) 
+    ( Flight-descr and Flight-descr ) 
+    ( Find Flight-mod-phrase ) 
+    ( Flight-mod-phrase ) 
+    ( any Flight Flight-mod-phrase ) 
+    ( any of those Flight-mod-phrase ) 
+    ( are Flight-descr Flight-mod-phrase ) 
+    ( are Flight-descr available every day of the week ) 
+    ( are any of these Flight nonstop ) 
+    ( are any of those Flight-mod-phrase ) 
+    ( are any of those nonstop ) 
+    ( are both of these nonstop ) 
+    ( are there Flight-descr Flight-mod-phrase ) 
+    (
+      are
+      there
+      any
+      Flight-adj-list
+      Flight
+      Flight-mod-phrase
+    ) 
+    ( are there any Flight Flight-mod-phrase ) 
+    (
+      are
+      there
+      any
+      later
+      Flight
+      than
+      Time
+      Flight-mod-phrase
+    ) 
+    ( are these Flight-adj-list Flight ) 
+    ( are they Flight-adj-list Flight ) 
+    (
+      are
+      they
+      all
+      Flight-adj-list
+      Flight
+      Flight-mod-phrase
+    ) 
+    ( are they available Flight-mod-phrase ) 
+    ( book Flight-descr ) 
+    ( do all of them Flight-pred ) 
+    ( do any of Det Flight Flight-pred ) 
+    ( do either of these Flight Flight-pred ) 
+    ( do those all go On-day ) 
+    ( does Airline-name Flight-pred ) 
+    ( does Airline-name have Flight-descr ) 
+    ( does Airline-name serve City-descr ) 
+    ( does Det other Flight-adj-list Flight ) 
+    (
+      does
+      Flight-descr
+      i
+      guess
+      Flight-descr
+      does
+      that
+      Flight-pred
+    ) 
+    ( does one of Flight-descr Flight-pred ) 
+    ( how about the one Flight-mod-phrase ) 
+    (
+      i
+      have
+      Cardinal
+      friends
+      Pron-rel
+      would
+      like
+      to
+      visit
+      me
+      On-day
+      here
+      in
+      City-descr
+      one
+      of
+      them
+      lives
+      in
+      City-descr
+      and
+      the
+      other
+      lives
+      in
+      City-descr
+    ) 
+    (
+      i
+      have
+      a
+      friend
+      living
+      in
+      City-descr
+      Pron-rel
+      would
+      like
+      to
+      visit
+      me
+      here
+      in
+      City-descr
+    ) 
+    (
+      i
+      live
+      in
+      City-descr
+      and
+      Find-flight
+      to
+      City-descr
+      then
+      City-descr
+      and
+      then
+      return
+      home
+    ) 
+    ( i need for the flight to Flight-pred ) 
+    ( i wanna return Flight-mod-phrase ) 
+    ( i wanna return home Flight-mod-phrase ) 
+    (
+      im
+      calling
+      From-airport
+      I-want
+      to
+      make
+      Flight-descr
+    ) 
+    (
+      instead
+      of
+      City-descr
+      May
+      i
+      have
+      the
+      same
+      Flight
+      Flight-mod-phrase
+      but
+      Flight-mod-flight-stop
+    ) 
+    ( is Flight-descr Flight-descr ) 
+    ( is Flight-descr Flight-mod-phrase ) 
+    ( is Flight-descr nonstop ) 
+    ( looking for Fare-descr ) 
+    ( okay cancel Date-day-descr what about Date-day-descr ) 
+    ( only Flight-descr ) 
+    ( only Flight-mod-phrase ) 
+    ( only those Flight-mod-phrase ) 
+    ( return Flight-mod-phrase ) 
+    ( returning Flight-mod-phrase ) 
+    ( schedule Flight-descr ) 
+    ( that Interval Find-flight Flight-mod-phrase ) 
+    (
+      what
+      I-want
+      to
+      Know
+      is
+      does
+      Flight-descr
+      Flight-pred
+      thats
+      Flight-descr
+    ) 
+    ( which are the shortest ) 
+    ( which ones the Cheapest ) 
+    ( which ones Cheapest ) 
+    ( which ones the Highest ) 
+    ( which ones Highest )
+  ]
+
+Find-flight-schedule-query
+  [
+    ( Find Det flight times Flight-mod-phrase ) 
+    ( Find times Flight-mod-phrase ) 
+    ( Find Departure-arrival-time Flight-mod-phrase ) 
+    ( Departure-arrival-time Flight-mod-phrase )
+  ]
+
+Find-flight-stop-arrival-time-query
+  (
+    (
+      Time-wh
+      does
+      Flight-descr
+      Flight-pred-flight-stop
+    )
+  )
+
+Find-flight-stop-query
+  [
+    ( Find Det Flight-stop ) 
+    ( Find Det Flight-stop With-flight ) 
+    ( Find Flight-stop ) 
+    ( Find Flight-stop With-flight ) 
+    ( any Flight-stop ) 
+    ( any Flight-stop With-flight ) 
+    ( are there any Flight-stop ) 
+    ( are there any Flight-stop With-flight ) 
+    ( are these nonstop ) 
+    (
+      does
+      Flight-descr
+      Flight-pred-flight-stop
+    ) 
+    ( does Flight-descr Stop ) 
+    ( is this a nonstop ) 
+    ( stops where ) 
+    ( where do Flight-descr Stop ) 
+    ( where do they Stop ) 
+    ( where does Airline-descr Stop ) 
+    ( where does Flight-descr Stop ) 
+    ( where is Det Flight-stop With-flight )
+  ]
+
+.Find-flight-stop-schedule-query
+  (
+    (
+      Find
+      Det
+      arrival
+      and
+      departure
+      times
+      With-flight
+      With-city
+    )
+  )
+
+Find-flight-stops-query
+  ( ( how many Flight-stop are there ) )
+
+Find-flight-time-elapsed-query
+  [
+    ( Find the duration With-flight ) 
+    ( Find the flying time With-flight ) 
+    (
+      how
+      long
+      does
+      it
+      take
+      to
+      get
+      From-airport-to-airport
+    ) 
+    (
+      how
+      long
+      does
+      it
+      take
+      to
+      get
+      From-airport
+      To-airport
+    ) 
+    ( how long is Flight-descr )
+  ]
+
+.Find-flight-to-airport-query
+  [
+    ( Find where Flight-descr goes ) 
+    ( where does Flight-descr Arrive ) 
+    ( where does Flight-descr go to )
+  ]
+
+Find-flight
+  [
+    ( Find a reservation ) 
+    ( Find my choices of Flight ) 
+    ( I-want to Know what Flight are available ) 
+    ( I-want to arrange a Flight ) 
+    ( I-want to come back ) 
+    ( I-want to fly ) 
+    ( I-want to fly back ) 
+    ( I-want to get ) 
+    ( I-want to get that ) 
+    ( I-want to go ) 
+    ( I-want to make a Flight ) 
+    ( I-want to make a reservation ) 
+    ( I-want to plan a Flight ) 
+    ( I-want to take Cardinal people ) 
+    ( I-want to travel ) 
+    ( I-want to try traveling ) 
+    ( May i fly ) 
+    ( May i get that ) 
+    ( May i get this ) 
+    ( are there Flight ) 
+    ( are there any Flight ) 
+    ( have List-of Flight ) 
+    ( how May i get ) 
+    ( how May i go ) 
+    ( i actually want to go ) 
+    ( i plan to travel ) 
+    ( i wanna come back ) 
+    ( i wanna fly ) 
+    ( i wanna go ) 
+    ( i wanna make a Flight ) 
+    ( i wanna travel ) 
+    ( im planning to travel ) 
+    ( im traveling ) 
+    ( make that ) 
+    ( so which Flight would be appropriate ) 
+    ( that would be traveling ) 
+    ( the flight needs to be ) 
+    ( the flight should be ) 
+    ( traveling ) 
+    ( we would like to go ) 
+    ( what Flight are available ) 
+    ( what about Det Flight ) 
+    ( what about Flight ) 
+    ( what is the availability ) 
+    ( what is the flight availability ) 
+    ( what other Flight are there ) 
+    ( which are Det Flight )
+  ]
+
+.Find-food-service-meal-description-query
+  [
+    (
+      Find
+      Food-service-meal-code-compound-descr
+    ) 
+    (
+      Find
+      Food-service-meal-code-simple-descr
+    ) 
+    (
+      Find
+      what
+      Food-service-meal-code-compound-descr
+      Symbolize
+    ) 
+    (
+      Find
+      what
+      Food-service-meal-code-simple-descr
+      Symbolize
+    ) 
+    (
+      explain
+      Food-service-meal-code-compound-descr
+      to
+      me
+    ) 
+    (
+      explain
+      Food-service-meal-code-compound-descr
+    ) 
+    (
+      explain
+      Food-service-meal-code-simple-descr
+      to
+      me
+    ) 
+    (
+      explain
+      Food-service-meal-code-simple-descr
+    ) 
+    (
+      what
+      does
+      Food-service-meal-code-compound-descr
+      Symbolize
+    ) 
+    (
+      what
+      does
+      Food-service-meal-code-simple-descr
+      Symbolize
+    ) 
+    (
+      what
+      is
+      the
+      meaning
+      of
+      Food-service-meal-code-compound-descr
+    ) 
+    (
+      what
+      is
+      the
+      meaning
+      of
+      Food-service-meal-code-simple-descr
+    )
+  ]
+
+Find-ground-service-ground-fare-query
+  [
+    ( Find Det Fare With-ground-service ) 
+    (
+      Find
+      Det
+      Ground-service-transport-type
+      Fare
+      Ground-service-mod-list
+    ) 
+    ( Find Fare With-ground-service ) 
+    ( Ground-service-transport-type Fare ) 
+    (
+      Ground-service-transport-type
+      Fare
+      Ground-service-mod-list
+    ) 
+    ( how much are Ground-service-descr ) 
+    ( how much is Ground-service-descr ) 
+    ( how much do Ground-service-descr cost ) 
+    ( how much does Ground-service-descr cost ) 
+    (
+      how
+      much
+      does
+      it
+      cost
+      to
+      rent
+      a
+      car
+      Ground-service-mod-list
+    ) 
+    ( what Fare is Ground-service-descr )
+  ]
+
+Find-ground-service-query
+  [
+    ( Find City-descr Ground-service-descr ) 
+    ( Ground-service-descr City-name ) 
+    (
+      Ground-service-mod-list
+      Find
+      Ground-service-descr
+    ) 
+    (
+      Ground-service-mod-list
+      Ground-service-descr
+    ) 
+    ( Ground-service-mod-list I-want to rent a car ) 
+    (
+      Ground-service-mod-list
+      I-want
+      to
+      rent
+      a
+      car
+      Ground-service-mod-list
+    ) 
+    ( Ground-service-mod-list May i rent a car ) 
+    (
+      Ground-service-mod-list
+      May
+      i
+      rent
+      a
+      car
+      Ground-service-mod-list
+    ) 
+    (
+      Ground-service-mod-list
+      are
+      Ground-service
+      Ground-service-mod-list
+    ) 
+    (
+      Ground-service-mod-list
+      is
+      Ground-service
+      Ground-service-mod-list
+    ) 
+    (
+      Ground-service-mod-list
+      what
+      Ground-service
+      is
+      Ground-service-mod-list
+    ) 
+    ( I-want to rent a car ) 
+    ( I-want to rent a car Ground-service-mod-list ) 
+    ( May i rent a car ) 
+    ( May i rent a car Ground-service-mod-list ) 
+    ( Find Ground-service-descr ) 
+    ( Ground-service-descr ) 
+    ( are Ground-service Ground-service-mod-list ) 
+    (
+      does
+      Airport-descr
+      have
+      Ground-service-descr
+    ) 
+    ( how do i get City-area from Airport-descr ) 
+    ( how do i get from Airport-descr to City-name ) 
+    (
+      how
+      do
+      i
+      get
+      from
+      Airport-descr
+      to
+      downtown
+      With-city
+    ) 
+    ( how do i get to and from Airport-descr ) 
+    ( is Ground-service Ground-service-mod-list ) 
+    ( what Ground-service is Ground-service-mod-list ) 
+    ( what limousine service Ground-service-mod-list ) 
+    ( what limousine service is Ground-service-mod-list ) 
+    ( will there be Ground-service-descr )
+  ]
+
+Find-ground-service-transport-type-query
+  [
+    (
+      Find
+      Det
+      types
+      of
+      Ground-service
+      Ground-service-mod-list
+    ) 
+    (
+      Ground-service-transport-type-wh
+      are
+      Ground-service-mod-list
+    ) 
+    (
+      Ground-service-transport-type-wh
+      is
+      Ground-service-mod-list
+    ) 
+    (
+      Ground-service-transport-type-wh
+      Can
+      you
+      offer
+      me
+      Ground-service-mod-list
+    ) 
+    (
+      Ground-service-transport-type-wh
+      Ground-service-mod-list
+    )
+  ]
+
+Find-meal-query
+  [
+    ( Find-meal ) 
+    ( Find-meal Flight-mod-phrase ) 
+    ( Find-meal With-flight ) 
+    ( Find-meal during Flight-descr ) 
+    ( Meal-descr ) 
+    ( Meal-descr With-flight ) 
+    ( With-flight Find-meal ) 
+    ( do they both Have-meal ) 
+    ( does Det Time Have-meal ) 
+    (
+      does
+      the
+      Airline-name
+      or
+      Airline-name
+      Have-meal
+      on
+      their
+      Flight
+    ) 
+    ( is there Meal-descr Served With-flight ) 
+    ( what Type of meals are With-flight )
+  ]
+
+Find-meal
+  [
+    ( Can you shown me Meal-descr ) 
+    ( Find Meal-descr ) 
+    ( are Meal-descr Served ) 
+    ( is Meal-descr Served ) 
+    ( what food is Served ) 
+    ( what meal service is Served ) 
+    ( what meals are Served ) 
+    ( will Meal-descr be served )
+  ]
+
+Find-object-query
+  [
+    ( Find-aircraft-query ) 
+    ( Find-airline-query ) 
+    ( Find-airport-query ) 
+    ( Find-city-query ) 
+    ( Find-class-query ) 
+    ( Find-day-query ) 
+    ( Find-fare-query ) 
+    ( Find-flight-query ) 
+    ( Find-flight-stop-query ) 
+    ( Find-ground-service-query ) 
+    ( Find-meal-query )
+  ]
+
+Find-restriction-query
+  [
+    ( Find Restriction-param ) 
+    ( Find Restriction-param With-flight ) 
+    ( Find Restriction-param on Fare-descr ) 
+    ( Find Restriction-param on Flight-descr ) 
+    ( Restriction-wh apply to Fare-descr ) 
+    ( Restriction-wh on Fare-basis-code-descr ) 
+    ( are there any restrictions )
+  ]
+
+Find
+  [
+    ( Can you Show-ditrans me about ) 
+    ( Can you please Show-ditrans me ) 
+    ( Can you Show-ditrans me ) 
+    ( Can you please Show-ditrans me List-of ) 
+    ( Can you Show-ditrans me List-of ) 
+    ( Can you please Show-trans ) 
+    ( Can you Show-trans ) 
+    ( Can you get ) 
+    ( Can you have ) 
+    ( Can you only Show-ditrans me ) 
+    ( I-want ) 
+    ( I-want List-of ) 
+    ( I-want to Know ) 
+    ( I-want to Know List-of ) 
+    ( I-want to book ) 
+    ( I-want to have you Show-trans ) 
+    ( List-of ) 
+    ( May i please Know ) 
+    ( May i Know ) 
+    ( May i please Know List-of ) 
+    ( May i Know List-of ) 
+    ( May i also please Know ) 
+    ( Show-ditrans me ) 
+    ( Show-ditrans me List-of ) 
+    ( Show-ditrans me about ) 
+    ( Show-ditrans me only ) 
+    ( Show-trans ) 
+    ( Show-trans List-of ) 
+    ( Show-trans only ) 
+    ( add ) 
+    ( add to the list ) 
+    ( are there ) 
+    ( do you have ) 
+    ( how about ) 
+    ( i am also interested in ) 
+    ( i am interested in ) 
+    ( i am interested in booking ) 
+    ( i am looking for ) 
+    ( i prefer ) 
+    ( im interested in ) 
+    ( im looking for ) 
+    ( im trying to find ) 
+    ( ive got somebody else who wants to take ) 
+    ( is there ) 
+    ( let me Know ) 
+    ( list for me ) 
+    ( looking for ) 
+    ( need ) 
+    ( need to Know ) 
+    ( needing ) 
+    ( only Show-ditrans me ) 
+    ( only Show-trans ) 
+    ( want ) 
+    ( we need ) 
+    ( what about ) 
+    ( what are ) 
+    ( what are my options for ) 
+    ( what is ) 
+    ( whatre ) 
+    ( whats )
+  ]
+
+.Flight-adj-aircraft
+  ( ( Aircraft-manufacturer Aircraft-code ) )
+
+Flight-adj-airline
+  [
+    ( Airline-code ) 
+    ( Airline-name-poss ) 
+    ( Airline-name ) 
+    ( Airline-name and Airline-name ) 
+    ( Airline-name or Airline-name )
+  ]
+
+.Flight-adj-date-day
+  [
+    ( Day-name ) 
+    ( Day-name and Day-name ) 
+    ( Day-name or Day-name ) 
+    ( Day-name and Day-poss ) 
+    ( Day-name or Day-poss ) 
+    ( Day-poss ) 
+    ( daily ) 
+    ( next Day-poss ) 
+    ( weekday )
+  ]
+
+Flight-adj-departure-time
+  [
+    ( Earliest ) 
+    ( Interval ) 
+    ( Latest ) 
+    ( Time ) 
+    ( earlier ) 
+    ( early ) 
+    ( late ) 
+    ( next )
+  ]
+
+Flight-adj-fare
+  [
+    ( Cheapest ) 
+    ( Class-type ) 
+    ( Economy ) 
+    ( Highest ) 
+    ( Restriction-code ) 
+    ( one way ) 
+    ( round trip )
+  ]
+
+Flight-adj-list
+  [
+    ( Flight-adj ) 
+    ( Flight-adj Flight-adj ) 
+    ( Flight-adj Flight-adj Flight-adj )
+  ]
+
+Flight-adj-num-connections
+  [ ( connecting )  ( direct ) ]
+
+Flight-adj-num-stops
+  [ ( layover )  ( nonstop )  ( one stop ) ]
+
+Flight-adj
+  [
+    ( City-descr back To-airport ) 
+    ( City-descr to City-descr ) 
+    ( Flight-adj-aircraft ) 
+    ( Flight-adj-airline ) 
+    ( Flight-adj-date-day ) 
+    ( Flight-adj-departure-time ) 
+    ( Flight-adj-fare ) 
+    ( Flight-adj-num-connections ) 
+    ( Flight-adj-num-stops ) 
+    (
+      Flight-adj-num-stops
+      or
+      Flight-adj-num-connections
+    ) 
+    ( Food-service-meal-description ) 
+    ( airplane ) 
+    ( available ) 
+    ( quickest ) 
+    ( red eye ) 
+    ( return ) 
+    ( shortest )
+  ]
+
+Flight-arrival-time-param
+  [
+    ( Det arrival time ) 
+    ( arrival time ) 
+    ( Det arrival times ) 
+    ( arrival times ) 
+    ( time of arrival )
+  ]
+
+.Flight-descr
+  [
+    ( Airline-code Flight-number ) 
+    ( Airline-name Flight-number ) 
+    (
+      Cardinal
+      different
+      Flight
+      one
+      Flight-mod-phrase
+      and
+      one
+      Flight-mod-phrase
+    ) 
+    ( Cheapest Return-type ) 
+    ( Cheapest Return-type Flight-mod-phrase ) 
+    ( Det Class-type ) 
+    (
+      Det
+      Flight
+      Flight-mod-phrase
+      and
+      Flight-mod-phrase
+      Arrival
+      at
+      the
+      same
+      time
+    ) 
+    ( Det Latest Flight to leave ) 
+    ( Det Return-type ) 
+    ( Det arriving Flight With-airport ) 
+    ( Det arriving and departing Flight from Airport-descr ) 
+    ( Det landings With-airport ) 
+    ( Det returns ) 
+    ( Det round trip Flight-mod-phrase ) 
+    ( Det shortest ) 
+    ( Det takeoffs and landings With-airport ) 
+    ( Flight number Airline-code Flight-number ) 
+    ( Highest Return-type ) 
+    ( Highest Return-type Flight-mod-phrase ) 
+    ( Det Flight-adj-list Flight ) 
+    ( Flight-adj-list Flight ) 
+    (
+      Det
+      Flight-adj-list
+      Flight
+      Flight-mod-flight-number
+    ) 
+    (
+      Flight-adj-list
+      Flight
+      Flight-mod-flight-number
+    ) 
+    (
+      Det
+      Flight-adj-list
+      Flight
+      Flight-mod-flight-number
+      Flight-mod-phrase
+    ) 
+    (
+      Flight-adj-list
+      Flight
+      Flight-mod-flight-number
+      Flight-mod-phrase
+    ) 
+    (
+      Det
+      Flight-adj-list
+      Flight
+      Flight-mod-phrase
+    ) 
+    (
+      Flight-adj-list
+      Flight
+      Flight-mod-phrase
+    ) 
+    ( Det Flight ) 
+    ( Flight ) 
+    ( Det Flight Flight-mod-flight-number ) 
+    ( Flight Flight-mod-flight-number ) 
+    (
+      Det
+      Flight
+      Flight-mod-flight-number
+      Flight-mod-phrase
+    ) 
+    (
+      Flight
+      Flight-mod-flight-number
+      Flight-mod-phrase
+    ) 
+    ( Det Flight Flight-mod-phrase ) 
+    ( Flight Flight-mod-phrase ) 
+    ( Det nonstop ) 
+    ( nonstop ) 
+    ( both Flight ) 
+    ( each of the Cardinal Flight you just gave me ) 
+    ( nonstop Flight-mod-phrase ) 
+    ( them ) 
+    ( what Flight are available Flight-mod-phrase ) 
+    ( what Flight are available ) 
+    ( what Flight there are Flight-mod-phrase ) 
+    ( what Flight there are )
+  ]
+
+Flight-fare-mod-list
+  [
+    ( Flight-fare-mod ) 
+    ( Flight-fare-mod Flight-fare-mod ) 
+    (
+      Flight-fare-mod
+      Flight-fare-mod
+      Flight-fare-mod
+    ) 
+    (
+      Flight-fare-mod
+      Flight-fare-mod
+      Flight-fare-mod
+      Flight-fare-mod
+    )
+  ]
+
+Flight-fare-mod
+  [
+    ( Flight-mod-airline ) 
+    ( Flight-mod-day ) 
+    ( Flight-mod-departure-time ) 
+    ( Flight-mod-from-airport-to-airport ) 
+    ( From-airport ) 
+    ( Time-descr ) 
+    ( To-airport ) 
+    ( nonstop )
+  ]
+
+Flight-mod-aircraft
+  [
+    ( on Aircraft-descr ) 
+    ( using Aircraft-descr )
+  ]
+
+.Flight-mod-airline
+  [
+    ( Airline-descr ) 
+    ( I-want Flight-descr to be on Airline-descr ) 
+    ( Pron-rel Airline-descr has ) 
+    ( for Airline-descr ) 
+    ( i am interested in only Det Flight on Airline-descr ) 
+    ( of Airline-descr ) 
+    ( on Airline-descr ) 
+    ( using Airline-descr ) 
+    ( with Airline-descr )
+  ]
+
+Flight-mod-arrival-list
+  [
+    ( Flight-mod-arrival ) 
+    (
+      Flight-mod-arrival
+      Flight-mod-arrival
+    ) 
+    (
+      Flight-mod-arrival
+      Flight-mod-arrival
+      Flight-mod-arrival
+    ) 
+    (
+      Flight-mod-arrival
+      Flight-mod-arrival
+      Flight-mod-arrival
+      Flight-mod-arrival
+    )
+  ]
+
+Flight-mod-arrival-phrase
+  [
+    ( Flight-mod-dest ) 
+    (
+      Flight-mod-dest
+      Flight-mod-arrival-list
+    )
+  ]
+
+Flight-mod-arrival-time
+  [
+    ( Arrival Time-descr ) 
+    ( Arrival the earliest ) 
+    ( Arrival earliest ) 
+    ( Arrival the last ) 
+    ( Arrival last ) 
+    ( Arrival the latest ) 
+    ( Arrival latest ) 
+    ( Arrival also Time-descr ) 
+    ( Arrival around Time Time ) 
+    ( Arrival around Time or Time ) 
+    ( Arrival as early as possible ) 
+    ( Arrival at around Time or Time ) 
+    ( Arrival earlier ) 
+    ( Pron-rel Flight-pred-arrival-time )
+  ]
+
+Flight-mod-arrival
+  [
+    ( Flight-mod-dest ) 
+    ( Flight-mod-minor ) 
+    ( From-airport ) 
+    ( Time-descr )
+  ]
+
+Flight-mod-day
+  [
+    ( Arrival On-day ) 
+    ( Departure On-day ) 
+    ( Det date I-want to leave will be Date-day-descr ) 
+    ( On-day ) 
+    ( Pron-rel Flight-pred-day ) 
+    ( a daily schedule ) 
+    ( dailies ) 
+    ( daily ) 
+    ( daily schedule ) 
+    ( in the next two days ) 
+    ( on a daily basis ) 
+    ( on a daily schedule ) 
+    ( on the Ordinal of the next month )
+  ]
+
+Flight-mod-departure-day-and-time
+  [
+    ( Departure On-day Time-descr ) 
+    (
+      Departure
+      later
+      than
+      that
+      On-day
+      but
+      later
+      in
+      the
+      Interval
+    ) 
+    ( Departure preferably On-day Time-descr ) 
+    ( Departure this Interval ) 
+    (
+      On-day
+      Time-descr
+      or
+      Time-descr
+      On-day
+    ) 
+    (
+      Pron-rel
+      leave
+      Time-descr
+      On-day
+      and
+      Time-descr
+      On-day
+    ) 
+    ( Pron-rel leaves early On-day morning ) 
+    ( Time daily ) 
+    ( With-interval of Date-day-descr ) 
+    ( daily Time ) 
+    ( early On-day ) 
+    ( early On-day morning ) 
+    (
+      for
+      Date-day-descr
+      Time-descr
+      or
+      Date-day-descr
+      Time-descr
+    ) 
+    (
+      on
+      Date-day-descr
+      Time-descr
+      and
+      also
+      Date-day-descr
+      Time-descr
+    ) 
+    (
+      on
+      Date-day-descr
+      Time-descr
+      or
+      Date-day-descr
+    ) 
+    (
+      on
+      Date-day-descr
+      Time-descr
+      or
+      Date-day-descr
+      Time-descr
+    ) 
+    (
+      on
+      either
+      Date-day-descr
+      Time-descr
+      or
+      Date-day-descr
+      Time-descr
+    ) 
+    ( on the Interval of Date-day-descr ) 
+    ( the Interval of Date-day-descr ) 
+    ( the next Interval ) 
+    ( this Interval ) 
+    ( tonight ) 
+    ( tonight which is Date-day-descr )
+  ]
+
+.Flight-mod-departure-list
+  [
+    ( Flight-mod-departure ) 
+    (
+      Flight-mod-departure
+      Flight-mod-departure
+    ) 
+    (
+      Flight-mod-departure
+      Flight-mod-departure
+      Flight-mod-departure
+    ) 
+    (
+      Flight-mod-departure
+      Flight-mod-departure
+      Flight-mod-departure
+      Flight-mod-departure
+    ) 
+    (
+      Flight-mod-departure
+      Flight-mod-departure
+      Flight-mod-departure
+      Flight-mod-departure
+      Flight-mod-departure
+    )
+  ]
+
+Flight-mod-departure-phrase
+  [
+    ( Flight-mod-source ) 
+    (
+      Flight-mod-source
+      Flight-mod-departure-list
+    )
+  ]
+
+.Flight-mod-departure-time
+  [
+    ( Departure Time-descr ) 
+    ( Departure Time ) 
+    ( Departure the latest ) 
+    ( Departure latest ) 
+    ( Departure around Time or Time ) 
+    ( Departure at around Time or Time ) 
+    ( Departure earlier ) 
+    ( Departure first ) 
+    ( Pron-rel Flight-pred-departure-time ) 
+    ( and i would prefer a Interval flight ) 
+    ( anytime ) 
+    ( around Time or Time ) 
+    ( as early as possible ) 
+    ( at Time and Time ) 
+    ( at around Time or Time ) 
+    ( at the same time ) 
+    ( departure time Time-descr ) 
+    ( first thing in the morning )
+  ]
+
+.Flight-mod-departure
+  [
+    ( Flight-mod-minor ) 
+    ( Flight-mod-source ) 
+    ( Time-descr )
+  ]
+
+.Flight-mod-dest
+  ( ( Flight-mod-to-airport ) )
+
+Flight-mod-empty
+  [ ( Pron-rel you have )  ( again )  ( also )  ( available )  ( you have ) ]
+
+Flight-mod-fare
+  [
+    ( Pron-rel are the Cheapest Return-type ) 
+    ( Pron-rel are the Highest Return-type ) 
+    ( With-class ) 
+    ( for Cost-upper-bound ) 
+    ( for Cost-upper-bound round trip ) 
+    ( whose round trip Fare is Cost-upper-bound ) 
+    ( with Fare-descr )
+  ]
+
+Flight-mod-flight-number
+  [
+    ( Airline-code Flight-number ) 
+    ( Airline-name Flight-number ) 
+    (
+      Airline-name
+      Flight-number
+      and
+      Flight-number
+    ) 
+    (
+      Airline-name
+      Flight-number
+      dash
+      Flight-number
+    ) 
+    (
+      Airline-name
+      Flight-number
+      or
+      Flight-number
+    ) 
+    (
+      Airline-name
+      Flight-number
+      slash
+      Flight-number
+    ) 
+    ( Flight-number and Flight-number ) 
+    ( Flight-number dash Flight-number ) 
+    ( Flight-number or Flight-number ) 
+    ( Flight-number slash Flight-number ) 
+    ( number Flight-number ) 
+    ( Flight-number ) 
+    ( number Flight-number and Flight-number ) 
+    ( Flight-number and Flight-number ) 
+    ( number Flight-number dash Flight-number ) 
+    ( Flight-number dash Flight-number ) 
+    ( number Flight-number or Flight-number ) 
+    ( Flight-number or Flight-number ) 
+    ( number Flight-number slash Flight-number ) 
+    ( Flight-number slash Flight-number ) 
+    (
+      on
+      Airline-name
+      Flight-number
+      and
+      Airline-name
+      Flight-number
+    )
+  ]
+
+Flight-mod-flight-stop
+  [
+    ( Flight-stop-descr ) 
+    ( I-want Flight-stop-descr ) 
+    ( I-want it to Flight-pred-flight-stop ) 
+    ( I-want to Flight-pred-flight-stop ) 
+    ( Pron-rel Flight-pred-flight-stop ) 
+    ( and I-want to Flight-pred-flight-stop ) 
+    ( and I-want to have Flight-stop-descr ) 
+    ( but I-want to Flight-pred-flight-stop ) 
+    ( by way of City-descr ) 
+    ( im also planning to stop in City-descr ) 
+    ( laying over in City-descr ) 
+    ( making Flight-stop-descr ) 
+    ( stopover City-descr ) 
+    ( stopping at City-descr ) 
+    ( stopping in City-descr ) 
+    ( stopping over in City-descr ) 
+    ( through City-descr ) 
+    ( via City-descr ) 
+    ( with Flight-stop-descr )
+  ]
+
+Flight-mod-from-airport-to-airport
+  [
+    ( From-airport-to-airport ) 
+    ( flying From-airport-to-airport ) 
+    ( flying From-airport To-airport ) 
+    ( for City-descr To-airport ) 
+    ( to get From-airport-to-airport ) 
+    ( to get From-airport To-airport )
+  ]
+
+Flight-mod-from-airport
+  [
+    ( Departure City-descr ) 
+    ( Departure From-airport ) 
+    ( From-airport ) 
+    ( Pron-rel Flight-pred-from-airport ) 
+    ( back From-airport )
+  ]
+
+Flight-mod-general
+  [ ( Flight-mod-minor )  ( Time-descr ) ]
+
+Flight-mod-intro
+  [
+    ( On-day ) 
+    ( On-day On-day ) 
+    ( in the next two days )
+  ]
+
+.Flight-mod-meal
+  [
+    ( Flight-descr should also serve Meal-descr ) 
+    ( I-want to have Meal-descr Served ) 
+    ( May i please Have-meal on my flight ) 
+    ( Pron-rel Have-meal ) 
+    ( Pron-rel serves a snack ) 
+    ( and I-want Meal-descr ) 
+    (
+      hopefully
+      a
+      Food-service-meal-description
+      flight
+    ) 
+    ( including Meal-descr ) 
+    ( serving Meal-descr ) 
+    ( with Meal-descr ) 
+    ( with Meal-descr Served )
+  ]
+
+Flight-mod-minor-phrase
+  [
+    ( Flight-mod-minor ) 
+    ( Flight-mod-minor Flight-mod-general ) 
+    (
+      Flight-mod-minor
+      Flight-mod-general
+      Flight-mod-general
+    ) 
+    ( Time-descr ) 
+    ( Time-descr Flight-mod-general ) 
+    (
+      Time-descr
+      Flight-mod-general
+      Flight-mod-general
+    )
+  ]
+
+Flight-mod-minor
+  [
+    ( Economy ) 
+    ( Fare-mod-cost-upper-bound ) 
+    ( Fare-mod-restriction ) 
+    ( Fare-mod-return-type ) 
+    ( Flight-mod-aircraft ) 
+    ( Flight-mod-airline ) 
+    ( Flight-mod-arrival-time ) 
+    ( Flight-mod-day ) 
+    (
+      Flight-mod-day
+      and
+      Flight-mod-to-airport
+    ) 
+    ( Flight-mod-departure-day-and-time ) 
+    ( Flight-mod-departure-time ) 
+    (
+      Flight-mod-departure-time
+      and
+      Flight-mod-arrival-time
+    ) 
+    ( Flight-mod-empty ) 
+    ( Flight-mod-fare ) 
+    ( Flight-mod-flight-stop ) 
+    ( Flight-mod-meal ) 
+    ( Flight-mod-num-connections ) 
+    ( Flight-mod-num-stops ) 
+    ( Flight-mod-to-or-from-airport ) 
+    ( From-airport-layover-to-airport ) 
+    ( Pron-rel Flight-pred-aircraft ) 
+    (
+      Pron-rel
+      Flight-pred-num-stops
+      and
+      Flight-pred-arrival-time
+    ) 
+    ( Pron-rel are Flight-mod-airline ) 
+    ( Pron-rel are on the same airline as Det other Flight ) 
+    ( Pron-rel are on the same airline as Flight-descr ) 
+    ( Pron-rel does not leave on weekends ) 
+    ( To-airport ) 
+    ( With-seating-capacity-smallest ) 
+    ( at Airport-name ) 
+    (
+      from
+      City-descr
+      and
+      City-descr
+      To-airport
+      Arrival
+      at
+      the
+      same
+      time
+    ) 
+    ( with round trip required )
+  ]
+
+Flight-mod-num-connections
+  [
+    ( Det Flight-adj-num-connections Flight ) 
+    (
+      Det
+      Flight-adj-num-connections
+      Flight
+      if
+      possible
+    ) 
+    ( Flight-adj-num-connections Flight if possible )
+  ]
+
+Flight-mod-num-stops
+  [
+    ( Det Flight-adj-num-stops Flight ) 
+    ( Det Flight-adj-num-stops Flight if possible ) 
+    ( Flight-adj-num-stops Flight if possible ) 
+    ( Pron-rel Flight-pred-num-stops ) 
+    ( no Flight-stop ) 
+    ( nonstop ) 
+    ( with Flight-stop ) 
+    ( with a Flight-stop ) 
+    ( with at least one Flight-stop ) 
+    ( with one Flight-stop ) 
+    ( with zero Flight-stop ) 
+    ( zero Flight-stop )
+  ]
+
+.Flight-mod-phrase
+  [
+    ( Flight-mod-arrival-phrase ) 
+    (
+      Flight-mod-arrival-phrase
+      and
+      Flight-mod-departure-phrase
+    ) 
+    (
+      Flight-mod-arrival-phrase
+      Flight-mod-departure-phrase
+    ) 
+    ( Flight-mod-departure-phrase ) 
+    (
+      Flight-mod-departure-phrase
+      Flight-mod-departure-phrase
+      and
+      then
+      Flight-mod-departure-phrase
+    ) 
+    (
+      Flight-mod-departure-phrase
+      Flight-mod-departure-phrase
+      and
+      Flight-mod-departure-phrase
+    ) 
+    (
+      Flight-mod-departure-phrase
+      and
+      Flight-mod-arrival-phrase
+    ) 
+    (
+      Flight-mod-departure-phrase
+      Flight-mod-arrival-phrase
+    ) 
+    (
+      Flight-mod-departure-phrase
+      and
+      Flight-mod-departure-phrase
+    ) 
+    (
+      Flight-mod-departure-phrase
+      and
+      Flight-mod-minor-phrase
+    ) 
+    (
+      Flight-mod-departure-phrase
+      and
+      Flight-pred-departure
+    ) 
+    (
+      Flight-mod-departure-phrase
+      and
+      then
+      Flight-mod-departure-phrase
+      and
+      Flight-mod-departure-phrase
+    ) 
+    ( Flight-mod-minor-phrase ) 
+    (
+      Flight-mod-minor-phrase
+      Flight-mod-arrival-phrase
+    ) 
+    (
+      Flight-mod-minor-phrase
+      Flight-mod-arrival-phrase
+      Flight-mod-departure-phrase
+    ) 
+    (
+      Flight-mod-minor-phrase
+      Flight-mod-departure-phrase
+    ) 
+    (
+      Flight-mod-minor-phrase
+      Flight-mod-departure-phrase
+      Flight-mod-arrival-phrase
+    ) 
+    (
+      Flight-mod-minor-phrase
+      Flight-mod-departure-phrase
+      and
+      Flight-mod-arrival-phrase
+    ) 
+    (
+      Flight-mod-minor-phrase
+      Flight-mod-departure-phrase
+      and
+      then
+      Flight-mod-departure-phrase
+    ) 
+    ( Flight-mod-phrase same conditions ) 
+    (
+      Pron-rel
+      Flight-pred-departure
+      Flight-pred-arrival
+      and
+      Flight-pred-arrival
+    ) 
+    (
+      Pron-rel
+      Flight-pred-departure
+      and
+      Flight-pred-arrival
+    )
+  ]
+
+Flight-mod-source
+  [
+    ( Flight-mod-from-airport-to-airport ) 
+    ( Flight-mod-from-airport )
+  ]
+
+.Flight-mod-to-airport
+  [
+    ( Arrival City-descr ) 
+    ( Arrival To-airport ) 
+    ( Pron-rel Flight-pred-to-airport ) 
+    ( back To-airport ) 
+    ( flying To-airport )
+  ]
+
+Flight-mod-to-or-from-airport
+  [
+    ( Arrival and Departure at Airport-descr ) 
+    ( Pron-rel Arrive and Depart from Airport-descr ) 
+    ( taking off and landing on Airport-descr ) 
+    ( to and from Airport-descr ) 
+    ( to or from Airport-descr )
+  ]
+
+Flight-number-param
+  [
+    ( Det Flight-adj flight number ) 
+    ( Flight-adj flight number ) 
+    ( Det flight number ) 
+    ( flight number ) 
+    ( Det Flight-adj flight numbers ) 
+    ( Flight-adj flight numbers ) 
+    ( Det flight numbers ) 
+    ( flight numbers )
+  ]
+
+Flight-number
+  [
+    ( Double-digit ) 
+    ( Four-digit ) 
+    ( Non-zero-digit ) 
+    ( Three-digit ) 
+    ( Three-digit Three-digit )
+  ]
+
+.Flight-numq
+  [
+    ( Det number of Flight ) 
+    ( how many Flight-adj-list Flight ) 
+    ( how many Flight ) 
+    ( how many of these Flight ) 
+    ( number of Flight )
+  ]
+
+.Flight-pred-aircraft
+  [
+    ( fly on Aircraft-descr ) 
+    ( has Aircraft-descr ) 
+    ( have Aircraft-descr ) 
+    ( is Aircraft-descr ) 
+    ( is on Aircraft-descr ) 
+    ( use Aircraft-descr ) 
+    ( uses Aircraft-descr )
+  ]
+
+Flight-pred-airline
+  [
+    ( do Airline-descr have ) 
+    ( does Airline-descr have ) 
+    ( are Airline-descr ) 
+    ( are on Airline-descr ) 
+    ( should be Airline-descr )
+  ]
+
+.Flight-pred-arrival-time
+  [
+    ( Arrive Time-descr ) 
+    ( Arrive Time ) 
+    ( Arrive the last ) 
+    ( Arrive last ) 
+    ( Arrive the latest ) 
+    ( Arrive latest ) 
+    ( Arrive the earliest ) 
+    ( Arrive earliest ) 
+    ( Arrive around Time Time ) 
+    ( Arrive as early as possible ) 
+    ( Arrive at around Time or Time ) 
+    ( Arrive around Time or Time ) 
+    ( Arrive earlier ) 
+    ( has the Earliest arrival )
+  ]
+
+.Flight-pred-arrival
+  [
+    (
+      Flight-pred-arrival-time
+      Flight-mod-arrival-list
+    ) 
+    ( Flight-pred-arrival-time ) 
+    (
+      Flight-pred-to-airport
+      Flight-mod-arrival-list
+    ) 
+    ( Flight-pred-to-airport )
+  ]
+
+Flight-pred-day
+  [
+    ( Arrive On-day ) 
+    ( Depart On-day ) 
+    ( Fly On-day ) 
+    ( does not travel on a weekend )
+  ]
+
+Flight-pred-departure-time
+  [
+    ( Depart Cardinal hours before arriving ) 
+    ( Depart Time-descr ) 
+    ( Depart Time-descr or Depart Time-descr ) 
+    ( Depart Time ) 
+    ( Depart the last ) 
+    ( Depart last ) 
+    ( Depart the latest ) 
+    ( Depart latest ) 
+    ( Depart at around Time or Time ) 
+    ( Depart first ) 
+    ( is the last ) 
+    ( is last ) 
+    ( is the latest ) 
+    ( is latest ) 
+    ( is the earliest ) 
+    ( is the earliest possible ) 
+    ( is the earliest )
+  ]
+
+.Flight-pred-departure
+  [
+    (
+      Flight-pred-departure-time
+      Flight-mod-departure-list
+    ) 
+    ( Flight-pred-departure-time ) 
+    (
+      Flight-pred-from-airport
+      Flight-mod-departure-list
+    ) 
+    ( Flight-pred-from-airport )
+  ]
+
+Flight-pred-fare
+  [
+    ( are Fare-descr ) 
+    ( is Fare-descr ) 
+    ( are the Cheapest ) 
+    ( is the Cheapest ) 
+    ( are Cheapest ) 
+    ( is Cheapest ) 
+    ( are the Highest ) 
+    ( is the Highest ) 
+    ( are Highest ) 
+    ( is Highest ) 
+    ( cost at least Cost ) 
+    ( costs at least Cost ) 
+    ( has Fare-descr ) 
+    ( have Fare-descr ) 
+    ( has Fare-param of Cost ) 
+    ( have Fare-param of Cost )
+  ]
+
+.Flight-pred-flight-stop
+  [
+    ( Stop at City-descr ) 
+    ( Stop in City-descr ) 
+    ( Stop through City-descr ) 
+    ( Stop at City-descr Flight-stop-mod ) 
+    ( Stop in City-descr Flight-stop-mod ) 
+    ( Stop through City-descr Flight-stop-mod ) 
+    ( go through City-descr ) 
+    ( go through City-descr Flight-stop-mod )
+  ]
+
+.Flight-pred-from-airport
+  [
+    ( Depart Airport-descr ) 
+    ( Depart City-descr ) 
+    ( Depart From-airport ) 
+    ( Fly From-airport )
+  ]
+
+Flight-pred-num-stops
+  [
+    ( are nonstop ) 
+    ( is nonstop ) 
+    ( fly nonstop ) 
+    ( have Flight-stop ) 
+    ( have more than one Flight-stop ) 
+    ( make at least one Flight-stop ) 
+    ( makes a Flight-stop )
+  ]
+
+.Flight-pred-to-airport
+  [
+    ( Arrive City-descr ) 
+    ( Arrive To-airport ) 
+    ( Fly To-airport )
+  ]
+
+Flight-pred
+  [
+    ( Arrive and Depart Time-descr ) 
+    ( Flight-pred-aircraft ) 
+    ( Flight-pred-airline ) 
+    ( Flight-pred-airline Flight-mod-day ) 
+    (
+      Flight-pred-airline
+      Flight-mod-from-airport
+      Flight-mod-day
+    ) 
+    ( Flight-pred-arrival ) 
+    ( Flight-pred-day ) 
+    ( Flight-pred-day Time-descr ) 
+    (
+      Flight-pred-departure-time
+      and
+      Flight-pred-flight-stop
+    ) 
+    (
+      Flight-pred-departure-time
+      and
+      Have-restriction
+    ) 
+    ( Flight-pred-departure ) 
+    (
+      Flight-pred-departure
+      and
+      Flight-pred-arrival
+    ) 
+    (
+      Flight-pred-departure
+      and
+      Flight-pred-departure
+    ) 
+    (
+      Flight-pred-departure
+      and
+      Flight-pred-flight-stop
+    ) 
+    (
+      Flight-pred-departure
+      but
+      Flight-pred-flight-stop
+    ) 
+    ( Flight-pred-fare ) 
+    ( Flight-pred-flight-stop ) 
+    ( Flight-pred-num-stops ) 
+    ( Have-meal ) 
+    ( Have-restriction ) 
+    ( are Class-type ) 
+    ( have Class-type ) 
+    ( have the longest Flight-stop in City-descr )
+  ]
+
+.Flight-stop-descr
+  [
+    ( Flight-stop in City-descr ) 
+    ( a Flight-stop in City-descr ) 
+    ( one Flight-stop in City-descr )
+  ]
+
+Flight-stop-mod
+  [
+    ( Time-descr ) 
+    ( along the way ) 
+    ( around Time or Time ) 
+    ( at around Time or Time ) 
+    ( on the way )
+  ]
+
+Flight-stop
+  [
+    ( connection ) 
+    ( connections ) 
+    ( layover ) 
+    ( layovers ) 
+    ( stop ) 
+    ( stop off ) 
+    ( stopover ) 
+    ( stopovers ) 
+    ( stops )
+  ]
+
+Flight-wh
+  [
+    ( what Flight-adj-list Flight ) 
+    (
+      what
+      Flight-adj-list
+      Flight
+      Flight-mod-phrase
+    ) 
+    ( what Flight ) 
+    ( what Flight Flight-mod-phrase ) 
+    ( what other Flight ) 
+    ( which ) 
+    ( which Flight-adj-list Flight ) 
+    (
+      which
+      Flight-adj-list
+      Flight
+      Flight-mod-phrase
+    ) 
+    ( which Flight ) 
+    ( which Flight Flight-mod-phrase ) 
+    ( which of Det above Flight ) 
+    ( which of Det above Flight Flight-mod-phrase ) 
+    ( which of Flight-descr ) 
+    ( which of these ) 
+    ( which of those ) 
+    ( which one of these ) 
+    ( which one of these Flight ) 
+    ( which ones of them )
+  ]
+
+Flight
+  [
+    ( airline flight ) 
+    ( airline flights ) 
+    ( flight ) 
+    ( flights ) 
+    ( nonstops ) 
+    ( one ) 
+    ( ones ) 
+    ( plane ) 
+    ( round trips ) 
+    ( ticket ) 
+    ( tickets ) 
+    ( trip ) 
+    ( trips )
+  ]
+
+.Fly
+  [
+    ( continue ) 
+    ( do you have ) 
+    ( flies ) 
+    ( fly ) 
+    ( go ) 
+    ( goes ) 
+    ( runs ) 
+    ( travel ) 
+    ( will fly me ) 
+    ( will take me )
+  ]
+
+Food-service-meal-code-compound-descr
+  [
+    (
+      Det
+      meal
+      Code
+      Food-service-meal-code-compound
+    ) 
+    ( meal Code Food-service-meal-code-compound ) 
+    ( meal Food-service-meal-code-compound )
+  ]
+
+Food-service-meal-code-compound
+  [
+    ( b b slash b s ) 
+    ( b b slash s b ) 
+    ( b b slash s s ) 
+    ( b d slash b s ) 
+    ( b l d slash b s d ) 
+    ( b l d slash s l d ) 
+    ( b l s slash b l ) 
+    ( b l s slash b s ) 
+    ( b l slash b s ) 
+    ( b l slash b s l ) 
+    ( b l slash s ) 
+    ( b l slash s l ) 
+    ( b l slash s s ) 
+    ( b s d slash s ) 
+    ( b s l slash b l ) 
+    ( b s s slash b s ) 
+    ( b s slash b ) 
+    ( b s slash s ) 
+    ( b s slash s s ) 
+    ( b slash ) 
+    ( b slash b s ) 
+    ( b slash s ) 
+    ( b slash s b ) 
+    ( d d slash d s ) 
+    ( d d slash s d ) 
+    ( d s slash d ) 
+    ( d s slash s ) 
+    ( d s slash s s ) 
+    ( d slash d s ) 
+    ( d slash s ) 
+    ( d slash s d ) 
+    ( l d s slash l d ) 
+    ( l d slash l s ) 
+    ( l d slash l s d ) 
+    ( l d slash s ) 
+    ( l d slash s d ) 
+    ( l d slash s s ) 
+    ( l l slash l ) 
+    ( l l slash l s ) 
+    ( l l slash s ) 
+    ( l s d slash l d ) 
+    ( l s slash l ) 
+    ( l s slash s ) 
+    ( l s slash s s ) 
+    ( l slash ) 
+    ( l slash s ) 
+    ( l slash s l ) 
+    ( s b l slash b l ) 
+    ( s b s slash b ) 
+    ( s b s slash b s ) 
+    ( s b s slash s b ) 
+    ( s b slash b ) 
+    ( s b slash s ) 
+    ( s b slash s s ) 
+    ( s d s slash d ) 
+    ( s d s slash d s ) 
+    ( s d slash d ) 
+    ( s d slash s ) 
+    ( s d slash s s ) 
+    ( s l d slash s l ) 
+    ( s l s slash l s ) 
+    ( s l slash l ) 
+    ( s l slash s ) 
+    ( s l slash s s ) 
+    ( s s l slash l ) 
+    ( s s l slash s l ) 
+    ( s s slash ) 
+    ( s s slash s ) 
+    ( s slash )
+  ]
+
+Food-service-meal-code-simple-descr
+  [
+    ( Det meal Code ) 
+    ( Det meal Code Food-service-meal-code-simple ) 
+    ( meal Code Food-service-meal-code-simple ) 
+    ( meal Food-service-meal-code-simple )
+  ]
+
+Food-service-meal-code-simple
+  [
+    ( b ) 
+    ( b b ) 
+    ( b d ) 
+    ( b l ) 
+    ( b l d ) 
+    ( b l s ) 
+    ( b s ) 
+    ( b s d ) 
+    ( b s l ) 
+    ( d ) 
+    ( d b ) 
+    ( d d ) 
+    ( d s ) 
+    ( l ) 
+    ( l d ) 
+    ( l l ) 
+    ( l s ) 
+    ( s ) 
+    ( s b ) 
+    ( s b l ) 
+    ( s b s ) 
+    ( s d ) 
+    ( s l ) 
+    ( s l d ) 
+    ( s s ) 
+    ( s s d ) 
+    ( s s l )
+  ]
+
+Food-service-meal-description
+  [ ( breakfast )  ( dinner )  ( lunch )  ( snack )  ( supper ) ]
+
+.Four-digit
+  [
+    ( Double-digit oh Digit ) 
+    ( Double-digit zero Digit ) 
+    ( Double-digit Double-digit ) 
+    (
+      Non-zero-digit
+      thousand
+      Non-zero-digit
+      hundred
+      and
+      Double-digit
+    ) 
+    (
+      Non-zero-digit
+      thousand
+      Non-zero-digit
+      hundred
+      Double-digit
+    )
+  ]
+
+.From-airport-layover-to-airport
+  [
+    (
+      City-descr
+      to
+      City-descr
+      and
+      then
+      to
+      City-descr
+    ) 
+    (
+      from
+      City-descr
+      to
+      City-descr
+      and
+      then
+      on
+      to
+      City-descr
+    ) 
+    (
+      from
+      City-descr
+      to
+      City-descr
+      and
+      then
+      to
+      City-descr
+    ) 
+    (
+      from
+      City-descr
+      to
+      City-descr
+      continuing
+      on
+      then
+      to
+      City-descr
+    ) 
+    (
+      from
+      City-descr
+      to
+      City-descr
+      then
+      to
+      City-descr
+    ) 
+    (
+      from
+      City-descr
+      to
+      City-descr
+      to
+      City-descr
+    ) 
+    (
+      leaving
+      City-descr
+      to
+      City-descr
+      and
+      then
+      to
+      City-descr
+    )
+  ]
+
+.From-airport-to-airport
+  [
+    ( City-descr City-descr ) 
+    ( City-descr To-airport ) 
+    ( between City-descr and City-descr ) 
+    ( departing from City-descr and landing in City-descr ) 
+    ( going from City-descr to City-descr ) 
+    ( in City-descr to City-descr )
+  ]
+
+From-airport
+  [
+    ( either from City-descr or City-descr ) 
+    ( from Airport-descr ) 
+    ( out of Airport-descr ) 
+    ( from City-descr ) 
+    ( out of City-descr ) 
+    ( from Airport-descr and City-descr ) 
+    ( from Airport-descr or City-descr ) 
+    ( from Airport-descr and from Airport-descr ) 
+    ( from Airport-descr or from Airport-descr ) 
+    ( from Airport-descr and from City-descr ) 
+    ( from Airport-descr or from City-descr ) 
+    ( from City-descr and Airport-descr ) 
+    ( from City-descr or Airport-descr ) 
+    ( from City-descr and from Airport-descr ) 
+    ( from City-descr or from Airport-descr ) 
+    ( from City-descr and from City-descr ) 
+    ( from City-descr or from City-descr ) 
+    ( im in City-name ) 
+    ( originating City-descr ) 
+    ( originating in City-descr )
+  ]
+
+Ground-service-descr
+  [
+    ( Ground-service-param Ground-service-mod-list ) 
+    ( Ground-service-param ) 
+    (
+      Ground-service-transport-type
+      operation
+      Ground-service-mod-list
+    ) 
+    ( Ground-service-transport-type operation ) 
+    (
+      Ground-service
+      Ground-service-transport-type
+      Ground-service-mod-list
+    ) 
+    (
+      Ground-service
+      Ground-service-transport-type
+    ) 
+    (
+      Det
+      Ground-service-transport-type
+      information
+      Ground-service-mod-list
+    ) 
+    (
+      Ground-service-transport-type
+      information
+      Ground-service-mod-list
+    ) 
+    (
+      Det
+      Ground-service-transport-type
+      Ground-service-mod-list
+    ) 
+    (
+      Ground-service-transport-type
+      Ground-service-mod-list
+    ) 
+    (
+      Det
+      Ground-service-transport-type
+      information
+    ) 
+    ( Ground-service-transport-type information ) 
+    ( Det Ground-service-transport-type ) 
+    ( Ground-service-transport-type )
+  ]
+
+Ground-service-mod-list
+  [
+    ( Ground-service-mod ) 
+    (
+      Ground-service-mod
+      Ground-service-mod
+    ) 
+    (
+      Ground-service-mod
+      Ground-service-mod
+      Ground-service-mod
+    )
+  ]
+
+Ground-service-mod
+  [
+    ( On-day ) 
+    ( Time-descr ) 
+    ( With-city ) 
+    ( at Airport-descr ) 
+    ( available ) 
+    ( between Airport-descr and City-area ) 
+    ( between Airport-descr and City-name ) 
+    ( for Airport-descr ) 
+    ( for City-descr ) 
+    ( for Day-name Date-day-descr to Day-name Date-day-descr ) 
+    ( from Airport-descr ) 
+    ( from Airport-descr into City-descr ) 
+    ( from City-area ) 
+    ( from City-descr ) 
+    ( in Airport-descr ) 
+    ( offered ) 
+    ( provided ) 
+    ( to Airport-descr ) 
+    ( to City-area ) 
+    ( to City-descr ) 
+    ( to and from City-area )
+  ]
+
+.Ground-service-param
+  [
+    ( Det available Ground-service ) 
+    ( Ground-service availability ) 
+    ( Ground-service information ) 
+    ( Ground-service options ) 
+    ( Det Ground-service ) 
+    ( Ground-service ) 
+    ( the transportation on the ground ) 
+    ( transportation on the ground ) 
+    ( all ground information ) 
+    ( ground information ) 
+    ( transportation on the ground )
+  ]
+
+.Ground-service-transport-type-wh
+  [
+    ( what Type of Ground-service ) 
+    ( what Type of ground transportation services )
+  ]
+
+.Ground-service-transport-type
+  [
+    ( air taxi ) 
+    ( car ) 
+    ( car rental ) 
+    ( car rentals ) 
+    ( limo ) 
+    ( limousine ) 
+    ( limousine service ) 
+    ( limousines ) 
+    ( rental car ) 
+    ( rental cars ) 
+    ( taxi ) 
+    ( train )
+  ]
+
+Ground-service
+  [ ( ground transport )  ( ground transportation ) ]
+
+Have-meal
+  [
+    ( has Meal-descr ) 
+    ( have Meal-descr ) 
+    ( include Meal-descr ) 
+    ( includes Meal-descr ) 
+    ( offer Meal-descr ) 
+    ( offers Meal-descr ) 
+    ( provide Meal-descr ) 
+    ( serve Meal-descr ) 
+    ( serves Meal-descr ) 
+    ( will provide Meal-descr ) 
+    ( will serve Meal-descr )
+  ]
+
+Have-miles-distant-min
+  ( ( is closest to City-area ) )
+
+Have-restriction
+  [ ( do not have travel restrictions )  ( have no travel restrictions ) ]
+
+Highest
+  [ ( highest )  ( most expensive ) ]
+
+Hour-am
+  [ ( eleven )  ( nine )  ( ten )  ( twelve ) ]
+
+Hour-military
+  [
+    ( eighteen ) 
+    ( fifteen ) 
+    ( fourteen ) 
+    ( nineteen ) 
+    ( oh eight ) 
+    ( oh five ) 
+    ( oh four ) 
+    ( oh nine ) 
+    ( oh one ) 
+    ( oh seven ) 
+    ( oh six ) 
+    ( oh three ) 
+    ( oh two ) 
+    ( seventeen ) 
+    ( sixteen ) 
+    ( thirteen ) 
+    ( twenty ) 
+    ( twenty four ) 
+    ( twenty one ) 
+    ( twenty three ) 
+    ( twenty two )
+  ]
+
+Hour-pm
+  [
+    ( eight ) 
+    ( five ) 
+    ( four ) 
+    ( one ) 
+    ( seven ) 
+    ( six ) 
+    ( three ) 
+    ( two )
+  ]
+
+Hour
+  [
+    ( eight ) 
+    ( eleven ) 
+    ( five ) 
+    ( four ) 
+    ( nine ) 
+    ( one ) 
+    ( seven ) 
+    ( six ) 
+    ( ten ) 
+    ( three ) 
+    ( twelve ) 
+    ( two )
+  ]
+
+I-want
+  [
+    ( i desire ) 
+    ( i need ) 
+    ( i now need ) 
+    ( i want ) 
+    ( i will need ) 
+    ( i wish ) 
+    ( i would like ) 
+    ( id like ) 
+    ( ill need )
+  ]
+
+Interval
+  [
+    ( afternoon ) 
+    ( early afternoon ) 
+    ( early evening ) 
+    ( early morning ) 
+    ( evening ) 
+    ( late afternoon ) 
+    ( late evening ) 
+    ( late morning ) 
+    ( late night ) 
+    ( mid afternoon ) 
+    ( mid day ) 
+    ( mid morning ) 
+    ( morning ) 
+    ( mornings ) 
+    ( night )
+  ]
+
+Know
+  [
+    ( find ) 
+    ( find out ) 
+    ( find out about ) 
+    ( get ) 
+    ( have ) 
+    ( know ) 
+    ( know about ) 
+    ( see )
+  ]
+
+Latest
+  [ ( last )  ( latest ) ]
+
+List-of
+  [
+    ( list of ) 
+    ( listings of ) 
+    ( a list of ) 
+    ( a listing of ) 
+    ( the list of )
+  ]
+
+May
+  [ ( can )  ( could )  ( may ) ]
+
+Meal-descr
+  [
+    ( Det meal Pron-rel are Served ) 
+    ( Det meals Pron-rel are Served ) 
+    ( Det meal Served ) 
+    ( Det meals Served ) 
+    ( Det Food-service-meal-description ) 
+    ( Food-service-meal-description ) 
+    (
+      Food-service-meal-description
+      and
+      Food-service-meal-description
+    ) 
+    (
+      Food-service-meal-description
+      or
+      Food-service-meal-description
+    ) 
+    ( Det meal ) 
+    ( meal ) 
+    ( Det meals ) 
+    ( meals ) 
+    ( Det meal service ) 
+    ( meal service )
+  ]
+
+Min-connect-time
+  [
+    ( the minimum possible connecting time ) 
+    ( minimum possible connecting time ) 
+    ( the minimum connecting time ) 
+    ( minimum connecting time ) 
+    ( the minimum possible connection time ) 
+    ( minimum possible connection time ) 
+    ( the minimum connection time ) 
+    ( minimum connection time ) 
+    ( the minimum possible connecting times ) 
+    ( minimum possible connecting times ) 
+    ( the minimum connecting times ) 
+    ( minimum connecting times ) 
+    ( the minimum possible connection times ) 
+    ( minimum possible connection times ) 
+    ( the minimum connection times ) 
+    ( minimum connection times )
+  ]
+
+Minute-tens
+  [ ( fifty )  ( forty )  ( thirty )  ( twenty ) ]
+
+Minutes
+  [
+    ( Minute-tens ) 
+    ( Minute-tens Non-zero-digit ) 
+    ( eighteen ) 
+    ( eleven ) 
+    ( fifteen ) 
+    ( fourteen ) 
+    ( nineteen ) 
+    ( oh Non-zero-digit ) 
+    ( seventeen ) 
+    ( sixteen ) 
+    ( ten ) 
+    ( thirteen ) 
+    ( twelve )
+  ]
+
+Month
+  [
+    ( april ) 
+    ( august ) 
+    ( december ) 
+    ( february ) 
+    ( january ) 
+    ( july ) 
+    ( june ) 
+    ( march ) 
+    ( may ) 
+    ( november ) 
+    ( october ) 
+    ( september )
+  ]
+
+Non-zero-digit
+  [
+    ( eight ) 
+    ( five ) 
+    ( four ) 
+    ( nine ) 
+    ( one ) 
+    ( seven ) 
+    ( six ) 
+    ( three ) 
+    ( two )
+  ]
+
+On-day
+  [
+    ( Date-day-descr ) 
+    ( Date-day-descr or Date-day-descr ) 
+    ( during the week ) 
+    ( during week days ) 
+    ( during weekdays ) 
+    ( either Date-day-descr or Date-day-descr ) 
+    (
+      either
+      on
+      Date-day-descr
+      or
+      on
+      Date-day-descr
+    ) 
+    ( for Date-day-descr ) 
+    ( not on weekends ) 
+    ( on Date-day-descr ) 
+    ( on Date-day-descr and on Date-day-descr ) 
+    ( on Date-day-descr or on Date-day-descr ) 
+    ( on weekdays ) 
+    ( that day ) 
+    ( weekday ) 
+    ( weekdays )
+  ]
+
+Ordinal
+  [
+    ( eighteenth ) 
+    ( eighth ) 
+    ( eleventh ) 
+    ( fifteenth ) 
+    ( fifth ) 
+    ( first ) 
+    ( fourteenth ) 
+    ( fourth ) 
+    ( nineteenth ) 
+    ( ninth ) 
+    ( second ) 
+    ( seventeenth ) 
+    ( seventh ) 
+    ( sixteenth ) 
+    ( sixth ) 
+    ( tenth ) 
+    ( third ) 
+    ( thirteenth ) 
+    ( thirtieth ) 
+    ( thirty first ) 
+    ( twelfth ) 
+    ( twentieth ) 
+    ( twenty eighth ) 
+    ( twenty fifth ) 
+    ( twenty first ) 
+    ( twenty fourth ) 
+    ( twenty ninth ) 
+    ( twenty second ) 
+    ( twenty seventh ) 
+    ( twenty sixth ) 
+    ( twenty third )
+  ]
+
+Post-filler
+  [
+    ( again ) 
+    ( again please ) 
+    ( also ) 
+    ( how May i find that out ) 
+    ( if possible ) 
+    ( if you please ) 
+    ( only ) 
+    ( please ) 
+    ( thank you ) 
+    ( too ) 
+    ( what do you have available ) 
+    ( what is there ) 
+    ( whats available )
+  ]
+
+Pre-filler
+  [
+    ( actually ) 
+    ( all right ) 
+    ( all right now ) 
+    ( and ) 
+    ( and now ) 
+    ( excuse me ) 
+    ( hello ) 
+    ( hi ) 
+    ( i beg your pardon ) 
+    ( i mean ) 
+    ( no ) 
+    ( now ) 
+    ( now please ) 
+    ( okay ) 
+    ( okay now ) 
+    ( okay please ) 
+    ( please ) 
+    ( this time ) 
+    ( well ) 
+    ( yeah ) 
+    ( yes )
+  ]
+
+Pron-rel
+  [ ( that )  ( which ) ]
+
+.Query
+  [
+    ( Clear-memory ) 
+    ( Count-objects-query ) 
+    ( Find-airline-and-flight-number-query ) 
+    ( Find-all-attributes-query ) 
+    ( Find-attribute-query ) 
+    ( Find-flight-and-fare-query ) 
+    ( Find-flight-and-return-query ) 
+    ( Find-flight-and-stops-query ) 
+    ( Find-flight-schedule-query ) 
+    ( Find-flight-stop-schedule-query ) 
+    (
+      Find-flight
+      Flight-mod-phrase
+      and
+      Flight-pred
+      Find
+      Aircraft-wh
+      are
+      used
+      by
+      Flight-descr
+      and
+      Find
+      Flight-number-param
+    ) 
+    ( Find-object-query ) 
+    ( Find-restriction-query ) 
+    (
+      Find
+      Flight-descr
+      Find
+      Aircraft-param
+      and
+      Flight-number-param
+    )
+  ]
+
+Restriction-code-descr
+  [
+    ( Restriction-code ) 
+    ( the restriction Code Restriction-code ) 
+    ( restriction Code Restriction-code ) 
+    ( the restriction Restriction-code ) 
+    ( restriction Restriction-code ) 
+    ( restrictions Restriction-code )
+  ]
+
+Restriction-code
+  [
+    ( a p fifty eight ) 
+    ( a p five eight ) 
+    ( a p fifty seven ) 
+    ( a p five seven ) 
+    ( a p seven five ) 
+    ( a p seventy five ) 
+    ( a p six ) 
+    ( a p sixty ) 
+    ( a p twenty one ) 
+    ( a p two one ) 
+    ( a p one two ) 
+    ( a p six oh ) 
+    ( a p six zero ) 
+    ( a p slash fifty eight ) 
+    ( a p slash five eight ) 
+    ( a p slash fifty seven ) 
+    ( a p slash five seven ) 
+    ( a p slash seven five ) 
+    ( a p slash seventy five ) 
+    ( a p slash six ) 
+    ( a p slash sixty ) 
+    ( a p slash twenty one ) 
+    ( a p slash two one ) 
+    ( a p slash one two ) 
+    ( a p slash six oh ) 
+    ( a p slash six zero ) 
+    ( a p slash twelve ) 
+    ( a p slash twenty ) 
+    ( a p slash two ) 
+    ( a p slash two oh ) 
+    ( a p slash two zero ) 
+    ( a p twelve ) 
+    ( a p twenty ) 
+    ( a p two ) 
+    ( a p two oh ) 
+    ( a p two zero ) 
+    ( e x fourteen ) 
+    ( e x nine ) 
+    ( e x nineteen ) 
+    ( e x one four ) 
+    ( e x one nine ) 
+    ( e x one seven ) 
+    ( e x one three ) 
+    ( e x seventeen ) 
+    ( e x slash fourteen ) 
+    ( e x slash nine ) 
+    ( e x slash nineteen ) 
+    ( e x slash one four ) 
+    ( e x slash one nine ) 
+    ( e x slash one seven ) 
+    ( e x slash one three ) 
+    ( e x slash seventeen ) 
+    ( e x slash thirteen ) 
+    ( e x thirteen )
+  ]
+
+Restriction-param
+  [
+    ( Det Restriction ) 
+    ( Restriction ) 
+    ( Det flight restriction ) 
+    ( flight restriction ) 
+    ( Det restriction Code ) 
+    ( restriction Code ) 
+    ( Det travel restrictions ) 
+    ( travel restrictions )
+  ]
+
+Restriction-wh
+  ( ( what restrictions ) )
+
+Restriction
+  [ ( restriction )  ( restrictions ) ]
+
+Return-type
+  [ ( not requiring a round trip purchase )  ( one way )  ( round trip ) ]
+
+Served
+  [ ( available )  ( included )  ( offered )  ( provided )  ( served ) ]
+
+Show-ditrans
+  [ ( find )  ( get )  ( give )  ( show )  ( tell ) ]
+
+Show-trans
+  [ ( bring up )  ( display )  ( find )  ( list )  ( provide )  ( show ) ]
+
+State-name
+  [
+    ( alaska ) 
+    ( arizona ) 
+    ( california ) 
+    ( colorado ) 
+    ( connecticut ) 
+    ( florida ) 
+    ( georgia ) 
+    ( hawaii ) 
+    ( illinois ) 
+    ( indiana ) 
+    ( kansas ) 
+    ( maryland ) 
+    ( massachusetts ) 
+    ( michigan ) 
+    ( minnesota ) 
+    ( missouri ) 
+    ( nevada ) 
+    ( new hampshire ) 
+    ( new jersey ) 
+    ( new york ) 
+    ( new york state ) 
+    ( north carolina ) 
+    ( ohio ) 
+    ( ontario ) 
+    ( pennsylvania ) 
+    ( quebec ) 
+    ( tennessee ) 
+    ( texas ) 
+    ( utah ) 
+    ( virginia ) 
+    ( washington ) 
+    ( wisconsin )
+  ]
+
+Stop
+  [
+    ( also stop ) 
+    ( connect ) 
+    ( has Det Flight-stop ) 
+    ( have a Flight-stop ) 
+    ( make a Flight-stop ) 
+    ( makes a Flight-stop ) 
+    ( should stop ) 
+    ( stop ) 
+    ( stop over ) 
+    ( stopover ) 
+    ( stops ) 
+    ( stops over )
+  ]
+
+Symbolize
+  [
+    ( mean ) 
+    ( means ) 
+    ( represent ) 
+    ( represents ) 
+    ( stand for ) 
+    ( stands for )
+  ]
+
+.Tens
+  [
+    ( eighty ) 
+    ( fifty ) 
+    ( forty ) 
+    ( ninety ) 
+    ( seventy ) 
+    ( sixty ) 
+    ( thirty ) 
+    ( twenty )
+  ]
+
+.Three-digit
+  [
+    ( Non-zero-digit oh Digit ) 
+    ( Non-zero-digit zero Digit ) 
+    ( Non-zero-digit Double-digit ) 
+    ( Non-zero-digit hundred ) 
+    ( Non-zero-digit hundred and Double-digit ) 
+    ( Non-zero-digit hundred Double-digit ) 
+    ( Non-zero-digit hundred and Non-zero-digit ) 
+    ( Non-zero-digit hundred Non-zero-digit )
+  ]
+
+.Time-approx
+  [
+    ( approximately Time ) 
+    ( approximately at Time ) 
+    ( at about Time ) 
+    ( about Time ) 
+    ( at around Time ) 
+    ( around Time ) 
+    ( at or around Time ) 
+    ( by Time or as soon thereafter as possible ) 
+    ( close to Time ) 
+    ( sometime around Time )
+  ]
+
+.Time-descr
+  [
+    ( Time-approx ) 
+    ( Time-lower-bound ) 
+    ( Time-point ) 
+    ( Time-range ) 
+    ( Time-upper-bound ) 
+    ( With-interval ) 
+    ( before or around Time ) 
+    ( shortly after Time ) 
+    ( soon after Time )
+  ]
+
+.Time-lower-bound
+  [
+    ( after Time ) 
+    ( after dinner ) 
+    ( after lunch time ) 
+    ( at Time or later )
+  ]
+
+Time-point
+  ( ( at Time ) )
+
+.Time-range
+  [
+    ( from Time to Time ) 
+    ( Time to Time ) 
+    ( after Time and before Time ) 
+    ( after Time but before Time ) 
+    ( before Time and after Time ) 
+    ( before Time but after Time ) 
+    ( between Time and Time ) 
+    ( between Time to Time )
+  ]
+
+Time-upper-bound
+  [
+    ( Time or sooner ) 
+    ( at or before Time ) 
+    ( before Time ) 
+    ( by Time )
+  ]
+
+Time-wh
+  [ ( at what time )  ( what time )  ( when ) ]
+
+.Time
+  [
+    ( Hour-am Minutes ) 
+    ( Hour-am oclock ) 
+    ( Hour-am ) 
+    ( Hour-military Minutes hours ) 
+    ( Hour-military Minutes ) 
+    ( Hour-military hundred hours ) 
+    ( Hour-military hundred ) 
+    ( Hour-pm Minutes ) 
+    ( Hour-pm oclock ) 
+    ( Hour-pm ) 
+    ( Hour Minutes a m ) 
+    ( Hour Minutes hours ) 
+    ( Hour Minutes in the afternoon ) 
+    ( Hour Minutes in the evening ) 
+    ( Hour Minutes in the morning ) 
+    ( Hour Minutes p m ) 
+    ( Hour oclock a m ) 
+    ( Hour a m ) 
+    ( Hour oclock at night ) 
+    ( Hour at night ) 
+    ( Hour oclock in the afternoon ) 
+    ( Hour in the afternoon ) 
+    ( Hour oclock in the evening ) 
+    ( Hour in the evening ) 
+    ( Hour oclock in the morning ) 
+    ( Hour in the morning ) 
+    ( Hour hundred hours ) 
+    ( Hour hundred ) 
+    ( Hour oclock p m ) 
+    ( Hour p m ) 
+    ( dinnertime ) 
+    ( midnight ) 
+    ( noon ) 
+    ( noon time ) 
+    ( noontime ) 
+    ( twelve oclock noon ) 
+    ( twelve noon )
+  ]
+
+To-airport
+  [
+    ( at Airport-descr ) 
+    ( destination Airport-descr ) 
+    ( for Airport-descr ) 
+    ( in Airport-descr ) 
+    ( into Airport-descr ) 
+    ( on Airport-descr ) 
+    ( to Airport-descr ) 
+    ( at City-descr ) 
+    ( destination City-descr ) 
+    ( for City-descr ) 
+    ( in City-descr ) 
+    ( into City-descr ) 
+    ( on City-descr ) 
+    ( to City-descr ) 
+    ( to Airport-descr and to Airport-descr ) 
+    ( to Airport-descr or to Airport-descr ) 
+    ( to Airport-descr and to City-descr ) 
+    ( to Airport-descr or to City-descr ) 
+    ( to Airport-descr and City-descr ) 
+    ( to Airport-descr or City-descr ) 
+    ( to City-descr and to Airport-descr ) 
+    ( to City-descr or to Airport-descr ) 
+    ( to City-descr and Airport-descr ) 
+    ( to City-descr or Airport-descr ) 
+    ( to City-descr and to City-descr ) 
+    ( to City-descr or to City-descr )
+  ]
+
+Type
+  [ ( kind )  ( kinds )  ( sort )  ( sorts )  ( type )  ( types ) ]
+
+Utterance
+  [
+    ( Pre-filler Query Post-filler ) 
+    ( Query Post-filler ) 
+    ( Pre-filler Query ) 
+    ( Query )
+  ]
+
+.With-aircraft
+  [ ( for Aircraft-descr )  ( of Aircraft-descr ) ]
+
+.With-airport
+  [ ( at Airport-descr )  ( for Airport-descr ) ]
+
+With-city
+  [ ( at City-descr )  ( in City-descr ) ]
+
+With-class
+  [
+    ( Class-type ) 
+    ( Class-type Fare ) 
+    ( Pron-rel are Class-type ) 
+    ( taking Class-type )
+  ]
+
+With-flight
+  [
+    ( for Flight-descr ) 
+    ( from Flight-descr ) 
+    ( in Flight-descr ) 
+    ( of Flight-descr ) 
+    ( on Flight-descr ) 
+    ( with Flight-descr ) 
+    ( for flying Flight-mod-phrase ) 
+    ( for these ) 
+    ( from these Flight listed ) 
+    ( from this list ) 
+    ( of these )
+  ]
+
+With-ground-service
+  [
+    ( for Ground-service-descr ) 
+    ( of Ground-service-descr )
+  ]
+
+With-interval
+  [
+    ( Interval ) 
+    ( all Interval ) 
+    ( during the Interval ) 
+    ( during the day ) 
+    ( early a m ) 
+    ( early in the afternoon ) 
+    ( early in the day ) 
+    ( early in the evening ) 
+    ( early in the morning ) 
+    ( evenings ) 
+    ( in the Interval ) 
+    ( in the Interval or Interval ) 
+    ( in the a m ) 
+    ( late ) 
+    ( late in the afternoon ) 
+    ( late in the evening ) 
+    ( late in the morning ) 
+    ( nights )
+  ]
+
+With-seating-capacity-smallest
+  ( ( with the smallest seating capacity ) )
+
+Year
+  ( ( nineteen ninety three ) )
+

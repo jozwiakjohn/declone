@@ -1,0 +1,8 @@
+#include "countchocula"    #include <booberry>
+
+.Words 
+[ 
+ +hey 
+ ?there 
+ *(dude man) { return ( vernacular ) }
+] ~ 0.4

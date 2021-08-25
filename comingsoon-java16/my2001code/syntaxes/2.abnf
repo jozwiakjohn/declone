@@ -1,0 +1,14 @@
+#ABNF 1.0 ISO8859-1;
+
+language en;
+
+// No imports in this grammar.
+
+public $city = Boston | Philadelphia | Fargo;
+
+public $state = Florida | North Dakota | New York;
+
+// References to local rules
+// Artificial example allows "Boston, Florida!"
+
+public $city_state = $city $state;

@@ -1,0 +1,169 @@
+;
+; A general-purpose grammar, useful for dynamic insertions
+;
+
+.SubGram0NU SubGram0
+.SubGram0 [ 
+	SubGram0 	    
+	Universal_Commands:uc {<ucommand $uc>} 
+]
+SubGram0:dynamic []
+SubGram0-ref:dynaref SubGram0:tmp {return ($tmp)} ; Forward the return value through to next level
+.SubGram1NU SubGram1
+.SubGram1 [
+	SubGram1
+	Universal_Commands:uc {<ucommand $uc>} 
+]
+SubGram1:dynamic []
+SubGram1-ref:dynaref SubGram1:tmp {return ($tmp)} 
+.SubGram2 SubGram2
+SubGram2:dynamic []
+SubGram2-ref:dynaref SubGram2:tmp {return ($tmp)}
+.SubGram3 SubGram3
+SubGram3:dynamic []
+SubGram3-ref:dynaref SubGram3:tmp {return ($tmp)}
+.SubGram4 SubGram4
+SubGram4:dynamic []
+SubGram4-ref:dynaref SubGram4:tmp {return ($tmp)}
+.SubGram5 SubGram5
+SubGram5:dynamic []
+SubGram5-ref:dynaref SubGram5:tmp {return ($tmp)}
+.SubGram6 SubGram6
+SubGram6:dynamic []
+SubGram6-ref:dynaref SubGram6:tmp {return ($tmp)}
+.SubGram7 SubGram7
+SubGram7:dynamic []
+SubGram7-ref:dynaref SubGram7:tmp {return ($tmp)}
+.SubGram8 SubGram8
+SubGram8:dynamic []
+SubGram8-ref:dynaref SubGram8:tmp {return ($tmp)}
+.SubGram9 SubGram9
+SubGram9:dynamic []
+SubGram9-ref:dynaref SubGram9:tmp {return ($tmp)}
+.SubGram10 SubGram10
+SubGram10:dynamic []
+SubGram10-ref:dynaref SubGram10:tmp {return ($tmp)}
+
+.SubGram11 SubGram11
+SubGram11:dynamic []
+SubGram11-ref:dynaref SubGram11:tmp {return ($tmp)}
+.SubGram12 SubGram12
+SubGram12:dynamic []
+SubGram12-ref:dynaref SubGram12:tmp {return ($tmp)}
+.SubGram13 SubGram13
+SubGram13:dynamic []
+SubGram13-ref:dynaref SubGram13:tmp {return ($tmp)}
+.SubGram14 SubGram14
+SubGram14:dynamic []
+SubGram14-ref:dynaref SubGram14:tmp {return ($tmp)}
+.SubGram15 SubGram15
+SubGram15:dynamic []
+SubGram15-ref:dynaref SubGram15:tmp {return ($tmp)}
+.SubGram16 SubGram16
+SubGram16:dynamic []
+SubGram16-ref:dynaref SubGram16:tmp {return ($tmp)}
+.SubGram17 SubGram17
+SubGram17:dynamic []
+SubGram17-ref:dynaref SubGram17:tmp {return ($tmp)}
+.SubGram18 SubGram18
+SubGram18:dynamic []
+SubGram18-ref:dynaref SubGram18:tmp {return ($tmp)}
+.SubGram19 SubGram19
+SubGram19:dynamic []
+SubGram19-ref:dynaref SubGram19:tmp {return ($tmp)}
+.SubGram20 SubGram20
+SubGram20:dynamic []
+SubGram20-ref:dynaref SubGram20:tmp {return ($tmp)}
+
+.SubGram21 SubGram21
+SubGram21:dynamic []
+SubGram21-ref:dynaref SubGram21:tmp {return ($tmp)}
+.SubGram22 SubGram22
+SubGram22:dynamic []
+SubGram22-ref:dynaref SubGram22:tmp {return ($tmp)}
+.SubGram23 SubGram23
+SubGram23:dynamic []
+SubGram23-ref:dynaref SubGram23:tmp {return ($tmp)}
+.SubGram24 SubGram24
+SubGram24:dynamic []
+SubGram24-ref:dynaref SubGram24:tmp {return ($tmp)}
+.SubGram25 SubGram25
+SubGram25:dynamic []
+SubGram25-ref:dynaref SubGram25:tmp {return ($tmp)}
+.SubGram26 SubGram26
+SubGram26:dynamic []
+SubGram26-ref:dynaref SubGram26:tmp {return ($tmp)}
+.SubGram27 SubGram27
+SubGram27:dynamic []
+SubGram27-ref:dynaref SubGram27:tmp {return ($tmp)}
+.SubGram28 SubGram28
+SubGram28:dynamic []
+SubGram28-ref:dynaref SubGram28:tmp {return ($tmp)}
+.SubGram29 SubGram29
+SubGram29:dynamic []
+SubGram29-ref:dynaref SubGram29:tmp {return ($tmp)}
+.SubGram30 SubGram30
+SubGram30:dynamic []
+SubGram30-ref:dynaref SubGram30:tmp {return ($tmp)}
+
+.SubGram31 SubGram31
+SubGram31:dynamic []
+SubGram31-ref:dynaref SubGram31:tmp {return ($tmp)}
+.SubGram32 SubGram32
+SubGram32:dynamic []
+SubGram32-ref:dynaref SubGram32:tmp {return ($tmp)}
+.SubGram33 SubGram33
+SubGram33:dynamic []
+SubGram33-ref:dynaref SubGram33:tmp {return ($tmp)}
+.SubGram34 SubGram34
+SubGram34:dynamic []
+SubGram34-ref:dynaref SubGram34:tmp {return ($tmp)}
+.SubGram35 SubGram35
+SubGram35:dynamic []
+SubGram35-ref:dynaref SubGram35:tmp {return ($tmp)}
+.SubGram36 SubGram36
+SubGram36:dynamic []
+SubGram36-ref:dynaref SubGram36:tmp {return ($tmp)}
+.SubGram37 SubGram37
+SubGram37:dynamic []
+SubGram37-ref:dynaref SubGram37:tmp {return ($tmp)}
+.SubGram38 SubGram38
+SubGram38:dynamic []
+SubGram38-ref:dynaref SubGram38:tmp {return ($tmp)}
+.SubGram39 SubGram39
+SubGram39:dynamic []
+SubGram39-ref:dynaref SubGram39:tmp {return ($tmp)}
+.SubGram40 SubGram40
+SubGram40:dynamic []
+SubGram40-ref:dynaref SubGram40:tmp {return ($tmp)}
+
+.SubGram41 SubGram41
+SubGram41:dynamic []
+SubGram41-ref:dynaref SubGram41:tmp {return ($tmp)}
+.SubGram42 SubGram42
+SubGram42:dynamic []
+SubGram42-ref:dynaref SubGram42:tmp {return ($tmp)}
+.SubGram43 SubGram43
+SubGram43:dynamic []
+SubGram43-ref:dynaref SubGram43:tmp {return ($tmp)}
+.SubGram44 SubGram44
+SubGram44:dynamic []
+SubGram44-ref:dynaref SubGram44:tmp {return ($tmp)}
+.SubGram45 SubGram45
+SubGram45:dynamic []
+SubGram45-ref:dynaref SubGram45:tmp {return ($tmp)}
+.SubGram46 SubGram46
+SubGram46:dynamic []
+SubGram46-ref:dynaref SubGram46:tmp {return ($tmp)}
+.SubGram47 SubGram47
+SubGram47:dynamic []
+SubGram47-ref:dynaref SubGram47:tmp {return ($tmp)}
+.SubGram48 SubGram48
+SubGram48:dynamic []
+SubGram48-ref:dynaref SubGram48:tmp {return ($tmp)}
+.SubGram49 SubGram49
+SubGram49:dynamic []
+SubGram49-ref:dynaref SubGram49:tmp {return ($tmp)}
+.SubGram50 SubGram50
+SubGram50:dynamic []
+SubGram50-ref:dynaref SubGram50:tmp {return ($tmp)}

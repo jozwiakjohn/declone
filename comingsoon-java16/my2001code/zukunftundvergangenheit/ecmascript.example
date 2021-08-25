@@ -1,0 +1,7 @@
+;
+function howdy ()
+{
+  print ( "hello" );
+}
+
+howdy()

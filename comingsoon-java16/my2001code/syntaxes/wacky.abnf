@@ -1,0 +1,3 @@
+#ABNF 1.0 ISO8859-1; 
+$rule = {whatever};
+$rude = (( $rude | rude )<0-1> {blurb})<0->;

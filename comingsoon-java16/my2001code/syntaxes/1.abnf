@@ -1,0 +1,17 @@
+#ABNF 1.0 ISO8859-1;
+
+language en;
+
+import http://www.sayplease.com/politeness.xml as polite;
+
+/**
+ * Basic command.
+ * @example please move the window
+ * @example open a file
+ */
+
+public $basicCmd = $$polite#startPolite $command $$polite#endPolite;
+
+$command = $action $object;
+$action = /10/ open {OPEN} | /2/ close {CLOSE} | /1/ delete {DELETE} | /1/ move {DELETE};
+$object = [the | a] (window | file | menu);

@@ -1,0 +1,15 @@
+#ABNF 1.0 ISO8859-1;
+
+language en;
+
+import http://www.example.com/places.xml as someplaces;
+
+// Reference by URI syntax
+$flight = I want to fly to
+   $(http://www.example.com/places.xml#city);
+
+// Reference using imported name
+$exercise = I want to walk to $$someplaces#state;
+
+// Reference to root rule using an import reference
+$wet = I want to swim to $$someplaces;
