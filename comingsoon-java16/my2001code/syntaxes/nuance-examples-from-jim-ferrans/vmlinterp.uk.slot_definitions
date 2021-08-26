@@ -1,0 +1,115 @@
+;
+; a bunch of general-purpose slots
+;
+
+slotA
+slotB
+slotC
+slotD
+slotE
+slotF
+slotG
+slotH
+slotI
+slotJ
+slotK
+slotL
+slotM
+slotN
+slotO
+slotP
+slotQ
+slotR
+slotS
+slotT
+slotU
+slotV
+slotW
+slotX
+slotY
+slotZ
+
+;----------------------------------------------------------
+; This is place holder for all slot definitions in the Nuance SOs until we resolve the issue of slotnames
+; in dynamic grammars
+;----------------------------------------------------------
+
+universals
+
+;
+; slots for SOYesNo
+;
+SOYesNo
+
+;
+; slots for SODate
+;
+NLDayOfWeek
+NLDayOfMonth
+NLMonth
+NLYear
+NLModifier
+NLTodayEtc
+
+;
+; Slots for SOTime
+;
+s_modifier
+s_time
+
+;
+; Slots for SOTelephoneNumber
+;
+area
+exchange
+subscriber
+
+;
+; Slots for SOSimpleDigitString, SOSectionedDigitString
+;
+digitstring
+
+;
+; Slots for SOQuantity
+;
+quantity
+
+;
+; Slots for SOConfirmAndCorrect
+;
+CANDC0
+CANDC1
+CANDC2
+CANDC3
+CANDC4
+CANDC5
+CANDC6
+CANDC7
+CANDC8
+CANDC9
+COMMAND
+
+;
+; Slots for SOUSCurrency
+;
+NLDollar
+NLCent
+
+actiontag
+
+slotnames
+
+vmlslot0
+vmlslot1
+vmlslot2
+vmlslot3
+vmlslot4
+vmlslot5
+vmlslot6
+vmlslot7
+vmlslot8
+vmlslot9
+
+ucommand
+
+command

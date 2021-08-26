@@ -1,0 +1,47 @@
+#include "number.grammar"
+
+Operator (
+    [
+      [ plus add ]			{<vmlslot2 ADD>}
+      [ subtract minus ]		{<vmlslot2 SUB>}
+      [ times (multiplied by) ]		{<vmlslot2 MLT>}
+      [ over (divided by) ]		{<vmlslot2 DIV>}
+      (percent of )			{<vmlslot2 PRC>}
+    ]
+)
+
+Memory_Clear (
+    ( clear ?memory )		{<vmlslot0 Memory_Clear>}
+)
+
+Memory_Set (
+    [ store push save ]		{<vmlslot0 Memory_Set>}
+)
+
+Memory_Access (
+    [ load pop ]		{return("LOAD")}
+)
+
+Command (
+    [ 
+      Memory_Set
+      Memory_Clear
+      (?[?(what ?is ?in) ?show] memory)	{<vmlslot0 Memort_Show>}
+    ]
+)
+
+Operation (
+    [
+      (Number:num1      Operator  Number:num2)		{<vmlslot0 "Num_Op_Num"> <vmlslot1 $num1> <vmlslot3 $num2>}
+      (Memory_Access:ma Operator  Number:num)		{<vmlslot0 "Mem_Op_Num"> <vmlslot1 $ma> <vmlslot3 $num>}
+      (Number:num       Operator  Memory_Access:ma)	{<vmlslot0 "Num_Op_Mem"> <vmlslot1 $num> <vmlslot3 $ma>}
+    ]
+)
+
+.Calculator (
+    [
+      Operation 
+      Command
+      Universal_Commands:uc		{<ucommand $uc>}
+    ]
+)

@@ -1,0 +1,30 @@
+Uh ?[um uh]
+
+YES_WORDS [(yes ?_IT_IS)
+           _IT_IS
+           yup
+           yeah
+           okay
+           sure
+           (you got it)
+           (?(?yes that's) [right correct])
+          ]
+
+NO_WORDS  [nope
+           (absolutely not)
+           (no ?[_IT_IS_NOT way])
+           _IT_IS_NOT
+           (?(?no that's)
+            [wrong
+             (not [correct right])
+             incorrect
+            ]
+           )
+          ]
+
+_IT_IS
+    (it [sure certainly] is)
+
+_IT_IS_NOT
+    [(it isn't) (it's not) (it is not)]
+

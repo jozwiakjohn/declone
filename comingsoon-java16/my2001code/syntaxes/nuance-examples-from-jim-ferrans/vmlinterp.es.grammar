@@ -1,0 +1,978 @@
+#include "time.grammar"
+#include "../lang/Spanish.America/grammars/money.grammar"
+#include "../lang/Spanish.America/grammars/number.grammar"
+#include "../lang/Spanish.America/grammars/yesno.grammar"
+
+;;
+;; key.grammar-v6
+;;
+;; Grammars for touch-tone key sequences
+;;
+;;  The standard "words" for touch-tone digits 0-9 are "dtmf-0" ... "dtmf-9",
+;;   respectively.  The '*' (asterisk/star) key is denoted by "dtmf-star",
+;;   and the '#' (pound) key is denoted by the word "dtmf-pound".
+;;
+;;  This file defines the following grammars:
+;;
+;;      KeyDigit
+;;                 - Returns a single digit corresponding to a single touchtone
+;;                   key press
+;;
+;;      Key1Digit ...Key12Digits
+;;                 - Returns an integer corresponding to the specified number
+;;                   of touchtone key presses.  Note that leading zeroes will
+;;                   be omitted.
+;;
+;;      Key1DigitString...Key12DigitString
+;;                 - Returns a string corresponding to the specified number of
+;;                   touchtone key presses.  Note that leading zeroes will not
+;;                   be omitted.
+
+KeyDigit   [
+     dtmf-0         {return(0)}
+     dtmf-1         {return(1)}
+     dtmf-2         {return(2)}
+     dtmf-3         {return(3)}
+     dtmf-4         {return(4)}
+     dtmf-5         {return(5)}
+     dtmf-6         {return(6)}
+     dtmf-7         {return(7)}
+     dtmf-8         {return(8)}
+     dtmf-9         {return(9)}
+]
+
+Key1Digit (
+     KeyDigit:d
+)                   {return($d)}
+
+Key2Digits (
+     KeyDigit:d1
+     KeyDigit:d2
+)                   {return(add(times($d1 10) $d2))}
+
+Key3Digits (
+     Key2Digits:n
+     KeyDigit:d
+)                   {return(add(times($n 10) $d))}
+
+Key4Digits (
+     Key3Digits:n
+     KeyDigit:d
+)                   {return(add(times($n 10) $d))}
+
+Key5Digits (
+     Key4Digits:n
+     KeyDigit:d
+)                   {return(add(times($n 10) $d))}
+
+Key6Digits (
+     Key5Digits:n
+     KeyDigit:d
+)                   {return(add(times($n 10) $d))}
+
+Key7Digits (
+     Key6Digits:n
+     KeyDigit:d
+)                   {return(add(times($n 10) $d))}
+
+Key8Digits (
+     Key7Digits:n
+     KeyDigit:d
+)                   {return(add(times($n 10) $d))}
+
+Key9Digits (
+     Key8Digits:n
+     KeyDigit:d
+)                   {return(add(times($n 10) $d))}
+
+Key10Digits (
+     Key9Digits:n
+     KeyDigit:d
+)                   {return(add(times($n 10) $d))}
+
+Key11Digits (
+     Key10Digits:n
+     KeyDigit:d
+)                   {return(add(times($n 10) $d))}
+
+Key12Digits (
+     Key11Digits:n
+     KeyDigit:d
+)                   {return(add(times($n 10) $d))}
+
+Key1DigitString [
+     dtmf-0         {return("0")}
+     dtmf-1         {return("1")}
+     dtmf-2         {return("2")}
+     dtmf-3         {return("3")}
+     dtmf-4         {return("4")}
+     dtmf-5         {return("5")}
+     dtmf-6         {return("6")}
+     dtmf-7         {return("7")}
+     dtmf-8         {return("8")}
+     dtmf-9         {return("9")}
+]
+
+Key2DigitString   (
+     Key1DigitString:d1
+     Key1DigitString:d2
+)                          {return(strcat($d1 $d2))}
+
+Key3DigitString   (
+     Key1DigitString:d1
+     Key2DigitString:d2
+)                          {return(strcat($d1 $d2))}
+
+Key4DigitString   (
+     Key1DigitString:d1
+     Key3DigitString:d2
+)                          {return(strcat($d1 $d2))}
+
+Key5DigitString   (
+     Key1DigitString:d1
+     Key4DigitString:d2
+)                          {return(strcat($d1 $d2))}
+
+Key6DigitString   (
+     Key1DigitString:d1
+     Key5DigitString:d2
+)                          {return(strcat($d1 $d2))}
+
+Key7DigitString   (
+     Key1DigitString:d1
+     Key6DigitString:d2
+)                          {return(strcat($d1 $d2))}
+
+Key8DigitString   (
+     Key1DigitString:d1
+     Key7DigitString:d2
+)                          {return(strcat($d1 $d2))}
+
+Key9DigitString   (
+     Key1DigitString:d1
+     Key8DigitString:d2
+)                          {return(strcat($d1 $d2))}
+
+Key10DigitString   (
+     Key1DigitString:d1
+     Key9DigitString:d2
+)                          {return(strcat($d1 $d2))}
+
+Key11DigitString   (
+     Key1DigitString:d1
+     Key10DigitString:d2
+)                          {return(strcat($d1 $d2))}
+
+Key12DigitString   (
+     Key1DigitString:d1
+     Key11DigitString:d2
+)                          {return(strcat($d1 $d2))}
+
+; For backwards compatibility...
+DtmfDigit    KeyDigit
+Dtmf1Digit   Key1Digit
+Dtmf2Digits  Key2Digits
+Dtmf3Digits  Key3Digits
+Dtmf4Digits  Key4Digits
+Dtmf5Digits  Key5Digits
+Dtmf6Digits  Key6Digits
+Dtmf7Digits  Key7Digits
+Dtmf8Digits  Key8Digits
+Dtmf9Digits  Key9Digits
+Dtmf10Digits Key10Digits
+Dtmf11Digits Key11Digits
+Dtmf12Digits Key12Digits
+
+I_Want
+[
+
+    (i want)
+    (i would like)
+    (i'd like)
+]
+
+I_Wish
+[
+    (i [wish want])
+    (i would like)
+    (i'd like)
+]
+
+I_Do_Wish
+[
+    (i ?do [wish want])
+    (i would like)
+    (i'd like)
+]
+
+Give_Me
+[
+    (?please [(give me) (get ?me) (show ?me) ] )
+]
+
+I_Want_Ext
+[
+    I_Want
+    Give_Me
+]
+
+I_Want_Ext_To
+[
+    (I_Want to)
+    Give_Me
+]
+
+
+I_Want_Ext_My
+[
+    (I_Want_Ext ?my)
+    my
+]
+
+I_Want_The
+[
+    (I_Want ?the)
+    the
+]
+
+I_Want_Ext_The
+[
+    (I_Want_Ext ?the)
+    the
+]
+
+
+I_Want_Ext_MyThe
+[
+    (I_Want_Ext ?[the my])
+    [the my]
+]
+
+Suffix_Please
+[
+   por favor
+]
+
+Suffix_MenuPlease
+(
+    [ (menu ?please) please ]
+)
+
+Universal_Help
+[
+    (
+    	?[
+	    I_Want_Ext 
+	    (can i get)
+	    (I_Want to get)
+	]
+	?some ayuda ?Suffix_Please
+    ) {return(help)}
+]
+
+Universal_Cancel
+[
+     (?[por favor] cancelar ?it ?Suffix_Please)  {return(cancel)}
+
+]
+
+Universal_Exit
+[
+     (?[ por favor] salida ?(to ?the main menu) ?Suffix_Please) {return(exit)}
+
+]
+
+Universal_Goodbye
+[
+     (a dios genie) {return("goodbye")}
+     (a dios) {return("goodbye")}
+
+]
+
+Universal_Commands_NoExit
+(
+    ?Uh
+    [
+	Universal_Help:uc
+    ] {return($uc)}
+)		
+
+Universal_Commands_NoCancel
+(
+    ?Uh
+    [
+	Universal_Help:uc
+	Universal_Exit:uc
+	Universal_Goodbye:uc	
+    ] {return($uc)}
+)		
+
+Universal_Commands_HelpCancel
+(   
+    ?Uh
+    [
+	Universal_Help:uc
+	Universal_Cancel:uc
+    ] {return($uc)}	
+)		
+
+
+Universal_Commands 
+(
+    ?Uh
+    [
+	Universal_Help:uc
+	Universal_Cancel:uc	
+	Universal_Exit:uc
+	Universal_Goodbye:uc
+    ] {return($uc)}	
+)
+
+Uh ?[um uh]
+
+UmUh ?[um uh]
+
+
+;
+; A general-purpose grammar, useful for dynamic insertions
+;
+
+.SubGram1 SubGram1
+SubGram1:dynamic []
+SubGram1-ref:dynaref SubGram1:tmp {return ($tmp)} ; Forward the return value through to next level
+.SubGram2 SubGram2
+SubGram2:dynamic []
+SubGram2-ref:dynaref SubGram2:tmp {return ($tmp)}
+.SubGram3 SubGram3
+SubGram3:dynamic []
+SubGram3-ref:dynaref SubGram3:tmp {return ($tmp)}
+.SubGram4 SubGram4
+SubGram4:dynamic []
+SubGram4-ref:dynaref SubGram4:tmp {return ($tmp)}
+.SubGram5 SubGram5
+SubGram5:dynamic []
+SubGram5-ref:dynaref SubGram5:tmp {return ($tmp)}
+.SubGram6 SubGram6
+SubGram6:dynamic []
+SubGram6-ref:dynaref SubGram6:tmp {return ($tmp)}
+.SubGram7 SubGram7
+SubGram7:dynamic []
+SubGram7-ref:dynaref SubGram7:tmp {return ($tmp)}
+.SubGram8 SubGram8
+SubGram8:dynamic []
+SubGram8-ref:dynaref SubGram8:tmp {return ($tmp)}
+.SubGram9 SubGram9
+SubGram9:dynamic []
+SubGram9-ref:dynaref SubGram9:tmp {return ($tmp)}
+.SubGram10 SubGram10
+SubGram10:dynamic []
+SubGram10-ref:dynaref SubGram10:tmp {return ($tmp)}
+
+.SubGram11 SubGram11
+SubGram11:dynamic []
+SubGram11-ref:dynaref SubGram11:tmp {return ($tmp)}
+.SubGram12 SubGram12
+SubGram12:dynamic []
+SubGram12-ref:dynaref SubGram12:tmp {return ($tmp)}
+.SubGram13 SubGram13
+SubGram13:dynamic []
+SubGram13-ref:dynaref SubGram13:tmp {return ($tmp)}
+.SubGram14 SubGram14
+SubGram14:dynamic []
+SubGram14-ref:dynaref SubGram14:tmp {return ($tmp)}
+.SubGram15 SubGram15
+SubGram15:dynamic []
+SubGram15-ref:dynaref SubGram15:tmp {return ($tmp)}
+.SubGram16 SubGram16
+SubGram16:dynamic []
+SubGram16-ref:dynaref SubGram16:tmp {return ($tmp)}
+.SubGram17 SubGram17
+SubGram17:dynamic []
+SubGram17-ref:dynaref SubGram17:tmp {return ($tmp)}
+.SubGram18 SubGram18
+SubGram18:dynamic []
+SubGram18-ref:dynaref SubGram18:tmp {return ($tmp)}
+.SubGram19 SubGram19
+SubGram19:dynamic []
+SubGram19-ref:dynaref SubGram19:tmp {return ($tmp)}
+.SubGram20 SubGram20
+SubGram20:dynamic []
+SubGram20-ref:dynaref SubGram20:tmp {return ($tmp)}
+
+.SubGram21 SubGram21
+SubGram21:dynamic []
+SubGram21-ref:dynaref SubGram21:tmp {return ($tmp)}
+.SubGram22 SubGram22
+SubGram22:dynamic []
+SubGram22-ref:dynaref SubGram22:tmp {return ($tmp)}
+.SubGram23 SubGram23
+SubGram23:dynamic []
+SubGram23-ref:dynaref SubGram23:tmp {return ($tmp)}
+.SubGram24 SubGram24
+SubGram24:dynamic []
+SubGram24-ref:dynaref SubGram24:tmp {return ($tmp)}
+.SubGram25 SubGram25
+SubGram25:dynamic []
+SubGram25-ref:dynaref SubGram25:tmp {return ($tmp)}
+.SubGram26 SubGram26
+SubGram26:dynamic []
+SubGram26-ref:dynaref SubGram26:tmp {return ($tmp)}
+.SubGram27 SubGram27
+SubGram27:dynamic []
+SubGram27-ref:dynaref SubGram27:tmp {return ($tmp)}
+.SubGram28 SubGram28
+SubGram28:dynamic []
+SubGram28-ref:dynaref SubGram28:tmp {return ($tmp)}
+.SubGram29 SubGram29
+SubGram29:dynamic []
+SubGram29-ref:dynaref SubGram29:tmp {return ($tmp)}
+.SubGram30 SubGram30
+SubGram30:dynamic []
+SubGram30-ref:dynaref SubGram30:tmp {return ($tmp)}
+
+.SubGram31 SubGram31
+SubGram31:dynamic []
+SubGram31-ref:dynaref SubGram31:tmp {return ($tmp)}
+.SubGram32 SubGram32
+SubGram32:dynamic []
+SubGram32-ref:dynaref SubGram32:tmp {return ($tmp)}
+.SubGram33 SubGram33
+SubGram33:dynamic []
+SubGram33-ref:dynaref SubGram33:tmp {return ($tmp)}
+.SubGram34 SubGram34
+SubGram34:dynamic []
+SubGram34-ref:dynaref SubGram34:tmp {return ($tmp)}
+.SubGram35 SubGram35
+SubGram35:dynamic []
+SubGram35-ref:dynaref SubGram35:tmp {return ($tmp)}
+.SubGram36 SubGram36
+SubGram36:dynamic []
+SubGram36-ref:dynaref SubGram36:tmp {return ($tmp)}
+.SubGram37 SubGram37
+SubGram37:dynamic []
+SubGram37-ref:dynaref SubGram37:tmp {return ($tmp)}
+.SubGram38 SubGram38
+SubGram38:dynamic []
+SubGram38-ref:dynaref SubGram38:tmp {return ($tmp)}
+.SubGram39 SubGram39
+SubGram39:dynamic []
+SubGram39-ref:dynaref SubGram39:tmp {return ($tmp)}
+.SubGram40 SubGram40
+SubGram40:dynamic []
+SubGram40-ref:dynaref SubGram40:tmp {return ($tmp)}
+
+.SubGram41 SubGram41
+SubGram41:dynamic []
+SubGram41-ref:dynaref SubGram41:tmp {return ($tmp)}
+.SubGram42 SubGram42
+SubGram42:dynamic []
+SubGram42-ref:dynaref SubGram42:tmp {return ($tmp)}
+.SubGram43 SubGram43
+SubGram43:dynamic []
+SubGram43-ref:dynaref SubGram43:tmp {return ($tmp)}
+.SubGram44 SubGram44
+SubGram44:dynamic []
+SubGram44-ref:dynaref SubGram44:tmp {return ($tmp)}
+.SubGram45 SubGram45
+SubGram45:dynamic []
+SubGram45-ref:dynaref SubGram45:tmp {return ($tmp)}
+.SubGram46 SubGram46
+SubGram46:dynamic []
+SubGram46-ref:dynaref SubGram46:tmp {return ($tmp)}
+.SubGram47 SubGram47
+SubGram47:dynamic []
+SubGram47-ref:dynaref SubGram47:tmp {return ($tmp)}
+.SubGram48 SubGram48
+SubGram48:dynamic []
+SubGram48-ref:dynaref SubGram48:tmp {return ($tmp)}
+.SubGram49 SubGram49
+SubGram49:dynamic []
+SubGram49-ref:dynaref SubGram49:tmp {return ($tmp)}
+.SubGram50 SubGram50
+SubGram50:dynamic []
+SubGram50-ref:dynaref SubGram50:tmp {return ($tmp)}
+
+;; Copyright (c) 1998 Nuance Communications.  All Rights Reserved.
+;;
+;; sub-grammar for various date expressions
+;;
+
+DAY_OF_WEEK [lunes     {return(monday)}
+             martes    {return(tuesday)}
+             miércoles  {return(wednesday)}
+             jueves   {return(thursday)}
+             viernes     {return(friday)}
+             sábado   {return(saturday)}
+             domingo     {return(sunday)}
+            ]
+ 
+MONTH [enero   {return(january)}
+       febrero   {return(february)}
+       marzo      {return(march)}
+       abril      {return(april)}
+       mayo        {return(may)}
+       junio       {return(june)}       
+       julio       {return(july)}
+       agosto     {return(august)}
+       septiembre  {return(september)}
+       octubre    {return(october)}
+       noviembre   {return(november)}
+       diciembre   {return(december)}
+      ]
+ 
+MONTH_NUMBER [uno      {return(january)}
+              dos      {return(february)}
+              tres    {return(march)}
+              cuatro     {return(april)}
+              cinco     {return(may)}
+              seis      {return(june)}
+              siete    {return(july)}
+              ocho    {return(august)}
+              nueve    {return(september)}
+              diez      {return(october)}
+              once   {return(november)}
+              doce   {return(december)}
+             ]
+
+DAY_OF_MONTH_REL [
+        primero    {return(1)}
+	primer    {return(1)}
+	principio    {return(1)}
+   	último {return(32)}
+]
+
+
+DAY_OF_MONTH_ORD
+             [primero             {return(1)}
+              segundo            {return(2)}
+              tercero             {return(3)}
+              cuarto            {return(4)}
+              quinto             {return(5)}
+              sexto             {return(6)}
+              séptimo          {return(7)}
+              octavo            {return(8)}
+              noveno             {return(9)}
+              décimo         {return(10)}
+              undécimo          {return(11)}
+              duodécimo          {return(12)}
+              décimotercero        {return(13)}
+              décimocuarto        {return(14)}
+              décimoquinto         {return(15)}
+              décimosexto         {return(16)}
+              décimoséptimo       {return(17)}
+              décimoctavo        {return(18)}
+              décimonoveno        {return(19)}
+              vigésimo         {return(20)}
+              (vigésimo primero)    {return(21)}
+              (vigésimo segundo)   {return(22)}
+              (vigésimo tercero)    {return(23)}
+              (vigésimo cuarto)   {return(24)}
+              (vigésimo quinto)    {return(25)}
+              (vigésimo sexto)    {return(26)}
+              (vigésimo séptimo)  {return(27)}
+              (vigésimo octavo)   {return(28)}
+	      (vigésimo octavo)   {return(28)}
+              (vigésimo noveno)    {return(29)}
+              trigésimo         {return(30)}
+              (trigésimo primero)    {return(31)}
+    ]
+
+DAY_OF_MONTH_CAR
+    [
+              [(primero ([de del] mes)) uno]    {return(1)}
+              [dos segundo]              {return(2)}
+              [tres tercero]            {return(3)}
+              cuatro             {return(4)}
+              cinco             {return(5)}
+              seis              {return(6)}
+              siete            {return(7)}
+              ocho            {return(8)}
+              nueve             {return(9)}
+              diez              {return(10)}
+              once           {return(11)}
+              doce           {return(12)}
+              trece         {return(13)}
+              catorce         {return(14)}
+              quince        {return(15)}
+              dieciseis         {return(16)}
+              diecisiete        {return(17)}
+              dieciocho         {return(18)}
+              diecinueve         {return(19)}
+              veinte           {return(20)}
+              veintiuno     {return(21)}
+              veintidos     {return(22)}
+              veintitres   {return(23)}
+              veinticuatro    {return(24)}
+              veinticinco    {return(25)}
+              veintiseis     {return(26)}
+              veintisiete   {return(27)}
+              veintiocho   {return(28)}
+              veintinueve    {return(29)}
+              treinta           {return(30)}
+              [(treinta y uno) treinta_y_uno]     {return(31)}
+             ]
+
+YEAR [
+
+	;; ninety six
+	;; nineteen ninety six
+
+	(
+		
+		(?(mil novecientos)
+		[ 	([(noventa y seis) noventa_y_seis])     	{return (1996)}
+           		([(noventa y siete) noventa_y_siete])   	{return (1997)}
+           		([(noventa y ocho) noventa_y_ocho])  	  	{return (1998)}
+        		([(noventa y nueve) noventa_y_nueve])     	{return (1999)}
+          
+		]
+		)
+		
+      	)
+
+	;; two thousand
+	;; the year two thousand
+
+	(?(el ano) dos mil dos_mil)    {return (2000)}
+
+
+	;; two thousand five
+	;; two thousand and five
+	;; twenty oh five
+	
+	((dos mil)
+		[	uno       {return (2001)}
+			dos       {return (2002)}
+			tres     {return (2003)}
+			cuatro      {return (2004)}
+			cinco      {return (2005)}
+			seis       {return (2006)}
+			siete     {return (2007)}
+			ocho     {return (2008)}
+			nueve      {return (2009)}
+		]
+	)
+
+]
+
+;; added separate catagory for now
+NOW    [ [ahora	ahorita (en este momento)]		      	{return(today)} ]
+
+;; deleted catagory for now
+TODAY 		[hoy (el día de hoy)]                      	   	{return(today)}
+TOMORROW        [mañana (el día próximo) (el próximo día) (el día de mañana)]       	{return(tomorrow)}
+DAY_AFTER_TOMORROW        (pasado mañana)    			{return(day_after_tomorrow)}
+      
+;;
+;; FULL_DATE is the main date grammar.
+;; 
+
+FULL_DATE [
+
+	;; NOT USED IN SPANISH (ordinal is never used)
+	;; january seventh nineteen ninety six
+         (MONTH:m ?el DAY_OF_MONTH_ORD:dm ?(?[del de] YEAR:y))
+
+	;; NOT USED IN SPANISH (Month/Day is never used)
+	;; january seven nineteen ninety six
+	;; (MONTH:m DAY_OF_MONTH_CAR:dm ?YEAR:y)
+;         (MONTH:m DAY_OF_MONTH_CAR:dm ?(?[del de] YEAR:y))
+
+	;; NOT USED IN SPANISH
+	;; one seven nineteen ninety six
+;         (MONTH_NUMBER:m DAY_OF_MONTH_CAR:dm ?YEAR:y)
+
+	;; seven january nineteen ninety six
+         (?el DAY_OF_MONTH_CAR:dm ?de MONTH:m ?YEAR:y)
+
+	;; NOT USED IN SPANISH
+	;; the seventh of january nineteen ninety six
+;         (?el DAY_OF_MONTH_ORD:dm del MONTH:m ?(?[del de] YEAR:y))
+
+	;; NOT USED IN SPANISH
+	;; the seventh
+;         (?el DAY_OF_MONTH_ORD:dm)
+
+	;; USED IN SPANISH
+	;; the first of the month
+         (?[el al a] DAY_OF_MONTH_REL:dm ?día del mes)
+
+	;; NOT USED IN ENGLISH
+	;; the seven of the month
+;         (?[el al a] [ DAY_OF_MONTH_CAR:dm DAY_OF_MONTH_REL:dm ] ?día del mes)
+
+	;; added the now command
+	 (NOW:td)
+
+	;; ADDED FOR SPANISH
+	;; next tuesday the seven of january nineteen ninety six
+        (
+ 	  	[	(?el próximo DAY_OF_WEEK:dw) 		{<date_mod nextday>} 
+                        ; Two lines below altered so that today, "hoy", not allowed to be said with full date since noise would
+			; often misrecognize as "hoy" and then hoy would overrule the full date being recognized after.
+	     		([TOMORROW:td DAY_AFTER_TOMORROW:td] DAY_OF_WEEK:dw)   
+	     		[TODAY:td TOMORROW:td DAY_AFTER_TOMORROW:td] 
+
+	     		(DAY_OF_WEEK:dw) 
+           	]
+          	?[
+			;; definite mistake
+         		(?el MONTH:m ?de DAY_OF_MONTH_CAR:dm ?(?[del de] YEAR:y))
+         		(?el DAY_OF_MONTH_CAR:dm ?de MONTH:m ?(?[del de] YEAR:y))
+
+;			(MONTH:m ?el DAY_OF_MONTH_ORD:dm ?(?[del de] YEAR:y))
+           	]
+        )
+      ]
+
+      {<vmlslot0 strcat( $m strcat( "|" strcat( $dm strcat( "|"  strcat( $y strcat( "|" strcat( $dw strcat( "|" $td ))))))))>}
+
+
+
+; July ?of 1997
+MONTH_YEAR
+    (MONTH:m ?del ?YEAR:y) {<month $m> <year $y>}
+
+.VMLDate [
+	( FULL_DATE )
+    Universal_Commands:uc {<ucommand $uc>}
+]
+
+.VMLTime [
+	;; unambiguous time
+
+	(AmbigTime:t AM)                       	{<vmlslot0 $t>}
+	(AmbigTime:t PM)                       	{<vmlslot0 add($t 1200)>}
+
+	;; ambiguous time
+	AmbigTime:t                            	{<vmlslot0 neg($t)>}
+	RelativeAmbigTime:t                     {<vmlslot0 neg($t)>}
+
+	;; 24 hour clock time
+       	(ThirteenThruTwentyFour:h Minutes:m)	{<vmlslot0 add($h $m)>}
+
+	;; hundreds time 
+	HundredsTime:t							{<vmlslot0 $t>}
+
+	;; noon, midight
+  	(noon time)               				{<vmlslot0 1200>}
+  	(?(twelve ?o'clock) Twelve0:h)         	{<vmlslot0 $h>}
+    Universal_Commands:uc {<ucommand $uc>}
+]
+
+.VMLNumber [
+	( Number:n) {<vmlslot0 $n>}
+    Universal_Commands:uc {<ucommand $uc>}
+]
+
+SZero [cero] {return("0")}
+
+; The digits 1 through 9.
+
+SNon_zero [uno {return("1")}
+          dos {return("2")}
+          tres {return("3")}
+          cuatro {return("4")}
+          cinco {return("5")}
+          seis {return("6")}
+          siete {return("7")}
+          ocho {return("8")}
+          nueve {return("9")}
+]
+
+; The digits 0 through 9.
+
+SDigit [ SZero:n SNon_zero:n ] {return($n)}
+
+ThreeDigs  ( SDigit:n1 SDigit:n2 SDigit:n3 ) {return( strcat( strcat( $n1 $n2 ) $n3 ) )}
+
+TenDigs  ( ThreeDigs:n1 ThreeDigs:n2 ThreeDigs:n3 SDigit:n4 ) {return( strcat( strcat( strcat( $n1 $n2 ) $n3 ) $n4 ) ) }
+
+OneToTwentyFourDigits [
+
+	;; 1
+	( SDigit:n ) {return($n)}
+    Key1DigitString:k {return($k)}
+
+	;; 2
+	( SDigit:n1 SDigit:n2 ) {return( strcat( $n1 $n2 ) )}
+    Key2DigitString:k {return($k)}
+
+	;; 3
+	( SDigit:n1 SDigit:n2 SDigit:n3 ) {return( strcat( strcat( $n1 $n2 ) $n3 ) )}
+    Key3DigitString:k {return($k)}
+
+	;; 4
+	( SDigit:n1 SDigit:n2 SDigit:n3 SDigit:n4 ) {return( strcat( strcat( strcat( $n1 $n2 ) $n3 ) $n4 ) )}
+    Key4DigitString:k {return($k)}
+
+	;; 5
+	( SDigit:n1 SDigit:n2 SDigit:n3 SDigit:n4 SDigit:n5 ) {return( strcat( strcat( strcat( strcat($n1 $n2) $n3) $n4) $n5) )}
+    Key5DigitString:k {return($k)}
+
+	;; 6
+	( SDigit:n1 SDigit:n2 SDigit:n3 SDigit:n4 SDigit:n5 SDigit:n6) {return( strcat(strcat(strcat(strcat(strcat($n1 $n2) $n3) $n4) $n5) $n6) )}
+    Key6DigitString:k {return($k)}
+
+	;; 7
+	( ThreeDigs:n1 ThreeDigs:n2 SDigit:n3 ) {return( strcat( strcat( $n1 $n2 ) $n3 ) )}
+    Key7DigitString:k {return($k)}
+
+	;; 8
+	( ThreeDigs:n1 ThreeDigs:n2 SDigit:n3 SDigit:n4 ) {return( strcat( strcat( strcat( $n1 $n2 ) $n3 ) $n4 ) )}
+    Key8DigitString:k {return($k)}
+
+	;; 9
+	( ThreeDigs:n1 ThreeDigs:n2 SDigit:n3 SDigit:n4 SDigit:n5 ) {return( strcat( strcat( strcat( strcat($n1 $n2) $n3) $n4) $n5) )}
+    Key9DigitString:k {return($k)}
+
+	;; 10
+	( TenDigs:n ) {return($n)}
+    Key10DigitString:k {return($k)}
+
+	;; 11
+	( TenDigs:n1 SDigit:n2 ) {return( strcat( $n1 $n2 ) )}
+    Key11DigitString:k {return($k)}
+
+	;; 12
+	( TenDigs:n1 SDigit:n2 SDigit:n3 ) {return( strcat( strcat( $n1 $n2 ) $n3 ) )}
+    Key12DigitString:k {return($k)}
+
+	;; 13
+	( TenDigs:n1 SDigit:n2 SDigit:n3 SDigit:n4 ) {return( strcat( strcat( strcat( $n1 $n2 ) $n3 ) $n4 ) )}
+    (Key10DigitString:n1 Key3DigitString:n2 ) {return( strcat( $n1 $n2 ) )}
+
+	;; 14
+	( TenDigs:n1 SDigit:n2 SDigit:n3 SDigit:n4 SDigit:n5 ) {return( strcat( strcat( strcat( strcat($n1 $n2) $n3) $n4) $n5) )}
+    (Key10DigitString:n1 Key4DigitString:n2) {return( strcat( $n1 $n2 ) )}
+
+	;; 15
+	( TenDigs:n1 SDigit:n2 SDigit:n3 SDigit:n4 SDigit:n5 SDigit:n6) {return( strcat(strcat(strcat(strcat(strcat($n1 $n2) $n3) $n4) $n5) $n6) )}
+    ( Key10DigitString:n1 Key5DigitString:n2 ) {return( strcat( $n1 $n2 ) )}
+
+	;; 16
+	( TenDigs:n1 ThreeDigs:n2 ThreeDigs:n3 ) {return( strcat( strcat( $n1 $n2 ) $n3 ) )}
+    ( Key10DigitString:n1 Key6DigitString:n2 ) {return( strcat( $n1 $n2 ) )}
+
+	;; 17
+	( TenDigs:n1 ThreeDigs:n2 ThreeDigs:n3 SDigit:n4 ) {return( strcat( strcat( strcat( $n1 $n2 ) $n3 ) $n4 ) )}
+    ( Key10DigitString:n1 Key7DigitString:n2 ) {return( strcat( $n1 $n2 ) )}
+
+	;; 18
+	( TenDigs:n1 ThreeDigs:n2 ThreeDigs:n3 SDigit:n4 SDigit:n5 ) {return( strcat( strcat( strcat( strcat($n1 $n2) $n3) $n4) $n5) )}
+    ( Key10DigitString:n1 Key8DigitString:n2 ) {return( strcat( $n1 $n2 ) )}
+
+	;; 19
+	( TenDigs:n1 ThreeDigs:n2 ThreeDigs:n3 ThreeDigs:n4 ) {return( strcat( strcat( strcat($n1 $n2) $n3) $n4) )}
+    ( Key10DigitString:n1 Key9DigitString:n2 ) {return( strcat( $n1 $n2 ) )}
+
+	;; 20
+	( TenDigs:n1 TenDigs:n2 ) {return( strcat($n1 $n2) )}
+    ( Key10DigitString:n1 Key10DigitString:n2 ) {return( strcat( $n1 $n2 ) )}
+
+	;; 21
+	( TenDigs:n1 TenDigs:n2 SDigit:n3 ) {return( strcat( strcat($n1 $n2) $n3 ) )}
+	( Key10DigitString:n1 Key10DigitString:n2 Key1DigitString:n3 ) {return( strcat( strcat( $n1 $n2 ) $n3 ) )}
+
+	;; 22
+	( TenDigs:n1 TenDigs:n2 SDigit:n3 SDigit:n4 ) {return( strcat( strcat( strcat( $n1 $n2 ) $n3 ) $n4 ) )}
+	( Key10DigitString:n1 Key10DigitString:n2 Key2DigitString:n3 ) {return( strcat( strcat( $n1 $n2 ) $n3 ) )}
+
+	;; 23
+	( TenDigs:n1 TenDigs:n2 ThreeDigs:n3 ) {return( strcat( strcat( $n1 $n2 ) $n3 ) )}
+	( Key10DigitString:n1 Key10DigitString:n2 Key3DigitString:n3 ) {return( strcat( strcat( $n1 $n2 ) $n3 ) )}
+
+	;; 24
+	( TenDigs:n1 TenDigs:n2 ThreeDigs:n3 SDigit:n4 ) {return( strcat( strcat( strcat( $n1 $n2 ) $n3 ) $n4 ) )}
+	( Key10DigitString:n1 Key10DigitString:n2 Key4DigitString:n3 ) {return( strcat( strcat( $n1 $n2 ) $n3 ) )}
+
+	]
+
+.VMLDigits [
+	OneToTwentyFourDigits:n {<vmlslot0 $n>}
+	Universal_Commands:uc {<ucommand $uc>}
+	]
+
+AreaCodeWords [ (area code)~0.01 ]
+
+AreaCodeHundred [
+	(eight hundred) {return("800")}
+	(nine hundred) {return("900")}
+	]
+
+SevenDigitString [
+	( ThreeDigs:n1 ThreeDigs:n2 SDigit:n3 ) {return( strcat( strcat($n1 $n2) $n3 ) )}
+	]
+
+.VMLPhone [
+	( AreaCodeWords ThreeDigs:n1 SevenDigitString:n2 ) {<vmlslot0 strcat($n1 $n2) >}
+	( SDigit:n1 AreaCodeHundred:n2 SevenDigitString:n3 ) {<vmlslot0 strcat( strcat($n1 $n2) $n3 )>}
+	( AreaCodeHundred:n1 SevenDigitString:n2 ) {<vmlslot0 strcat($n1 $n2)>}
+	OneToTwentyFourDigits:n {<vmlslot0 $n>}
+	Universal_Commands:uc {<ucommand $uc>}
+	]
+
+.VMLYN [
+	(?[um uh]
+     [(YES_WORDS ?_YES_TRAILERS)        {<vmlslot0 Y>}
+      (NO_WORDS ?_NO_TRAILERS)          {<vmlslot0 N>}
+     ]
+    )
+	Universal_Commands:uc {<ucommand $uc>}
+	]
+
+.VMLMoney [ 
+	(?UmUh
+		 [
+			;; Cover special Spanish case of "cien" meaning "one hundred"
+			(CIEN:dol [dólares dólar billetes] ) 
+
+			;; "twenty five dollars and ten cents" or "twenty five dollars"
+			;; or "ten cents"
+			(([DOLLARS:dol A_SINGLE:dol CIEN:dol] [dólares dólar pesos billetes])
+			 ?[y con mas] 
+			 (CENTS:cnt [centavos centavo])
+			)
+
+			;; "twenty five dollars"
+			([DOLLARS:dol A_SINGLE:dol] [dólares dólar billetes])
+
+			;; "seventy nine cents"
+			(CENTS:cnt [centavos centavo])
+
+			;; "twenty five point thirty two" interpreted as $25.32
+			(DOLLARS:dol punto [CENTS_GREATER_TEN:cnt OH_CENTS:cnt])
+
+			;; "twenty five" interpreted as $25.00
+			DOLLARS:dol
+
+			;; "twenty five fifty" interpreted as $25.50
+			([BELOW_HUNDRED:dol THREE_DIG:dol] [CENTS_GREATER_TEN:cnt OH_CENTS:cnt])
+
+			;; "a buck fifty" or "a dollar fifty"
+			(A_SINGLE:dol [dólar (billete ?(?de uno))] [CENTS_GREATER_TEN:cnt PURE_DIGIT:cnt])
+
+			;; DTMF (touch tone) amounts
+			(?DTMF_DOLLARS:dol DTMF_CENTS:cnt)
+			(DTMF_DOLLARS:dol dtmf-pound)
+
+        ]
+        {<vmlslot0 add( $cnt mul(100 $dol))>})  
+	Universal_Commands:uc {<ucommand $uc>}
+	]
+
+Olist: dynamic []
+
+.VMLOptionlist [ 
+		(?Uh ?I_Want_Ext Olist:r  {<vmlslot0 $r>} ?Suffix_Please)
+	    Universal_Commands:uc {<ucommand $uc>}
+	]
+
+VMLGramspot: dynamic []
+
+.VMLGrammar [ 
+		VMLGramspot
+	    Universal_Commands:uc {<ucommand $uc>}
+]
+
+.VMLNull ( Universal_Commands:uc {<ucommand $uc>} )

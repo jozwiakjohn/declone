@@ -1,0 +1,81 @@
+#ABNF 1.0 ISO8859-1; 
+language en;
+root $wet;
+tag-format semantics/1.0 ;
+alias   $(http://www.mygrammars.com/cities-states.gram) as $$places;
+alias   $(http://www.mygrammars.com/cities-states.gram)    $$places;
+lexicon $(http://www.example.com/lexicon.file);
+lexicon $(http://www.example.com/strange-city-names.file);
+meta "Author"     is "Dilbert"; 
+meta "maintainer"    "dilbert@dilbert.com" ;
+http-equiv "Expires" is "0" ;
+http-equiv "Date"    is "Thu, 12 Dec 2000 23:27:21 GMT"; 
+mode voice;
+mode dtmf ;
+
+/**
+ * Basic command.
+ * @example please move the window
+ * @example open a file
+ */
+
+public $basicCmd = $$polite#startPolite $command $$polite#endPolite;
+$command = $action $object;
+$action = /10/ open {OPEN} | /2/ close {CLOSE} | /1/ delete {DELETE} | /1/ move {DELETE};
+$object = [the | a] (window | file | menu);
+public $city  = Boston | Philadelphia | Fargo;
+public $state = Florida | North Dakota | New York;
+public $city_state = $city $state;
+$flight = I want to fly to $(http://www.example.com/places.xml#city);
+$exercise = I want to walk to $$someplaces#state;
+$wet = I want to swim to $$someplaces;
+$digit = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
+public $pin = $digit $digit $digit $digit "#" | "*9";
+$sanfran =
+         "San Francisco"
+         " San Francisco "
+         "San 
+         Francisco"
+         "   San    Francisco    "
+         ;
+$counts  =
+         [very]         // the token "very" is optional
+         very   <0-1>   // the token "very" is optional
+         $digit *       // >= 0 repetitions  //  DEPRECATED SYNTAX
+         $digit <0->
+         $digit +       // >= 1 repetitions  //  DEPRECATED SYNTAX
+         $digit <1->
+         $digit <4-6>   // {4,5,6} repetitions
+         $digit <10->   // {10,...} repetitions
+
+         // Examples of the following expansion
+
+         "pizza"
+         "big pizza with pepperoni"
+         "very big pizza with cheese and pepperoni"
+         [[very] big] pizza ([with | and] $topping)*   //  DEPRECATED SYNTAX
+         ;
+
+$repeatprobabilities =
+         very   <0-1 /0.6/>   // the token "very" is optional and is 60% likely to occur and 40% likely to be absent in input
+         $digit <2-4 /.8/>    // the rule reference $digit must occur two to four times with 80% recurrence
+         ;
+
+$empty = ;
+$empty = /1/ ;  // this is nonsense however it is allowed.
+$empty = {tag} ;  // this is sensibly allowed.
+$rule0 = {content};
+$rule1 = this is a {tag1} test {tag2};
+$rule2 = open {action='open';} | $close {action='shut';};
+$rule3 = {!{ a simple tag containing { and } without escaping }!};
+
+$eclipsinglanguages =
+         ( oui!fr-CA | yes!en-US )
+         ( May I speak to (Michel Tremblay | André Roy)!fr-CA )
+         ( Robert!en-US,fr-CA )
+         ( Robert!en-US | Robert!fr-CA )
+         ;
+$town = Townsville | Beantown;
+private $city = Boston | "New York" | Madrid;
+public $command = $action $object;
+public $public = public $public | $$public;

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+
+<grammar mode="dtmf" version="1.0">
+
+<rule id="digit">
+ <one-of>
+   <item> 0 </item>
+   <item> 1 </item>
+   <item> 2 </item>
+   <item> 3 </item>
+   <item> 4 </item>
+   <item> 5 </item>
+   <item> 6 </item>
+   <item> 7 </item>
+   <item> 8 </item>
+   <item> 9 </item>
+ </one-of>
+</rule>
+
+<rule id="pin" scope="public">
+ <one-of>
+   <item>
+     <ruleref uri="#digit"/> <ruleref uri="#digit"/>
+     <ruleref uri="#digit"/> <ruleref uri="#digit"/>
+     #
+   </item>
+   <item>
+     *9
+   </item>
+ </one-of>
+</rule>
+
+</grammar>

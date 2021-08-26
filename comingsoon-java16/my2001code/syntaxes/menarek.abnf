@@ -1,0 +1,5 @@
+#ABNF 1.0 ISO8859-1;
+language en;
+mode voice;
+root $basicCmd;
+public $basicCmd = Jump ;

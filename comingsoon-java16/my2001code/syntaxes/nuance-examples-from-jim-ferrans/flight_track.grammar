@@ -1,0 +1,36 @@
+#include "ints.grammar"
+
+.Flight_tracker  ( ?(?air Airlines:n1 ?[airlines air airways]) ?flight ?number ALL_INTS:n2 ) {<vmlslot0 $n2> <vmlslot1 $n1>}
+
+ALL_INTS 
+ [ONE_INT:n TWO_INTS:n THREE_INTS:n FOUR_INTS:n FIVE_INTS:n UP_TO_SIX_INTS:n ]  {return ($n)}
+
+
+Airlines ( 
+
+[ 
+    canada {return("air canada")} 
+    france {return("air france")} 
+     alaska {return("alaska")} 
+    ( america west ) {return("america west")} 
+      american  {return("american")} 
+    ( american eagle ) {return("american eagle")} 
+    british  {return("british airways")} 
+      canadian {return("canadian")} 
+      continental {return("continental")} 
+      delta  {return("delta")} 
+      iberia {return("iberia")} 
+   ( ice land air ) {return ("icelandair")} 
+      lufthansa {return("lufthansa")} 
+    ( midwest express ) {return("midwest express")} 
+      northwest  {return("northwest")} 
+    ( t w a )  {return("TWA")}
+    (trans world) {return("TWA")}
+      united  {return("united")} 
+    ( u s air )  {return("US air")} 
+     virgin  {return("virgin")} 
+ ]  
+
+)
+
+

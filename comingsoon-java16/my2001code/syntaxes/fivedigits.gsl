@@ -1,0 +1,15 @@
+DIGITS    
+  [
+          one
+          two
+          four
+          five
+  ]
+
+.Fivedigits (
+             DIGITS
+             DIGITS
+             DIGITS
+             DIGITS
+             DIGITS
+            )  

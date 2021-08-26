@@ -1,0 +1,157 @@
+#include "time.grammar"
+#include "key.grammar"
+#include "yesno.grammar"
+#include "number.grammar"
+#include "restaurant.grammar"
+#include "vcom.grammar"
+#include "flight_track.grammar"
+#include "ints.grammar"
+
+I_Want
+[
+
+    (i want)
+    (i would like)
+    (i'd like)
+]
+
+I_Wish
+[
+    (i [wish want])
+    (i would like)
+    (i'd like)
+]
+
+I_Do_Wish
+[
+    (i ?do [wish want])
+    (i would like)
+    (i'd like)
+]
+
+Give_Me
+[
+    (?please [(give me) (get ?me) (show ?me) ] )
+]
+
+I_Want_Ext
+[
+    I_Want
+    Give_Me
+]
+
+I_Want_Ext_To
+[
+    (I_Want to)
+    Give_Me
+]
+
+
+I_Want_Ext_My
+[
+    (I_Want_Ext ?my)
+    my
+]
+
+I_Want_The
+[
+    (I_Want ?the)
+    the
+]
+
+I_Want_Ext_The
+[
+    (I_Want_Ext ?the)
+    the
+]
+
+
+I_Want_Ext_MyThe
+[
+    (I_Want_Ext ?[the my])
+    [the my]
+]
+
+Suffix_Please
+[
+    please
+]
+
+Suffix_MenuPlease
+(
+    [ (menu ?please) please ]
+)
+
+Universal_Help
+[
+    (
+    	?[
+	    I_Want_Ext 
+	    (can i get)
+	    (I_Want to get)
+	]
+	?some help ?Suffix_Please
+    ) {return(help)}
+]
+
+Universal_Cancel
+[
+     (?[(I_Wish to) please] cancel ?it ?Suffix_Please)  {return(cancel)}
+
+]
+
+Universal_Exit
+[
+     (?[(I_Wish to) please] exit ?(to ?the main menu) ?Suffix_Please) {return(exit)}
+
+]
+
+Universal_Goodbye
+[
+     (goodbye genie) {return("goodbye")}
+     (goodbye) {return("goodbye")}
+
+]
+
+Universal_Commands_NoExit
+(
+    ?Uh
+    [
+	Universal_Help:uc
+    ] {return($uc)}
+)		
+
+Universal_Commands_NoCancel
+(
+    ?Uh
+    [
+	Universal_Help:uc
+	Universal_Exit:uc
+	Universal_Goodbye:uc	
+    ] {return($uc)}
+)		
+
+Universal_Commands_HelpCancel
+(   
+    ?Uh
+    [
+	Universal_Help:uc
+	Universal_Cancel:uc
+    ] {return($uc)}	
+)		
+
+
+Universal_Commands 
+(
+    ?Uh
+    [
+	Universal_Help:uc
+	Universal_Cancel:uc	
+	Universal_Exit:uc
+	Universal_Goodbye:uc
+    ] {return($uc)}	
+)
+
+Uh ?[um uh]
+
+#include "vmlcore.grammar"

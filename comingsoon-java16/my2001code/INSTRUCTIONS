@@ -1,0 +1,30 @@
+
+hi, it is afternoon on october 15 2001 and i am john.
+
+here are the compiler, assembler, disassembler, and tools for syntax files
+used as a shell around motorola's eric buhrke speechrecognizer.
+
+one needs a version of "make" and java jdk (Sun's jdk 1.3 works).
+
+the directory "syntaxes" contains example gsl and abnf syntax files.
+the directory "tmp" which is not "/tmp" contains output from running tests.
+
+make                = builds the tools.
+make clean          = removes the things built.
+make testlexicon    = tests the (english) lexicon.
+make testabnftogsl  = tests the converter's ability to do the obvious.
+java Converter      = just gives instructions on how to invoke the compiler.
+java LexiconEnglish = runs diagnostics on the english lexicon.
+java VirtualMachine = just gives instructions 
+                      on how to invoke the various virtual machines to do
+                      forensics, 
+                      leftrecursion detection, and
+                      disassembly of binaries.
+
+for requests for new functionalities, write jozwiak@unimodular.com
+since that is an external email address i can see anywhere, even if 
+they cancel us all and still employ janiece webb.
+
+wishing all well,
+john
+

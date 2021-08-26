@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+
+<grammar xml:lang="en" version="1.0">
+
+<import name="polite"
+  uri="http://www.sayplease.com/politeness.xml"/>
+
+<rule id="basicCmd" scope="public">
+  <example> please move the window </example>
+  <example> open a file </example>
+
+  <ruleref import="polite#startPolite"/>
+  <ruleref uri="#command"/>
+  <ruleref import="polite#endPolite"/>
+</rule>
+
+<rule id="command">
+  <ruleref uri="#action"/> <ruleref uri="#object"/>
+</rule>
+
+<rule id="action">
+   <one-of>
+      <item weight="10" tag="OPEN">   open </item>
+      <item weight="2"  tag="CLOSE">  close </item>
+      <item weight="1"  tag="DELETE"> delete </item>
+      <item weight="1"  tag="MOVE">   move </item>
+    </one-of>
+</rule>
+
+<rule id="object">
+  <count number="optional">
+    <one-of>
+      <item> the </item>
+      <item> a </item>
+    </one-of>
+  </count>
+  <one-of>
+      <item> window </item>
+      <item> file </item>
+      <item> menu </item>
+  </one-of>
+</rule>
+
+</grammar>

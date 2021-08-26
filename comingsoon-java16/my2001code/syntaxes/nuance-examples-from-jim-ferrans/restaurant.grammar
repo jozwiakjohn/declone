@@ -1,0 +1,1998 @@
+Address
+[
+    ( ?StreetDirection StreetName ?Street )
+] { return ($string) }
+
+City
+[
+    ( arlington heights )
+    aurora
+    bannockburn
+    barrington
+    bartlett
+    ( bedford park )
+    berwyn
+    bloomingdale
+    ( blue island )
+    bolingbrook
+    bridgeview
+    broadview
+    ( buffalo grove )
+    burbank
+    ( calumet city )
+    chicago
+    cicero
+    ( clarendon hills )
+    ( crystal lake )
+    deerfield
+    ( des plaines )
+    ( downers grove )
+    ( elk grove )
+    elmhurst
+    ( elmwood park )
+    evanston
+    ( evergreen park )
+    flossmoor
+    ( forest park )
+    geneva
+    ( glen ellyn )
+    glencoe
+    glenview
+    harvey
+    ( highland park )
+    highwood
+    hillside
+    hinsdale
+    ( hoffman estates )
+    homewood
+    kildeer
+    ( la grange )
+    ( lake bluff )
+    ( lake forest )
+    ( lake zurich )
+    lakemoor
+    lansing
+    lemont
+    libertyville
+    lincolnshire
+    lincolnwood
+    lockport
+    lombard
+    ( long grove )
+    ( melrose park )
+    momence
+    ( morton grove )
+    ( mount prospect )
+    mundelein
+    naperville
+    niles
+    norridge
+    ( north riverside )
+    northbrook
+    northfield
+    ( oak brook )
+    ( oak forest )
+    ( oak lawn )
+    ( oak park )
+    oakbrook
+    ( oakbrook terrace )
+    ( olympia fields )
+    palatine
+    ( park ridge )
+    ( river forest )
+    riverside
+    riverwoods
+    rockford
+    ( rolling meadows )
+    rosemont
+    schaumburg
+    skokie
+    ( south barrington )
+    ( vernon hills )
+    wauconda
+    waukegan
+    westchester
+    westmont
+    wheaton
+    wheeling
+    ( willow springs )
+    willowbrook
+    wilmette
+    winnetka
+    woodridge
+] { return ($string) }
+
+Cost
+[
+    cheap
+    expensive
+    good
+    high quality
+    inexpensive
+    moderate
+    reasonable
+] { return ($string) }
+
+Ethnicity
+[
+    african
+    american
+    austrian
+    cajun
+    caribbean
+    chinese
+    continental
+    ( costa rican )
+    croatian
+    cuban
+    czech
+    ethiopian
+    ( european oriental )
+    french
+    german
+    global
+    greek
+    indian
+    irish
+    italian
+    japanese
+    korean
+    mediterranean
+    mexican
+    ( middle eastern )
+    ( pan asian )
+    polish
+    polynesian
+    romanian
+    russian
+    scandinavian
+    ( south american )
+    southwestern
+    spanish
+    thai
+    vietnamese
+] { return ($string) }
+
+Meal
+[
+    breakfast
+    brunch
+    dinner
+    lunch
+    snack
+    supper
+]
+
+Menu
+[
+    MenuSingular
+    MenuPlural
+] { return ($string) }
+
+MenuSingular
+[
+    bbq
+    bagel
+    ( bakery ?food )
+    ( bistro ?food )
+    ( breakfast food )
+    chili
+    ( ?( cup of ) coffee )
+    ( coffeehouse ?food )
+    ( deli ?food )
+    ( delicatessen ?food )
+    ( diner ?food )
+    donut
+    ( eclectic ?food )
+    ( Ethnicity ?([and or] Ethnicity) [food cuisine] )
+    ( fast food )
+    fondue
+    hamburger
+    ( hot dog )
+    ( ice cream )
+    ( italian beef )
+    ( kosher ?food )
+    milkshake
+    pancake
+    ( peking duck )
+    pizza
+    ribs
+    seafood
+    steak
+    ( steakhouse ?food )
+    tapas
+    ( vegetarian ?food )
+    waffle
+    beer
+    wine
+] { return ($string) }
+
+MenuPlural
+[
+    bbq
+    bagels
+    ( bakery ?food )
+    ( bistro ?food )
+    ( breakfast food )
+    chili
+    coffee
+    ( coffeehouse ?food )
+    ( deli ?food )
+    ( delicatessen ?food )
+    ( diner ?food )
+    donuts
+    ( eclectic ?food )
+    ( Ethnicity ?([and or] Ethnicity) [food cuisine] )
+    ( fast food )
+    fondue
+    hamburgers
+    ( hot dogs )
+    ( ice cream )
+    ( italian beef )
+    ( kosher ?food )
+    Meal
+    milkshakes
+    pancakes
+    ( peking duck )
+    pizza
+    ribs
+    seafood
+    steaks
+    ( steakhouse ?food )
+    tapas
+    ( vegetarian ?food )
+    waffles
+    beer
+    wine
+] { return ($string) }
+
+Name
+[
+    ( one thousand nites cafe )
+    ( seventeen seventy six )
+    ( thirty east american bistro )
+    ( three oh two w. state st. )
+    ( five hundred nations cafe )
+    ( eighth street deli )
+    ( ninety fourth aero squadron )
+    ( a tavola )
+    ( a one submarine )
+    ( abbis abeba )
+    ( abe's on lincoln )
+    ( abril )
+    ( adagio )
+    ( aegean isles )
+    ( akai hana )
+    ( al's deli )
+    ( aladdin )
+    ( alex's washington gardens )
+    ( alfo's ristorante )
+    ( all seasons cafe )
+    ( allie's bakery )
+    ( alumni club )
+    ( amarit )
+    ( ambassador cafe )
+    ( amber grill )
+    ( ambience cafe )
+    ( ambria )
+    ( ambrosia euro american patisserie )
+    ( america's brewpub )
+    ( amitabul )
+    ( amourette )
+    ( andiamo )
+    ( andies )
+    ( andy's )
+    ( angelina ristorante )
+    ( ann sather )
+    ( ann sather express )
+    ( anna maria pasteria )
+    ( anna's bavaria house )
+    ( arco de cuchilleros )
+    ( armondo's place )
+    ( army and lou's )
+    ( art institute of chicago restaurant )
+    ( artie g's sorriso )
+    ( arturos )
+    ( arun's )
+    ( asimali clothing cafe )
+    ( aspen grille )
+    ( athena )
+    ( athenian room )
+    ( atrium )
+    ( au bon pain )
+    ( august moon )
+    ( aurelio's )
+    ( austin koo's mandarin place )
+    ( avanzare )
+    ( avenue cafe and place )
+    ( babaluci )
+    ( bacchanalia )
+    ( bacchus nibbles )
+    ( bacino's stuffed pizza )
+    ( bagel )
+    ( bain's deli )
+    ( banana leaf )
+    ( bandera )
+    ( bando )
+    ( bangkok star )
+    ( bar louie )
+    ( barcello's pizzeria )
+    ( barn of barrington )
+    ( barnelli's pasta bowl )
+    ( barrington country bistro )
+    ( barry's ribs and more )
+    ( barry's spot )
+    ( basta pasta )
+    ( bazzell's french quarter bistro )
+    ( bean counter cafe )
+    ( beans and bagels )
+    ( beau nash )
+    ( beau's bistro )
+    ( beirut )
+    ( belden deli )
+    ( bella notte )
+    ( bella vista )
+    ( bellini's )
+    ( ben pao )
+    ( benihana of tokyo )
+    ( bennigan's )
+    ( berghoff )
+    ( bernhardt's bakery )
+    ( bertucci's brick oven pizzaria )
+    ( betise )
+    ( bialy cafe )
+    ( bice )
+    ( bice grill )
+    ( biff's headhouse diner and tap )
+    ( big bowl cafe )
+    ( biggs )
+    ( bigsby's bar and grill )
+    ( billy goat tavern )
+    ( biloxi grill )
+    ( bistro one ten )
+    ( bistro banlieue )
+    ( bistro europa )
+    ( bistro gavroche )
+    ( bistro zinc )
+    ( bite )
+    ( black cat )
+    ( blackhawk lodge )
+    ( blackie's )
+    ( blind faith cafe )
+    ( blue agave tequila bar and place )
+    ( blue iris )
+    ( blue mesa )
+    ( blue sky coffee house )
+    ( bluepoint oyster bar )
+    ( boardwalk fries )
+    ( bob chinn's crab house )
+    ( bohemian crystal )
+    ( bojono's )
+    ( bones )
+    ( bongo room )
+    ( boogies' diner )
+    ( bordo's )
+    ( bossa nova )
+    ( boston blackie's )
+    ( boston market )
+    ( bottom's up )
+    ( boudin bakery cafe )
+    ( bransfield's )
+    ( brasserie bellevue )
+    ( brasserie jo )
+    ( brasserie t )
+    ( bravissimo )
+    ( breakfast club )
+    ( brett's )
+    ( bricks )
+    ( bridges )
+    ( brother jimmy's bbq and booze )
+    ( bruegger's bagels )
+    ( bruna's ristorante )
+    ( bub city crabshack and bbq )
+    ( bubble net food court )
+    ( buca di beppo )
+    ( buckingham's steak house and bar )
+    ( buddies restaurant and bar )
+    ( buffalo joe's )
+    ( bukhara )
+    ( buona fortuna cafe )
+    ( burger inn )
+    ( burger king )
+    ( burgundy inn )
+    ( burrito fiesta )
+    ( burton place )
+    ( busy bee )
+    ( butch mcguire's )
+    ( butcher shop steakhouse )
+    ( cactus )
+    ( cadillac ranch )
+    ( cafe thirty six )
+    ( cafe five twenty five )
+    ( cafe absinthe )
+    ( cafe angelo )
+    ( cafe avanti )
+    ( cafe ba ba reeba )
+    ( cafe beignet )
+    ( cafe bernard )
+    ( cafe bocaro )
+    ( cafe borgia )
+    ( cafe central )
+    ( cafe continental )
+    ( cafe ennui )
+    ( cafe express )
+    ( cafe gordon )
+    ( cafe iberico )
+    ( cafe istanbul )
+    ( cafe la cave )
+    ( cafe las bellas artes )
+    ( cafe luciano )
+    ( cafe luigi )
+    ( cafe matou )
+    ( cafe med )
+    ( cafe penelope )
+    ( cafe pergolesi )
+    ( cafe phoenicia )
+    ( cafe pyrenees )
+    ( cafe selmarie )
+    ( cafe spiaggia )
+    ( cafe suisse )
+    ( california pizza kitchen )
+    ( campagnola )
+    ( campeche )
+    ( canton house )
+    ( cape cod room )
+    ( capital grille )
+    ( capri )
+    ( capriccio's )
+    ( capucine )
+    ( carlos' )
+    ( carlucci cafe )
+    ( carmen's )
+    ( carmine's clamhouse )
+    ( carson's ribs )
+    ( casbah cafe )
+    ( catch thirty five )
+    ( cavanaugh's )
+    ( ceiling zero )
+    ( celebrity cafe )
+    ( centre cafe )
+    ( centro )
+    ( cerwone jabluszko )
+    ( chalet )
+    ( chandler's )
+    ( chaplin's on church )
+    ( charlie beinlich's )
+    ( charlie chiang )
+    ( charlie trotter's )
+    ( charlie's ale house )
+    ( cheesecake factory )
+    ( chef tony's taste of spain )
+    ( chelsea )
+    ( chez delphonse )
+    ( chicago bagel authority )
+    ( chicago bar and grill )
+    ( chicago blue note )
+    ( chicago chop house )
+    ( chicago diner )
+    ( chicago pizza and oven grinder co. )
+    ( chicago style carry outs )
+    ( chicago style pizza and eatery )
+    ( chicago's pizza )
+    ( chicken shack )
+    ( chili mac's five way chili )
+    ( china cafe )
+    ( chinalite )
+    ( cielo )
+    ( cite at the top of lake point )
+    ( claim company )
+    ( clara's pasta di casa )
+    ( clark street bistro )
+    ( clarke's )
+    ( cleo's )
+    ( club creole )
+    ( club lago )
+    ( club lucky )
+    ( coco pazzo )
+    ( cocoro )
+    ( coffee and tea exchange )
+    ( come back inn pub )
+    ( como inn )
+    ( confusion )
+    ( conte di savoia )
+    ( convito italiano )
+    ( cornelia's )
+    ( corner bakery )
+    ( corosh )
+    ( costa d'oro )
+    ( costa mare )
+    ( costa's )
+    ( cote rotie )
+    ( country house restaurant )
+    ( courtright's )
+    ( courtyards of plaka )
+    ( cousin's )
+    ( coyote joe's )
+    ( coyote moon )
+    ( crab house )
+    ( crawdaddy bayou )
+    ( crofton on wells )
+    ( cross rhodes )
+    ( cucina bella )
+    ( cucina paradiso )
+    ( cucina roma )
+    ( cuisines )
+    ( cullen's bar and grill )
+    ( cy's crab house )
+    ( cyrano's bistro and wine bar )
+    ( czech plaza )
+    ( d and d dogs )
+    ( d and j bistro )
+    ( d'agostino's cafe and bar )
+    ( d.b. kaplan's delicatessen )
+    ( da luigino )
+    ( da nicola ristorante )
+    ( da vinci's )
+    ( daavat place )
+    ( daily bar and grill )
+    ( damen bar and grille )
+    ( dancing noodles cafe )
+    ( daniel j's )
+    ( daniello's )
+    ( danilo's )
+    ( danz cookies )
+    ( dao )
+    ( daruma )
+    ( dave and buster's )
+    ( dave's italian kitchen )
+    ( davis street fish market )
+    ( de angelo's deli )
+    ( de campana )
+    ( dee's )
+    ( del rio )
+    ( deleece )
+    ( dell rhea's chicken basket cocktail lounge )
+    ( dellwood pickle )
+    ( deluxe diner )
+    ( demi mezzo )
+    ( demon dogs )
+    ( deni's den )
+    ( dick's last resort )
+    ( dionne's )
+    ( dish )
+    ( distant mirror cafe )
+    ( dixie kitchen and bait shop )
+    ( domino's pizza )
+    ( don juan's )
+    ( don roth's )
+    ( don taco )
+    ( don's fishmarket and tavern )
+    ( dos hermanos mexican place and cantina )
+    ( dover straits )
+    ( downtown dogs )
+    ( drink )
+    ( drury lane dinner theatre )
+    ( duke of perth )
+    ( dumas walkers )
+    ( dunkin donuts )
+    ( earwaxx cafe )
+    ( eat a pita )
+    ( ed debevic's )
+    ( eddies down home bbq and pizza )
+    ( edelweiss )
+    ( edna's restaurant )
+    ( edwardo's natural pizza )
+    ( egg harbor cafe )
+    ( einstein brothers bagels )
+    ( el famous burrito )
+    ( el jardin )
+    ( el nandu )
+    ( el nuevo mexicano )
+    ( el presidente )
+    ( el rancho )
+    ( el tinajon )
+    ( el tipico )
+    ( eli's the place for steak )
+    ( emilio's granada )
+    ( emilio's la perla )
+    ( emilio's meson sabika )
+    ( emilio's tapas bar )
+    ( emperor's choice )
+    ( english room fish and chips )
+    ( entre nous )
+    ( erie cafe )
+    ( erwin )
+    ( espial )
+    ( ethiopian diamond )
+    ( ethiopian village )
+    ( evanston chicken shack )
+    ( everest )
+    ( evergreen )
+    ( exchange place )
+    ( exchequer pub )
+    ( exit )
+    ( farmer brown's chicken )
+    ( father and son pizza )
+    ( faycurr's fine food and deli )
+    ( feast )
+    ( fernando's )
+    ( fiesta mexicana )
+    ( fifth avenue bistro )
+    ( filippo's )
+    ( finkl's world famous deli )
+    ( fireplace bar and grill )
+    ( fireplace inn )
+    ( fireside beverly )
+    ( fireside restaurant and lounge )
+    ( flat top grill )
+    ( fluky's )
+    ( fond de la tour )
+    ( fondue stube )
+    ( food court )
+    ( foodlife )
+    ( foodstuffs )
+    ( founder's hill brewing co. )
+    ( fountain blue )
+    ( four farthings tavern and grill )
+    ( francesca's north )
+    ( francesca's on taylor )
+    ( francesco's hole in the wall )
+    ( franco's ristorante )
+    ( franconcello's )
+    ( freddy's italian grocery )
+    ( fresh starts )
+    ( frida's )
+    ( froggy's )
+    ( frontera grill )
+    ( furama )
+    ( gabriel's )
+    ( galans )
+    ( gale street inn )
+    ( gale street inn mundelein )
+    ( ganache )
+    ( garage )
+    ( gary barnett's )
+    ( gaslight )
+    ( gavroche )
+    ( gayle street inn )
+    ( gaylord india )
+    ( gazebo place )
+    ( geja's cafe )
+    ( gene and georgetti )
+    ( gene's sausage shop and delicatessen )
+    ( genessee depot )
+    ( genghis khan )
+    ( gennaro's )
+    ( geppetto's )
+    ( ghandi india )
+    ( giannotti steak house )
+    ( gibson's bar and steakhouse )
+    ( gilardi's )
+    ( gin go gae )
+    ( gino's )
+    ( gino's east )
+    ( gino's steak house )
+    ( giordano's )
+    ( giovanni's )
+    ( glady's luncheonette )
+    ( glass dome hickory pit )
+    ( gold coast dogs )
+    ( gold star china buffet and mongolian stir fry )
+    ( golda's )
+    ( golden apple )
+    ( golden cup )
+    ( golden ox )
+    ( golden pancake house )
+    ( goldyburgers )
+    ( good to go )
+    ( goose island brewing co. )
+    ( gordon )
+    ( gourmand coffeehouse )
+    ( grandma gebhard's )
+    ( grapes )
+    ( grappa )
+    ( graziano's )
+    ( great harvest bread company )
+    ( great sea chinese restaurant )
+    ( great steak and fry co. )
+    ( great steak and potato company )
+    ( great street restaurant and bar )
+    ( grecian taverna )
+    ( greek islands )
+    ( green dolphin street )
+    ( green door tavern )
+    ( gullivers )
+    ( gusto italiano )
+    ( gypsy's cove )
+    ( ha mien )
+    ( hacienda tecalitlan )
+    ( hackney's )
+    ( half shell )
+    ( happi sushi )
+    ( happi sushi highland park )
+    ( hard rock cafe )
+    ( harmony grill )
+    ( harry caray's )
+    ( harry's velvet room )
+    ( harvest blend coffees )
+    ( harvest on huron )
+    ( hashalom )
+    ( hat dance )
+    ( hatsuhuna )
+    ( hau giang )
+    ( havana )
+    ( haylemon place )
+    ( healthy food lithuanian restaurant )
+    ( heartland cafe )
+    ( heaven on seven )
+    ( hecky's barbeque )
+    ( heidelberger fass )
+    ( heirloom cafe )
+    ( hi howe )
+    ( hi ricky )
+    ( hilary's urban eatery )
+    ( hog head mcdunna's )
+    ( home bakery )
+    ( home run inn )
+    ( hong kong bay )
+    ( hong min )
+    ( hong ta )
+    ( hooters )
+    ( house of blues )
+    ( house of hunan )
+    ( houston's )
+    ( hubbard street grill )
+    ( hudson club )
+    ( hunan cafe )
+    ( hunan palace )
+    ( hunan szechwan garden chinese cuisine )
+    ( hunt club )
+    ( i tre merli )
+    ( i net cafe )
+    ( ibis )
+    ( iggy's )
+    ( il fornaio )
+    ( il panino )
+    ( il toscanaccio )
+    ( illusions )
+    ( ina's kitchen )
+    ( india house )
+    ( indian summer )
+    ( indigo oyster bar )
+    ( intelligentsia )
+    ( interactive bean )
+    ( international house of pancakes )
+    ( intimate china )
+    ( irazu )
+    ( iron mike's grille )
+    ( ishtar inn )
+    ( italian village )
+    ( itto sushi )
+    ( j's dawgs 'n burgers )
+    ( j.b. alberto's pizza )
+    ( j.p.'s eating place )
+    ( j.w.'s )
+    ( jack gibbons garden )
+    ( jack's restaurant )
+    ( jacobs brothers bagels )
+    ( jade east place )
+    ( jaks tap )
+    ( jane's )
+    ( jaxx )
+    ( jeanny's restaurant )
+    ( jerome's )
+    ( jersey shore subs )
+    ( jezebel )
+    ( jia's )
+    ( jilly's cafe )
+    ( jim's grill )
+    ( jimmy john's )
+    ( jimmy's charhouse )
+    ( jimmy's red hots )
+    ( joanne and sons )
+    ( joe and giuseppe )
+    ( joe's )
+    ( joe's be bop cafe and jazz emporium )
+    ( joey's italian kitchen )
+    ( john barleycorn )
+    ( john's place )
+    ( johnnie's beef )
+    ( johnny rockets )
+    ( joy yee's noodle kitchen )
+    ( jt collins pub )
+    ( judy's bakery )
+    ( julie mai's le bistro )
+    ( julio's latin cafe )
+    ( kafein )
+    ( kamehachi )
+    ( kanval palace )
+    ( kaufman's bagel and delicatessen )
+    ( kendall college )
+    ( kentucky fried chicken )
+    ( kerouac jack's )
+    ( kiki's bistro )
+    ( king crab tavern and seafood )
+    ( king wah place )
+    ( kinzie street chop house )
+    ( kitty o'sheas irish pub )
+    ( klay oven )
+    ( kopi a traveler's cafe )
+    ( korean restaurant )
+    ( kotobuki )
+    ( kuni's )
+    ( kwiky grill )
+    ( kyori )
+    ( kyoto japanese )
+    ( l'appetito )
+    ( l'olive )
+    ( la bocca della verita )
+    ( la borsa )
+    ( la canasta )
+    ( la cantina )
+    ( la creperie )
+    ( la donna )
+    ( la donna nord )
+    ( la fogota )
+    ( la fontanella )
+    ( la gondola )
+    ( la locanda )
+    ( la luce )
+    ( la piazza cafe )
+    ( la risotteria nord )
+    ( la rosa on golf )
+    ( la rosetta )
+    ( la sorella di francesca )
+    ( la strada ristorante )
+    ( lac vien )
+    ( lai lai oriental express )
+    ( lakefront )
+    ( lalo's restaurant )
+    ( lanna thai )
+    ( las fuentes )
+    ( las mananitas )
+    ( las palmas )
+    ( las pasadita )
+    ( las tablas )
+    ( launder bar and cafe )
+    ( lawry's tavern )
+    ( lawry's the prime rib )
+    ( le bouchon )
+    ( le colonial )
+    ( le francais )
+    ( le loup cafe )
+    ( le margaux )
+    ( le mikado place )
+    ( le peep pancake house and grill )
+    ( le titi de paris )
+    ( le vichyssois )
+    ( leo's lunchroom )
+    ( leon's bar b q )
+    ( leona's )
+    ( les nomades )
+    ( let them eat cake )
+    ( lighthouse place )
+    ( lincoln restaurant )
+    ( lindo mexico )
+    ( lino's )
+    ( little bucharest )
+    ( little caesar's )
+    ( little dragon )
+    ( little home vietnamese restaurant )
+    ( lloyd's )
+    ( lo cal zone )
+    ( logalbo's pizzaria )
+    ( logan beach )
+    ( lone star steakhouse )
+    ( lou malnatti's pizza )
+    ( lou mitchell's )
+    ( lou mitchell's express )
+    ( lt's bar and grill )
+    ( lucci's pasta facce trattoria )
+    ( lucille's )
+    ( lucky garden chinese restaurant )
+    ( lucky platter )
+    ( lucky strike )
+    ( lulu's )
+    ( luna blu )
+    ( lupita's )
+    ( lutnia )
+    ( lutz continental cafe and pastry shop )
+    ( machu picchu )
+    ( madam b )
+    ( madison's )
+    ( maggiano's little italy )
+    ( magnum's steak and lobster restaurant )
+    ( magnum's steakhouse )
+    ( main cafe and deli )
+    ( mama cita's )
+    ( mama desta's red sea )
+    ( mama falco )
+    ( mama's paradise cafe )
+    ( mambo grill )
+    ( mandar inn )
+    ( mandarin cafe )
+    ( mandarin house )
+    ( mangino's )
+    ( mango )
+    ( manny's coffee shop and deli )
+    ( mantuano mediterranean table )
+    ( manzo's italian ristorante )
+    ( maple tree inn )
+    ( marche )
+    ( marciello's down and under )
+    ( mareva's )
+    ( marina three hundred place )
+    ( marketplace at marshall field's )
+    ( mars chinese )
+    ( martin's bar and grill )
+    ( martyr's )
+    ( mashed potato club )
+    ( mathon's )
+    ( matsuya )
+    ( mcdonald's )
+    ( medici )
+    ( mei shung )
+    ( mekong )
+    ( melrose )
+    ( meritage )
+    ( merle's number one barbecue )
+    ( merlot joe's )
+    ( metro club )
+    ( mi casa su casa )
+    ( mi tierra )
+    ( mia cucina )
+    ( mia francesca )
+    ( mia torre )
+    ( michael jordan's place )
+    ( michael's )
+    ( mike's fast food and bar )
+    ( mikes broadway cafe )
+    ( mill race inn )
+    ( miller's pub )
+    ( millrose brewing co. )
+    ( mirabell )
+    ( mister sub )
+    ( mity nice grill )
+    ( moe's deli and pub )
+    ( mojava coffee bar )
+    ( monastero's )
+    ( mondelli's on grand )
+    ( mongolian barbeque )
+    ( montparnasse )
+    ( moody's pub )
+    ( moon palace )
+    ( moonraker )
+    ( moretti's )
+    ( morton's )
+    ( morton's of chicago )
+    ( morton's steakhouse )
+    ( moti mahal )
+    ( mozart cafe )
+    ( mrs. levy's delicatessen )
+    ( mrs. o'leary's deli )
+    ( mrs. park's tavern )
+    ( museum of contemporary art )
+    ( muskies )
+    ( my bar )
+    ( my favorite inn )
+    ( my neighborhood )
+    ( my pi pizzaria )
+    ( mykonos )
+    ( myron and phil's )
+    ( n.n. smokehouse )
+    ( nakayoshi's )
+    ( nana's )
+    ( nancy's original stuffed pizza )
+    ( narcisse )
+    ( neon greek village )
+    ( new gourmet pizza cafe )
+    ( new image )
+    ( new japan )
+    ( new wok chinese place )
+    ( newsmakers place )
+    ( next door )
+    ( nhu hoa cafe )
+    ( nick and tony's )
+    ( nick's fishmarket )
+    ( nick's tavern )
+    ( nikos' )
+    ( nix )
+    ( no exit cafe )
+    ( noodle dee )
+    ( noodle garden )
+    ( noodle noodle )
+    ( nookies )
+    ( nookies too )
+    ( nookies tree )
+    ( north coast cafe )
+    ( northside )
+    ( noyes st. cafe )
+    ( nuevo leon )
+    ( o fame )
+    ( o'brien's )
+    ( o'malley's hot dogs )
+    ( o'neil's )
+    ( oak terrace )
+    ( oak tree )
+    ( oceanique )
+    ( odyssey cruises )
+    ( ohio house coffee shop )
+    ( old barn )
+    ( old jerusalem )
+    ( old plantation market )
+    ( olive garden )
+    ( omega )
+    ( once upon a thai )
+    ( onion roll )
+    ( online cafe )
+    ( oo la la )
+    ( oodles of noodles )
+    ( open sesame )
+    ( orbit )
+    ( organic tomato )
+    ( oriental restaurant )
+    ( original maxwell street )
+    ( original pancake house )
+    ( orso's )
+    ( outback steakhouse )
+    ( outpost )
+    ( p.j. clarke's )
+    ( p.s. bangkok )
+    ( pacific cafe )
+    ( pago pago )
+    ( paladino's )
+    ( palermo pizza )
+    ( palette's )
+    ( palm )
+    ( palm court )
+    ( palmer house steak and seafood )
+    ( palmer place )
+    ( palumbo's )
+    ( pan hellenic pastry shop )
+    ( panajin restaurant )
+    ( panda express )
+    ( panda panda )
+    ( pane caldo )
+    ( panini panini )
+    ( papa john's pizza )
+    ( papa milano )
+    ( papagus )
+    ( pappagallo's )
+    ( park avenue cafe )
+    ( parthenon )
+    ( pastafina )
+    ( pasteur cafe )
+    ( pastiche a global cafe )
+    ( pat's on sheffield )
+    ( pat's pizza )
+    ( patrick and james )
+    ( pattaya )
+    ( pazzo's )
+    ( pazzo's cucina italiana )
+    ( pegasus tavern )
+    ( penny's noodle shop )
+    ( pepper lounge )
+    ( pete miller's steakhouse )
+    ( petros dianna's )
+    ( philander's )
+    ( philly's best )
+    ( phoenix inn place )
+    ( piatti )
+    ( piatti verde )
+    ( pine yard )
+    ( pinnacle )
+    ( pita inn )
+    ( pita pavilion )
+    ( pizza capri )
+    ( pizza hut )
+    ( pizzaria due )
+    ( pizzaria uno )
+    ( planet hollywood )
+    ( polish highlander's place and banquet hall )
+    ( pompeii bakery )
+    ( pontiac produce )
+    ( poochie's )
+    ( poor phil's shell bar )
+    ( pop's italian beef )
+    ( portillo's hot dogs )
+    ( potbelly sandwich works )
+    ( poul zakopane harnas )
+    ( prairie )
+    ( prairie joe's )
+    ( primavera ristorante )
+    ( printer's row )
+    ( pronto )
+    ( provence )
+    ( public landing )
+    ( pump room )
+    ( quang's noodle shop )
+    ( queen of the sea )
+    ( quincy grille on the river )
+    ( r.j. grunts )
+    ( rada's inn )
+    ( rainforest cafe )
+    ( raj darbar )
+    ( ranalli's )
+    ( ravinia bistro )
+    ( raw bar )
+    ( red apple )
+    ( red light )
+    ( red lion pub )
+    ( red rock grill )
+    ( red tomato )
+    ( redfish )
+    ( relish )
+    ( restaurant okno )
+    ( retreat )
+    ( retro bistro )
+    ( reunion grill )
+    ( reza's )
+    ( rhumba )
+    ( rico's )
+    ( ricobene's )
+    ( rigoletto )
+    ( rinconcito sudamericano )
+    ( ristorante due mondi )
+    ( ritz carlton dining room )
+    ( riva )
+    ( river kwai two )
+    ( rivers euro american bistro )
+    ( riverside family restaurant )
+    ( robinson's number one ribs )
+    ( rock bottom brewery )
+    ( rock'n'roll mcdonald's )
+    ( rockhouse grill )
+    ( roditys )
+    ( ron of japan )
+    ( roongpetch )
+    ( rosded )
+    ( rose and crown pub )
+    ( rose angeli's )
+    ( rosebud on rush )
+    ( ruby of siam )
+    ( rudi's wine bar )
+    ( rue saint claire )
+    ( russell's barbecue )
+    ( russian palace )
+    ( russian tea time )
+    ( rusty pelican )
+    ( ruth's chris steak house )
+    ( sabatino's )
+    ( sage's sages )
+    ( sai cafe )
+    ( saint germain )
+    ( salaam )
+    ( salerno's restaurant )
+    ( sally's waffle and pancake shoppe )
+    ( saloon )
+    ( salpicon )
+    ( salsa borracha )
+    ( salt and pepper diner )
+    ( salvatore's ristorante )
+    ( sam mee )
+    ( samuel's )
+    ( sanko )
+    ( santa fe cafe )
+    ( santa fe tapas )
+    ( santorini )
+    ( sarkis' cafe )
+    ( savannah's )
+    ( savoy bar and grill )
+    ( savoy truffle )
+    ( sayat nova )
+    ( sbarro )
+    ( schulien's restaurant and saloon )
+    ( scoozi )
+    ( seasons )
+    ( seasons of long grove )
+    ( seattle's best coffee )
+    ( select cut steak house )
+    ( service entrance deli )
+    ( shalom deli )
+    ( shark bar )
+    ( shaw's crab house )
+    ( shaw's deerfield )
+    ( sherman place )
+    ( sherman street grill )
+    ( shiroi hana )
+    ( shish kebab house )
+    ( shree )
+    ( shucker's )
+    ( siam square )
+    ( signature room at the ninety fifth )
+    ( silk mandarin )
+    ( silver cloud )
+    ( simon's )
+    ( singha thai )
+    ( six corners restaurant )
+    ( sixty five )
+    ( slice of life )
+    ( snackville junction )
+    ( sole mio )
+    ( sophie's busy bee )
+    ( sorriso ristorante bar )
+    ( soul kitchen )
+    ( soundings )
+    ( south gate cafe )
+    ( south loop club )
+    ( southport city saloon )
+    ( spago )
+    ( spasso )
+    ( spavone's seven hills )
+    ( spiaggia )
+    ( spirit of chicago )
+    ( spruce )
+    ( st. anna bakery and cafe )
+    ( st. louis bread company )
+    ( stacks and steaks )
+    ( standard india )
+    ( stanley's kitchen )
+    ( star of india )
+    ( star of siam )
+    ( starbucks )
+    ( starfish )
+    ( stefani's )
+    ( stetson's chop house )
+    ( stevie b's )
+    ( stir crazy cafe )
+    ( stir fire grill )
+    ( streeterville bar and grill )
+    ( strega nona )
+    ( su casa )
+    ( subway )
+    ( suntory )
+    ( superdawg )
+    ( supparosa ristorante italiano )
+    ( surf and turf )
+    ( sweet mysteries )
+    ( sylviano's )
+    ( szechwan east )
+    ( szechwan house )
+    ( szechwan palace )
+    ( szechwan restaurant )
+    ( taco bell )
+    ( taco burrito house )
+    ( tag's pastry shop )
+    ( tallgrass )
+    ( tanglewood )
+    ( tania's )
+    ( tapas barcelona )
+    ( taqueria hernandez )
+    ( taqueria mamacita )
+    ( tarantino's )
+    ( tavern in the town )
+    ( taylor brewing company )
+    ( tecalitlan )
+    ( tel aviv kosher pizza )
+    ( tempo )
+    ( tequila roadhouse )
+    ( texas star fajita bar )
+    ( tgi fridays )
+    ( thai fifty five )
+    ( thai avenue )
+    ( thai borrahn )
+    ( thai classic )
+    ( thai little home cafe )
+    ( thai room )
+    ( thai room ii )
+    ( thai sookdee )
+    ( thai spice )
+    ( thai star )
+    ( thai touch )
+    ( that little mexican cafe )
+    ( that steak joynt )
+    ( the bangkok )
+    ( the boulevard )
+    ( the cafe )
+    ( the crown room )
+    ( the dining room )
+    ( the greenhouse )
+    ( the helmand )
+    ( the keg )
+    ( the raphael )
+    ( the roxy cafe )
+    ( third coast )
+    ( three happiness )
+    ( tibet cafe )
+    ( ticker tape bar and bistro )
+    ( tie ashenknaz )
+    ( tien tsin )
+    ( tiff's too )
+    ( tilli's )
+    ( timbers charhouse )
+    ( timothy o'tooles )
+    ( tokyo marina )
+    ( tomboy )
+    ( tommy nevin's pub )
+    ( tommy's )
+    ( tony spavone's ristorante )
+    ( tony's eatin' house )
+    ( tony's place )
+    ( top notch beefburger shop )
+    ( topo gigio )
+    ( topolobampo )
+    ( tortilla wraps )
+    ( toulouse on the park )
+    ( tower club )
+    ( trader vic's )
+    ( trattoria demi )
+    ( trattoria dinotto )
+    ( trattoria gianni )
+    ( trattoria ginotto )
+    ( trattoria number ten )
+    ( trattoria parma )
+    ( trattoria roma )
+    ( trattoria roma three )
+    ( tre kronor )
+    ( tres en uno cafe )
+    ( trio )
+    ( triple crown seafood )
+    ( tropigrill )
+    ( tsunami )
+    ( tucci benucch )
+    ( tucci milan )
+    ( tuchetti )
+    ( tufanos vernon park tap )
+    ( tuscan grill )
+    ( tuscany )
+    ( twilight )
+    ( twin anchors )
+    ( twisted lizard )
+    ( twisted spoke )
+    ( udupi palace )
+    ( un diamo )
+    ( un grand cafe )
+    ( uncle julio's hacienda )
+    ( uncle mike's place )
+    ( uncle tannous )
+    ( uncle tutunji's )
+    ( uncommon ground )
+    ( unicorn cafe )
+    ( urbus orbis )
+    ( va pensiero )
+    ( vee vee's african place and cocktails )
+    ( vernon park tap )
+    ( via emelia )
+    ( via veneto )
+    ( viceroy of india )
+    ( victoria's coffeehouse and cafe )
+    ( vie de france )
+    ( viennese kaffee haus brandt )
+    ( vietnam little home cafe )
+    ( villa may )
+    ( village )
+    ( vinci )
+    ( vinyl )
+    ( vivere )
+    ( vivo )
+    ( voila )
+    ( voltaire )
+    ( wah yee )
+    ( walker brothers )
+    ( walnut room )
+    ( walter's )
+    ( walton place cafe )
+    ( waterford )
+    ( weber grill )
+    ( wells street deli )
+    ( wendy's )
+    ( white castle )
+    ( white palace grill )
+    ( whitehall place )
+    ( widow newton's tavern )
+    ( wild ginger )
+    ( wild onion )
+    ( wildfire )
+    ( windows of cuisine )
+    ( wishbone )
+    ( wolfy's )
+    ( wonton club )
+    ( woo lae oak )
+    ( woodland of madras )
+    ( work of art cafe and patisserie )
+    ( ye olde towne inn )
+    ( yu's mandarin restaurant )
+] { return ($string) }
+
+Street
+[
+    avenue
+    boulevard
+    drive
+    lane
+    place
+    road
+    street
+] { return ($string) }
+
+StreetDirection
+[
+    north
+    south
+    east
+    west
+] { return ($string) }
+
+StreetName
+[
+    ( one hundred third )
+    ( one hundred sixth )
+    ( one eleventh )
+    ( one fifteenth )
+    ( one seventeenth )
+    twelfth
+    ( one sixty third )
+    eighteenth
+    first
+    ( twenty second )
+    ( twenty fourth )
+    ( twenty fifth )
+    ( twenty sixth )
+    second
+    ( thirty first )
+    ( thirty fifth )
+    third
+    ( forty seventh )
+    ( fifty third )
+    ( fifty fifth )
+    ( fifty ninth )
+    fifth
+    ( sixty first )
+    ( sixty third )
+    ( sixty ninth )
+    ( seventy first )
+    ( seventy fifth )
+    ( seventy ninth )
+    ( eighty seventh )
+    ( eighty eighth )
+    eighth
+    ( ninety fifth )
+    adams
+    addison
+    algonquin
+    alpine
+    anthony
+    archer
+    argyle
+    arlington
+    armitage
+    asbury
+    ashland
+    augusta
+    balmoral
+    ( bank lane )
+    barrington
+    belden
+    bellevue
+    belmont
+    benson
+    berwyn
+    blackhawk
+    blackstone
+    bradley
+    broadway
+    ( bryn mawr )
+    busse
+    butterfield
+    california
+    campus
+    canal
+    cass
+    cedar
+    central
+    cermak
+    cherry
+    chestnut
+    chicago
+    ( chicago skyway )
+    church
+    cicero
+    circle
+    cityfront
+    ( civic center )
+    clarendon
+    clark
+    clayton
+    cleveland
+    clinton
+    clybourn
+    columbus
+    commercial
+    congress
+    cook
+    cornelia
+    ( cottage grove )
+    ( county farm )
+    crawford
+    cumberland
+    damen
+    davis
+    dearborn
+    delaware
+    dempster
+    devon
+    ( diamond lake )
+    diversey
+    division
+    dixie
+    dundee
+    eighth
+    elm
+    elmhurst
+    elston
+    emerson
+    erie
+    exchange
+    fairbanks
+    fifth
+    financial
+    finley
+    first
+    ( first highland )
+    ( first national plaza )
+    forest
+    foster
+    ( fox valley center )
+    franklin
+    fullerton
+    fulton
+    garfield
+    giddings
+    glencoe
+    glenview
+    glenwood
+    goethe
+    golf
+    ( golf mill )
+    ( golf mill center )
+    grace
+    grand
+    green
+    ( green bay )
+    greenleaf
+    greenview
+    ( gross point )
+    ( grosse point )
+    grove
+    halsted
+    happ
+    harlem
+    harms
+    harper
+    harrison
+    harwood
+    highwood
+    hillside
+    hinman
+    howard
+    hubbard
+    huron
+    ( hyde park )
+    illinois
+    indiana
+    ( irving park )
+    jackson
+    ( james crossing )
+    jefferson
+    ( john hancock )
+    joliet
+    kedzie
+    kensington
+    kimball
+    king
+    kinzie
+    ( la grange )
+    ( la salle )
+    lafayette
+    lake
+    ( lake cook )
+    ( lake shore )
+    ( lake shore drive )
+    lawrence
+    leavitt
+    lee
+    leland
+    liberty
+    like
+    lincoln
+    ( lincoln park )
+    logan
+    ( m l k )
+    madison
+    magnolia
+    main
+    mannheim
+    maple
+    marion
+    marriott
+    mcclurg
+    ( mcclurg court )
+    mccormick
+    mchenry
+    ( merchandise mart )
+    michigan
+    milwaukee
+    miner
+    monroe
+    montrose
+    morgan
+    morse
+    naperville
+    naragansett
+    nerge
+    ( new wilke )
+    north
+    ( northbrook court )
+    ( northwest highway )
+    noyes
+    o'hare
+    oak
+    ( oak park )
+    ( oakbrook center )
+    oakley
+    oakton
+    ogden
+    ohio
+    ( old deerfield )
+    ( old mchenry )
+    ( old orchard )
+    ( old western )
+    olmsted
+    ontario
+    orleans
+    orrington
+    park
+    parkside
+    pasquinelli
+    paulina
+    pearson
+    peterson
+    pfingsten
+    phillips
+    pleasant
+    potter
+    prospect
+    pulaski
+    quentin
+    racine
+    rand
+    randolph
+    ravenswood
+    ridge
+    river
+    ( river oaks )
+    ( river road )
+    riverside
+    ( roger williams )
+    roosevelt
+    roscoe
+    roselle
+    ( route one twenty )
+    ( route fifty three )
+    ( route sixty )
+    ( route eighty three )
+    rush
+    scranton
+    second
+    sedgewick
+    sheffield
+    sheridan
+    sherman
+    skokie
+    ( skokie valley )
+    skyway
+    southport
+    ( st clair )
+    state
+    sterling
+    ( stony island )
+    sunnyside
+    superior
+    taylor
+    temple
+    thai
+    thatcher
+    third
+    torrence
+    touhy
+    tower
+    ( town square )
+    union
+    ( union station )
+    university
+    ( van buren )
+    ( vernon park )
+    vincennes
+    virginia
+    vollmer
+    wabansia
+    wabash
+    wacker
+    wallace
+    walton
+    warren
+    washington
+    water
+    ( water tower )
+    ( water tower place )
+    waukegan
+    webster
+    weed
+    wells
+    wentworth
+    ( west lake )
+    western
+    willow
+    wilmette
+    wilson
+    wolf
+    woodfield
+    wrightwood
+    york
+    ( yorktown center )
+] { return ($string) }
+
+Tell
+[
+    (   ?[okay now]
+        ?([can could will would] you)
+        ?[please just]
+        ?(help ?me)
+        [
+            (describe)
+            (do you [have know])
+            (give ?me)
+            (get ?me)
+            (find ?me)
+            ([how what] about)
+            (IWant ?(to [see hear know find]))
+            (let me [see hear know])
+            (list)
+            (look up)
+            (show ?me)
+            (tell ?me)
+        ]
+        ?[(?( ?[all anything everything (?[any some] [info information])] [about on])
+           ?[ a an any some that this the all (all ?of the)]
+          )
+          Which
+         ]
+    )
+] { return ($string) }
+
+IWant
+[
+    ( i desire )
+    ( i am interested )
+    ( i want )
+    ( i need )
+    ( i would like )
+    ( i'd like )
+] { return ($string) }
+
+Restaurant
+[
+    bakery
+    bar
+    cafe
+    ( cigar bar )
+    coffeehouse
+    deli
+    delicatessen
+    microbrewery
+    ( pancake house )
+    ( ?social sports bar )
+    steakhouse
+    joint
+    one
+    place
+    restaurant
+] { return ($string) }
+
+Restaurants
+[
+    bakeries
+    bars
+    cafes
+    ( cigar bars )
+    coffeehouses
+    delis
+    delicatessens
+    microbreweries
+    ( pancake houses )
+    ( ?social sports bars )
+    steakhouses
+    joints
+    ones
+    places
+    restaurants
+] { return ($string) }
+
+Which
+[
+    how many
+    how much
+    what
+    which
+] { return ($string) }
+
+Exit
+[
+    (?[(IWant to) please] exit ?please)
+] { return (exit) }
+
+YesNo [
+    (?[um uh]
+     [(YES_WORDS ?_YES_TRAILERS)        { return (yes) }
+      (NO_WORDS ?_NO_TRAILERS)          { return (no) }
+     ])
+]
+
+ReadNamesRequest
+[
+    ( Tell names )
+    ( Tell their names )
+    ( Tell them )
+    ( what are they ?called )
+    ( what are their names )
+    ( what are the names )
+] { return (readnames) }
+
+ReadWhereRequest
+[
+    ( Tell their location )
+    ( where is it ?located )
+    ( where are they ?located )
+    ( where are these ?Restaurants ?located )
+] { return (readwhere) }
+
+Request
+[
+    playback
+    ( Tell ?the Name )
+    ( ?Tell ?Cost ?Ethnicity Restaurants you have on Address )
+    ( ?Tell ?Cost ?Ethnicity Restaurants on Address )
+    ( ?Tell ?Cost ?Ethnicity on Address )
+    ( ?Tell ?Cost ?Ethnicity Restaurants ?(in City) )
+    ( ?Tell ?Cost ?Ethnicity Restaurant ?(in City) )
+    ( ?Tell Ethnicity ?(in City) )
+    ( ?Tell Ethnicity ?please )
+    ( ?Tell anything Ethnicity )
+    ( ?Tell ?Cost ?Ethnicity Restaurants for me )
+    ( ?Tell ?Cost ?Ethnicity Restaurant to have Menu in City )
+    ( ?Tell City ?Ethnicity Restaurants )
+    ( ?Tell Restaurant that [serves has] Menu ?(and are romantic))
+    ( ?Tell Restaurants that [serve have] Menu ?(and are romantic))
+    ( ?Tell where i can get some Menu this evening )
+    ( ?Tell Restaurants ?(in City) that are Ethnicity )
+    ( ?Tell names of the Ethnicity Restaurants )
+    ( ?Tell Ethnicity Restaurants you know about )
+    ( ?Tell Restaurant with Menu )
+    ( ?Tell vegetarian Restaurants )
+    ( ?Tell vegetarian Restaurants in City )
+    ( ?Tell Restaurants serving Menu in City )
+    ( ?Tell Menu ?Restaurants in City )
+    ( ?Tell City )
+    ( ?Tell in City )
+    ( ?Tell about Restaurants serving Menu in City )
+    ( ?Tell MenuSingular Restaurant )
+    ( ?Tell MenuSingular Restaurants )
+    ( ?Tell its features )
+    ( ?Tell with Menu )
+    ( ?Tell Menu ?(in City) )
+    ( ?Tell Menu where can i go )
+    ( ?Tell Menu can you help me )
+    ( ?Tell features )
+    ( ?Tell their features )
+    ( ?Tell ?Meal hours )
+    ( ?Tell ?Meal hours [of for at] it )
+    ( ?Tell ?Meal hours [of for at] ?the ?City Ethnicity Restaurants )
+    ( ?Tell other Restaurants )
+    ( are ?there any in City )
+    ( are ?there any on Address )
+    ( are there ?any ?Cost ?Ethnicity Restaurants ?(on Address) ?(in City))
+    ( are there ?any ?Cost ?Ethnicity Restaurants ?(on Address) ?(in City) that [serve have] Menu )
+    ( are there ?any vegetarian Ethnicity Restaurants )
+    ( are any of those Cost Restaurants )
+    ( is ?there any in City )
+    ( is there a Restaurant in City )
+    ( is that a vegetarian Restaurant )
+    ( where is ?the Name ?located )
+    ( where are ?the Name ?located )
+    ( where can i get a good MenuSingular )
+    ( where can i eat [a an] MenuSingular )
+    ( where can i eat Menu )
+    ( where can i eat Menu for Meal )
+    ( where can i get Menu ?(in City) )
+    ( where can i get [a an] MenuSingular )
+    ( where can i get some MenuPlural )
+    ( where can i get some MenuPlural for Meal )
+    ( where can i get a ?Cost ?Ethnicity meal )
+    ( where is a ?City Restaurant that [serves has] Menu )
+    ( where are the vegetarian Restaurants )
+    ( where can i go for a Menu )
+    ( [what which] are romantic )
+    ( [what which] are non smoking )
+    ( [what which] Restaurants are non smoking )
+    ( [what which] Restaurants allow smoking )
+    ( [what which] ?other ?Cost ?Ethnicity ?Restaurants [is are] [(on Address) (in City)] )
+    ( [what which] ?other ?Cost ?Restaurants are Ethnicity )
+    ( [what which] ?other ?Cost ?Restaurants [serve have] Menu )
+    ( [what which] ?other ?Cost ?Restaurant [serves has] Menu )
+    ( [what which] ?other ?Ethnicity ?Restaurants [serve have] a Cost Menu )
+    ( [what which] are Restaurants in City that [serve have] Menu )
+    ( how many ?Cost ?Ethnicity ?Restaurants are there )
+    ( how many ?Cost ?Ethnicity ?Restaurants are in City )
+    ( how many [serve have] Ethnicity )
+    ( how many [serve have] Menu )
+    ( how many Restaurants have valet parking )
+    ( how many Restaurants have parking )
+    ( how many vegetarian Restaurants are in City )
+    ( IWant to dine in City tonight )
+    ( IWant to eat in City tonight )
+    ( IWant food in City tonight )
+    ( IWant food in City )
+    ( IWant to eat Ethnicity )
+    ( IWant to eat Ethnicity tonight )
+    ( IWant to go for Ethnicity tonight )
+    ( IWant to go to [a an] MenuSingular Restaurant )
+    ( IWant to go to [a an] Ethnicity Restaurant )
+    ( IWant to go to City for Menu )
+    ( IWant to have Menu in City )
+    ( IWant to get Menu )
+    ( IWant to get [a an] MenuSingular )
+    ( IWant to get some MenuPlural )
+    ( IWant the ?Meal hours [of for at] the Ethnicity Restaurants )
+    ( IWant the ?Meal hours )
+    ( i am interested in Restaurants that have Menu and are romantic )
+    ( i am interested in Menu )
+    ( i am hungry for Menu where can i go )
+    ( i am famished where can i get a Cost Menu in City )
+    ( do any of the Ethnicity Restaurants [serve have] Menu )
+    ( what are Restaurants in City that [serve have] Menu )
+    ( what are their ethnicities )
+    ( i am in an Ethnicity mood )
+    ( i will only go to a Ethnicity Restaurant )
+    ( who [serves has] Menu )
+    ( are any of those Ethnicity )
+    ( i have a taste for Menu where can i go )
+    ( what Restaurants do you have in City )
+    ( which of those are in City )
+    ( what kind of food do they [serve have] )
+    ( what are its features )
+    ( how late are they open )
+    ( how long are they open )
+    ( when are they open today )
+    ( when do they close )
+    ( when do they open )
+    ( when is it open )
+    ( what hours do they [serve have] Menu )
+    ( how early do they open )
+    ( what are its ?Meal hours )
+    ( what are their ?Meal hours )
+    ( what are the ?Meal hours )
+    ( when can i eat ?there )
+    ( what is the ?phone number of ?the Restaurant ?(in City) )
+    ( what are [ their the ] phone numbers )
+    ( what is [ their the ] phone number )
+    ( ?Tell phone number )
+    ( ?Tell phone numbers )
+    ( does it [serve have] Menu )
+    ( do they [serve have] Menu )
+] { return ($string) }
+
+Restart
+[
+    clear
+    ( start over )
+] { return (startover) }
+
+.Utterance
+[
+    YesNo:r1 { <vmlslot0 $r1> }
+    Request:r2 { <vmlslot0 $r2> }
+    ReadNamesRequest:r3 { <vmlslot0 $r3> }
+    ReadWhereRequest:r4 { <vmlslot0 $r4> }
+    Restart:r5 { <vmlslot0 $r5> }
+    Universal_Commands:uc {<ucommand $uc>}
+] 

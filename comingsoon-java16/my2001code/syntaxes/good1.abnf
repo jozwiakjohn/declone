@@ -1,0 +1,9 @@
+#ABNF 1.0 ISO8859-1;
+language en;
+mode voice;
+root $basicCmd;
+alias $(http://www.sayplease.com/politeness.xml) $$polite;
+public $basicCmd = $$polite#startPolite $command $$polite#endPolite ;
+$command = $action $object ;
+$action = ( /10/ open{'OPEN'} |  /2/ close{'CLOSE'} |  /1/ delete{'DELETE'} |  /1/ move{'MOVE'});
+$object = (the | a)<0-1> (window | file | menu);

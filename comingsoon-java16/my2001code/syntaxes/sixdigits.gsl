@@ -1,0 +1,29 @@
+; blah blah blah this is a comment blah blah.
+
+; #include "somethingthatworks"
+
+DIGITS    
+  [
+          one
+          two
+          three
+          four
+          five
+          six
+          seven
+          eight
+          nine
+          zero
+          oh
+  ]
+
+.Sixdigits (
+             DIGITS
+             DIGITS
+             DIGITS
+             DIGITS
+             DIGITS
+             DIGITS
+           )  
+
+; Uh ?[um uh]

@@ -1,0 +1,16 @@
+#include <goofy.syntax>
+#include "dorko"
+
+
+.Universal_Help
+[
+    (
+        ?[
+            I_Want_Ext ~0.85
+            (can i get)
+            (I_Want to get)
+        ]
+        ?some hilf ?Suffix_Please
+    )
+    { return ( help ) }
+]

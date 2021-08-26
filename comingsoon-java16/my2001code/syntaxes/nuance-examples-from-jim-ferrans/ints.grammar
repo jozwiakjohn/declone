@@ -1,0 +1,112 @@
+#include "number.grammar"
+
+
+;This grammar manipulates the number grammar to allow the 
+;user to say a number up to 999999 in any logical way.
+
+Two_digs  ( NumDigit:n1 NumDigit:n2 ) {return(add(mul(10 $n1) $n2))}
+
+Two_dig [ 
+         (Two_digs:n) {return ($n)}
+        [  Two_digit:n Teen_or_twenty_to_ninety:n ]  {return ($n)} 
+   ]     
+
+
+Three_dig ( NumDigit:n1 NumDigit:n2 NumDigit:n3 )
+            {return(add(mul($n1 100)
+                    add(mul($n2 10) $n3)))}
+
+
+Four_dig ( NumDigit:n1 ?thousand NumDigit:n2 NumDigit:n3 NumDigit:n4 )
+            {return(add(mul($n1 1000) add(mul($n2 100)
+                    add(mul($n3 10) $n4))))}
+
+Five_dig ( NumDigit:n1 NumDigit:n2 NumDigit:n3 NumDigit:n4 NumDigit:n5)
+            {return(add(mul($n1 10000) add(mul($n2 1000) add(mul($n3 100)
+                    add(mul($n4 10) $n5)))))}
+
+Six_dig ( NumDigit:n1 NumDigit:n2 NumDigit:n3 NumDigit:n4 NumDigit:n5 NumDigit:n6)
+            {return(add(mul($n1 100000) add(mul($n2 10000) add(mul($n3 1000) add(mul($n4 100)
+                    add(mul($n5 10) $n6))))))}
+
+;;;;; Subgrammars which deal with certain cases of ambiguity ;;;;;;;
+Two_nums [ Not_digit_digit:n1 Non_zero:n2 ] {return(add($n1 $n2))}
+
+Two_nums_wo_decade [ Teen:n Twenty_some:n ]   {return($n)}
+
+Hundred_and_somenum ( Some_hundred:n1 ?and ?Two_nums:n2 ) {return(add($n1 $n2))}
+
+Hundred_and_somenum_wo_decade ( Some_hundred:n1 ?and ?Two_nums_wo_decade:n2 ) {return(add($n1 $n2))}
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+ONE_INT ( (NumDigit:n) ) {return($n)}
+
+TWO_INTS (
+[  Not_digit_digit:n Teen_or_twenty_to_ninety:n Two_dig:n ]  {return ($n)}
+)
+
+THREE_INTS 
+[ 
+ Hundred_and_some:n {return ($n)}
+ Three_digit:n {return ($n)}
+ Three_dig:n  {return ($n)}
+ ([ Ten:n1 Twenty_some:n1 Teen:n1 ] NumDigit:n2 ) {return (add(mul($n1 10) $n2))}
+
+   ] 
+
+
+
+FOUR_INTS 
+[ Four_dig:n {return ($n)}
+([ Ten:n1 Twenty_some:n1 Teen:n1 ] NumDigit:n2 NumDigit:n3 )  {return(add(mul($n1 100) add(mul($n2 10) $n3)))} 
+( NumDigit:n1 ?thousand[ Ten:n2 Twenty_some:n2 Teen:n2 ] NumDigit:n3 )  {return(add(mul($n1 1000) add(mul($n2 10) $n3)))} 
+( NumDigit:n1 NumDigit:n2 [ Ten:n3 Twenty_some:n3 Teen:n3 ]  )  {return(add(mul($n1 1000) add(mul($n2 100) $n3)))}
+( [ Hundred_and_somenum_wo_decade:n1  ]  NumDigit:n2) {return(add(mul(10 $n1) $n2))}
+( NumDigit:n1  Hundred_and_somenum:n2  ) {return(add(mul(1000 $n1) $n2))}
+( NumDigit:n1 thousand NumDigit:n2 Two_nums:n3)  {return(add(mul($n1 1000) add(mul($n2 100) $n3)))}
+( [ Teen:n1 Twenty_some:n1 ] hundred  Not_digit_digit:n2 ) {return (add(mul($n1 100) $n2))}
+
+]  
+
+
+FIVE_INTS [
+ (Five_dig:n){return ($n)}
+ ( [(Two_nums_wo_decade:n1 ?thousand)(TWO_INTS:n1 thousand) ] [ Hundred_and_somenum_wo_decade:n2 Digit_two_digit:n2]) {return (add(mul($n1 1000) $n2))}
+ (NumDigit:n1 ?hundred [ Ten:n2 Teen:n2 Twenty_some:n2 ] TWO_INTS:n3) {return(add(mul($n1 10000) add(mul($n2 100) $n3)))}
+ (NumDigit:n1 (NumDigit:n2 ?hundred [ Ten:n3 Teen:n3 Twenty_some:n3 ]) NumDigit:n4) {return(add(mul($n1 10000) add(mul($n2 1000) add(mul($n3 10) $n4))))}
+]
+
+UP_TO_SIX_INTS (
+[ 
+( Four_through_six_digits:n ) {return ($n)}
+  ( Six_dig:n ) {return ($n)}
+  ( [Two_digit:n1 Two_digs:n1] [Two_digit:n2 Two_digs:n2] [Two_digit:n3 Two_digs:n3]) {return(add(mul($n1 10000) add(mul($n2 100) $n3)))}  
+  ( NumDigit:n1 ?hundred [ Ten:n2 Teen:n2 Twenty_some:n2 ] ?thousand NumDigit:n3 ?hundred [ Ten:n4 Teen:n4 Twenty_some:n4 Two_dig:n4] ) {return(add(mul($n1 100000) add(mul($n2 1000) add(mul($n3 100) $n4))))}
+  ]
+
+)
+
+
+TOTAL_INTS (
+(
+ [ONE_INT:n TWO_INTS:n THREE_INTS:n FOUR_INTS:n FIVE_INTS:n UP_TO_SIX_INTS:n ] 
+   ) {return (($n))}
+)
+
+.THE_INTS (
+( TOTAL_INTS:numz ) {<vmlslot0 $numz>}
+
+)
+
+
+
+
+
+
+
+
+
+
+
+
+

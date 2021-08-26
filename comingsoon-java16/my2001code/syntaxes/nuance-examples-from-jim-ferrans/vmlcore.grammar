@@ -1,0 +1,1259 @@
+
+;; ==== here we include and modify the money grammar =====
+;;
+;; File:   money.grammar
+;; Author: Hy Murveit
+;; Date:   March 9, 1997
+;;
+;; Description:
+;;
+;; Money Grammar
+;;
+;; This grammar recognizes specifications of money amounts from $.01
+;; to $9,999,999.99 and returns a structure with the fields dollars
+;; and cents, each set to integers. 
+;; 
+;; As opposed to the previous version of this grammar, this grammar is unambiguous.
+;; there is a fixed single interpretation for sentences which might be 
+;; ambiguous. The rules are:
+;;   five twenty seven = 5.27
+;;   five twenty seven dollars = 527.00
+;;   twenty five twenty seven = 25.27
+;;   twenty five twenty seven fifty = 2527.50
+;;   two hundred twenty seven = 227.0
+;;   two hundred dollars twenty seven = 200.27
+;;   one = $1.00
+;;   one cent = $0.01
+;;   but, numbers above 9999 need "dollars" if there is a cents field
+;;
+;; There are two main grammars to use in this file
+;; AMOUNT_10M and AMOUNT_100K
+;;   they are identical except for the largest amount allowed in the grammar
+;;   either $9,999,999.99 or $99,999.99.
+;; For backward compatibility, the grammar AMOUNT is also provided. This grammar
+;; calls the 100K grammar.
+;;
+;; Note that in both cases probabilities are set to favor dollar amounts below 10,000.00
+;; where the probability of amounts >= $10K is .0001.
+;; If this is not appropriate in your application, then you should use a copy of
+;; this file with the four  ~.0001s removed.
+;;
+;; Copyright (C) 1997 Nuance Communications.
+;; All Rights Reserved.
+
+
+
+;; basic one-digit grammar
+MyDigit [	    
+	one     {return(1)}
+        two     {return(2)}
+        three   {return(3)}
+        four    {return(4)}
+        five    {return(5)}
+        six     {return(6)}
+        seven   {return(7)}
+        eight   {return(8)}
+        nine    {return(9)}
+]
+
+;; basic two-digit grammars 
+
+MyTeen [
+	eleven 	 {return (11)}
+	twelve 	 {return (12)}
+	thirteen {return (13)}
+	fourteen {return (14)}
+	fifteen  {return (15)}
+	sixteen  {return (16)}
+	seventeen {return (17)}
+	eighteen {return (18)}
+	nineteen {return (19)}
+]
+
+Decade [
+	twenty	 {return(20)}
+	thirty	 {return(30)}
+	forty	 {return(40)}
+	fifty	 {return(50)}
+	sixty	 {return(60)}
+	seventy	 {return(70)}
+	eighty	 {return(80)}
+	ninety	 {return(90)}
+]
+
+TwoDigit [
+	ten		{return(10)}
+	MyTeen:d	{return($d)}
+	Decade:d 	{return($d)}
+	(Decade:t MyDigit:d) {return(add($t $d))}
+]
+
+OneOrTwoDigit [
+	MyDigit:d	{return($d)}
+	TwoDigit:d	{return($d)}
+]
+
+;; some auxilliary grammars
+Even	 [even exactly (?And [zero no] cents) ]  {return(0)}
+;; 'My' at front distinguishes this from Zero grammar defined in number.grammar
+MyZero	 [oh zero]      {return(0)}
+ZeroOnly [zero]        	{return(0)}
+No       [no zero]     	{return(0)}
+
+;; for use in "a dollar", "a cent", etc.
+A 	 [one a_ax]		{return(1)}
+
+Oh           [oh]           {return(0)}
+MyHundred    [hundred]
+MyThousand   [thousand]
+Point        [point]
+Cent         [pence cent cents penny pennies]
+Dollar       [pound pounds dollar dollars buck bucks]
+And	     [and and_axn]
+
+
+;; three digits, skipping the word hundred: "five sixty eight" 
+ThreeDigitsAbbreviated [
+	(MyDigit:h TwoDigit:d)		{return(add($d times($h 100)))}
+	(MyDigit:h Oh MyDigit:d)	{return(add($d times($h 100)))}
+]
+
+;; four digits, skipping the word hundred: "fifteen sixty eight" 
+FourDigitsAbbreviated [
+	(TwoDigit:h TwoDigit:d)		{return(add($d times($h 100)))}
+	(TwoDigit:h Oh MyDigit:d)	{return(add($d times($h 100)))}
+]
+
+;; three digits and filling the tens and/or ones place
+;; like "five hundred thirty two"
+ThreeDigitsWithLastTwo [
+	(MyDigit:h MyHundred ?And OneOrTwoDigit:d)
+				{return(add($d times($h 100)))}
+	(?A        MyHundred ?And OneOrTwoDigit:d) 
+				{return(add($d 100))}
+]
+
+;; three digits but not filling the tens and ones place
+;; like "five hundred"
+ThreeDigitsNoLastTwo [
+	(MyDigit:h MyHundred)	{return(times($h 100))}
+	(?A        MyHundred) 	{return(100)}
+]
+
+;; basic three digits grammar
+ThreeDigits [
+	ThreeDigitsWithLastTwo:n  {return($n)}
+	ThreeDigitsNoLastTwo:n	  {return($n)}
+]
+
+
+;; for things like seventeen hundred, twenty seven hundred,
+;; but not twenty hundred
+MultiHundred [
+	(MyTeen:t MyHundred) 		{return(times($t 100))}
+	(Decade:d MyDigit:dd MyHundred)	{return(times(add($d $dd) 100))}
+]
+
+
+;; four digit grammars, with tens/ones field filled in
+FourDigitsWithLastTwo [
+	(MyDigit:t MyThousand ?And ThreeDigitsAbbreviated:d)
+			 	{return(add($d times($t 1000)))}
+	(?A        MyThousand ?And ThreeDigitsAbbreviated:d)
+				{return(add($d times($t 1000)))}
+	(MultiHundred:h (?And OneOrTwoDigit:d))
+				{return(add($h $d))}
+	(MyDigit:t MyThousand ?And OneOrTwoDigit:d)
+				{return(add($d times($t 1000)))}
+	(?A        MyThousand ?And OneOrTwoDigit:d)
+				{return(add($d 1000))}
+
+	(MyDigit:t MyThousand ThreeDigitsWithLastTwo:d)
+				{return(add($d times($t 1000)))}
+	(?A        MyThousand ThreeDigitsWithLastTwo:d)
+				{return(add($d 1000))}
+]
+
+;; four digit grammars, with no tens or ones field filled in
+FourDigitsNoLastTwo [
+	MultiHundred:d		{return($d)}
+	(MyDigit:t MyThousand ThreeDigitsNoLastTwo:d)
+				{return(add($d times($t 1000)))}
+	(?A        MyThousand ThreeDigitsNoLastTwo:d)
+				{return(add($d 1000))}
+	(MyDigit:t MyThousand)	{return(times($t 1000))}
+	(?A        MyThousand)	{return(1000)}
+]
+
+;; basic four digits grammar
+FourDigits [
+	FourDigitsWithLastTwo:f	
+	FourDigitsNoLastTwo:f	
+] {return($f)}
+
+;; four digits grammar, word "thousand" is used
+FourDigitsThou [
+	(MyDigit:t MyThousand ?And ThreeDigitsAbbreviated:d)
+				{return(add($d times($t 1000)))}
+	(MyDigit:t MyThousand ?And OneOrTwoDigit:d)
+				{return(add($d times($t 1000)))}
+	(MyDigit:t MyThousand ThreeDigitsWithLastTwo:d)
+				{return(add($d times($t 1000)))}
+	(MyDigit:t MyThousand ThreeDigitsNoLastTwo:d)
+				{return(add($d times($t 1000)))}
+	(MyDigit:t MyThousand)	{return(times($t 1000))}
+]
+
+;; five digits grammar, must use the word thousand in there.
+FiveDigits [
+	;; 5 digit numbers
+	(TwoDigit:t MyThousand) 	{return(times($t 1000))}
+
+	(TwoDigit:t MyThousand [ThreeDigits:n2 OneOrTwoDigit:n2])
+				{return(add($n2 times($t 1000)))}
+]
+
+;; grammar for "N hundred thousand"
+HunThou [
+	(MyDigit:h MyHundred MyThousand)	{return(times($h 100000))}
+	(?A        MyHundred MyThousand) 	{return(100000)}
+]
+
+;; basic 6-digit grammar
+SixDigits [
+	;; e.g. six hundred thousand
+	(HunThou:h)		{return($h)}
+
+	;; e.g. six hundred thousand three hundred twelve
+	(HunThou:h ?And [ThreeDigits:n2 OneOrTwoDigit:n2])
+				{return(add($n2 $h))}
+
+	;; e.g. six hundred and fifty five thousand three hundred twelve
+	(MyDigit:h MyHundred ?And [FourDigitsThou:f FiveDigits:f])
+				{return(add($f times($h 100000)))}
+
+	;; e.g. a hundred and fifty five thousand three hundred twelve
+	(?A MyHundred ?And [FourDigitsThou:f FiveDigits:f])
+				{return(add($f 100000))}
+]
+
+;; grammar for N million, where N is a digit or the word 'a'
+Mill [
+	(MyDigit:d million)		{return(times($d 1000000))}
+	(?A million)			{return(1000000)}
+]
+
+;; basic seven digits grammar
+SevenDigits[
+	Mill:m				{return($m)}
+	(Mill:m ?And [SixDigits:n FiveDigits:n FourDigits:n 
+		      ThreeDigits:n OneOrTwoDigit:n])
+					{return(add($n $m))}
+]
+
+;; grammars for more than or equal to 10K and less than 100k
+LargeAmounts [
+	FiveDigits:n	
+] {return($n)}
+
+;; grammars for more than or equal to 10K and less than 10 million
+VeryLargeAmounts [
+	FiveDigits:n	
+	SixDigits:n
+	SevenDigits:n
+] {return($n)}
+
+
+;; dollar amounts grammar, ending in the word "dollars"
+DollarAmountDollars  (
+      [
+	[
+	 No:d	
+	 A:d
+	 OneOrTwoDigit:d
+	 ThreeDigitsWithLastTwo:d
+	 ThreeDigitsNoLastTwo:d
+;;	 ThreeDigitsAbbreviated:d
+	 FourDigitsWithLastTwo:d
+	 FourDigitsNoLastTwo:d
+;;	 FourDigitsAbbreviated:d
+	]~.95
+	LargeAmounts:d~.0001
+      ]
+      Dollar
+
+) {return($d)}
+;; dollar amounts grammar, ending in the word "dollars"
+VeryLargeDollarAmountDollars  (
+      [
+	[
+	 No:d	
+	 A:d
+	 OneOrTwoDigit:d
+	 ThreeDigitsWithLastTwo:d
+	 ThreeDigitsNoLastTwo:d
+;;	 ThreeDigitsAbbreviated:d
+	 FourDigitsWithLastTwo:d
+	 FourDigitsNoLastTwo:d
+;;	 FourDigitsAbbreviated:d
+	]~.95
+	VeryLargeAmounts:d~.0001
+      ]
+      Dollar
+
+) {return($d)}
+
+;; dollar amounts less than 10k where the last 2 digits are used
+;; and word dollars is not there.
+DollarAmountWithLastTwo	[
+	 ZeroOnly:d	
+	 OneOrTwoDigit:d
+	 ThreeDigitsWithLastTwo:d
+	 ThreeDigitsAbbreviated:d
+	 FourDigitsWithLastTwo:d
+	 FourDigitsAbbreviated:d
+] {return($d)}
+
+;; dollar amounts grammar, not containing the word "dollars"
+;; No became ZeroOnly
+;; Removed ThreeDigitsAbbreviated which should be interpreted as cents
+DollarAmountNoDollars [
+	[
+	 ZeroOnly:d	
+	 OneOrTwoDigit:d
+	 ThreeDigitsWithLastTwo:d
+	 ThreeDigitsNoLastTwo:d
+	 FourDigitsWithLastTwo:d
+	 FourDigitsNoLastTwo:d
+	]~.95
+	LargeAmounts:d~.0001
+] {return($d)}
+
+;; dollar amounts grammar, not containing the word "dollars"
+;; No became ZeroOnly
+;; Removed ThreeDigitsAbbreviated which should be interpreted as cents
+VeryLargeDollarAmountNoDollars [
+	[
+	 ZeroOnly:d	
+	 OneOrTwoDigit:d
+	 ThreeDigitsWithLastTwo:d
+	 ThreeDigitsNoLastTwo:d
+	 FourDigitsWithLastTwo:d
+	 FourDigitsNoLastTwo:d
+	]~.95
+	VeryLargeAmounts:d~.0001
+] {return($d)}
+
+
+;; cents amount. word "cents" is optional
+CentAmount [
+	;; things that must go with cent/cents
+	([
+	  ZeroOnly:d	
+	  MyDigit:d
+	 ] Cent)
+
+	;; things that may go with cent/cents
+	([
+	  TwoDigit:d	 		
+	  ([oh zero] [MyZero:d MyDigit:d])
+	 ] ?Cent)
+
+	(Point [
+	  TwoDigit:d  	  		      {return($d)}
+	  ([MyZero:d1 MyDigit:d1] MyDigit:d2) {return(add($d2 times($d1 10)))}
+	])
+	
+	;; things that don't do with cent/cents
+	Even:d
+
+] {return($d)}
+
+;; cents amount. word "cents" is there
+CentAmountCents [
+
+	;; things that go with cent/cents
+	([
+	  ZeroOnly:d	
+	  MyDigit:d
+	  TwoDigit:d	 		
+	  ([oh zero] [MyZero:d MyDigit:d])
+	 ] Cent)
+
+] {return($d)}
+
+UmUh 	[um uh]
+
+
+;; this grammar is set up so that most ambiguities are resolved:
+;; five twenty seven = 5.27
+;; five twenty seven dollars = 527.00
+;; twenty five twenty seven = 25.27
+;; twenty five twenty seven fifty = 2527.50
+;; two hundred twenty seven = 227.0
+;; two hundred dollars twenty seven = 200.27
+AMOUNT_100K (?UmUh
+	[
+
+	;; word "dollars" in the sentence
+	;; cents may/may not be there
+	;; e.g. two hundred dollars, or two hundred fifty dollars and twelve cents
+	(DollarAmountDollars:dol ?(?[And with] CentAmount:cnt))
+
+	;; just dollar expression, word "dollars" does not appear
+	;; e.g. fifty five
+	DollarAmountNoDollars:dol
+
+	;; just cents: needs the word "cents"
+	;; e.g. twenty seven cents
+	(CentAmountCents:cnt)
+
+	;; no "dollars" word, interpreted as dollars and cent
+	;; e.g. five hundred twenty six twenty seven = 526.27
+	;; note that for cents to be interpreted, the dollar amount 
+	;; has to have the last two digits filled.
+	(DollarAmountWithLastTwo:dol ?[And with] CentAmount:cnt)
+
+])   {return([<dollars $dol> <cents $cnt>])}
+
+;; like above but allows amounts to $9,999,999.99
+AMOUNT_10M (?UmUh
+	[
+
+	;; word "dollars" in the sentence
+	;; cents may/may not be there
+	;; e.g. two hundred dollars, or two hundred fifty dollars and twelve cents
+	(VeryLargeDollarAmountDollars:dol ?(?[And with] CentAmount:cnt))
+
+	;; just dollar expression, word "dollars" does not appear
+	;; e.g. fifty five
+	VeryLargeDollarAmountNoDollars:dol
+
+	;; just cents: needs the word "cents"
+	;; e.g. twenty seven cents
+	(CentAmountCents:cnt)
+
+	;; no "dollars" word, interpreted as dollars and cent
+	;; e.g. five hundred twenty six twenty seven = 526.27
+	;; note that for cents to be interpreted, the dollar amount 
+	;; has to have the last two digits filled.
+	(DollarAmountWithLastTwo:dol ?[And with] CentAmount:cnt)
+
+])  {return([<dollars $dol> <cents $cnt>])}
+
+AMOUNT (AMOUNT_100K:v) {return($v)}
+
+;; ---- end inclusion -----
+
+#include "calculator.grammar"
+
+#include "so.grammar"
+
+#include "city.grammar"
+
+;; We prefer string versions of the date, so 
+;; Here is a modified version of date.grammar-v6 from nuance
+;; ================ begin copy ====================
+;;
+;;
+;;
+;; File:   date.grammar
+;; Author: Mike Hochberg
+;; Date:   March 9, 1997
+;;
+;; Description:
+;;
+;; Date Grammar
+;;
+;; This grammar file handles dates.  The top-level grammar is Date.  A
+;; feature structure with up to five features (month, day,
+;; day_of_week, year and modifier) is returned.  None of these
+;; features is guaranteed to be set.  This grammar was generated from
+;; a number of different sources including the original dates grammar,
+;; the banking dates grammar and the travel dates grammar.  The values
+;; of the returned slots are as follows:
+;;
+;;	month:		january - december
+;;	day:		1 - 31
+;;	day_of_week:	sunday - saturday
+;;	year:		1996 - 2037
+;;	modifier:	next, last, a_week_from		(e.g., next tuesday)
+;;			today
+;;			tomorrow, day_after_tomorrow
+;;			yesterday, day_before_yesterday
+;;			beginning_of_month, end_of_month
+;;
+;; Typical valid dates include:
+;;
+;; "beginning of the month"		{<modifier beginning_of_month>}
+;; "eight august nineteen ninety seven"	{<year 1997> <day 8> <month august>}
+;; "fourth day of this month"		{<day 4>}		
+;; "friday april the fourth"		{<day_of_week friday> <day 4> 
+;;					 <month april>}
+;; "friday"				{<day_of_week friday>}
+;; "today sunday august eight"		{<modifier today> <day_of_week sunday> 
+;;					 <day 8> <month august>}		
+;; "august third two thousand"		{<year 2000> <day 3> <month august>}
+;; "three eighteen"			{<day 18> <month march>}
+;; 
+;; Copyright (C) 1997 Nuance Communications.
+;; All Rights Reserved.
+
+VDate [
+
+	;; dates with optional 'tuesday', 'next tuesday', 'tomorrow',
+	;; 'tomorrow tuesday'
+	(
+		?[
+			(?VDayOfWeekMod:md  VDayOfWeek:dw)
+			(VTodayEtc:md      ?VDayOfWeek:dw)
+		]
+
+		[
+			;; january the seventh nineteen ninety six
+			(VMonth:m ?the VDayOrd:dm ?(?of VYear:y))
+			
+			;; january seven nineteen ninety six
+			(VMonth:m VDayCard:dm ?(?of VYear:y))
+
+			;; the seventh of january nineteen ninety six
+			(?the VDayOrdOf:dm VMonth:m ?(?of VYear:y))
+
+			;; the seventh
+			(the VDayOrd:dm)
+		]
+	)
+
+	;; one seven nineteen ninety six
+        (VMonthNum:m VDayCard:dm ?VYear:y)
+
+	;; seven january nineteen ninety six
+        (VDayCard:dm VMonth:m ?VYear:y)
+
+	;; the seventh of the month
+	(?the VDayOrd:dm day of [the this] month)
+	(?the VDayOrdOf:dm [the this] month)
+
+	;; relative days, like 'today'
+	(VTodayEtc:md)
+
+	;; day of week expressions
+	(?([the this] coming) VDayOfWeek:dw)
+	(VDayOfWeekMod:md VDayOfWeek:dw)
+
+	;; relative month expressions
+	(?the VRelDayOfMonth:md of the month)
+
+
+] {return( strcat( $m strcat( "|" strcat( $dm strcat( "|"  strcat( $y strcat( "|" strcat( $dw strcat( "|" $md )))))))))}
+
+
+;; The month name is returned
+VMonth [ 
+	january
+        february
+        march
+        april
+        may
+        june
+        july
+        august
+        september
+        october
+        november
+        december
+] {return($string)}
+
+
+;; Days (1-31) of the month are returned.
+VDayOrd [
+	first             {return("1")}
+	second            {return("2")}
+	third             {return("3")}
+	fourth            {return("4")}
+	fifth             {return("5")}
+	sixth             {return("6")}
+	seventh           {return("7")}
+	eighth            {return("8")}
+	ninth             {return("9")}
+	tenth             {return("10")}
+	eleventh          {return("11")}
+	twelfth           {return("12")}
+	thirteenth        {return("13")}
+	fourteenth        {return("14")}
+	fifteenth         {return("15")}
+	sixteenth         {return("16")}
+	seventeenth       {return("17")}
+	eighteenth        {return("18")}
+	nineteenth        {return("19")}
+	twentieth         {return("20")}
+	(twenty first)    {return("21")}
+	(twenty second)   {return("22")}
+	(twenty third)    {return("23")}
+	(twenty fourth)   {return("24")}
+	(twenty fifth)    {return("25")}
+	(twenty sixth)    {return("26")}
+	(twenty seventh)  {return("27")}
+	(twenty eighth)   {return("28")}
+	(twenty_eighth)   {return("28")}
+	(twenty ninth)    {return("29")}
+	thirtieth         {return("30")}
+	(thirty first)    {return("31")}
+]
+
+;; Years from 1996 to 2037 are returned.
+VYear [
+	;; ninety six
+	;; nineteen ninety six
+	(?nineteen [  
+		(ninety six)      	{return("1996")}
+		(ninety seven)    	{return("1997")}
+		(ninety eight)    	{return("1998")}
+		(ninety nine)     	{return("1999")}
+	])
+
+	;; two thousand
+	;; the year two thousand
+	(?(the year) two thousand)    	{return("2000")}
+
+
+	;; two thousand five
+	;; two thousand and five
+	;; twenty oh five
+	([ (two thousand ?and) (twenty oh) ] [	
+		one       		{return("2001")}
+		two       		{return("2002")}
+		three     		{return("2003")}
+		four      		{return("2004")}
+		five      		{return("2005")}
+		six       		{return("2006")}
+		seven     		{return("2007")}
+		eight     		{return("2008")}
+		nine      		{return("2009")}
+	])
+
+	;; two thousand fifteen
+	;; two thousand and fifteen
+	;; twenty fifteen
+	([(two thousand ?and) twenty] [	
+		ten       		{return("2010")}
+		eleven    		{return("2011")}
+                twelve    		{return("2012")}
+		thirteen  		{return("2013")}
+                fourteen  		{return("2014")}
+                fifteen   		{return("2015")}
+                sixteen   		{return("2016")}
+                seventeen 		{return("2017")}
+                eighteen  		{return("2018")}
+                nineteen  		{return("2019")}
+                twenty    		{return("2020")}
+                (twenty one)   		{return("2021")}
+                (twenty two)   {return("2022")}
+                (twenty three) {return("2023")}
+                (twenty four)  {return("2024")}
+                (twenty five)  {return("2025")}
+                (twenty six)   {return("2026")}
+                (twenty seven) {return("2027")}
+                (twenty eight) {return("2028")}
+                (twenty nine)  {return("2029")}
+                thirty         {return("2030")}
+                (thirty one)   {return("2031")}
+                (thirty two)   {return("2032")}
+                (thirty three) {return("2033")}
+                (thirty four)  {return("2034")}
+                (thirty five)  {return("2035")}
+                (thirty six)   {return("2036")}
+                (thirty seven) {return("2037")}
+	])
+]
+
+;; the day of the week is returned
+VDayOfWeek [ 
+	monday 
+	tuesday 
+	wednesday 
+	thursday 
+	friday 
+	saturday 
+	sunday 
+] {return($string)}
+
+;; the integer representing cardinal day of the week is returned
+VDayCard [
+	one		{return("1")}
+	two		{return("2")}
+	three		{return("3")}
+	four            {return("4")}
+	five            {return("5")}
+	six		{return("6")}
+	seven           {return("7")}
+	eight           {return("8")}
+	nine            {return("9")}
+	ten		{return("10")}
+	eleven          {return("11")}
+	twelve          {return("12")}
+	thirteen        {return("13")}
+	fourteen        {return("14")}
+	fifteen         {return("15")}
+	sixteen         {return("16")}
+	seventeen       {return("17")}
+	eighteen        {return("18")}
+	nineteen        {return("19")}
+	twenty          {return("20")}
+	(twenty one)    {return("21")}
+	(twenty two)    {return("22")}
+	(twenty three)  {return("23")}
+	(twenty four)   {return("24")}
+	(twenty five)   {return("25")}
+	(twenty six)    {return("26")}
+	(twenty seven)  {return("27")}
+	(twenty eight)  {return("28")}
+	(twenty nine)   {return("29")}
+	thirty          {return("30")}
+	(thirty one)    {return("31")}
+]
+
+VMonthNum [ 
+	one 	{return(january)}
+	two 	{return(february)}
+	three 	{return(march)}
+	four 	{return(april)}
+	five 	{return(may)}
+	six 	{return(june)}
+	seven 	{return(july)}
+	eight 	{return(august)}
+	nine 	{return(september)}
+	ten 	{return(october)}
+	eleven 	{return(november)}
+	twelve 	{return(december)}
+]
+
+;; Days (1-31) of the month are returned.
+VDayOrdOf [
+	(first of)             	{return("1")}
+	(second of)            	{return("2")}
+	(third of)            	{return("3")}
+	(third_of)          	{return("3")}
+	(fourth of)            	{return("4")}
+	(fifth   of)           	{return("5")}
+	(sixth of)             	{return("6")}
+	(seventh of)           	{return("7")}
+	(eighth of)            	{return("8")}
+	(ninth of)             	{return("9")}
+	(tenth of)             	{return("10")}
+	(eleventh of)          	{return("11")}
+	(twelfth of)           	{return("12")}
+	(thirteenth of)        	{return("13")}
+	(fourteenth  of)       	{return("14")}
+	(fifteenth of)         	{return("15")}
+	(sixteenth of)         	{return("16")}
+	(seventeenth of)       	{return("17")}
+	(eighteenth of)        	{return("18")}
+	(nineteenth of)        	{return("19")}
+	(twentieth of)         	{return("20")}
+	(twenty first of)    	{return("21")}
+	(twenty second of)   	{return("22")}
+	(twenty third of)    	{return("23")}
+	(twenty third_of) 	{return("23")}
+	(twenty fourth of)   	{return("24")}
+	(twenty fifth of)    	{return("25")}
+	(twenty sixth of)    	{return("26")}
+	(twenty seventh of)  	{return("27")}
+	(twenty eighth of)   	{return("28")}
+	(twenty_eighth of)   	{return("28")}
+	(twenty ninth of)    	{return("29")}
+	(thirtieth of)         	{return("30")}
+	(thirty first of)    	{return("31")}
+]
+
+VTodayEtc [
+	today                        	{return(today)}
+	tomorrow                     	{return(tomorrow)}
+	yesterday                    	{return(yesterday)}
+	(?the day after tomorrow)    	{return(day_after_tomorrow)}
+	(?the day before yesterday)  	{return(day_before_yesterday)}
+]
+
+VDayOfWeekMod [
+	next 		{return(next)}
+	last 		{return(last)}
+	(a week from)	{return(a_week_from)}
+]
+
+VRelDayOfMonth [
+   beginning	 			{return(beginning_of_month)}
+   [end last]        			{return(end_of_month)}
+]
+
+;;
+;; ================ end copy ====================
+;;
+
+.VMLDate [
+	( VDate:d ) {<vmlslot0 $d>}
+    Universal_Commands:uc {<ucommand $uc>}
+]
+
+.VMLTime [
+	;; unambiguous time
+
+	(AmbigTime:t AM)                       	{<vmlslot0 $t>}
+	(AmbigTime:t PM)                       	{<vmlslot0 add($t 1200)>}
+
+	;; ambiguous time
+	AmbigTime:t                            	{<vmlslot0 neg($t)>}
+	RelativeAmbigTime:t                     {<vmlslot0 neg($t)>}
+
+	;; 24 hour clock time
+       	(ThirteenThruTwentyFour:h Minutes:m)	{<vmlslot0 add($h $m)>}
+
+	;; hundreds time 
+	HundredsTime:t							{<vmlslot0 $t>}
+
+	;; noon, midight
+  	(noon time)               				{<vmlslot0 1200>}
+  	(?(twelve ?o'clock) Twelve0:h)         	{<vmlslot0 $h>}
+    Universal_Commands:uc {<ucommand $uc>}
+]
+
+.VMLNumber [
+	( Number:n) {<vmlslot0 $n>}
+    Universal_Commands:uc {<ucommand $uc>}
+]
+
+SZero [zero oh] {return("0")}
+
+; The digits 1 through 9.
+
+SNon_zero [one {return("1")}
+          two {return("2")}
+          three {return("3")}
+          four {return("4")}
+          five {return("5")}
+          six {return("6")}
+          seven {return("7")}
+          eight {return("8")}
+          nine {return("9")}
+]
+
+; The digits 0 through 9.
+
+SDigit [ SZero:n SNon_zero:n ] {return($n)}
+
+ThreeDigs  ( SDigit:n1 SDigit:n2 SDigit:n3 ) {return( strcat( strcat( $n1 $n2 ) $n3 ) )}
+
+TenDigs  ( ThreeDigs:n1 ThreeDigs:n2 ThreeDigs:n3 SDigit:n4 ) {return( strcat( strcat( strcat( $n1 $n2 ) $n3 ) $n4 ) ) }
+
+OneToTwentyFourDigits [
+
+	;; 1
+	( SDigit:n ) {return($n)}
+    Key1DigitString:k {return($k)}
+
+	;; 2
+	( SDigit:n1 SDigit:n2 ) {return( strcat( $n1 $n2 ) )}
+    Key2DigitString:k {return($k)}
+
+	;; 3
+	( SDigit:n1 SDigit:n2 SDigit:n3 ) {return( strcat( strcat( $n1 $n2 ) $n3 ) )}
+    Key3DigitString:k {return($k)}
+
+	;; 4
+	( SDigit:n1 SDigit:n2 SDigit:n3 SDigit:n4 ) {return( strcat( strcat( strcat( $n1 $n2 ) $n3 ) $n4 ) )}
+    Key4DigitString:k {return($k)}
+
+	;; 5
+	( SDigit:n1 SDigit:n2 SDigit:n3 SDigit:n4 SDigit:n5 ) {return( strcat( strcat( strcat( strcat($n1 $n2) $n3) $n4) $n5) )}
+    Key5DigitString:k {return($k)}
+
+	;; 6
+	( SDigit:n1 SDigit:n2 SDigit:n3 SDigit:n4 SDigit:n5 SDigit:n6) {return( strcat(strcat(strcat(strcat(strcat($n1 $n2) $n3) $n4) $n5) $n6) )}
+    Key6DigitString:k {return($k)}
+
+	;; 7
+	( ThreeDigs:n1 ThreeDigs:n2 SDigit:n3 ) {return( strcat( strcat( $n1 $n2 ) $n3 ) )}
+    Key7DigitString:k {return($k)}
+
+	;; 8
+	( ThreeDigs:n1 ThreeDigs:n2 SDigit:n3 SDigit:n4 ) {return( strcat( strcat( strcat( $n1 $n2 ) $n3 ) $n4 ) )}
+    Key8DigitString:k {return($k)}
+
+	;; 9
+	( ThreeDigs:n1 ThreeDigs:n2 SDigit:n3 SDigit:n4 SDigit:n5 ) {return( strcat( strcat( strcat( strcat($n1 $n2) $n3) $n4) $n5) )}
+    Key9DigitString:k {return($k)}
+
+	;; 10
+	( TenDigs:n ) {return($n)}
+    Key10DigitString:k {return($k)}
+
+	;; 11
+	( TenDigs:n1 SDigit:n2 ) {return( strcat( $n1 $n2 ) )}
+    Key11DigitString:k {return($k)}
+
+	;; 12
+	( TenDigs:n1 SDigit:n2 SDigit:n3 ) {return( strcat( strcat( $n1 $n2 ) $n3 ) )}
+    Key12DigitString:k {return($k)}
+
+	;; 13
+	( TenDigs:n1 SDigit:n2 SDigit:n3 SDigit:n4 ) {return( strcat( strcat( strcat( $n1 $n2 ) $n3 ) $n4 ) )}
+    (Key10DigitString:n1 Key3DigitString:n2 ) {return( strcat( $n1 $n2 ) )}
+
+	;; 14
+	( TenDigs:n1 SDigit:n2 SDigit:n3 SDigit:n4 SDigit:n5 ) {return( strcat( strcat( strcat( strcat($n1 $n2) $n3) $n4) $n5) )}
+    (Key10DigitString:n1 Key4DigitString:n2) {return( strcat( $n1 $n2 ) )}
+
+	;; 15
+	( TenDigs:n1 SDigit:n2 SDigit:n3 SDigit:n4 SDigit:n5 SDigit:n6) {return( strcat(strcat(strcat(strcat(strcat($n1 $n2) $n3) $n4) $n5) $n6) )}
+    ( Key10DigitString:n1 Key5DigitString:n2 ) {return( strcat( $n1 $n2 ) )}
+
+	;; 16
+	( TenDigs:n1 ThreeDigs:n2 ThreeDigs:n3 ) {return( strcat( strcat( $n1 $n2 ) $n3 ) )}
+    ( Key10DigitString:n1 Key6DigitString:n2 ) {return( strcat( $n1 $n2 ) )}
+
+	;; 17
+	( TenDigs:n1 ThreeDigs:n2 ThreeDigs:n3 SDigit:n4 ) {return( strcat( strcat( strcat( $n1 $n2 ) $n3 ) $n4 ) )}
+    ( Key10DigitString:n1 Key7DigitString:n2 ) {return( strcat( $n1 $n2 ) )}
+
+	;; 18
+	( TenDigs:n1 ThreeDigs:n2 ThreeDigs:n3 SDigit:n4 SDigit:n5 ) {return( strcat( strcat( strcat( strcat($n1 $n2) $n3) $n4) $n5) )}
+    ( Key10DigitString:n1 Key8DigitString:n2 ) {return( strcat( $n1 $n2 ) )}
+
+	;; 19
+	( TenDigs:n1 ThreeDigs:n2 ThreeDigs:n3 ThreeDigs:n4 ) {return( strcat( strcat( strcat($n1 $n2) $n3) $n4) )}
+    ( Key10DigitString:n1 Key9DigitString:n2 ) {return( strcat( $n1 $n2 ) )}
+
+	;; 20
+	( TenDigs:n1 TenDigs:n2 ) {return( strcat($n1 $n2) )}
+    ( Key10DigitString:n1 Key10DigitString:n2 ) {return( strcat( $n1 $n2 ) )}
+
+	;; 21
+	( TenDigs:n1 TenDigs:n2 SDigit:n3 ) {return( strcat( strcat($n1 $n2) $n3 ) )}
+	( Key10DigitString:n1 Key10DigitString:n2 Key1DigitString:n3 ) {return( strcat( strcat( $n1 $n2 ) $n3 ) )}
+
+	;; 22
+	( TenDigs:n1 TenDigs:n2 SDigit:n3 SDigit:n4 ) {return( strcat( strcat( strcat( $n1 $n2 ) $n3 ) $n4 ) )}
+	( Key10DigitString:n1 Key10DigitString:n2 Key2DigitString:n3 ) {return( strcat( strcat( $n1 $n2 ) $n3 ) )}
+
+	;; 23
+	( TenDigs:n1 TenDigs:n2 ThreeDigs:n3 ) {return( strcat( strcat( $n1 $n2 ) $n3 ) )}
+	( Key10DigitString:n1 Key10DigitString:n2 Key3DigitString:n3 ) {return( strcat( strcat( $n1 $n2 ) $n3 ) )}
+
+	;; 24
+	( TenDigs:n1 TenDigs:n2 ThreeDigs:n3 SDigit:n4 ) {return( strcat( strcat( strcat( $n1 $n2 ) $n3 ) $n4 ) )}
+	( Key10DigitString:n1 Key10DigitString:n2 Key4DigitString:n3 ) {return( strcat( strcat( $n1 $n2 ) $n3 ) )}
+
+	]
+
+.VMLDigits [
+	OneToTwentyFourDigits:n {<vmlslot0 $n>}
+	Universal_Commands:uc {<ucommand $uc>}
+	]
+
+AreaCodeWords [ (area code)~0.01 ]
+
+AreaCodeHundred [
+	(eight hundred) {return("800")}
+	(nine hundred) {return("900")}
+	]
+
+SevenDigitString [
+	( ThreeDigs:n1 ThreeDigs:n2 SDigit:n3 ) {return( strcat( strcat($n1 $n2) $n3 ) )}
+	]
+
+.VMLPhone [
+	( AreaCodeWords ThreeDigs:n1 SevenDigitString:n2 ) {<vmlslot0 strcat($n1 $n2) >}
+	( SDigit:n1 AreaCodeHundred:n2 SevenDigitString:n3 ) {<vmlslot0 strcat( strcat($n1 $n2) $n3 )>}
+	( AreaCodeHundred:n1 SevenDigitString:n2 ) {<vmlslot0 strcat($n1 $n2)>}
+	OneToTwentyFourDigits:n {<vmlslot0 $n>}
+	Universal_Commands:uc {<ucommand $uc>}
+	]
+
+
+.VMLYN [
+	(?[um uh]
+     [(YES_WORDS ?_YES_TRAILERS)        {<vmlslot0 Y>}
+      (NO_WORDS ?_NO_TRAILERS)          {<vmlslot0 N>}
+     ]
+    )
+	Universal_Commands:uc {<ucommand $uc>}
+	]
+
+.VMLMoney [ 
+	(?UmUh
+		[
+
+		;; word "dollars" in the sentence
+		;; cents may/may not be there
+		;; e.g. two hundred dollars, or two hundred fifty dollars and twelve cents
+		(VeryLargeDollarAmountDollars:dol ?(?[And with] CentAmount:cnt)) {<vmlslot0 add( $cnt mul(100 $dol))>}
+
+		;; just dollar expression, word "dollars" does not appear
+		;; e.g. fifty five
+		VeryLargeDollarAmountNoDollars:dol	{<vmlslot0 mul(100 $dol)>}
+
+		;; just cents: needs the word "cents"
+		;; e.g. twenty seven cents
+		(CentAmountCents:cnt)	{<vmlslot0 $cnt>}
+
+		;; no "dollars" word, interpreted as dollars and cent
+		;; e.g. five hundred twenty six twenty seven = 526.27
+		;; note that for cents to be interpreted, the dollar amount 
+		;; has to have the last two digits filled.
+		;;(DollarAmountWithLastTwo:dol ?[And with] CentAmount:cnt)   {<vmlslot0 add( $cnt mul(100 $dol))>}
+
+		])  
+	Universal_Commands:uc {<ucommand $uc>}
+	]
+
+Olist: dynamic []
+
+.VMLOptionlist [ 
+		(?Uh ?I_Want_Ext Olist:r  {<vmlslot0 $r>} ?Suffix_Please)
+	    Universal_Commands:uc {<ucommand $uc>}
+	]
+
+VMLGramspot: dynamic []
+
+.VMLGrammar [ 
+		VMLGramspot
+	    Universal_Commands:uc {<ucommand $uc>}
+]
+
+.VMLGrammarNU [ 
+		VMLGramspot
+]
+
+.VMLNull ( Universal_Commands:uc {<ucommand $uc>} )
+
+.MOGramTest ( GTNounPhrase GTVerb GTPrep GTObject )
+
+GTNounPhrase [ jack {<vmlslot0 jack>}
+			 (jack and jill) {<vmlslot0 both>}
+			 (jill and jack) {<vmlslot0 both>}
+			 jill 	{<vmlslot0 jill>}
+			]
+
+GTObject [ ?the hill {<vmlslot3 hill>}
+ 		]
+
+GTVerb	[ went {<vmlslot1 walked>}
+		 ran {<vmlslot1 ran>}
+		 walked	{<vmlslot1 walked>}
+		 skipped {<vmlslot1 skipped>}
+		]
+
+GTPrep	[ up {<vmlslot2 up>}
+		  down {<vmlslot2 down>}
+		]
+
+
+GTNlist: dynamic []
+
+.MODynGramTest ( GTNlist:r GTVerb GTPrep GTObject {<vmlslot0 $r>} )
+
+.MObankcommand
+ [
+	( ?[(what is) (tell me)] ?my ?account balance ?please ) {< vmlslot0 balance >}
+	( ?(tell me my) recent transactions ?please ){< vmlslot0 transactions >}
+	( settle ?my account ) {< vmlslot0 settle >} 
+	( ?(what is the) customer service ?(phone number) ?please ) {< vmlslot0 custcaure >}
+ ]
+
+.MOAccusation
+  [ 
+  ( ? ( i think ) ? ( it was ) MOperson ) 
+  ( ? ( i think ) MOperson did it ) 
+  ( ? ( i think ) ? ( it was ) MOperson with [ a an the ] MOweapon ) 
+  ( ? ( i think ) ? ( it was ) MOperson in ? the MOroom ) 
+  ( ? ( i think ) MOperson did it in ? the MOroom ) 
+  ( ? ( i think ) MOperson did it with [ a an the ] MOweapon ) 
+  ( ? ( i think ) ? ( it was ) MOperson with [ a an the ] MOweapon in ? the MOroom ) 
+  ( ? ( i think ) ? ( it was ) MOperson in ? the MOroom with [ a an the ] MOweapon ) 
+  ( ? ( i think ) MOperson did it in ? the MOroom with [ a an the ] MOweapon ) 
+  ( ? ( i think ) MOperson did it with [ a an the ] MOweapon in ? the MOroom  ) 
+  ]
+
+MOperson
+  [ ( ? kernel mustard { < vmlslot0 mustard > } ) ( ? professor plum { < vmlslot0 plum > } ) ( ? miss scarlet { < vmlslot0 scarlet > } ) ( ? misses white { < vmlslot0 white > } ) ( ? mister green { < vmlslot0 green > } ) ]
+
+MOweapon
+  [ ( ? led pipe { < vmlslot1 pipe > } ) rope { < vmlslot1 rope > } candlestick { < vmlslot1 candlestick > } knife { < vmlslot1 knife > } revolver { < vmlslot1 revolver > } gun { < vmlslot1 revolver > } pistol { < vmlslot1 revolver > } ]
+
+MOroom
+  [ ( ball room { < vmlslot2 ballroom > } ) ballroom { < vmlslot2 ballroom > } conservatory { < vmlslot2 conservatory > } kitchen { < vmlslot2 kitchen > } study { < vmlslot2 study > } ]
+
+
+
+;;
+;;  The following are VoiceXML-specific builtin grammars for different
+;;  field types.
+;;
+
+.YORN ( YORN:r {<vmlslot0 $r>})
+
+.MONEY ( MONEY:r {<vmlslot0 $r>})
+
+.DIGITS ( DIGITS:r {<vmlslot0 $r>})
+
+.DATE ( DATE:r {<vmlslot0 $r>})
+
+.TIME ( TIME:r {<vmlslot0 $r>})
+
+.NUMBER ( NUMBER:r {<vmlslot0 $r>})
+
+
+;;
+;;  type="boolean"
+;;
+YORN:dynaref [
+    (?UmUh
+        [
+        (YES_WORDS ?_YES_TRAILERS)        {return("Y")}
+        (NO_WORDS  ?_NO_TRAILERS)         {return("N")}
+        ]
+    )
+]
+
+
+;;
+;;  type="currency"
+;;
+;;  The amount returned has the format CCC|nnnn|mm where CCC is the standard
+;;  three letter currency abbreviation, nnnn is the whole units, and mm is
+;;  the fractional units.
+;;
+MONEY:dynaref [ 
+    (?UmUh
+        [
+			;; word "dollars" in the sentence cents may/may not be there
+			;; e.g. two hundred dollars, or two hundred fifty dollars and twelve cents
+			(VeryLargeDollarAmountDollars:dollars ?(?[And with] CentAmount:cents))
+			{
+			    return ( strcat("USD|" strcat($dollars strcat("|" $cents))) )
+			}
+
+			;; just dollar expression, word "dollars" does not appear  e.g. fifty five
+			VeryLargeDollarAmountNoDollars:dollars
+			{
+			    return ( strcat("USD|" strcat($dollars "|00")) )
+			}
+
+			;; just cents: needs the word "cents" e.g. twenty seven cents
+			(CentAmountCents:cents)
+			{
+			    return ( strcat("USD|0|" $cents) )
+			}
+        ]
+    )  
+]
+
+
+;;
+;;  type="digits"
+;;
+DIGITS:dynaref [
+	OneToTwentyFourDigits:n							{ return($n) }
+]
+
+
+;;
+;;  type="date"
+;;
+;;  The returned value is month|dd|yyyy|dayofweek|modifier.  Logic in the VoxGateway
+;;  converts this into VoiceXML format.
+;;
+DATE:dynaref [
+    (?UmUh
+        [
+			(VDate:d)								{ return($d) }
+        ]
+    )  
+]
+
+
+;;
+;;  type="time"
+;;
+;;  The returned value is hhmm, in 24 hour time, or -hhmm in 12 hour time for
+;;  indeterminate values.  Logic in the VoxGateway converts this into VoiceXML format.
+;;
+TIME:dynaref [
+    (?UmUh
+        [
+			;; unambiguous time
+			(AmbigTime:t AM)						{ return($t) }
+			(AmbigTime:t PM)						{ return(add($t 1200)) }
+
+			;; ambiguous time
+			AmbigTime:t								{ return(neg($t)) }
+			RelativeAmbigTime:t						{ return(neg($t)) }
+
+			;; 24 hour clock time
+			(ThirteenThruTwentyFour:h Minutes:m)	{ return(add($h $m)) }
+
+			;; hundreds time 
+			HundredsTime:t							{ return($t) }
+
+			;; noon, midight
+  			(noon time)								{ return(1200) }
+  			(?(twelve ?o'clock) Twelve0:h)			{ return($h) }
+  	    ]
+  	)
+]
+
+
+;;
+;;  type="number"
+;;
+;;  In VoiceXML, numbers have an optional sign, and an optional decimal part.
+;;
+NUMBER:dynaref [
+    (?UmUh
+        [
+			;; A whole number, positive or negative.
+	        (?([plus positive]) Number:n)			{ return($n) }
+	        ([minus negative] Number:n)				{ return(neg($n)) }
+	        
+	        ;; A number with a whole part and a decimal part.
+	        (Number:n point OneToTwentyFourDigits:m)
+				{ return(strcat($n strcat("." $m))) }
+	        ([minus negative] Number:n [point] OneToTwentyFourDigits:m)
+	        	{ return(neg(strcat($n strcat("." $m)))) }
+	        
+	        ;; A number with just a decimal part.
+	        (point OneToTwentyFourDigits:m)						{ return(strcat("0." $m)) }
+	        ([minus negative] point OneToTwentyFourDigits:m)	{ return(strcat("-0." $m)) }
+        ]
+	)
+]
+
+
+;;
+;;  type="phone"
+;;
+;;  In VoiceXML, a phone has an optional extension.
+;;
+PHONE:dynaref [
+    (?UmUh
+        [
+            ;; Phone numbers without extensions.
+			(AreaCodeWords ThreeDigs:n1 SevenDigitString:n2)	{ return(strcat($n1 $n2)) }
+			(SDigit:n1 AreaCodeHundred:n2 SevenDigitString:n3)	{ return(strcat($n1 strcat($n2 $n3))) }
+			(AreaCodeHundred:n1 SevenDigitString:n2)			{ return(strcat($n1 $n2)) }
+			(OneToTwentyFourDigits:n)							{ return($n) }
+			
+            ;; Phone numbers with extensions.
+			(AreaCodeWords ThreeDigs:n1 SevenDigitString:n2 extension OneToTwentyFourDigits:ex)
+				{ return(strcat($n1 strcat($n2 strcat("x" $ex)))) }
+				
+			(SDigit:n1 AreaCodeHundred:n2 SevenDigitString:n3 extension OneToTwentyFourDigits:ex)
+				{ return(strcat($n1 strcat($n2 strcat($n3 strcat("x" $ex))))) }
+				
+			(AreaCodeHundred:n1 SevenDigitString:n2 extension OneToTwentyFourDigits:ex)
+				{ return(strcat($n1 strcat($n2 strcat("x" $ex)))) }
+				
+			(OneToTwentyFourDigits:n extension OneToTwentyFourDigits:ex)
+				{ return(strcat($n strcat("x" $ex))) }
+	    ]
+	)
+]

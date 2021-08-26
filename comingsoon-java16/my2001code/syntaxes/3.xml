@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+
+<grammar xml:lang="en" version="1.0">
+   <import name="someplaces"
+    uri="http://www.example.com/places.xml"/>
+
+   <!-- Using URI syntax -->
+   <rule id="flight">
+     I want to fly to 
+     <ruleref uri="http://www.example.com/places.xml#city"/>
+   </rule>
+
+   <!-- Using import syntax -->
+   <rule id="exercise">
+     I want to walk to <ruleref import="someplaces#state"/>
+   </rule>
+
+   <!-- Reference to root rule of an imported grammar -->
+   <rule id="wet">
+     I want to swim to <ruleref import="someplaces"/>
+   </rule>
+</grammar>

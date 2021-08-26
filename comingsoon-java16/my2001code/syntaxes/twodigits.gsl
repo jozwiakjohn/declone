@@ -1,0 +1,11 @@
+DIGITS    
+  [
+          one
+          two
+          oh
+  ]
+
+.TwoDigits (
+             DIGITS
+             DIGITS
+           )  

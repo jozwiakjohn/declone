@@ -1,0 +1,9 @@
+.Tom
+[
+  time                              { print("date")             ; }
+  weather                           { print("banner WEATHER")   ; }
+  (who { print("echo who") ;} am i) { print("id")               ; }
+  Thumb                             { print("finger")           ; }
+]                                   { print("echo choice made") ; }
+
+Thumb thumb

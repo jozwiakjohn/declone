@@ -1,0 +1,13 @@
+#ABNF 1.0 ISO8859-1; 
+
+$counts  =
+         [a]             // ?a  in gsl
+         $b *            // *Da in gsl
+         $c +            // +Da in gsl
+         d  <0-1>
+         $e <0->
+         $f <1->
+         $g <2-4>        // {2,3,4} repetitions
+         $h <2->         // {10,...} repetitions
+         i  <0-1 /0.6/>  // the token "very" is optional and is 60% likely to occur and 40% likely to be absent in input
+         ;
