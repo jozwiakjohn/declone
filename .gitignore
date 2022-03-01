@@ -17,3 +17,4 @@ pom.xml.asc
 .DS_Store
 *.swp
 cmake-build-debug/
+target/
