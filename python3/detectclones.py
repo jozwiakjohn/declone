@@ -105,10 +105,14 @@ def main():
     roots = list(rawRoots)
 
     onlyEmpties = False
+    onlyFolders = False
 
     for c in cmnds :
-        if c == '-empties':
+        clower = c.lower()
+        if clower == '-empties':
           onlyEmpties = True
+        if clower == '-onlyfolders' : 
+          onlyFolders = True
         else:
           print(f"the command {str(c)} is being ignored at the moment\n")
 
@@ -132,22 +136,26 @@ def main():
             else :
                 what = "folders"
             squandered = (cardinality-1) * clonegroup.size
-            label = ( f"the following {str(cardinality)} {str(what)} seem to hold identical content;" + 
-                      f" each instance uses {str(clonegroup.size)} bytes in file(s)," +
-                      f" so {str(squandered)} bytes are squandered in duplication:\n" )
+#           label = ( f"the following {str(cardinality)} {str(what)} seem to hold identical content;" + 
+#                     f" each instance uses {str(clonegroup.size)} bytes in file(s)," +
+#                     f" so {str(squandered)} bytes are squandered in duplication:\n" )
 #           print(label)
 #           for p in clonegroup.paths:
 #               print("   ",p)
 #           print()
             totalBytesSquandered += squandered
-            resultsArray.append((squandered,label,clonegroup.paths,what,clonegroup.size))
+            resultsArray.append((squandered,clonegroup.file,clonegroup.paths,what,clonegroup.size))
 
     print("\n\n# sorted from biggest waste to smallest\n\n")
 
     try:
 
       for v in sorted(resultsArray,key=lambda x:x[0],reverse=True):
-        if (onlyEmpties and v[0] != 0) or (not onlyEmpties and v[0] == 0):
+        if (
+             (onlyFolders and v[1]) or
+             (onlyEmpties and v[0] != 0) or
+             (not onlyEmpties and v[0] == 0)
+           ):
           continue
         print(f"{v[0]:,d}")
         for p in sorted(v[2]):
@@ -159,5 +167,7 @@ def main():
       pass
 
 
-
-main()
+try:
+  main()
+except BrokenPipeError:
+  pass
