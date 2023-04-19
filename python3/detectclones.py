@@ -146,7 +146,7 @@ def main():
             totalBytesSquandered += squandered
             resultsArray.append((squandered,clonegroup.file,clonegroup.paths,what,clonegroup.size))
 
-    print("\n\n# sorted from biggest waste to smallest\n\n")
+    print("\n# sorted from biggest waste to smallest\n")
 
     try:
 
@@ -170,4 +170,4 @@ def main():
 try:
   main()
 except BrokenPipeError:
-  pass
+  sys.exit(0)
